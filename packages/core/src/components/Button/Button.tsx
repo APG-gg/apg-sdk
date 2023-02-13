@@ -12,7 +12,7 @@ export interface ButtonProps {
   children?: ReactNode;
 }
 
-const ApgButton: FC<ButtonProps> = ({ type = "default", icon, iconPosition = "left", fontSize = "base", onClick, className, children, disabled }) => {
+const Button: FC<ButtonProps> = ({ type = "default", icon, iconPosition = "left", fontSize = "base", onClick, className, children, disabled }) => {
   return (
     <button
       onClick={onClick}
@@ -34,4 +34,4 @@ const ApgButton: FC<ButtonProps> = ({ type = "default", icon, iconPosition = "le
   );
 };
 
-export default ApgButton;
+export default Button;
