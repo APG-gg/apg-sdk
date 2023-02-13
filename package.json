@@ -12,9 +12,6 @@
     "packages/domain"
   ],
   "scripts": {
-    "clean": "rimraf lib/components/ lib/hooks/ lib/domain/ lib/icons/",
-    "build": "webpack --mode production && tsc --noEmit false --emitDeclarationOnly && node scripts/copy-declaration.js && npm run clean",
-    "build:publish": "npm publish --access public",
     "storybook": "start-storybook -p 9009",
     "storybook:build": "build-storybook"
   },
