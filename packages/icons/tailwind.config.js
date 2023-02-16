@@ -92,7 +92,7 @@ module.exports = {
         "white-700": "#5E5E5F",
         "white-800": "#4B4B4C",
         "white-900": "#38393A",
-      },
+      }
     },
   },
   plugins: [],

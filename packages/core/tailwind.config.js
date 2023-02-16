@@ -93,6 +93,13 @@ module.exports = {
         "white-800": "#4B4B4C",
         "white-900": "#38393A",
       },
+      lineClamp2: {
+        "-webkit-line-clamp": 2,
+        "-webkit-box-orient": "vertical"
+      },
+      box: {
+        "display": "-webkit-box"
+      }
     },
   },
   plugins: [],

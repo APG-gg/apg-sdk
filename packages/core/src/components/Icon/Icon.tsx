@@ -9,6 +9,7 @@ interface IconProps {
   width?: IconSize | number;
   height?: IconSize | number;
   color?: string;
+  className?: string;
 }
 
 interface FunctionalIconProps {
@@ -24,7 +25,7 @@ const FunctionalIcon = styled.div<FunctionalIconProps>`
   height: ${({ height, size = IconSize.Xs }) => height || size}px;
 `;
 
-const Icon: React.FC<IconProps> = ({ icon, size, width, height, alt, color }: IconProps) => {
+const Icon: React.FC<IconProps> = ({ icon, size, width, height, alt, color, className }: IconProps) => {
   let IconSource = icon;
 
   if (color && typeof IconSource === 'string') {
@@ -48,6 +49,7 @@ const Icon: React.FC<IconProps> = ({ icon, size, width, height, alt, color }: Ic
   }
 
   if (color && typeof IconSource === 'function') {
+    console.log('holi');
     return <FunctionalIcon as={IconSource} iconColor={color} size={size} width={width} height={height} />;
   }
 

@@ -6,8 +6,8 @@ import {
   Primary,
   Stories,
 } from "@storybook/addon-docs/blocks";
+import "../packages/core/src/styles/index.css";
 import "../packages/core/src/styles/text.styles.css";
-import "./index.css";
 import "./icons.css";
 import { themes } from '@storybook/theming';
 

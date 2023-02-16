@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -12,9 +12,13 @@
     "clean": "find lib/ -mindepth 1 -maxdepth 1 -type d ! -name styles ! -name hooks ! -name utils ! -name css-in-js -exec rm -rf {} +",
     "build": "webpack --mode production && tsc --noEmit false --emitDeclarationOnly && node ../../scripts/copy-declaration.js && npm run clean",
     "build:publish": "npm publish --access public",
-    "tailwind": "npx tailwindcss -i ./src/styles/index.css -o ../../.storybook/index.css --watch"
+    "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/index.css --watch"
   },
   "devDependencies": {
-    "@types/node": "^12.20.13"
+    "@types/node": "^12.20.13",
+    "framer-motion": "8.5.5"
+  },
+  "dependencies": {
+    "@apg.gg/icons": "0.0.4"
   }
 }

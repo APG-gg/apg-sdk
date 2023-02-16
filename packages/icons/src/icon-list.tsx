@@ -7,6 +7,7 @@ import IconDrakeCloud from "./IconDrakeCloud";
 import IconDrakeInfernal from "./IconDrakeInfernal";
 import IconDrakeMountain from "./IconDrakeMountain";
 import IconDrakeOcean from "./IconDrakeOcean";
+import IconTwitter from "./IconTwitter";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -63,6 +64,12 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <IconDrakeOcean style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<IconDrakeOcean />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <IconTwitter style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<IconTwitter />'}</pre> 
         </div>
       </IconWrapper>
     </div>
