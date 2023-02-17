@@ -11,6 +11,7 @@ export default {
     disabled: { control: 'boolean' },
     type: { control: 'select', options: ['default', 'outline']},
     fontSize: { control: 'select', options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl']},
+    iconPosition: { control: 'radio', options: ['left', 'right']},
     icon: { control: 'text' },
   },
 }
@@ -22,4 +23,13 @@ Basic.args = {
   onClick: () => console.log('clicked'),
   children: 'Enable',
   fontSize: 'base'
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  onClick: () => console.log('clicked'),
+  children: 'Enable',
+  fontSize: 'base',
+  icon: 'discord',
+  iconPosition: 'left',
 };

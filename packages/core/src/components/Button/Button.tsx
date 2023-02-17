@@ -1,9 +1,10 @@
 import React, { FC, ReactNode } from "react";
 import classNames from 'classnames';
+import { getComponentByName } from "../../utils";
 
 export interface ButtonProps {
   type?: "default" | "outline";
-  icon?: ReactNode | null;
+  icon?: ReactNode | string | null;
   iconPosition?: "left" | "right";
   fontSize?: string;
   onClick: () => void;
@@ -13,6 +14,14 @@ export interface ButtonProps {
 }
 
 const Button: FC<ButtonProps> = ({ type = "default", icon, iconPosition = "left", fontSize = "base", onClick, className, children, disabled }) => {
+  const renderIcon = (icon: string | React.ReactNode) => {
+    if (typeof icon === 'string') {
+      return getComponentByName(icon);
+    } else {
+      return icon
+    }
+  }
+  
   return (
     <button
       onClick={onClick}
@@ -23,13 +32,13 @@ const Button: FC<ButtonProps> = ({ type = "default", icon, iconPosition = "left"
           "bg-blue hover:bg-aqua-100 text-white font-medium py-2 px-4 hover:shadow-sm hover:shadow-black-500 active:bg-aqua-600": type === "default" && !disabled,
           "bg-white-600 border-white text-white opacity-40 hover:bg-white-600 hover:border-white hover:text-white hover:shadow-none font-medium py-2 px-4": type === "default" && disabled,
         },
-        `text-${fontSize} rounded-full hover:bg-aqua-100/8 ${className}`
+        `text-${fontSize} flex items-center gap-2 min-w-[98px] rounded-full hover:bg-aqua-100/8 ${className}`
       )}
       disabled={disabled}
     >
-      {iconPosition === "left" && icon}
+      {iconPosition === "left" && renderIcon(icon)}
       {children}
-      {iconPosition === "right" && icon}
+      {iconPosition === "right" && renderIcon(icon)}
     </button>
   );
 };
