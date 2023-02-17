@@ -1,21 +1,15 @@
-import React, { FC } from "react";
-import getComponentByName from '../../utils/mapping';
+import React, { FC, ReactNode } from "react";
 import { CardProps, CardSocialProps } from './CardBase';
+import { getRelativeTime, renderIcon } from "../../utils";
 
-export interface CardHeaderProps extends Pick<CardProps, "id" | "name" | "avatar" | "socials"> {
+export interface CardHeaderProps extends Pick<CardProps, "id" | "name" | "avatar"> {
+  socials?: CardSocialProps[];
   createdAt?: string;
-  postedOn?: string;
+  postedOn?: ReactNode | string | null;
   username?: string;
 }
 
-const CardHeader: FC<CardHeaderProps> = ({ id, name, avatar, socials }) => {
-  const renderIcon = (icon: string | React.ReactNode) => {
-    if (typeof icon === 'string') {
-      return getComponentByName(icon);
-    } else {
-      return icon
-    }
-  }
+const CardHeader: FC<CardHeaderProps> = ({ id, name, avatar, socials, createdAt, postedOn, username }) => {
   
   return (
     <div className="flex card-header px-4 py-[13px] h-[72px] gap-4">
@@ -24,20 +18,40 @@ const CardHeader: FC<CardHeaderProps> = ({ id, name, avatar, socials }) => {
       </div>
       <div className="flex flex-col items-start">
         <h4 className="text-white text-base uppercase font-bold !cursor-pointer">{name}</h4>
-        <div className="socials flex gap-[10px]">
-          {socials?.map((social: CardSocialProps) => (
-            <a
-              key={`${id}-${social.icon}`}
-              className="text-black-400 text-lg leading-3 !cursor-pointer flex"
-              href={social.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {renderIcon(social.icon)}
+        {socials && socials.length > 0 && (
+          <div className="socials flex gap-[10px]">
+            {socials?.map((social: CardSocialProps) => (
+              <a
+                key={`${id}-${social.icon}`}
+                className="text-black-400 text-lg leading-3 !cursor-pointer flex"
+                href={social.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {renderIcon(social.icon)}
+              </a>
+            ))}
+          </div>
+        )}
+        {username && (
+          <div className="flex gap-[10px] items-center text-black-400 text-sm leading-3">
+            <a href={`/${username}`} className="!cursor-pointer">
+              @{username}
             </a>
-          ))}
-        </div>
+            •
+            {createdAt && (
+              <span>
+                {getRelativeTime(createdAt)}
+              </span>
+            )}
+          </div>
+        )}
       </div>
+      {postedOn && (
+        <div className="flex items-center ml-auto text-2xl text-black-400">
+          {renderIcon(postedOn)}
+        </div>
+      )}
     </div>
   );
 };

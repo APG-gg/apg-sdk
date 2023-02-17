@@ -11,13 +11,15 @@ export interface Social {
 export interface CardDescriptionProps {
   shortDescription: string;
   showAbout?: boolean;
+  columns?: number;
+  className?: string;
 }
 
-const CardDescription: FC<CardDescriptionProps> = ({ shortDescription, showAbout = false }) => {  
+const CardDescription: FC<CardDescriptionProps> = ({ shortDescription, showAbout = false, columns = 2, className }) => {  
   return (
-    <div className="p-4 h-24">
+    <div className={`p-4 w-full ${className}`}>
       {showAbout && (<strong className="text-white text-base">About me:</strong>)}
-      <div className="overflow-hidden max-h-10 text-black-400 text-sm text-ellipsis line-clamp-2 d-box">
+      <div className={`overflow-hidden max-h-10 text-black-400 text-sm text-ellipsis ${columns === 2 ? 'line-clamp-2' : 'line-clamp-3'} d-box`}>
         <TextLinker text={shortDescription} />
       </div>
     </div>

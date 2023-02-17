@@ -97,8 +97,15 @@ module.exports = {
         "-webkit-line-clamp": 2,
         "-webkit-box-orient": "vertical"
       },
+      lineClamp3: {
+        "-webkit-line-clamp": 3,
+        "-webkit-box-orient": "vertical"
+      },
       box: {
         "display": "-webkit-box"
+      },
+      cardHover: {
+        "background": "linear-gradient(70.8deg, rgba(0, 118, 209, 0.3) 24.87%, rgba(81, 240, 255, 0.3) 69.29%);"
       }
     },
   },

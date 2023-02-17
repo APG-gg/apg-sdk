@@ -1,7 +1,17 @@
 import React from 'react';
-import Card from './Card';
 import { Story } from "@storybook/react"
 import { CardProps } from './CardBase';
+import Card from './Card';
+import CardPost from './CardPost';
+import CardLandscape from './CardLandscape';
+
+const basicArgs = {
+  id: "266678",
+  name: "Card 1",
+  banner: "https://picsum.photos/id/237/360/480",
+  avatar: "https://picsum.photos/id/237/360/480",
+  shortDescription: "Lorem ipsum dolor sit amet, @ddumst adipiscing elit, sed do eiusmod tempor #something #hashtag",
+}
 
 export default {
   title: "Components/Cards",
@@ -12,14 +22,9 @@ export default {
 }
 
 const TemplateCard: Story<CardProps> = (args) => <Card {...args} />;
-
 export const Base = TemplateCard.bind({});
 Base.args = {
-  id: "266678",
-  name: "Card 1",
-  banner: "https://picsum.photos/id/237/360/480",
-  avatar: "https://picsum.photos/id/237/360/480",
-  shortDescription: "Lorem ipsum dolor sit amet, @ddumst adipiscing elit, sed do eiusmod tempor #something #hashtag",
+  ...basicArgs,
   socials: [
     {
       name: "Discord",
@@ -44,6 +49,35 @@ Base.args = {
     {
       title: "tag 3",
       icon: "drakeInfernal"
+    }
+  ],
+  confirmLabel: "Confirm",
+  cancelLabel: "Cancel",
+};
+
+const TemplatePost: Story<CardProps> = (args) => <CardPost {...args} />;
+export const Post = TemplatePost.bind({});
+Post.args = {
+  ...basicArgs,
+  username: 'ddumst',
+  createdAt: '2023-02-01T18:36:07.832054+00:00',
+  postedOn: 'twitter',
+};
+
+const TemplateLandscape: Story<CardProps> = (args) => <CardLandscape {...args} />;
+export const Landscape = TemplateLandscape.bind({});
+Landscape.args = {
+  ...basicArgs,
+  socials: [
+    {
+      name: "Discord",
+      url: "https://www.discord.com",
+      icon: "discord"
+    },
+    {
+      name: "Twitter",
+      url: "https://www.twitter.com",
+      icon: "twitter"
     }
   ],
   confirmLabel: "Confirm",

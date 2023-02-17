@@ -39,8 +39,10 @@ export type CardTagProps = {
 
 const CardBase = ({ children, className = '' }: CardBaseProps) => {
   return (
-    <div className={`flex w-full h-full rounded-2xl overflow-hidden bg-black-900 ${className}`}>
-      {children}
+    <div className={`base-card ${className}`}>
+      <div className={`z-20 ${className}`}>
+        {children}
+      </div>
     </div>
   );
 };

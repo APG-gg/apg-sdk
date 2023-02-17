@@ -44,7 +44,7 @@ const Card = ({
   });
 
   return (
-    <CardBase className="flex-col max-w-[360px] max-h-[480px]">
+    <CardBase className="flex flex-col max-w-[360px] max-h-[480px]">
       <div className={bannerHeightClasses}>
         <img src={banner} alt={name} className="w-full h-full object-cover" />
       </div>
@@ -70,12 +70,14 @@ const Card = ({
       )}
       {hasFooter && (
         <div className="flex items-center justify-end p-4 gap-2 mt-auto">
-          <Button
-            type="outline"
-            onClick={() => onCancel}
-          >
-            {cancelLabel}
-          </Button>
+          {cancelLabel && (
+            <Button
+              type="outline"
+              onClick={() => onCancel}
+            >
+              {cancelLabel}
+            </Button>
+          )}
           <Button
             onClick={() => onConfirm}
           >
