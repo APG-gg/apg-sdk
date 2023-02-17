@@ -23,7 +23,7 @@ const TextLinker: React.FC<Props> = ({ text }) => {
       const mention = part.slice(1); // Remove the "@" from the mention
       return (
         <React.Fragment key={index}>
-          <a className="text-blue-400" href={`/profile/${mention}`}>{part}</a>{' '}
+          <a className="text-blue-400" href={`/${mention}`}>{part}</a>{' '}
         </React.Fragment>
       );
     } else {

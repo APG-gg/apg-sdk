@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import classNames from 'classnames';
-import { getComponentByName } from "../../utils";
+import { renderIcon } from "../../utils";
 
 export interface TagProps {
   type?: "default" | "outline";
@@ -13,14 +13,6 @@ export interface TagProps {
 }
 
 const Tag: FC<TagProps> = ({ type = "outline", icon, iconPosition = "left", link, className, children }) => {
-  const renderIcon = (icon: string | React.ReactNode) => {
-    if (typeof icon === 'string') {
-      return getComponentByName(icon);
-    } else {
-      return icon
-    }
-  }
-
   return (
     <a
       href={link}
