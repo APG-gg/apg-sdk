@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import classNames from 'classnames';
-import getComponentByName from '../../utils/mapping';
+import { getComponentByName } from "../../utils";
 
 export interface TagProps {
   type?: "default" | "outline";

@@ -11,7 +11,7 @@ export default {
     onClick: { action: 'clicked' },
     disabled: { control: 'boolean' },
     type: { control: 'select', options: ['default', 'outline']},
-    iconPosition: { control: 'select', options: ['left', 'right']},
+    iconPosition: { control: 'radio', options: ['left', 'right']},
     icon: { control: 'text' },
   },
 }
