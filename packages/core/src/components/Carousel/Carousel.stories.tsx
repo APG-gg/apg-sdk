@@ -3,7 +3,7 @@ import CardStack, { CardStackProps } from './CardStack';
 import { Story } from "@storybook/react"
 
 export default {
-  title: "Components/Carrousel",
+  title: "Components/Carousel",
   component: CardStack,
   argTypes: {
     cards: { control: 'array' }
@@ -20,7 +20,7 @@ Cards.args = {
       name: "Card 1",
       banner: "https://picsum.photos/id/237/360/480",
       avatar: "https://picsum.photos/id/237/360/480",
-      shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sed do eiusmod sed doas eiusmod sed doas",
+      shortDescription: "Lorem ipsum dolor sit amet, @ddumst adipiscing elit, sed do eiusmod tempor #something #hashtag",
       socials: [
         {
           name: "Discord",
@@ -46,7 +46,9 @@ Cards.args = {
           title: "tag 3",
           icon: "drakeInfernal"
         }
-      ]
+      ],
+      confirmLabel: "Confirm",
+      cancelLabel: "Cancel",
     },
     {
       id: "cb7c7a",
