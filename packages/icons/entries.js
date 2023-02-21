@@ -24,7 +24,6 @@ module.exports = {
   IconTurret: path.resolve(SRC_DIR, "IconTurret"),
   IconTurretBlue: path.resolve(SRC_DIR, "IconTurretBlue"),
   IconTurretRed: path.resolve(SRC_DIR, "IconTurretRed"),
-  IconTwitterCircle: path.resolve(SRC_DIR, "IconTwitterCircle"),
   IconTwitter: path.resolve(SRC_DIR, "IconTwitter"),
   IconDiscord: path.resolve(SRC_DIR, "IconDiscord"),
   IconWildRiftLogo: path.resolve(SRC_DIR, "IconWildRiftLogo"),
@@ -32,4 +31,8 @@ module.exports = {
   IconSettings: path.resolve(SRC_DIR, "IconSettings"),
   IconLogout: path.resolve(SRC_DIR, "IconLogout"),
   IconHamburger: path.resolve(SRC_DIR, "IconHamburger"),
+  // New icons
+  VerifiedIcon: path.resolve(SRC_DIR, "VerifiedIcon"),
+  NavigateNextIcon: path.resolve(SRC_DIR, "NavigateNextIcon"),
+  NavigatePrevIcon: path.resolve(SRC_DIR, "NavigatePrevIcon"),
 };

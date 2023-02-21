@@ -8,6 +8,9 @@ import IconDrakeInfernal from "./IconDrakeInfernal";
 import IconDrakeMountain from "./IconDrakeMountain";
 import IconDrakeOcean from "./IconDrakeOcean";
 import IconTwitter from "./IconTwitter";
+import VerifiedIcon from './VerifiedIcon';
+import NavigateNextIcon from "./NavigateNextIcon";
+import NavigatePrevIcon from "./NavigatePrevIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -70,6 +73,24 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <IconTwitter style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<IconTwitter />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <VerifiedIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<VerifiedIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <NavigateNextIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<NavigateNextIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <NavigatePrevIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<NavigatePrevIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

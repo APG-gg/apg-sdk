@@ -5,7 +5,7 @@ import { IconProps } from '@apg.gg/core/lib/icon-props';
 import IconList from './src/icon-list';
 
 export default {
-  title: "Components/Icons",
+  title: "Atoms/Icons",
   component: Icon,
   argTypes: {
     size: { control: 'select', options: [16, 32, 48]},

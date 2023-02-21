@@ -14,7 +14,7 @@ const basicArgs = {
 }
 
 export default {
-  title: "Components/Cards",
+  title: "Organisms/Cards",
   component: Card,
   argTypes: {
     cards: { control: 'array' }

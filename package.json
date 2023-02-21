@@ -13,7 +13,8 @@
   ],
   "scripts": {
     "storybook": "start-storybook -p 9009",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "tailwind": "npx tailwindcss -i ./packages/core/src/styles/global.css -o ./packages/core/src/styles/index.css --watch"
   },
   "dependencies": {
     "@tippyjs/react": "^4.2.6",

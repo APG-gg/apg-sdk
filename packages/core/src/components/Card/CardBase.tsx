@@ -19,6 +19,7 @@ export type CardProps = {
   username?: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  className?: string;
   onConfirm?: () => void;
   onCancel?: () => void;
 }

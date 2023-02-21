@@ -1,10 +1,9 @@
 import React from 'react';
 import Tag, { TagProps } from './Tag';
 import { Story } from "@storybook/react"
-import IconDiscord from '@apg.gg/icons/lib/IconDiscord';
 
 export default {
-  title: "Components/Tag",
+  title: "Atoms/Tag",
   component: Tag,
   argTypes: {
     children: { control: 'text' },

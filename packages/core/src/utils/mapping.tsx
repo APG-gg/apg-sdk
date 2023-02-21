@@ -1,7 +1,4 @@
-
-    import React from 'react';
-    import IconApgLogo from '@apg.gg/icons/lib/IconApgLogo';
-import IconApgLogoFull from '@apg.gg/icons/lib/IconApgLogoFull';
+import React from 'react';
 import IconBaron from '@apg.gg/icons/lib/IconBaron';
 import IconDiscord from '@apg.gg/icons/lib/IconDiscord';
 import IconDrake from '@apg.gg/icons/lib/IconDrake';
@@ -27,39 +24,42 @@ import IconTurretBlue from '@apg.gg/icons/lib/IconTurretBlue';
 import IconTurretRed from '@apg.gg/icons/lib/IconTurretRed';
 import IconTwitter from '@apg.gg/icons/lib/IconTwitter';
 import IconWildRiftLogo from '@apg.gg/icons/lib/IconWildRiftLogo';
+import NavigateNextIcon from '@apg.gg/icons/lib/NavigateNextIcon';
+import NavigatePrevIcon from '@apg.gg/icons/lib/NavigatePrevIcon';
+import VerifiedIcon from '@apg.gg/icons/lib/VerifiedIcon';
 
-    function getComponentByName(name: string) {
-      switch (name) {
-        case "apgLogo": return <IconApgLogo />;
-case "apgLogoFull": return <IconApgLogoFull />;
-case "baron": return <IconBaron />;
-case "discord": return <IconDiscord />;
-case "drake": return <IconDrake />;
-case "drakeCloud": return <IconDrakeCloud />;
-case "drakeInfernal": return <IconDrakeInfernal />;
-case "drakeMountain": return <IconDrakeMountain />;
-case "drakeOcean": return <IconDrakeOcean />;
-case "facebook": return <IconFacebook />;
-case "firstBlood": return <IconFirstBlood />;
-case "hamburger": return <IconHamburger />;
-case "herald": return <IconHerald />;
-case "instagram": return <IconInstagram />;
-case "kills": return <IconKills />;
-case "laneBottom": return <IconLaneBottom />;
-case "laneJungle": return <IconLaneJungle />;
-case "laneMid": return <IconLaneMid />;
-case "laneSupport": return <IconLaneSupport />;
-case "laneTop": return <IconLaneTop />;
-case "logout": return <IconLogout />;
-case "settings": return <IconSettings />;
-case "turret": return <IconTurret />;
-case "turretBlue": return <IconTurretBlue />;
-case "turretRed": return <IconTurretRed />;
-case "twitter": return <IconTwitter />;
-case "wildRiftLogo": return <IconWildRiftLogo />;
-        default: return null;
-      }
-    }
+function getComponentByName(name: string) {
+  switch (name) {
+    case "baron": return <IconBaron />;
+    case "discord": return <IconDiscord />;
+    case "drake": return <IconDrake />;
+    case "drakeCloud": return <IconDrakeCloud />;
+    case "drakeInfernal": return <IconDrakeInfernal />;
+    case "drakeMountain": return <IconDrakeMountain />;
+    case "drakeOcean": return <IconDrakeOcean />;
+    case "facebook": return <IconFacebook />;
+    case "firstBlood": return <IconFirstBlood />;
+    case "hamburger": return <IconHamburger />;
+    case "herald": return <IconHerald />;
+    case "instagram": return <IconInstagram />;
+    case "kills": return <IconKills />;
+    case "laneBottom": return <IconLaneBottom />;
+    case "laneJungle": return <IconLaneJungle />;
+    case "laneMid": return <IconLaneMid />;
+    case "laneSupport": return <IconLaneSupport />;
+    case "laneTop": return <IconLaneTop />;
+    case "logout": return <IconLogout />;
+    case "settings": return <IconSettings />;
+    case "turret": return <IconTurret />;
+    case "turretBlue": return <IconTurretBlue />;
+    case "turretRed": return <IconTurretRed />;
+    case "twitter": return <IconTwitter />;
+    case "wildRiftLogo": return <IconWildRiftLogo />;
+    case "navigateNext": return <NavigateNextIcon />;
+    case "navigatePrev": return <NavigatePrevIcon />;
+    case "verified": return <VerifiedIcon />;
+    default: return null;
+  }
+}
 
-    export default getComponentByName;
-  
+export default getComponentByName;

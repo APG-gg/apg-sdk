@@ -3,7 +3,7 @@ import CardStack, { CardStackProps } from './CardStack';
 import { Story } from "@storybook/react"
 
 export default {
-  title: "Components/Carousel",
+  title: "Organisms/Carousel",
   component: CardStack,
   argTypes: {
     cards: { control: 'array' }
