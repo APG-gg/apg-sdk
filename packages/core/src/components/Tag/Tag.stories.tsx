@@ -9,7 +9,7 @@ export default {
     children: { control: 'text' },
     onClick: { action: 'clicked' },
     disabled: { control: 'boolean' },
-    type: { control: 'select', options: ['default', 'outline']},
+    type: { control: 'select', options: ["blue", "aqua", "green", "yellow", "fucsia", "red"]},
     iconPosition: { control: 'radio', options: ['left', 'right']},
     icon: { control: 'text' },
   },

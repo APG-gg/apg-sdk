@@ -10,7 +10,7 @@ const basicArgs = {
   name: "Card 1",
   banner: "https://picsum.photos/id/237/360/480",
   avatar: "https://picsum.photos/id/237/360/480",
-  shortDescription: "Lorem ipsum dolor sit amet, @ddumst adipiscing elit, sed do eiusmod tempor #something #hashtag",
+  shortDescription: "Lorem ipsum dolor sit amet, @ddumst adipiscing elit, #something #hashtag https://www.ddumst.dev",
 }
 
 export default {
