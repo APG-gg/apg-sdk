@@ -25,11 +25,11 @@ fs.readdir(directoryPath, (err, files) => {
     import React from 'react';
     ${Object.values(componentMapping).map(value => `import ${value} from '@apg.gg/icons/lib/${value}';`).join('\n')}
 
-    function getComponentByName(name: string) {
+    function getComponentByName(name: string, className: string) {
       switch (name) {
         ${Object.entries(componentMapping)
           .map(([key, value]) => {
-            return `case "${key}": return <${value} />;`;
+            return `case "${key}": return <${value} className={className} />;`;
           })
           .join('\n')}
         default: return null;

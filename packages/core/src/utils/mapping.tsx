@@ -1,4 +1,7 @@
-import React from 'react';
+
+    import React from 'react';
+    import IconApgLogo from '@apg.gg/icons/lib/IconApgLogo';
+import IconApgLogoFull from '@apg.gg/icons/lib/IconApgLogoFull';
 import IconBaron from '@apg.gg/icons/lib/IconBaron';
 import IconDiscord from '@apg.gg/icons/lib/IconDiscord';
 import IconDrake from '@apg.gg/icons/lib/IconDrake';
@@ -28,38 +31,41 @@ import NavigateNextIcon from '@apg.gg/icons/lib/NavigateNextIcon';
 import NavigatePrevIcon from '@apg.gg/icons/lib/NavigatePrevIcon';
 import VerifiedIcon from '@apg.gg/icons/lib/VerifiedIcon';
 
-function getComponentByName(name: string) {
-  switch (name) {
-    case "baron": return <IconBaron />;
-    case "discord": return <IconDiscord />;
-    case "drake": return <IconDrake />;
-    case "drakeCloud": return <IconDrakeCloud />;
-    case "drakeInfernal": return <IconDrakeInfernal />;
-    case "drakeMountain": return <IconDrakeMountain />;
-    case "drakeOcean": return <IconDrakeOcean />;
-    case "facebook": return <IconFacebook />;
-    case "firstBlood": return <IconFirstBlood />;
-    case "hamburger": return <IconHamburger />;
-    case "herald": return <IconHerald />;
-    case "instagram": return <IconInstagram />;
-    case "kills": return <IconKills />;
-    case "laneBottom": return <IconLaneBottom />;
-    case "laneJungle": return <IconLaneJungle />;
-    case "laneMid": return <IconLaneMid />;
-    case "laneSupport": return <IconLaneSupport />;
-    case "laneTop": return <IconLaneTop />;
-    case "logout": return <IconLogout />;
-    case "settings": return <IconSettings />;
-    case "turret": return <IconTurret />;
-    case "turretBlue": return <IconTurretBlue />;
-    case "turretRed": return <IconTurretRed />;
-    case "twitter": return <IconTwitter />;
-    case "wildRiftLogo": return <IconWildRiftLogo />;
-    case "navigateNext": return <NavigateNextIcon />;
-    case "navigatePrev": return <NavigatePrevIcon />;
-    case "verified": return <VerifiedIcon />;
-    default: return null;
-  }
-}
+    function getComponentByName(name: string, className: string) {
+      switch (name) {
+        case "apgLogo": return <IconApgLogo className={className} />;
+case "apgLogoFull": return <IconApgLogoFull className={className} />;
+case "baron": return <IconBaron className={className} />;
+case "discord": return <IconDiscord className={className} />;
+case "drake": return <IconDrake className={className} />;
+case "drakeCloud": return <IconDrakeCloud className={className} />;
+case "drakeInfernal": return <IconDrakeInfernal className={className} />;
+case "drakeMountain": return <IconDrakeMountain className={className} />;
+case "drakeOcean": return <IconDrakeOcean className={className} />;
+case "facebook": return <IconFacebook className={className} />;
+case "firstBlood": return <IconFirstBlood className={className} />;
+case "hamburger": return <IconHamburger className={className} />;
+case "herald": return <IconHerald className={className} />;
+case "instagram": return <IconInstagram className={className} />;
+case "kills": return <IconKills className={className} />;
+case "laneBottom": return <IconLaneBottom className={className} />;
+case "laneJungle": return <IconLaneJungle className={className} />;
+case "laneMid": return <IconLaneMid className={className} />;
+case "laneSupport": return <IconLaneSupport className={className} />;
+case "laneTop": return <IconLaneTop className={className} />;
+case "logout": return <IconLogout className={className} />;
+case "settings": return <IconSettings className={className} />;
+case "turret": return <IconTurret className={className} />;
+case "turretBlue": return <IconTurretBlue className={className} />;
+case "turretRed": return <IconTurretRed className={className} />;
+case "twitter": return <IconTwitter className={className} />;
+case "wildRiftLogo": return <IconWildRiftLogo className={className} />;
+case "navigateNext": return <NavigateNextIcon className={className} />;
+case "navigatePrev": return <NavigatePrevIcon className={className} />;
+case "verified": return <VerifiedIcon className={className} />;
+        default: return null;
+      }
+    }
 
-export default getComponentByName;
+    export default getComponentByName;
+  

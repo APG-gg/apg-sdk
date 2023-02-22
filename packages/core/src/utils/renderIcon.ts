@@ -1,8 +1,8 @@
 import getComponentByName from "./mapping";
 
-const renderIcon = (icon: string | React.ReactNode) => {
+const renderIcon = (icon: string | React.ReactNode, className: string = '') => {
   if (typeof icon === 'string') {
-    return getComponentByName(icon);
+    return getComponentByName(icon, className);
   } else {
     return icon
   }

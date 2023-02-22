@@ -11,6 +11,7 @@ export default {
     disabled: { control: 'boolean' },
     type: { control: 'select', options: ['default', 'outline']},
     fontSize: { control: 'select', options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl']},
+    iconSize: { control: 'select', options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl']},
     iconPosition: { control: 'radio', options: ['left', 'right']},
     icon: { control: 'text' },
   },
@@ -32,4 +33,11 @@ WithIcon.args = {
   fontSize: 'base',
   icon: 'discord',
   iconPosition: 'left',
+};
+
+export const OnlyIcon = Template.bind({});
+OnlyIcon.args = {
+  onClick: () => console.log('clicked'),
+  iconSize: '2xl',
+  icon: 'discord'
 };
