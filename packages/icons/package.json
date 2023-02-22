@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/icons",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "APG.gg icons package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",

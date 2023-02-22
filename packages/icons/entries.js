@@ -43,6 +43,7 @@ module.exports = {
   MenuOpenIcon: path.resolve(SRC_DIR, "MenuOpenIcon"),
   MoreVerticalIcon: path.resolve(SRC_DIR, "MoreVerticalIcon"),
   PersonIcon: path.resolve(SRC_DIR, "PersonIcon"),
+  PlusIcon: path.resolve(SRC_DIR, "PlusIcon"),
   SearchIcon: path.resolve(SRC_DIR, "SearchIcon"),
   ShareIcon: path.resolve(SRC_DIR, "ShareIcon"),
   VisibilityIcon: path.resolve(SRC_DIR, "VisibilityIcon"),
