@@ -9,7 +9,7 @@ export default {
   component: Icon,
   argTypes: {
     size: { control: 'select', options: [16, 32, 48]},
-    color: { control: 'select', options: ['#FFFFFF', 'yellow', 'red']},
+    color: { control: 'select', options: ["blue", "aqua", "green", "yellow", "fucsia", "red"]},
   },
 }
 

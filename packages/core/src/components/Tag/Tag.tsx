@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import classNames from 'classnames';
 import { renderIcon } from "../../utils";
 
-const typeMap = {
+export const typeMap = {
   blue: {
     borderColor: "border-blue-400",
     textColor: "text-blue-400",

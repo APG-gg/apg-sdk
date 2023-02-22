@@ -23,6 +23,20 @@ import TelegramIcon from "./TelegramIcon";
 import FacebookIcon from "./FacebookIcon";
 import ApgIcon from "./ApgIcon";
 import InstagramIcon from "./InstagramIcon";
+import CommentIcon from "./CommentIcon";
+import ErrorIcon from "./ErrorIcon";
+import SearchIcon from "./SearchIcon";
+import HeartIcon from "./HeartIcon";
+import PersonIcon from "./PersonIcon";
+import MoreVerticalIcon from "./MoreVerticalIcon";
+import PlusIcon from "./PlusIcon";
+import XCircleIcon from "./XCircleIcon";
+import XIcon from "./XIcon";
+import MenuIcon from "./MenuIcon";
+import MenuOpenIcon from "./MenuOpenIcon";
+import ShareIcon from "./ShareIcon";
+import VisibilityIcon from "./VisibilityIcon";
+import VisibilityOffIcon from "./VisibilityOffIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -180,6 +194,92 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <ApgIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<ApgIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CommentIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CommentIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+
+      <IconWrapper>
+        <ErrorIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ErrorIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SearchIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SearchIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <HeartIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<HeartIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <PersonIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<PersonIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+
+      <IconWrapper>
+        <MoreVerticalIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<MoreVerticalIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <PlusIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<PlusIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <XCircleIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<XCircleIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <XIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<XIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <MenuIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<MenuIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <MenuOpenIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<MenuOpenIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ShareIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ShareIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <VisibilityIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<VisibilityIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <VisibilityOffIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<VisibilityOffIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

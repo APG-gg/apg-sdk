@@ -19,6 +19,6 @@
     "framer-motion": "8.5.5"
   },
   "dependencies": {
-    "@apg.gg/icons": "0.0.5"
+    "@apg.gg/icons": "0.0.6"
   }
 }
