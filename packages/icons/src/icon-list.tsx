@@ -9,8 +9,20 @@ import IconDrakeMountain from "./IconDrakeMountain";
 import IconDrakeOcean from "./IconDrakeOcean";
 import IconTwitter from "./IconTwitter";
 import VerifiedIcon from './VerifiedIcon';
-import NavigateNextIcon from "./NavigateNextIcon";
-import NavigatePrevIcon from "./NavigatePrevIcon";
+import ArrowRightIcon from "./ArrowRightIcon";
+import ArrowLeftIcon from "./ArrowLeftIcon";
+import IconHerald from "./IconHerald";
+import IconHamburger from "./IconHamburger";
+import IconTurret from "./IconTurret";
+import ArrowDownIcon from "./ArrowDownIcon";
+import ArrowUpIcon from "./ArrowUpIcon";
+import GoogleIcon from "./GoogleIcon";
+import TwitchIcon from "./TwitchIcon";
+import TiktokIcon from "./TiktokIcon";
+import TelegramIcon from "./TelegramIcon";
+import FacebookIcon from "./FacebookIcon";
+import ApgIcon from "./ApgIcon";
+import InstagramIcon from "./InstagramIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -34,9 +46,15 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         </div>
       </IconWrapper>
       <IconWrapper>
-        <IconDiscord style={{ fontSize: size, color: color }} />
+        <IconHerald style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
-          <pre>{'<IconDiscord />'}</pre> 
+          <pre>{'<IconHerald />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <IconTurret style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<IconTurret />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>
@@ -45,6 +63,7 @@ const IconList: FC<IconProps> = ({ size, color }) => {
           <pre>{'<IconDrake />'}</pre> 
         </div>
       </IconWrapper>
+
       <IconWrapper>
         <IconDrakeCloud style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
@@ -69,6 +88,13 @@ const IconList: FC<IconProps> = ({ size, color }) => {
           <pre>{'<IconDrakeOcean />'}</pre> 
         </div>
       </IconWrapper>
+
+      <IconWrapper>
+        <IconDiscord style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<IconDiscord />'}</pre> 
+        </div>
+      </IconWrapper>
       <IconWrapper>
         <IconTwitter style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
@@ -76,21 +102,84 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         </div>
       </IconWrapper>
       <IconWrapper>
+        <GoogleIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<GoogleIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TwitchIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TwitchIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+
+      <IconWrapper>
+        <TiktokIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TiktokIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TelegramIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TelegramIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <FacebookIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<FacebookIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <InstagramIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<InstagramIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+
+      <IconWrapper>
+        <ArrowLeftIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ArrowLeftIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ArrowRightIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ArrowRightIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ArrowUpIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ArrowUpIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ArrowDownIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ArrowDownIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      
+      <IconWrapper>
         <VerifiedIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<VerifiedIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>
-        <NavigateNextIcon style={{ fontSize: size, color: color }} />
+        <IconHamburger style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
-          <pre>{'<NavigateNextIcon />'}</pre> 
+          <pre>{'<IconHamburger />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>
-        <NavigatePrevIcon style={{ fontSize: size, color: color }} />
+        <ApgIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
-          <pre>{'<NavigatePrevIcon />'}</pre> 
+          <pre>{'<ApgIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>
