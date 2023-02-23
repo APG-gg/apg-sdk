@@ -26,7 +26,7 @@ module.exports = {
         "aqua-700": "#006D86",
         "aqua-800": "#005A71",
         "aqua-900": "#00465E",
-        "green": "#51F0FF",
+        "green": "#00FB82",
         "green-50": "#45FF99",
         "green-100": "#0DFD84",
         "green-200": "#00E56F",
@@ -92,20 +92,6 @@ module.exports = {
         "white-700": "#5E5E5F",
         "white-800": "#4B4B4C",
         "white-900": "#38393A",
-      },
-      lineClamp2: {
-        "-webkit-line-clamp": 2,
-        "-webkit-box-orient": "vertical"
-      },
-      lineClamp3: {
-        "-webkit-line-clamp": 3,
-        "-webkit-box-orient": "vertical"
-      },
-      box: {
-        "display": "-webkit-box"
-      },
-      cardHover: {
-        "background": "linear-gradient(70.8deg, rgba(0, 118, 209, 0.3) 24.87%, rgba(81, 240, 255, 0.3) 69.29%);"
       }
     },
   },

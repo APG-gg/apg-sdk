@@ -26,7 +26,7 @@ module.exports = {
         "aqua-700": "#006D86",
         "aqua-800": "#005A71",
         "aqua-900": "#00465E",
-        "green": "#51F0FF",
+        "green": "#00FB82",
         "green-50": "#45FF99",
         "green-100": "#0DFD84",
         "green-200": "#00E56F",

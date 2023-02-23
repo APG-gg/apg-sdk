@@ -5,15 +5,18 @@ export enum Breakpoints {
   Sm = 'sm',
   Md = 'md',
   Lg = 'lg',
+  Xl = 'xl',
 }
 
 export enum ScreenSize {
   xsMin = 0,
-  xsMax = 480,
-  smMin = 481,
-  smMax = 767,
-  mdMin = 768,
-  mdMax = 1024,
-  lgMin = 1025,
-  lgMax = 4000,
+  xsMax = 599,
+  smMin = 600,
+  smMax = 904,
+  mdMin = 905,
+  mdMax = 1239,
+  lgMin = 1240,
+  lgMax = 1439,
+  xlMin = 1440,
+  xlMax = 4000,
 }

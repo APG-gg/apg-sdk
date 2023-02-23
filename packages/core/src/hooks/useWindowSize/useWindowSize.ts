@@ -5,22 +5,25 @@ const isRange = (width: number, minWidth: number, maxWidth: number): boolean => 
   return width >= minWidth && width <= maxWidth;
 }
 
+type WindowDimentions = {
+  width: number | undefined;
+  height: number | undefined;
+};
+
 export interface UseWindowSizeInterface {
-  windowSize: {
-    height: number;
-    width: number;
-  },
+  windowSize: WindowDimentions,
   isXs: boolean;
   isSm: boolean;
   isLtMd: boolean;
   isMd: boolean;
   isLtLg: boolean;
   isLg: boolean;
+  isLtXl: boolean;
+  isXl: boolean;
 }
 
 const useWindowSize = (): UseWindowSizeInterface => {
-  const { innerWidth, innerHeight } = window;
-  const [windowSize, setWindowSize] = useState({ width: innerWidth, height: innerHeight });
+  const [windowSize, setWindowSize] = useState<WindowDimentions>({ width: undefined, height: undefined });
 
   const [isXs, setIsXs] = useState(false);
   const [isSm, setIsSm] = useState(false);
@@ -28,6 +31,8 @@ const useWindowSize = (): UseWindowSizeInterface => {
   const [isMd, setIsMd] = useState(false);
   const [isLtLg, setIsLtLg] = useState(false);
   const [isLg, setIsLg] = useState(false);
+  const [isLtXl, setIsLtXl] = useState(false);
+  const [isXl, setIsXl] = useState(false);
 
   useEffect(() => {
     const handleResize = (): void => {
@@ -42,6 +47,8 @@ const useWindowSize = (): UseWindowSizeInterface => {
       setIsMd(isRange(window.innerWidth, ScreenSize.mdMin, ScreenSize.mdMax));
       setIsLtLg(isRange(window.innerWidth, ScreenSize.xsMin, ScreenSize.mdMax));
       setIsLg(isRange(window.innerWidth, ScreenSize.lgMin, ScreenSize.lgMax));
+      setIsLtXl(isRange(window.innerWidth, ScreenSize.xsMin, ScreenSize.lgMax));
+      setIsXl(isRange(window.innerWidth, ScreenSize.xlMin, ScreenSize.xlMax));
     }
 
     window.addEventListener('resize', handleResize);
@@ -55,7 +62,7 @@ const useWindowSize = (): UseWindowSizeInterface => {
     }
   }, []);
 
-  return { windowSize, isXs, isSm, isLtMd, isMd, isLtLg, isLg };
+  return { windowSize, isXs, isSm, isLtMd, isMd, isLtLg, isLg, isLtXl, isXl};
 }
 
 export default useWindowSize;
