@@ -15,8 +15,13 @@ module.exports = {
   useWindowSize: path.join(HOOKS_DIR, "useWindowSize"),
 
   // Components
-  Icon: path.join(COMPONENT_DIR, "Icon"),
-  Upload: path.join(COMPONENT_DIR, "Upload"),
-  Tag: path.join(COMPONENT_DIR, "Tag"),
   Button: path.join(COMPONENT_DIR, "Button"),
+  Card: path.join(COMPONENT_DIR, "Card"),
+  Carousel: path.join(COMPONENT_DIR, "Carousel"),
+  Icon: path.join(COMPONENT_DIR, "Icon"),
+  Input: path.join(COMPONENT_DIR, "Input"),
+  Sidebar: path.join(COMPONENT_DIR, "Sidebar"),
+  Tag: path.join(COMPONENT_DIR, "Tag"),
+  Tooltip: path.join(COMPONENT_DIR, "Tooltip"),
+  Upload: path.join(COMPONENT_DIR, "Upload"),
 };

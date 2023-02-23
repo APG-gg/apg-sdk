@@ -3,6 +3,7 @@ import SidebarItem from './SidebarItem';
 import useWindowSize from '../../hooks/useWindowSize/useWindowSize';
 import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
 import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
+import Input from '../Input/Input';
 
 export interface MenuItem {
   key: string;
@@ -113,6 +114,9 @@ const Sidebar = ({
               <button className="text-white p-2" onClick={toggleSidebar}>
                 <MenuOpenIcon className="h-6 w-6 text-2xl" />
               </button>
+            </div>
+            <div className="px-4 pt-2 w-full">
+              <Input placeholder={""} isSearchable={true}  />
             </div>
             <nav className="mt-5">
               {menuItems.map((item) => (
