@@ -1,7 +1,6 @@
 import React from 'react';
 import Sidebar, { SidebarProps } from './Sidebar';
 import { Story } from "@storybook/react"
-import IconDiscord from '@apg.gg/icons/lib/IconDiscord';
 import ApgIcon from '@apg.gg/icons/lib/ApgIcon';
 
 export default {

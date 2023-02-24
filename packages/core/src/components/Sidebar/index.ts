@@ -1,3 +1,4 @@
 import Sidebar from './Sidebar';
+import SidebarItem from './SidebarItem';
 
-export { Sidebar };
+export { Sidebar, SidebarItem };

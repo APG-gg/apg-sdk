@@ -5,7 +5,7 @@ import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
 import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
 import Input from '../Input/Input';
 
-export interface MenuItem {
+export interface ItemProps {
   key: string;
   name: string;
   href: string;
@@ -16,7 +16,7 @@ export interface MenuItem {
 
 export interface SidebarProps {
   logo: string | ReactNode;
-  menuItems: MenuItem[];
+  menuItems: ItemProps[];
   activeItem: string;
   defaultWidth?: string;
   desktopCollapsedWidth?: string;
