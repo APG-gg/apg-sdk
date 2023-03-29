@@ -13,14 +13,14 @@ const menuItems = [
     key: "home",
     name: "Home",
     bgColor: "blue",
-    href: "/dashboard",
+    href: "/#home",
     target: "_self",
   },
   {
-    key: "gamers", 
+    key: "for-gamers", 
     name: "For Gamers",
     bgColor: "aqua",
-    href: "/inbox",
+    href: "/#for-gamers",
     target: "_self",
   },
   {
@@ -60,6 +60,9 @@ export const Basic = Template.bind({});
 Basic.args = {
   logo: <ApgIcon className="text-4xl" />,
   menuItems,
-  children: <div className="container bg-black-800 h-full p-10">Main content</div>,
+  children: <div>
+    <section id="home" className="container bg-black-800 p-10" style={{ height: "1000px" }}>Main content</section>
+    <section id="for-gamers" className="container bg-black-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+  </div>,
   activeItem: "home",
 };

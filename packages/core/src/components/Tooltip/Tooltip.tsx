@@ -18,7 +18,7 @@ const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width 
     setIsShown(false);
   };
 
-  const tooltipClassNames = `absolute py-2 px-4 bg-black-800 text-white text-sm rounded-full shadow-lg ${
+  const tooltipClassNames = `absolute py-2 px-4 bg-black-800 text-white text-sm rounded-full shadow-lg z-50 ${
     placement === "top"
       ? "bottom-full left-1/2 -translate-x-1/2 mb-2"
       : placement === "bottom"

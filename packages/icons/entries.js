@@ -22,8 +22,6 @@ module.exports = {
   IconTurret: path.resolve(SRC_DIR, "IconTurret"),
   IconTurretBlue: path.resolve(SRC_DIR, "IconTurretBlue"),
   IconTurretRed: path.resolve(SRC_DIR, "IconTurretRed"),
-  IconTwitter: path.resolve(SRC_DIR, "IconTwitter"),
-  IconDiscord: path.resolve(SRC_DIR, "IconDiscord"),
   IconWildRiftLogo: path.resolve(SRC_DIR, "IconWildRiftLogo"),
   IconApgLogoFull: path.resolve(SRC_DIR, "IconApgLogoFull"),
   IconSettings: path.resolve(SRC_DIR, "IconSettings"),
@@ -51,10 +49,12 @@ module.exports = {
   XCircleIcon: path.resolve(SRC_DIR, "XCircleIcon"),
   XIcon: path.resolve(SRC_DIR, "XIcon"),
   // Social icons
+  DiscordIcon: path.resolve(SRC_DIR, "DiscordIcon"),
   FacebookIcon: path.resolve(SRC_DIR, "FacebookIcon"),
   GoogleIcon: path.resolve(SRC_DIR, "GoogleIcon"),
   InstagramIcon: path.resolve(SRC_DIR, "InstagramIcon"),
   TelegramIcon: path.resolve(SRC_DIR, "TelegramIcon"),
   TiktokIcon: path.resolve(SRC_DIR, "TiktokIcon"),
   TwitchIcon: path.resolve(SRC_DIR, "TwitchIcon"),
+  TwitterIcon: path.resolve(SRC_DIR, "TwitterIcon"),
 };

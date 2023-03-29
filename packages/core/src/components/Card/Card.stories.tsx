@@ -2,8 +2,8 @@ import React from 'react';
 import { Story } from "@storybook/react"
 import { CardProps } from './CardBase';
 import Card from './Card';
-import CardPost from './CardPost';
-import CardLandscape from './CardLandscape';
+import CardPost from '../CardPost';
+import CardLandscape from '../CardLandscape';
 
 const basicArgs = {
   id: "266678",

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
-import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
+import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 
 export interface InputProps {
   label?: string;
@@ -14,7 +14,7 @@ export interface InputProps {
   disabled?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({
+const Input: FC<InputProps> = ({
   label,
   placeholder,
   supportText,
@@ -47,9 +47,9 @@ const Input: React.FC<InputProps> = ({
         </label>
       )}
       <div className={`flex items-center ${borderColor} border bg-black rounded-full px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`}>
-        {isSearchable && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 ${label ? 'mr-2' : ''}`} />)}
+        {isSearchable && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 mr-2`} />)}
         <input
-          className={`flex-1 outline-none bg-transparent  text-base ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
+          className={`flex-1 outline-none bg-transparent text-base ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
           type="text"
           placeholder={placeholder}
           value={value}

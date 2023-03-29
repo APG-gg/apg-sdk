@@ -1,8 +1,8 @@
 import React, { FC, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import move from "../../utils/move.util";
+import move from "../../utils/move";
 import { CardProps } from '../Card/CardBase';
 import Card from '../Card/Card';
+import { motion } from 'framer-motion';
 
 export interface CardStackProps {
   cards: CardProps[];

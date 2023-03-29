@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from "react";
-import { CardProps, CardSocialProps } from './CardBase';
-import { getRelativeTime, renderIcon } from "../../utils";
+import { CardProps, CardSocialProps } from '../Card/CardBase';
+import renderIcon from "../../utils/renderIcon";
+import getRelativeTime from "../../utils/getRelativeTime";
 import VerifiedIcon from "@apg.gg/icons/lib/VerifiedIcon";
 
 export interface CardHeaderProps extends Pick<CardProps, "id" | "name" | "avatar" | "className" | "verify"> {

@@ -1,18 +1,18 @@
-import React from 'react';
-import CardBase, { CardProps, CardTagProps } from './CardBase';
-import classNames from 'classnames';
-import CardDescription from './CardDescription';
-import CardHeader from './CardHeader';
+import React, { FC } from 'react';
+import CardBase, { CardProps, CardTagProps } from '../Card/CardBase';
+import CardDescription from '../CardDescription/CardDescription';
+import CardHeader from '../CardHeader/CardHeader';
 import Tag from '../Tag';
-import Button from '../Button';
 
 export interface CardPostProps extends Omit<CardProps, "description"> {
+  className?: string;
   createdAt?: string;
   postedOn?: string;
   username?: string;
+  showAbout?: boolean;
 }
 
-const CardPost = ({
+const CardPost: FC<CardPostProps> = ({
   id,
   name,
   shortDescription,
@@ -23,17 +23,19 @@ const CardPost = ({
   verify,
   createdAt,
   postedOn,
-  username
-}: CardPostProps) => {
+  username,
+  className,
+  showAbout = true,
+}) => {
   // Determine whether the header, description, and tags sections are visible
   const hasHeader = !!name && !!avatar;
   const hasDescription = !!shortDescription;
   const hasTags = !!tags && tags.length > 0;
 
   return (
-    <CardBase className="flex flex-col max-w-[360px] min-h-[180px]">
+    <CardBase className={`flex flex-col max-w-[360px] min-h-[180px] ${className}`}>
       {hasHeader && (
-        <CardHeader id={id} name={name} avatar={avatar} createdAt={createdAt} postedOn={postedOn} username={username}  />
+        <CardHeader id={id} name={name} avatar={avatar} createdAt={createdAt} postedOn={postedOn} username={username} verify={verify} />
       )}
       {banner && (
         <div className="flex-grow h-[212px]">
@@ -41,7 +43,7 @@ const CardPost = ({
       </div>
       )}
       {hasDescription && (
-        <CardDescription shortDescription={shortDescription} showAbout={true} />
+        <CardDescription shortDescription={shortDescription} showAbout={showAbout} />
       )}
       {hasTags && (
         <div className="grid grid-cols-3 gap-2 p-4">

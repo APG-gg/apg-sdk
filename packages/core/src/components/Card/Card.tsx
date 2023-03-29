@@ -1,12 +1,12 @@
-import React from 'react';
-import CardBase, { CardBaseProps, CardProps, CardTagProps } from './CardBase';
-import classNames from 'classnames';
-import CardDescription from './CardDescription';
-import CardHeader from './CardHeader';
+import React, { FC } from 'react';
+import CardBase, { CardProps, CardTagProps } from './CardBase';
+import CardDescription from '../CardDescription/CardDescription';
+import CardHeader from '../CardHeader/CardHeader';
 import Tag from '../Tag';
 import Button from '../Button';
+import classNames from 'classnames';
 
-const Card = ({
+const Card: FC<Omit<CardProps, "description">> = ({
   id,
   name,
   shortDescription,
@@ -20,7 +20,7 @@ const Card = ({
   cancelLabel,
   onConfirm,
   onCancel
-}: Omit<CardProps, "description">) => {
+}) => {
   // Determine whether the header, description, and tags sections are visible
   const hasHeader = !!name && !!avatar;
   const hasDescription = !!shortDescription;
@@ -49,7 +49,7 @@ const Card = ({
         <img src={banner} alt={name} className="w-full h-full object-cover" />
       </div>
       {hasHeader && (
-        <CardHeader id={id} name={name} avatar={avatar} socials={socials} />
+        <CardHeader id={id} name={name} avatar={avatar} socials={socials} verify={verify} />
       )}
       {hasDescription && (
         <CardDescription shortDescription={shortDescription} showAbout={true} />

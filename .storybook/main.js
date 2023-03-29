@@ -1,7 +1,15 @@
 module.exports = {
   stories: ['../packages/**/*.stories.tsx'],
   addons: [
-    '@storybook/addon-links',
+    "@storybook/addon-links",
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
     "@storybook/addon-essentials",
     "storybook-dark-mode"
   ],

@@ -1,3 +1,3 @@
-import Input from './Select';
+import Select from './Select';
 
-export { Input };
+export default Select;

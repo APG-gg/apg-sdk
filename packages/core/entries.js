@@ -2,13 +2,19 @@ const path = require("path");
 
 const SRC_DIR = path.resolve("src");
 const COMPONENT_DIR = path.join(SRC_DIR, "components");
+const UTILS_DIR = path.join(SRC_DIR, "utils");
 const HOOKS_DIR = path.join(SRC_DIR, "hooks");
 const CSS_IN_JS_DIR = path.join(SRC_DIR, "css-in-js/index.ts");
-const UTILS_DIR = path.join(SRC_DIR, "utils/index.ts");
 
 module.exports = {
   "css-in-js": path.join(CSS_IN_JS_DIR),
-  "utils": path.join(UTILS_DIR),
+
+  // Utils
+  getRelativeTime: path.join(UTILS_DIR, "getRelativeTime"),
+  isNumeric: path.join(UTILS_DIR, "isNumeric"),
+  getComponentByName: path.join(UTILS_DIR, "mapping"),
+  move: path.join(UTILS_DIR, "move"),
+  renderIcon: path.join(UTILS_DIR, "renderIcon"),
 
   // Hooks
   useDebounce: path.join(HOOKS_DIR, "useDebounce"),
@@ -17,9 +23,14 @@ module.exports = {
   // Components
   Button: path.join(COMPONENT_DIR, "Button"),
   Card: path.join(COMPONENT_DIR, "Card"),
-  Carousel: path.join(COMPONENT_DIR, "Carousel"),
+  CardLandscape: path.join(COMPONENT_DIR, "CardLandscape"),
+  CardPost: path.join(COMPONENT_DIR, "CardPost"),
+  CardHeader: path.join(COMPONENT_DIR, "CardHeader"),
+  CardDescription: path.join(COMPONENT_DIR, "CardDescription"),
   Icon: path.join(COMPONENT_DIR, "Icon"),
   Input: path.join(COMPONENT_DIR, "Input"),
+  Navbar: path.join(COMPONENT_DIR, "Navbar"),
+  Select: path.join(COMPONENT_DIR, "Select"),
   Sidebar: path.join(COMPONENT_DIR, "Sidebar"),
   Tag: path.join(COMPONENT_DIR, "Tag"),
   Tooltip: path.join(COMPONENT_DIR, "Tooltip"),

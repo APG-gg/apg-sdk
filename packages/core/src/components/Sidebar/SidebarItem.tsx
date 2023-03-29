@@ -1,9 +1,8 @@
 import React from "react";
-import { Tooltip } from "../Tooltip";
+import Tooltip from "../Tooltip";
 import { ItemProps } from "./Sidebar";
-import classNames from 'classnames';
 import useWindowSize from "../../hooks/useWindowSize";
-import { MenuItem } from "../MenuItem";
+import MenuItem from "../MenuItem";
 
 export interface SidebarItemProps {
   item: ItemProps;
@@ -13,7 +12,7 @@ export interface SidebarItemProps {
 }
 
 const SidebarItem = ({ item, isCollapsed, isActive, onClick }: SidebarItemProps) => {
-  const { isXs, isLtLg, isLg, isXl } = useWindowSize();
+  const { isLtLg } = useWindowSize();
   
   const anchorElement = <MenuItem item={item} isActive={isActive} isCollapsed={isCollapsed} onClick={() => onClick?.(item.key)} />
 

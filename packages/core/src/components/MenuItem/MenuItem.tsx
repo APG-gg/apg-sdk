@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import classNames from "classnames";
 import useWindowSize from "../../hooks/useWindowSize";
 import { ItemProps } from "../Sidebar/Sidebar";
@@ -10,7 +10,7 @@ export interface MenuItemProps {
   isCollapsed?: boolean;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({
+const MenuItem: FC<MenuItemProps> = ({
   item,
   onClick,
   isActive = false,

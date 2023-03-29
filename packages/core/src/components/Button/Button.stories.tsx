@@ -1,6 +1,6 @@
 import React from 'react';
 import Button, { ButtonProps } from './Button';
-import { Story } from "@storybook/react"
+import { Story } from '@storybook/react';
 
 export default {
   title: "Atoms/Button",
@@ -9,7 +9,7 @@ export default {
     children: { control: 'text' },
     onClick: { action: 'clicked' },
     disabled: { control: 'boolean' },
-    type: { control: 'select', options: ['default', 'outline']},
+    type: { control: 'select', options: ['primary', 'outline'], defaultValue: 'primary'},
     fontSize: { control: 'select', options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl']},
     iconSize: { control: 'select', options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl']},
     iconPosition: { control: 'radio', options: ['left', 'right']},

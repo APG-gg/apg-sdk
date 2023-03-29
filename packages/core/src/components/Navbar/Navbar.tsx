@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { Input } from "../Input";
+import Input from "../Input";
 import Button from "../Button";
 import useWindowSize from "../../hooks/useWindowSize";
 import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
@@ -7,9 +7,12 @@ import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
 export interface NavbarProps {
   logo: string | ReactNode
   isLoggedIn: boolean;
+  onLogin: () => void;
+  onSignup: () => void;
+  onMenuToggle: () => void;
 }
 
-const Navbar: FC<NavbarProps> = ({ logo, isLoggedIn }) => {
+const Navbar: FC<NavbarProps> = ({ logo, isLoggedIn, onLogin, onSignup, onMenuToggle }) => {
   const { isXs } = useWindowSize()
   const searchInput = !isXs && (
     <Input
@@ -20,10 +23,10 @@ const Navbar: FC<NavbarProps> = ({ logo, isLoggedIn }) => {
 
   const authButtons = !isLoggedIn && (
     <>
-      <Button onClick={() => console.log('clicked')} type="outline" className="text-sm">
+      <Button onClick={onLogin} type="outline" className="text-sm">
         Login
       </Button>
-      <Button onClick={() => console.log('clicked')} className="text-sm">
+      <Button onClick={onSignup} className="text-sm">
         Sign up
       </Button>
     </>
@@ -38,8 +41,9 @@ const Navbar: FC<NavbarProps> = ({ logo, isLoggedIn }) => {
   }
 
   return (
-    <nav className="bg-black shadow-lg fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2 h-14">
-      {isXs && (logo ? renderIcon(logo) : <MenuIcon className="text-white text-2xl" />)}
+    <nav className="bg-black shadow-lg w-full z-50 flex items-center justify-between px-4 py-2 h-14">
+      {isXs && <MenuIcon className="text-white text-2xl" onClick={onMenuToggle} />}
+      {isXs && renderIcon(logo)}
       {searchInput}
       <div className="flex gap-2">{authButtons}</div>
     </nav>

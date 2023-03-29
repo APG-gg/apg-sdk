@@ -1,42 +1,42 @@
 import React, { FC } from "react";
 import { IconProps } from "@apg.gg/core/lib/icon-props";
+import ApgIcon from "./ApgIcon";
+import ArrowDownIcon from "./ArrowDownIcon";
+import ArrowLeftIcon from "./ArrowLeftIcon";
+import ArrowRightIcon from "./ArrowRightIcon";
+import ArrowUpIcon from "./ArrowUpIcon";
+import CommentIcon from "./CommentIcon";
+import DiscordIcon from "./DiscordIcon";
+import ErrorIcon from "./ErrorIcon";
+import FacebookIcon from "./FacebookIcon";
+import GoogleIcon from "./GoogleIcon";
+import HeartIcon from "./HeartIcon";
 import IconBaron from './IconBaron';
-import IconDiscord from "./IconDiscord";
 import IconDrake from "./IconDrake";
 import IconDrakeCloud from "./IconDrakeCloud";
 import IconDrakeInfernal from "./IconDrakeInfernal";
 import IconDrakeMountain from "./IconDrakeMountain";
 import IconDrakeOcean from "./IconDrakeOcean";
-import IconTwitter from "./IconTwitter";
-import VerifiedIcon from './VerifiedIcon';
-import ArrowRightIcon from "./ArrowRightIcon";
-import ArrowLeftIcon from "./ArrowLeftIcon";
-import IconHerald from "./IconHerald";
 import IconHamburger from "./IconHamburger";
+import IconHerald from "./IconHerald";
 import IconTurret from "./IconTurret";
-import ArrowDownIcon from "./ArrowDownIcon";
-import ArrowUpIcon from "./ArrowUpIcon";
-import GoogleIcon from "./GoogleIcon";
-import TwitchIcon from "./TwitchIcon";
-import TiktokIcon from "./TiktokIcon";
-import TelegramIcon from "./TelegramIcon";
-import FacebookIcon from "./FacebookIcon";
-import ApgIcon from "./ApgIcon";
 import InstagramIcon from "./InstagramIcon";
-import CommentIcon from "./CommentIcon";
-import ErrorIcon from "./ErrorIcon";
-import SearchIcon from "./SearchIcon";
-import HeartIcon from "./HeartIcon";
-import PersonIcon from "./PersonIcon";
-import MoreVerticalIcon from "./MoreVerticalIcon";
-import PlusIcon from "./PlusIcon";
-import XCircleIcon from "./XCircleIcon";
-import XIcon from "./XIcon";
 import MenuIcon from "./MenuIcon";
 import MenuOpenIcon from "./MenuOpenIcon";
+import MoreVerticalIcon from "./MoreVerticalIcon";
+import PersonIcon from "./PersonIcon";
+import PlusIcon from "./PlusIcon";
+import SearchIcon from "./SearchIcon";
 import ShareIcon from "./ShareIcon";
+import TelegramIcon from "./TelegramIcon";
+import TiktokIcon from "./TiktokIcon";
+import TwitchIcon from "./TwitchIcon";
+import TwitterIcon from "./TwitterIcon";
+import VerifiedIcon from './VerifiedIcon';
 import VisibilityIcon from "./VisibilityIcon";
 import VisibilityOffIcon from "./VisibilityOffIcon";
+import XCircleIcon from "./XCircleIcon";
+import XIcon from "./XIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -104,15 +104,15 @@ const IconList: FC<IconProps> = ({ size, color }) => {
       </IconWrapper>
 
       <IconWrapper>
-        <IconDiscord style={{ fontSize: size, color: color }} />
+        <DiscordIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
-          <pre>{'<IconDiscord />'}</pre> 
+          <pre>{'<DiscordIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>
-        <IconTwitter style={{ fontSize: size, color: color }} />
+        <TwitterIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
-          <pre>{'<IconTwitter />'}</pre> 
+          <pre>{'<TwitterIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>

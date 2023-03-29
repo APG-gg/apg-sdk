@@ -1,9 +1,9 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, ReactNode, FC, useRef } from "react";
 import SidebarItem from './SidebarItem';
 import useWindowSize from '../../hooks/useWindowSize/useWindowSize';
-import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
-import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
 import Input from '../Input/Input';
+import MenuIcon from "@apg.gg/icons/lib/MenuIcon";
+import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
 
 export interface ItemProps {
   key: string;
@@ -26,7 +26,7 @@ export interface SidebarProps {
   onToggle?: () => void;
 }
 
-const Sidebar = ({
+const Sidebar: FC<SidebarProps> = ({
   logo,
   menuItems,
   activeItem = "home",
@@ -36,9 +36,8 @@ const Sidebar = ({
   children,
   isOpen = false,
   onToggle,
-}: SidebarProps) => {
+}) => {
   const { isXs, isLtLg, isLg, isXl } = useWindowSize();
-  const [active, setActive] = useState(activeItem);
   const [isCollapsed, setIsCollapsed] = useState(
     () => !isOpen || isLg
   );
@@ -48,6 +47,31 @@ const Sidebar = ({
       setIsCollapsed(!isOpen);
     }
   }, [isOpen]);
+
+  const [activeSection, setActiveSection] = useState<string>(activeItem);
+  const sidebarRef = useRef<HTMLDivElement>(null); // create a ref to the sidebar container element
+  
+  const handleScroll = () => {
+    const sections = document.getElementsByTagName("section");
+    for (let i = 0; i < sections.length; i++) {
+      const section = sections[i];
+      
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const isSectionVisible =
+        window.scrollY >= sectionTop && window.scrollY < sectionBottom;
+      if (isSectionVisible) {
+        setActiveSection(section.id);
+        break;
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [menuItems]);
 
   const toggleSidebar = () => {
     setIsCollapsed((prevState) => {
@@ -86,9 +110,9 @@ const Sidebar = ({
   }
 
   return (
-    <div className="relative h-screen w-full">
+    <div className="relative h-screen w-full" ref={sidebarRef}>
       {/* Desktop/tablet sidebar */}
-      <div className={`fixed h-full bg-black text-white ${isXs ? "hidden" : "flex flex-col"}`} style={sidebarStyle}>
+      <div className={`fixed h-full bg-black text-white z-50 ${isXs ? "hidden" : "flex flex-col"}`} style={sidebarStyle}>
         <div className={`flex items-center justify-start h-16 ${isLtLg ? 'px-2' : 'px-4'}`}>
           {isCollapsed && isLtLg && !isXs && <MenuIcon className="flex text-3xl" onClick={toggleSidebar} />}
           {!isCollapsed && isLtLg && !isXs && <MenuOpenIcon className="flex text-3xl" onClick={toggleSidebar} />}
@@ -96,7 +120,7 @@ const Sidebar = ({
         </div>
         <nav className="mt-5">
           {menuItems.map((item) => (
-            <SidebarItem item={item} isCollapsed={isCollapsed} isActive={active === item.key} onClick={(key) => setActive(key)} />
+            <SidebarItem key={`sidebaritem-${item.key}`} item={item} isCollapsed={isCollapsed} isActive={activeSection === item.key} onClick={(key) => setActiveSection(key)} />
           ))}
         </nav>
       </div>
@@ -120,7 +144,7 @@ const Sidebar = ({
             </div>
             <nav className="mt-5">
               {menuItems.map((item) => (
-                <SidebarItem item={item} isCollapsed={isCollapsed} isActive={active === item.key} onClick={(key) => setActive(key)} />
+                <SidebarItem key={`sidebaritem-${item.key}`} item={item} isCollapsed={isCollapsed} isActive={activeSection === item.key} onClick={(key) => setActiveSection(key)} />
               ))}
             </nav>
           </div>
@@ -136,10 +160,7 @@ const Sidebar = ({
       )}
 
       {/* Main content */}
-      <div style={contentStyle}>
-        <button className="text-white p-2" onClick={toggleSidebar}>
-          <MenuOpenIcon className="h-6 w-6" />
-        </button>
+      <div style={contentStyle} className="relative h-full">
         {children}
       </div>
     </div>

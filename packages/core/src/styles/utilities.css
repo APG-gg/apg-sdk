@@ -1,0 +1,13 @@
+@layer utilities {
+  .line-clamp-2 {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .line-clamp-3 {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .box {
+    display: -webkit-box;
+  }
+}

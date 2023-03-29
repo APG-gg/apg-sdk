@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
+import renderIcon from "../../utils/renderIcon";
 import classNames from 'classnames';
-import { renderIcon } from "../../utils";
 
 export const typeMap = {
   blue: {

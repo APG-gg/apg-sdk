@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { IconSize } from './icon-props';
+import styled from 'styled-components';
 
 interface IconProps {
   icon: string | React.FC;
@@ -25,7 +25,7 @@ const FunctionalIcon = styled.div<FunctionalIconProps>`
   height: ${({ height, size = IconSize.Xs }) => height || size}px;
 `;
 
-const Icon: React.FC<IconProps> = ({ icon, size, width, height, alt, color, className }: IconProps) => {
+const Icon: React.FC<IconProps> = ({ icon, size, width, height, alt, color }: IconProps) => {
   let IconSource = icon;
 
   if (color && typeof IconSource === 'string') {
@@ -49,7 +49,6 @@ const Icon: React.FC<IconProps> = ({ icon, size, width, height, alt, color, clas
   }
 
   if (color && typeof IconSource === 'function') {
-    console.log('holi');
     return <FunctionalIcon as={IconSource} iconColor={color} size={size} width={width} height={height} />;
   }
 

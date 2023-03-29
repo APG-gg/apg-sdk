@@ -1,9 +1,7 @@
-import React from 'react';
-import CardBase, { CardProps, CardTagProps } from './CardBase';
-import classNames from 'classnames';
-import CardDescription from './CardDescription';
-import CardHeader from './CardHeader';
-import Tag from '../Tag';
+import React, { FC } from 'react';
+import CardBase, { CardProps } from '../Card/CardBase';
+import CardDescription from '../CardDescription/CardDescription';
+import CardHeader from '../CardHeader/CardHeader';
 import Button from '../Button';
 
 export interface CardPostProps extends Omit<CardProps, "description"> {
@@ -12,7 +10,7 @@ export interface CardPostProps extends Omit<CardProps, "description"> {
   username?: string;
 }
 
-const CardLandscape = ({
+const CardLandscape: FC<CardPostProps> = ({
   id,
   name,
   shortDescription,
@@ -26,7 +24,7 @@ const CardLandscape = ({
   confirmLabel,
   onCancel,
   onConfirm
-}: CardPostProps) => {
+}) => {
   // Determine whether the header, description, and tags sections are visible
   const hasHeader = !!name && !!avatar;
   const hasDescription = !!shortDescription;
@@ -41,7 +39,7 @@ const CardLandscape = ({
       )}
       <div className="flex flex-col flex-grow flex-auto max-w-[290px]">
         {hasHeader && (
-          <CardHeader id={id} name={name} avatar={avatar} socials={socials}  />
+          <CardHeader id={id} name={name} avatar={avatar} socials={socials} verify={verify}  />
         )}
         {hasDescription && (
           <CardDescription shortDescription={shortDescription} columns={3} className="pt-0" />

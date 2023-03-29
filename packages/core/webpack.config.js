@@ -15,7 +15,8 @@ module.exports = {
   entry,
   devtool: 'source-map',
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.(j|t)sx?$/,
         use: [{
           loader: 'babel-loader',
