@@ -13,43 +13,37 @@ const menuItems = [
     key: "home",
     name: "Home",
     bgColor: "blue",
-    href: "/#home",
-    target: "_self",
+    href: "/#home"
   },
   {
-    key: "for-gamers", 
+    key: "gamers", 
     name: "For Gamers",
     bgColor: "aqua",
-    href: "/#for-gamers",
-    target: "_self",
+    href: "/#gamers"
   },
   {
     key: "streamers", 
     name: "For Streamers",
     bgColor: "green",
-    href: "/calendar",
-    target: "_self",
+    href: "/#streamers"
   },
   {
     key: "cosplayers", 
     name: "For Cosplayers",
     bgColor: "yellow",
-    href: "/settings",
-    target: "_self",
+    href: "/#cosplayers"
   },
   {
     key: "you", 
     name: "For You",
     bgColor: "fucsia",
-    href: "/settings",
-    target: "_self",
+    href: "/#you"
   },
   {
     key: "join", 
     name: "Join us",
     bgColor: "red",
-    href: "/settings",
-    target: "_self",
+    href: "/#join"
   },
 ];
 
@@ -62,7 +56,10 @@ Basic.args = {
   menuItems,
   children: <div>
     <section id="home" className="container bg-black-800 p-10" style={{ height: "1000px" }}>Main content</section>
-    <section id="for-gamers" className="container bg-black-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+    <section id="gamers" className="container bg-blue-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+    <section id="streamers" className="container bg-red-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+    <section id="cosplayers" className="container bg-green-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+    <section id="you" className="container bg-yellow-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
   </div>,
   activeItem: "home",
 };

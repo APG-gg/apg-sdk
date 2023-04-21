@@ -49,29 +49,10 @@ const Sidebar: FC<SidebarProps> = ({
   }, [isOpen]);
 
   const [activeSection, setActiveSection] = useState<string>(activeItem);
-  const sidebarRef = useRef<HTMLDivElement>(null); // create a ref to the sidebar container element
-  
-  const handleScroll = () => {
-    const sections = document.getElementsByTagName("section");
-    for (let i = 0; i < sections.length; i++) {
-      const section = sections[i];
-      
-      const sectionTop = section.offsetTop;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      const isSectionVisible =
-        window.scrollY >= sectionTop && window.scrollY < sectionBottom;
-      if (isSectionVisible) {
-        setActiveSection(section.id);
-        break;
-      }
-    }
-  };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuItems]);
+    setActiveSection(activeItem);
+  }, [activeItem]);
 
   const toggleSidebar = () => {
     setIsCollapsed((prevState) => {
@@ -110,7 +91,7 @@ const Sidebar: FC<SidebarProps> = ({
   }
 
   return (
-    <div className="relative h-screen w-full" ref={sidebarRef}>
+    <div className="relative h-screen w-full">
       {/* Desktop/tablet sidebar */}
       <div className={`fixed h-full bg-black text-white z-50 ${isXs ? "hidden" : "flex flex-col"}`} style={sidebarStyle}>
         <div className={`flex items-center justify-start h-16 ${isLtLg ? 'px-2' : 'px-4'}`}>

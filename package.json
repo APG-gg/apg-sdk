@@ -23,7 +23,8 @@
     "postcss-loader": "^7.0.2",
     "sass": "^1.37.5",
     "storybook-dark-mode": "^2.0.5",
-    "tippy.js": "^6.3.7"
+    "tippy.js": "^6.3.7",
+    "yalc": "^1.0.0-pre.53"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.6.2",
