@@ -627,6 +627,18 @@ video {
   left: 0.75rem;
 }
 
+.left-\[\"\.concat\(g\2c \"\] {
+  left: ".concat(g,";
+}
+
+.left-\[\"\.concat\(l\2c \"\] {
+  left: ".concat(l,";
+}
+
+.left-\[\"\.concat\(s\2c \"\] {
+  left: ".concat(s,";
+}
+
 .left-full {
   left: 100%;
 }
@@ -669,6 +681,14 @@ video {
 
 .z-50 {
   z-index: 50;
+}
+
+.z-\[60\] {
+  z-index: 60;
+}
+
+.z-\[70\] {
+  z-index: 70;
 }
 
 .mx-auto {

@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import classNames from "classnames";
 import useWindowSize from "../../hooks/useWindowSize";
 import { ItemProps } from "../Sidebar/Sidebar";
+import { renderIcon } from "../../utils";
 
 export interface MenuItemProps {
   item: ItemProps;
@@ -17,11 +18,7 @@ const MenuItem: FC<MenuItemProps> = ({
   isCollapsed = false,
 }) => {
   const { isLtLg, isLg, isXl } = useWindowSize();
-  const icon = typeof item.icon === "string" ? (
-    <img src={item.icon} alt={item.key} className="object-cover w-full h-full" />
-  ) : (
-    item.icon || item.key.charAt(0).toUpperCase()
-  );
+  const icon = renderIcon(item.icon) || item.key.charAt(0).toUpperCase()
   
   return (
     <a

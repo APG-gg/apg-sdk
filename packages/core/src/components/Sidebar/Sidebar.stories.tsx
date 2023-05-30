@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar, { SidebarProps } from './Sidebar';
 import { Story } from "@storybook/react"
+import TwitchIcon from '@apg.gg/icons/lib/TwitchIcon';
 import ApgIcon from '@apg.gg/icons/lib/ApgIcon';
 
 export default {
@@ -18,6 +19,7 @@ const menuItems = [
   {
     key: "gamers", 
     name: "For Gamers",
+    icon: <TwitchIcon />,
     bgColor: "aqua",
     href: "/#gamers"
   },

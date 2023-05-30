@@ -41,11 +41,11 @@ const Navbar: FC<NavbarProps> = ({ logo, isLoggedIn, onLogin, onSignup, onMenuTo
   }
 
   return (
-    <nav className="bg-black shadow-lg w-full z-50 flex items-center justify-between px-4 py-2 h-14">
+    <nav className="bg-black shadow-lg w-full z-50 flex items-center justify-start gap-2 px-4 py-2 h-14">
       {isXs && <MenuIcon className="text-white text-2xl" onClick={onMenuToggle} />}
       {isXs && renderIcon(logo)}
       {searchInput}
-      <div className="flex gap-2">{authButtons}</div>
+      <div className="flex gap-2 ml-auto">{authButtons}</div>
     </nav>
   );
 }

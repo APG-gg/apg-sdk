@@ -10,4 +10,16 @@
   .box {
     display: -webkit-box;
   }
+
+  .left-\[46px\] {
+    left: 46px
+  }
+
+  .left-\[72px\] {
+    left: 72px
+  }
+
+  .left-\[275px\] {
+    left: 275px
+  }
 }
