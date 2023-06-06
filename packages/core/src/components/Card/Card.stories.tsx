@@ -40,15 +40,18 @@ Base.args = {
   tags: [
     {
       title: "tag 1",
-      icon: "drake"
+      icon: "drake",
+      type: "yellow"
     },
     {
       title: "tag 2",
-      icon: "drakeInfernal"
+      icon: "drakeInfernal",
+      type: "yellow"
     },
     {
       title: "tag 3",
-      icon: "drakeInfernal"
+      icon: "drakeInfernal",
+      type: "yellow"
     }
   ],
   confirmLabel: "Confirm",
@@ -62,6 +65,23 @@ Post.args = {
   username: 'ddumst',
   createdAt: '2023-02-01T18:36:07.832054+00:00',
   postedOn: 'twitter',
+  tags: [
+    {
+      title: "tag 1",
+      icon: "drake",
+      type: "yellow"
+    },
+    {
+      title: "tag 2",
+      icon: "drakeInfernal",
+      type: "yellow"
+    },
+    {
+      title: "tag 3",
+      icon: "drakeInfernal",
+      type: "yellow"
+    }
+  ]
 };
 
 const TemplateLandscape: Story<CardProps> = (args) => <CardLandscape {...args} />;

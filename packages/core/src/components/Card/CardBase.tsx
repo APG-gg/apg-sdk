@@ -36,6 +36,7 @@ export type CardTagProps = {
   title: string;
   link: string;
   icon: string;
+  type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red";
 }
 
 const CardBase = ({ children, className = '' }: CardBaseProps) => {

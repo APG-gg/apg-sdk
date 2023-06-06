@@ -53,6 +53,7 @@ const CardPost: FC<CardPostProps> = ({
               link={tag.link}
               icon={tag.icon}
               className="flex-1"
+              type={tag.type}
             >
               {tag.title}
             </Tag>
