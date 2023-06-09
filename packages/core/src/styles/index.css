@@ -627,18 +627,6 @@ video {
   left: 0.75rem;
 }
 
-.left-\[\"\.concat\(g\2c \"\] {
-  left: ".concat(g,";
-}
-
-.left-\[\"\.concat\(l\2c \"\] {
-  left: ".concat(l,";
-}
-
-.left-\[\"\.concat\(s\2c \"\] {
-  left: ".concat(s,";
-}
-
 .left-full {
   left: 100%;
 }
@@ -880,6 +868,10 @@ video {
   height: 100vh;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
 .max-h-10 {
   max-height: 2.5rem;
 }
@@ -948,6 +940,10 @@ video {
   width: 100%;
 }
 
+.min-w-\[50px\] {
+  min-width: 50px;
+}
+
 .min-w-\[5px\] {
   min-width: 5px;
 }
@@ -974,6 +970,26 @@ video {
 
 .flex-auto {
   flex: 1 1 auto;
+}
+
+.flex-\[1_1_50\%\] {
+  flex: 1 1 50%;
+}
+
+.flex-\[1_1_48\%\] {
+  flex: 1 1 48%;
+}
+
+.flex-\[1_1_auto\] {
+  flex: 1 1 auto;
+}
+
+.flex-\[1_1_40\%\] {
+  flex: 1 1 40%;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
 }
 
 .flex-grow {
@@ -1676,6 +1692,10 @@ video {
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-150 {
   transition-duration: 150ms;
 }
 

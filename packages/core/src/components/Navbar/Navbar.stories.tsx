@@ -6,6 +6,7 @@ export default {
   title: "Organisms/Navbar",
   component: Navbar,
   argTypes: {
+    logo: { control: 'text' },
     isLoggedIn: { control: 'boolean' },
   },
 }

@@ -22,6 +22,8 @@ export interface SidebarProps {
   desktopCollapsedWidth?: string;
   tabletCollapsedWidth?: string;
   children: ReactNode;
+  searchText?: string;
+  actions?: ReactNode;
   isOpen?: boolean;
   onToggle?: () => void;
 }
@@ -34,6 +36,8 @@ const Sidebar: FC<SidebarProps> = ({
   desktopCollapsedWidth = "72px",
   tabletCollapsedWidth = "46px",
   children,
+  searchText = "Search", 
+  actions,  
   isOpen = false,
   onToggle,
 }) => {
@@ -124,7 +128,7 @@ const Sidebar: FC<SidebarProps> = ({
               </button>
             </div>
             <div className="px-4 pt-2 w-full">
-              <Input placeholder={""} isSearchable={true}  />
+              <Input placeholder={searchText} isSearchable={true}  />
             </div>
             <nav className="mt-5">
               {menuItems.map((item) => (
@@ -140,6 +144,11 @@ const Sidebar: FC<SidebarProps> = ({
                 />
               ))}
             </nav>
+            {actions ? (
+              <div className="w-full mt-auto">
+                {actions}
+              </div>
+            ) : null }
           </div>
           <>
             {!isCollapsed && (
