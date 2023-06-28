@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuItem, { MenuItemProps } from './MenuItem';
 import { Story } from "@storybook/react"
-import IconDrakeInfernal from '@apg.gg/icons/lib/IconDrakeInfernal';
+import InstagramIcon from '@apg.gg/icons/lib/InstagramIcon';
 
 export default {
   title: "Atoms/MenuItem",
@@ -46,7 +46,7 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   item: {
     key: "home",
-    icon: <IconDrakeInfernal className="flex text-2xl" />,
+    icon: <InstagramIcon className="flex text-2xl" />,
     name: "Infernal Drake",
     bgColor: "red",
     href: "/dashboard",
