@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode, FC, useRef } from "react";
+import React, { useState, useEffect, ReactNode, FC } from "react";
 import SidebarItem from './SidebarItem';
 import useWindowSize from '../../hooks/useWindowSize/useWindowSize';
 import Input from '../Input/Input';

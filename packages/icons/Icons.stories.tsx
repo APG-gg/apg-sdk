@@ -1,8 +1,7 @@
 import React from 'react';
 import { Story } from "@storybook/react"
 import Icon from '@apg.gg/core/lib/Icon';
-import { IconProps } from '@apg.gg/core/lib/icon-props';
-import IconList from './src/icon-list';
+import IconList, { IconProps } from './src/icon-list';
 
 export default {
   title: "Atoms/Icons",

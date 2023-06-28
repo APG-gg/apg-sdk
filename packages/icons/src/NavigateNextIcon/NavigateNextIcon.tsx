@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '@ant-design/icons';
+import Icon from '@apg.gg/core/lib/Icon';
 
 const NavigateNextSVG = () => (
   <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">

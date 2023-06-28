@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '@ant-design/icons';
+import Icon from '@apg.gg/core/lib/Icon';
 
 const KillsSvg = () => (
   <svg viewBox="0 0 550 550" width="1em" height="1em" fill="currentColor">

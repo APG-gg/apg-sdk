@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '@ant-design/icons';
+import Icon from '@apg.gg/core/lib/Icon';
 
 const TwitterSvg = () => (
   <svg width="1em" height="1em" viewBox="0 0 100 100" fill="currentColor">

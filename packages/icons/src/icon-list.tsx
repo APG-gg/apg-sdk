@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { IconProps } from "@apg.gg/core/lib/icon-props";
 import ApgIcon from "./ApgIcon";
 import ArrowDownIcon from "./ArrowDownIcon";
 import ArrowLeftIcon from "./ArrowLeftIcon";
@@ -42,6 +41,11 @@ interface IconWrapperProps {
   children: React.ReactNode;
 }
 
+export interface IconProps {
+  size: number;
+  color: string;
+}
+
 const IconWrapper: FC<IconWrapperProps> = ({ children }) => {
   return (
     <div className="flex flex-col gap-2 items-center justify-center rounded-lg shadow-md w-full h-40">
@@ -51,6 +55,7 @@ const IconWrapper: FC<IconWrapperProps> = ({ children }) => {
 };
 
 const IconList: FC<IconProps> = ({ size, color }) => {
+  console.log({ size, color });
   return (
     <div className="grid grid-cols-4 grid-rows-1">
       <IconWrapper>
