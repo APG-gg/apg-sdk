@@ -7,6 +7,7 @@ import { renderIcon } from "../../utils";
 export interface MenuItemProps {
   item: ItemProps;
   onClick?: (key: string) => void;
+  isSubitem?: boolean;
   isActive?: boolean;
   isCollapsed?: boolean;
 }
@@ -14,6 +15,7 @@ export interface MenuItemProps {
 const MenuItem: FC<MenuItemProps> = ({
   item,
   onClick,
+  isSubitem = false,
   isActive = false,
   isCollapsed = false,
 }) => {
@@ -44,7 +46,7 @@ const MenuItem: FC<MenuItemProps> = ({
             "rounded-md !bg-fucsia": isActive && item.bgColor === 'fucsia',
             "rounded-md !bg-red": isActive && item.bgColor === 'red',
             "w-10 h-10": isLg || isXl,
-            "w-[30px] h-[30px]": isLtLg,
+            "w-[30px] h-[30px]": isSubitem || isLtLg,
             "text-black": isActive
           },
           "group-hover:text-white"

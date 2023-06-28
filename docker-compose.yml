@@ -1,0 +1,45 @@
+version: "3.9"
+ 
+########################### NETWORKS
+# You may customize the network subnet (192.168.90.0/24) below as you please.
+# Docker Compose version 3.5 or higher required to define networks this way.
+ 
+networks:
+  t2_proxy:
+    name: t2_proxy
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.90.0/24
+
+# Keys common to some of the services in basic-services.txt
+x-common-keys-core: &common-keys-core
+  networks:
+    - t2_proxy
+  security_opt:
+    - no-new-privileges:true
+  restart: always
+  # profiles:
+  # - core
+
+  ########################### SERVICES
+services: 
+  app:
+    <<: *common-keys-core # See EXTENSION FIELDS at the top
+    container_name: app-cuk
+    image: apg-cuk:latest
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.apg-cuk-rtr.rule=Host(`cuk.apg.gg`)"
+      - "traefik.http.routers.apg-cuk-rtr.entrypoints=websecure"
+      - "traefik.http.routers.apg-cuk-rtr.tls.certresolver=apgdev"
+      ## Middlewares
+      # - "traefik.http.routers.apg-cuk-rtr.middlewares=chain-no-auth@file"
+      # - "traefik.http.routers.portainer-rtr.middlewares=chain-no-auth@file"
+      ## HTTP Services
+      # - "traefik.http.routers.apg-cuk-rtr.service=apg-cuk-svc"
+      # - "traefik.http.services.apg-cuk-svc.loadbalancer.server.port=3010"

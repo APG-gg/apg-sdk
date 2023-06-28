@@ -4,6 +4,7 @@ import useWindowSize from '../../hooks/useWindowSize/useWindowSize';
 import Input from '../Input/Input';
 import MenuIcon from "@apg.gg/icons/lib/MenuIcon";
 import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
+import SidebarSubItem from "./SidebarSubItem";
 
 export interface ItemProps {
   key: string;
@@ -14,10 +15,16 @@ export interface ItemProps {
   target?: string;
 }
 
+export interface SubItemProps extends ItemProps {
+  type: "link" | "divider" | "header";
+}
+
 export interface SidebarProps {
   logo: string | ReactNode;
   menuItems: ItemProps[];
   activeItem: string;
+  subItems?: SubItemProps[];
+  activeSubItem?: string;
   defaultWidth?: string;
   desktopCollapsedWidth?: string;
   tabletCollapsedWidth?: string;
@@ -31,8 +38,10 @@ export interface SidebarProps {
 const Sidebar: FC<SidebarProps> = ({
   logo,
   menuItems,
+  subItems,
   activeItem = "home",
-  defaultWidth = "275px",
+  activeSubItem = "achievements",
+  defaultWidth = "324px",
   desktopCollapsedWidth = "72px",
   tabletCollapsedWidth = "46px",
   children,
@@ -53,6 +62,7 @@ const Sidebar: FC<SidebarProps> = ({
   }, [isOpen]);
 
   const [activeSection, setActiveSection] = useState<string>(activeItem);
+  const [activeSubSection, setActiveSubSection] = useState<string>(activeSubItem);
 
   useEffect(() => {
     setActiveSection(activeItem);
@@ -73,7 +83,7 @@ const Sidebar: FC<SidebarProps> = ({
     ? defaultWidth
     : isLtLg
       ? tabletCollapsedWidth
-      : desktopCollapsedWidth;
+      : subItems ? defaultWidth : desktopCollapsedWidth;
 
   const sidebarStyle = isCollapsed
     ? { width: collapsedWidth }
@@ -94,23 +104,34 @@ const Sidebar: FC<SidebarProps> = ({
   return (
     <div className="relative h-screen w-full">
       {/* Desktop/tablet sidebar */}
-      <div className={`fixed h-full bg-black text-white z-[70] transition-all duration-150 ease-in-out ${isXs ? "hidden" : "flex flex-col"}`} style={sidebarStyle}>
-        <div className={`flex items-center justify-start h-16 ${isLtLg ? 'px-2' : 'px-4'}`}>
-          {isCollapsed && isLtLg && !isXs && <MenuIcon className="flex text-3xl" onClick={toggleSidebar} />}
-          {!isCollapsed && isLtLg && !isXs && <MenuOpenIcon className="flex text-3xl" onClick={toggleSidebar} />}
-          {(isLg || isXl) && renderIcon(logo)}
-        </div>
-        <nav className="mt-5">
+      <div className={`fixed h-full bg-black text-white z-[70] transition-all duration-150 ease-in-out ${isXs ? "hidden" : "flex"}`} style={sidebarStyle}>
+        <nav className="mt-0">
+          <div className={`flex items-center justify-start h-16 ${isLtLg ? 'px-2' : 'px-4'}`}>
+            {isCollapsed && isLtLg && !isXs && <MenuIcon className="flex text-3xl" onClick={toggleSidebar} />}
+            {!isCollapsed && isLtLg && !isXs && <MenuOpenIcon className="flex text-3xl" onClick={toggleSidebar} />}
+            {(isLg || isXl) && renderIcon(logo)}
+          </div>
           {menuItems.map((item) => (
             <SidebarItem 
               key={`sidebaritem-${item.key}`} 
-              item={item} 
-              isCollapsed={isCollapsed} 
+              item={item}
               isActive={activeSection === item.key} 
               onClick={(key) => setActiveSection(key)}
             />
           ))}
         </nav>
+        {subItems && (
+          <div className="mt-0 pt-4 bg-black-900 w-full h-full rounded-l-lg">
+            {subItems.map((item) => (
+              <SidebarSubItem 
+                key={`sidebaritem-${item.key}`} 
+                item={item}
+                isActive={activeSubSection === item.key} 
+                onClick={(key) => setActiveSubSection(key)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Mobile sidebar */}
@@ -134,8 +155,7 @@ const Sidebar: FC<SidebarProps> = ({
               {menuItems.map((item) => (
                 <SidebarItem 
                   key={`sidebaritem-${item.key}`} 
-                  item={item} 
-                  isCollapsed={isCollapsed} 
+                  item={item}
                   isActive={activeSection === item.key} 
                   onClick={(key) => {
                     setActiveSection(key)

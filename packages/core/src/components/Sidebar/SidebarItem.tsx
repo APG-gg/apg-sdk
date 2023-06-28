@@ -6,23 +6,18 @@ import MenuItem from "../MenuItem";
 
 export interface SidebarItemProps {
   item: ItemProps;
-  isCollapsed: boolean;
   isActive: boolean;
   onClick?: (key: string) => void;
 }
 
-const SidebarItem = ({ item, isCollapsed, isActive, onClick }: SidebarItemProps) => {
+const SidebarItem = ({ item, isActive, onClick }: SidebarItemProps) => {
   const { isLtLg } = useWindowSize();
   
-  const anchorElement = <MenuItem item={item} isActive={isActive} isCollapsed={isCollapsed} onClick={() => onClick?.(item.key)} />
+  const anchorElement = <MenuItem item={item} isActive={isActive} isCollapsed onClick={() => onClick?.(item.key)} />
 
   return (
     <div className={`py-2.5 ${isLtLg ? 'px-2' : 'px-4'}`}>
-      {isCollapsed ? (
-        <Tooltip text={item.name}>{anchorElement}</Tooltip>
-      ) : (
-        <>{anchorElement}</>
-      )}
+      <Tooltip text={item.name}>{anchorElement}</Tooltip>
     </div>
   );
 };
