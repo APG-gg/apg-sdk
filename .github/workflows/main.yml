@@ -30,7 +30,7 @@ jobs:
 
       - name: Rebuild image
         run: |
-          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && docker build -t apg-cuk .
+          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && docker build -t apg-cuk ."
 
       - name: Stop and remove existing container
         run: |
