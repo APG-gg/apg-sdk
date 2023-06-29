@@ -87,6 +87,7 @@ const menuFeed = [
     name: "Achievements",
     bgColor: "aqua",
     href: "/feeds?type=achievements",
+    icon: "https://github.com/fluidicon.png",
     type: "link"
   },
   {
@@ -94,13 +95,15 @@ const menuFeed = [
     name: "Friends",
     bgColor: "green",
     href: "/feeds?type=friends",
-    type: "link"
+    icon: "person",
+    type: "link",
   },
   {
     key: "events",
     name: "Events",
     bgColor: "yellow",
     href: "/feeds?type=events",
+    icon: "tiktok",
     type: "link"
   },
   {
@@ -108,6 +111,7 @@ const menuFeed = [
     name: "Galleries",
     bgColor: "fucsia",
     href: "/feeds?type=galleries",
+    icon: "heart",
     type: "link"
   },
   {
@@ -115,7 +119,56 @@ const menuFeed = [
     name: "Videos",
     bgColor: "red",
     href: "/feeds?type=videos",
+    icon: "https://static.figma.com/app/icon/1/favicon.png",
     type: "link"
+  }
+];
+
+const menuFeedNoIcons = [
+  {
+    key: "feeds",
+    name: "Feeds",
+    type: "header"
+  },
+  {
+    key: "achievements",
+    name: "Achievements",
+    bgColor: "aqua",
+    href: "/feeds?type=achievements",
+    type: "link",
+    showCircle: false
+  },
+  {
+    key: "friends",
+    name: "Friends",
+    bgColor: "green",
+    href: "/feeds?type=friends",
+    type: "link",
+    showCircle: false
+  },
+  {
+    key: "events",
+    name: "Events",
+    bgColor: "yellow",
+    href: "/feeds?type=events",
+    type: "link",
+    showCircle: false
+  },
+  {
+    key: "galleries",
+    name: "Galleries",
+    bgColor: "fucsia",
+    href: "/feeds?type=galleries",
+    type: "link",
+    showCircle: false
+  },
+  {
+    key: "videos",
+    name: "Videos",
+    bgColor: "red",
+    href: "/feeds?type=videos",
+    type: "link",
+    showCircle: false
   }
 ];
 
@@ -140,6 +193,22 @@ WithSubMenu.args = {
   logo: <ApgIcon className="text-4xl" />,
   menuItems: menuItemsExtend,
   subItems: menuFeed,
+  children: <div>
+    <section id="home" className="container bg-black-800 p-10" style={{ height: "1000px" }}>Main content</section>
+    <section id="gamers" className="container bg-blue-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+    <section id="streamers" className="container bg-red-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+    <section id="cosplayers" className="container bg-green-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+    <section id="you" className="container bg-yellow-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+  </div>,
+  activeItem: "feeds",
+  activeSubItem: "events",
+};
+
+export const SubMenuNoIcons = Template.bind({});
+SubMenuNoIcons.args = {
+  logo: <ApgIcon className="text-4xl" />,
+  menuItems: menuItemsExtend,
+  subItems: menuFeedNoIcons,
   children: <div>
     <section id="home" className="container bg-black-800 p-10" style={{ height: "1000px" }}>Main content</section>
     <section id="gamers" className="container bg-blue-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>

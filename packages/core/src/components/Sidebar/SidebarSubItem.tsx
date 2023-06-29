@@ -19,7 +19,7 @@ const SidebarSubItem = ({ item, isActive, onClick }: SidebarSubItemProps) => {
       )}
 
       {item.type === "link" && (
-        <MenuItem item={item} isActive={isActive} isSubitem={true} isCollapsed={false} onClick={() => onClick?.(item.key)} />
+        <MenuItem item={item} isActive={isActive} showCircle={item.showCircle} isSubitem={true} isCollapsed={false} onClick={() => onClick?.(item.key)} />
       )}
 
       {item.type === "divider" && (

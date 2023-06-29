@@ -17,6 +17,7 @@ export interface ItemProps {
 
 export interface SubItemProps extends ItemProps {
   type: "link" | "divider" | "header";
+  showCircle?: boolean;
 }
 
 export interface SidebarProps {

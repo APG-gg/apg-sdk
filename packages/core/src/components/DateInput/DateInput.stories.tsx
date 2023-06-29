@@ -25,7 +25,7 @@ Basic.args = {
 export const Editable = Template.bind({});
 Editable.args = {
   label: 'Label',
-  value: 'Editable'
+  value: '27/03/1989'
 };
 
 export const WithHint = Template.bind({});
