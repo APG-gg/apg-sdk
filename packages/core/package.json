@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
