@@ -28,6 +28,10 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && git checkout main && git pull"
 
+      - name: Rebuild image
+        run: |
+          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && docker build -t apg-cuk .
+
       - name: Stop and remove existing container
         run: |
           ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && docker stop apg-cuk || true"
