@@ -26,7 +26,7 @@ x-common-keys-core: &common-keys-core
 services: 
   app:
     <<: *common-keys-core # See EXTENSION FIELDS at the top
-    container_name: app-cuk
+    container_name: apg-cuk
     image: apg-cuk:latest
     volumes:
       - ./nginx/default.conf:/etc/nginx/nginx.conf
