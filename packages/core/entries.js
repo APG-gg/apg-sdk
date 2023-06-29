@@ -28,6 +28,7 @@ module.exports = {
   CardHeader: path.join(COMPONENT_DIR, "CardHeader"),
   CardDescription: path.join(COMPONENT_DIR, "CardDescription"),
   Icon: path.join(COMPONENT_DIR, "Icon"),
+  DateInput: path.join(COMPONENT_DIR, "DateInput"),
   Input: path.join(COMPONENT_DIR, "Input"),
   Link: path.join(COMPONENT_DIR, "Link"),
   Navbar: path.join(COMPONENT_DIR, "Navbar"),

@@ -43,14 +43,14 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   const [value, setValue] = useState(initialValue);
 
   const handleFocus = () => !disabled && setIsFocused(true);
-    const handleBlur = () => !disabled && setIsFocused(false);
+  const handleBlur = () => !disabled && setIsFocused(false);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
-      onChange && onChange(event);
-    };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    onChange && onChange(event);
+  };
 
-    const handleClear = () => setValue('');
+  const handleClear = () => setValue('');
 
   const borderColor = error ? 'border-red' : isFocused ? 'border-aqua' : disabled ? 'border-black-800' : 'border-blue';
   const labelColor = error ? 'text-red' : isFocused ? 'text-aqua' : disabled ? 'text-black-800' : 'text-black-400';
