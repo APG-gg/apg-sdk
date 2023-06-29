@@ -39,7 +39,7 @@ const Sidebar: FC<SidebarProps> = ({
   logo,
   menuItems,
   subItems,
-  activeItem = "home",
+  activeItem = "home", 
   activeSubItem = "achievements",
   defaultWidth = "324px",
   desktopCollapsedWidth = "72px",
