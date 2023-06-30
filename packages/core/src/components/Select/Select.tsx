@@ -48,7 +48,10 @@ const Select: FC<SelectProps> = ({
   const optionsRef = useRef<HTMLUListElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const [internalValue, setInternalValue] = useState<SelectOption>();
+  const [internalValue, setInternalValue] = useState<SelectOption>({
+    value: '',
+    label: '',
+  });
   const [internalMultipleValue, setInternalMultipleValue] = useState<SelectOption[]>([]);
 
   useEffect(() => {
@@ -75,6 +78,8 @@ const Select: FC<SelectProps> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     setValue(inputValue);
+    const selected = options.filter(option => option.value === inputValue)[0];
+    setInternalValue(selected);
 
     if (multiple || isSearchable) {
       const filtered = options.filter(option =>
@@ -86,7 +91,10 @@ const Select: FC<SelectProps> = ({
 
   const handleClear = () => {
     setValue('');
-    setInternalValue(undefined);
+    setInternalValue({
+      value: '',
+      label: '',
+    });
     setMultipleValue([]);
     setInternalMultipleValue([]);
     setFilteredOptions(options);
@@ -130,7 +138,7 @@ const Select: FC<SelectProps> = ({
     }
   }, [isFocused]);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (multiple) {
       onChange(multipleValue);
     } else {
@@ -182,7 +190,7 @@ const Select: FC<SelectProps> = ({
             className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
             type="text"
             placeholder={placeholder}
-            value={internalValue?.label || ''}
+            value={internalValue?.label}
             onChange={handleChange}
             onFocus={handleFocus}
             disabled={disabled}
