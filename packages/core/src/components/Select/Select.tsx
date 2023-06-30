@@ -18,6 +18,7 @@ export interface SelectProps {
   error?: boolean;
   icon?: React.ReactElement;
   isSearchable?: boolean;
+  showSearchIcon?: boolean;
   options: SelectOption[];
   value?: string | string[];
   disabled?: boolean;
@@ -32,6 +33,7 @@ const Select: FC<SelectProps> = ({
   error,
   icon,
   isSearchable = false,
+  showSearchIcon = false,
   options,
   value: initialValue = '',
   disabled = false,
@@ -45,6 +47,9 @@ const Select: FC<SelectProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const optionsRef = useRef<HTMLUListElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const [internalValue, setInternalValue] = useState<SelectOption>();
+  const [internalMultipleValue, setInternalMultipleValue] = useState<SelectOption[]>([]);
 
   useEffect(() => {
     const loadOptions = async () => {
@@ -81,23 +86,28 @@ const Select: FC<SelectProps> = ({
 
   const handleClear = () => {
     setValue('');
+    setInternalValue(undefined);
     setMultipleValue([]);
+    setInternalMultipleValue([]);
     setFilteredOptions(options);
     setIsFocused(false);
   };
 
-  const handleSelect = (selectedValue: string) => {
+  const handleSelect = (selectedValue: SelectOption) => {
     if (multiple) {
-      if (multipleValue.includes(selectedValue)) {
-        setMultipleValue(multipleValue.filter(v => v !== selectedValue));
+      if (multipleValue.includes(selectedValue.value)) {
+        setMultipleValue(multipleValue.filter(v => v !== selectedValue.value));
+        setInternalMultipleValue(internalMultipleValue.filter(v => v.value !== selectedValue.value));
       } else {
-        setMultipleValue([...multipleValue, selectedValue]);
+        setMultipleValue([...multipleValue, selectedValue.value]);
+        setInternalMultipleValue([...internalMultipleValue, selectedValue]);
       }
 
       setValue('');
       setFilteredOptions(options);
     } else {
-      setValue(selectedValue);
+      setValue(selectedValue.value);
+      setInternalValue(selectedValue);
       setIsFocused(false);
     }
   };
@@ -146,22 +156,22 @@ const Select: FC<SelectProps> = ({
         isFocused && 'shadow-md bg-aqua/10',
         multiple ? "rounded-2xl" : "rounded-full",
       )}>
-        {isSearchable && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 ${label ? 'mr-2' : ''}`} />)}
+        {(isSearchable && showSearchIcon) && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 ${label ? 'mr-2' : ''}`} />)}
 
         <div className="flex items-center relative flex-wrap flex-1 gap-2">
           {
-            multiple && multipleValue.length > 0 && (
+            multiple && internalMultipleValue.length > 0 && (
               <>
-                {multipleValue.map((v) => {
-                  const option = options.find(o => o.value === v);
+                {internalMultipleValue.map((v) => {
+                  const option = options.find(o => o.value === v.value);
                   return (
                     <div
-                      key={v}
+                      key={v.value}
                       className="flex items-center text-white bg-aqua/10 rounded-full px-2 py-1 text-xs"
                     >
                       {option?.icon && <img src={option.icon} alt={option.label} className="w-4 h-4 mr-1" />}
                       {option?.label}
-                      <XCircleIcon className="flex items-center w-4 h-4 text-white text-2xl ml-2 cursor-pointer" onClick={() => handleSelect(v)} />
+                      {option && <XCircleIcon className="flex items-center w-4 h-4 text-white text-2xl ml-2 cursor-pointer" onClick={() => handleSelect(option)} />}
                     </div>
                   );
                 })}
@@ -172,7 +182,7 @@ const Select: FC<SelectProps> = ({
             className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
             type="text"
             placeholder={placeholder}
-            value={value}
+            value={internalValue?.label || ''}
             onChange={handleChange}
             onFocus={handleFocus}
             disabled={disabled}
@@ -196,7 +206,7 @@ const Select: FC<SelectProps> = ({
                 !multiple && value === option.value ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
                 multiple && multipleValue.includes(option.value) ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
               )}
-              onClick={() => handleSelect(option.value)}
+              onClick={() => handleSelect(option)}
             >
               {option.icon && <img src={option.icon} alt={option.label} className="inline-block h-4 w-4 mr-2" />}
               {option.label}

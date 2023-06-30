@@ -40,7 +40,7 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
       setMonth(dateParts[1]);
       setYear(dateParts[2]);
     }
-  }, [value]);
+  }, []);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name: inputName, value: inputValue } = event.target;
@@ -113,7 +113,7 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
   useEffect(() => {
     const formattedDate = `${padValue(day)}/${padValue(month)}/${year}`;
     onChange(name, formattedDate);
-  }, [name, day, month, year, onChange]);
+  }, [day, month, year]);
 
   const inputRef = useRef<InputRef>(null);
   

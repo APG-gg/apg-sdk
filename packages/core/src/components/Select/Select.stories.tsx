@@ -22,14 +22,31 @@ export const Basic = Template.bind({});
 Basic.args = {
   label: 'Label',
   options: [
-    { value: 'Option 1', label: 'Option 1' },
-    { value: 'Option 2', label: 'Option 2' },
-    { value: 'Option 3', label: 'Option 3' },
-    { value: 'Option 4', label: 'Option 4' },
-    { value: 'Option 5', label: 'Option 5' },
-    { value: 'Option 6', label: 'Option 6' },
-    { value: 'Option 7', label: 'Option 7' },
-    { value: 'Option 8', label: 'Option 8' },
-    { value: 'Option 9', label: 'Option 9' }
+    { value: 'option-1', label: 'Option 1' },
+    { value: 'option-2', label: 'Option 2' },
+    { value: 'option-3', label: 'Option 3' },
+    { value: 'option-4', label: 'Option 4' },
+    { value: 'option-5', label: 'Option 5' },
+    { value: 'option-6', label: 'Option 6' },
+    { value: 'option-7', label: 'Option 7' },
+    { value: 'option-8', label: 'Option 8' },
+    { value: 'option-9', label: 'Option 9' }
+  ],
+};
+
+export const Multiple = Template.bind({});
+Multiple.args = {
+  label: 'Label',
+  multiple: true,
+  options: [
+    { value: 'option-1', label: 'Option 1' },
+    { value: 'option-2', label: 'Option 2' },
+    { value: 'option-3', label: 'Option 3' },
+    { value: 'option-4', label: 'Option 4' },
+    { value: 'option-5', label: 'Option 5' },
+    { value: 'option-6', label: 'Option 6' },
+    { value: 'option-7', label: 'Option 7' },
+    { value: 'option-8', label: 'Option 8' },
+    { value: 'option-9', label: 'Option 9' }
   ],
 };

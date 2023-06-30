@@ -30,6 +30,7 @@ module.exports = {
       react: 'react',
       'react-dom': 'react-dom',
       immer: 'immer',
+      next: 'next'
     },
     /^styled-components.*$/
   ],
