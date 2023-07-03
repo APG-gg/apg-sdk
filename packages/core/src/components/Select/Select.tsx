@@ -4,6 +4,7 @@ import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
 import classNames from 'classnames';
+import { FieldError } from 'react-hook-form';
 
 export interface SelectOption {
   value: string;
@@ -24,6 +25,7 @@ export interface SelectProps {
   disabled?: boolean;
   multiple?: boolean;
   onChange?: (value: string | string[]) => void;
+  errorText?: FieldError | undefined;
 }
 
 const Select: FC<SelectProps> = ({
@@ -39,6 +41,7 @@ const Select: FC<SelectProps> = ({
   disabled = false,
   multiple = false,
   onChange = () => {},
+  errorText
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState<string>(initialValue as string);
@@ -203,6 +206,7 @@ const Select: FC<SelectProps> = ({
       </div>
 
       {supportText && <div className="text-xs text-black-400 mt-2">{supportText}</div>}
+      {errorText && <p className="text-red-500 text-xs font-medium mt-1">{errorText.message}</p>}
 
       {isFocused && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 z-10 overflow-y-auto max-h-[9.5rem]">
