@@ -23,6 +23,7 @@ export interface SelectProps {
   options: SelectOption[];
   value?: string | string[];
   disabled?: boolean;
+  readOnly?: boolean;
   multiple?: boolean;
   onChange?: (value: string | string[]) => void;
   errorText?: FieldError | undefined;
@@ -39,6 +40,7 @@ const Select: FC<SelectProps> = ({
   options,
   value: initialValue = '',
   disabled = false,
+  readOnly = false,
   multiple = false,
   onChange = () => {},
   errorText
@@ -197,6 +199,7 @@ const Select: FC<SelectProps> = ({
             onChange={handleChange}
             onFocus={handleFocus}
             disabled={disabled}
+            readOnly={readOnly}
           />
         </div>
 

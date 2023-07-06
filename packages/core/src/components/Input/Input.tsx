@@ -14,6 +14,7 @@ export interface InputProps {
   isSearchable?: boolean;
   value?: string;
   disabled?: boolean;
+  readOnly?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
   onFocus?: () => void;
@@ -32,6 +33,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       isSearchable = false,
       value: initialValue = '',
       disabled = false,
+      readOnly = false,
       onChange,
       onBlur,
       onFocus,
@@ -81,6 +83,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             onBlur && onBlur();
           }}
           disabled={disabled}
+          readOnly={readOnly}
           ref={ref}
         />
         {value && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
