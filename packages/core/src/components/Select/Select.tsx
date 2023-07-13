@@ -19,6 +19,7 @@ export interface SelectProps {
   error?: boolean;
   icon?: React.ReactElement;
   isSearchable?: boolean;
+  clearable?: boolean;
   showSearchIcon?: boolean;
   options: SelectOption[];
   value?: string | string[];
@@ -36,6 +37,7 @@ const Select: FC<SelectProps> = ({
   error,
   icon,
   isSearchable = false,
+  clearable = false,
   showSearchIcon = false,
   options,
   value: initialValue = '',
@@ -203,7 +205,7 @@ const Select: FC<SelectProps> = ({
           />
         </div>
 
-        {((multiple && multipleValue.length > 0) || (!multiple && value)) && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
+        {clearable && ((multiple && multipleValue.length > 0) || (!multiple && value)) && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
         <ArrowDownIcon className="flex w-6 h-6 text-gray-400 text-xs cursor-pointer items-center justify-center" onClick={handleFocus} />
       </div>

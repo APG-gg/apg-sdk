@@ -12,6 +12,7 @@ export interface InputProps {
   error?: boolean;
   icon?: React.ReactElement;
   isSearchable?: boolean;
+  clearable?: boolean;
   value?: string;
   disabled?: boolean;
   readOnly?: boolean;
@@ -31,6 +32,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       error,
       icon,
       isSearchable = false,
+      clearable = false,
       value: initialValue = '',
       disabled = false,
       readOnly = false,
@@ -86,7 +88,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           readOnly={readOnly}
           ref={ref}
         />
-        {value && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
+        {clearable && value && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
       </div>
       {supportText && <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>}

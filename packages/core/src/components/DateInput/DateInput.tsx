@@ -151,6 +151,7 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
             rest.onBlur && rest.onBlur();
             setDay(padValue(target.value));
           }}
+          readOnly={rest.readOnly}
           ref={dayInputRef}
         />
         <span className={`text-base ${rest.disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}>/</span>
@@ -172,6 +173,7 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
             rest.onBlur && rest.onBlur();
             setMonth(padValue(target.value));
           }}
+          readOnly={rest.readOnly}
           ref={monthInputRef}
         />
         <span className={`text-base ${rest.disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}>/</span>
@@ -192,9 +194,10 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
             handleBlur();
             rest.onBlur && rest.onBlur();
           }}
+          readOnly={rest.readOnly}
           ref={yearInputRef}
         />
-        {day && month && year && !rest.disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer ml-auto" onClick={handleClear} />}
+        {rest.clearable && day && month && year && !rest.disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer ml-auto" onClick={handleClear} />}
         {rest.error && !rest.disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-auto" />}
       </div>
       {rest.supportText && <p className={`text-xs font-semibold ${rest.disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{rest.supportText}</p>}
