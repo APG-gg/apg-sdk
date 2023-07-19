@@ -23,9 +23,11 @@ const MenuItem: FC<MenuItemProps> = ({
 }) => {
   const { isLtLg, isLg, isXl } = useWindowSize();
   const icon = renderIcon(item.icon) || item.key.charAt(0).toUpperCase()
+
+  const LinkComponent = item.linkComponent || "a";
   
   return (
-    <a
+    <LinkComponent
       onClick={() => onClick?.(item.key)}
       href={item.href}
       target={item.target || "_self"}
@@ -71,7 +73,7 @@ const MenuItem: FC<MenuItemProps> = ({
           {item.name}
         </span>
       )}
-    </a>
+    </LinkComponent>
   );
 };
 

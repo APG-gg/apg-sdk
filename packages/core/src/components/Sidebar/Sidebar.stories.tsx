@@ -80,7 +80,8 @@ const menuFeed = [
   {
     key: "feeds",
     name: "Feeds",
-    type: "header"
+    type: "header",
+    icon: "tiktok",
   },
   {
     key: "achievements",

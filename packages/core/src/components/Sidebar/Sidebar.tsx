@@ -13,6 +13,7 @@ export interface ItemProps {
   icon?: ReactNode;
   bgColor?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red";
   target?: string;
+  linkComponent?: React.ComponentType<any>
 }
 
 export interface SubItemProps extends ItemProps {

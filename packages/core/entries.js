@@ -33,6 +33,8 @@ module.exports = {
   Input: path.join(COMPONENT_DIR, "Input"),
   Link: path.join(COMPONENT_DIR, "Link"),
   Navbar: path.join(COMPONENT_DIR, "Navbar"),
+  MenuItem: path.join(COMPONENT_DIR, "MenuItem"),
+  SubMenuItem: path.join(COMPONENT_DIR, "SubMenuItem"),
   Select: path.join(COMPONENT_DIR, "Select"),
   Sidebar: path.join(COMPONENT_DIR, "Sidebar"),
   Tag: path.join(COMPONENT_DIR, "Tag"),
