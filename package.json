@@ -27,8 +27,8 @@
     "yalc": "^1.0.0-pre.53"
   },
   "devDependencies": {
-    "@apg.gg/core": "1.2.1",
-    "@apg.gg/icons": "0.1.0",
+    "@apg.gg/core": "1.2.19",
+    "@apg.gg/icons": "1.0.0",
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",

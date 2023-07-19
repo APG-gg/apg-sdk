@@ -16,8 +16,8 @@
     "generate:icon": "node ../../scripts/icon-mapping.js"
   },
   "dependencies": {
-    "@apg.gg/core": "1.2.1",
-    "@apg.gg/icons": "0.1.0"
+    "@apg.gg/core": "1.2.19",
+    "@apg.gg/icons": "1.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.20.13"
