@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.2.17",
+  "version": "1.2.19",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -19,7 +19,7 @@
     "framer-motion": "8.5.5"
   },
   "dependencies": {
-    "@apg.gg/icons": "0.1.0",
+    "@apg.gg/icons": "1.0.0",
     "swiper": "8.4.5",
     "react-hook-form": "^7.43.9"
   }

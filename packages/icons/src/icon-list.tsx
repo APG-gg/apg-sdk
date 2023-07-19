@@ -4,11 +4,15 @@ import ArrowDownIcon from "./ArrowDownIcon";
 import ArrowLeftIcon from "./ArrowLeftIcon";
 import ArrowRightIcon from "./ArrowRightIcon";
 import ArrowUpIcon from "./ArrowUpIcon";
+import BetaColorIcon from "./BetaColorIcon";
 import CommentIcon from "./CommentIcon";
 import DiscordIcon from "./DiscordIcon";
+import DownloadIcon from "./DownloadIcon";
+import DragIcon from "./DragIcon";
 import ErrorIcon from "./ErrorIcon";
 import FacebookIcon from "./FacebookIcon";
 import GoogleIcon from "./GoogleIcon";
+import GridViewIcon from "./GridViewIcon";
 import HeartIcon from "./HeartIcon";
 import IconBaron from './IconBaron';
 import IconDrake from "./IconDrake";
@@ -20,18 +24,27 @@ import IconHamburger from "./IconHamburger";
 import IconHerald from "./IconHerald";
 import IconTurret from "./IconTurret";
 import InstagramIcon from "./InstagramIcon";
+import LinkIcon from "./LinkIcon";
+import LogoutIcon from "./LogoutIcon";
 import MenuIcon from "./MenuIcon";
 import MenuOpenIcon from "./MenuOpenIcon";
 import MoreVerticalIcon from "./MoreVerticalIcon";
+import OpenLinkIcon from "./OpenLinkIcon";
+import PasswordIcon from "./PasswordIcon";
 import PersonIcon from "./PersonIcon";
 import PlusIcon from "./PlusIcon";
 import SearchIcon from "./SearchIcon";
+import SettingsIcon from "./SettingsIcon";
 import ShareIcon from "./ShareIcon";
+import SocialIcon from "./SocialIcon";
 import TelegramIcon from "./TelegramIcon";
 import TiktokIcon from "./TiktokIcon";
 import TwitchIcon from "./TwitchIcon";
 import TwitterIcon from "./TwitterIcon";
+import UploadIcon from "./UploadIcon";
+import VerifiedColorIcon from "./VerifiedColorIcon";
 import VerifiedIcon from './VerifiedIcon';
+import ViewListIcon from "./ViewListIcon";
 import VisibilityIcon from "./VisibilityIcon";
 import VisibilityOffIcon from "./VisibilityOffIcon";
 import XCircleIcon from "./XCircleIcon";
@@ -285,6 +298,84 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <VisibilityOffIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<VisibilityOffIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <BetaColorIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<BetaColorIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <DownloadIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<DownloadIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <DragIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<DragIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <GridViewIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<GridViewIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <LinkIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<LinkIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <LogoutIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<LogoutIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <OpenLinkIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<OpenLinkIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <PasswordIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<PasswordIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SettingsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SettingsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SocialIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SocialIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <UploadIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<UploadIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <VerifiedColorIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<VerifiedColorIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ViewListIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ViewListIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

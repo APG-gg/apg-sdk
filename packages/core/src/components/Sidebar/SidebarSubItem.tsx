@@ -14,20 +14,22 @@ export interface SidebarSubItemProps {
 
 const SidebarSubItem = ({ item, isActive, onClick }: SidebarSubItemProps) => {
   const { isLtLg } = useWindowSize();
-  const icon = renderIcon(item.icon) || item.key.charAt(0).toUpperCase()
+  const icon = renderIcon(item.icon)
 
   return (
     <div className={`py-1 ${isLtLg ? 'px-2' : 'px-4'}`}>
       {item.type === "header" && (
         <div className="flex gap-3 items-center bg-black rounded-2xl px-4 h-11">
-          <span
-            className={classNames(
-              "flex items-center justify-center text-center w-6 h-6 overflow-hidden",
-              "group-hover:text-white"
-            )}
-          >
-            {icon}
-          </span>
+          {icon ? (
+            <span
+              className={classNames(
+                "flex items-center justify-center text-center w-6 h-6 overflow-hidden",
+                "group-hover:text-white"
+              )}
+            >
+              {icon}
+            </span>
+          ) : null }
           <span
             className="text-white text-sm font-bold uppercase"
           >
