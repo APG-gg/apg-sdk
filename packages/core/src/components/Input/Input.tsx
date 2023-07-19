@@ -3,10 +3,12 @@ import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import { FieldError } from 'react-hook-form';
+import classNames from 'classnames';
 
 export interface InputProps {
   label?: string;
   type?: string;
+  rounded?: boolean;
   placeholder: string;
   supportText?: string;
   error?: boolean;
@@ -27,6 +29,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
     {
       label,
       type = 'text',
+      rounded = true,
       placeholder,
       supportText,
       error,
@@ -68,7 +71,10 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           {label}
         </label>
       )}
-      <div className={`flex items-center ${borderColor} border bg-black rounded-full px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`}>
+      <div className={classNames(
+        `flex items-center ${borderColor} border bg-black px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`,
+        rounded ? "rounded-full" : "rounded-sm",
+      )}>
         {isSearchable && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 mr-2`} />)}
         <input
           className={`flex-1 outline-none bg-transparent text-base ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}

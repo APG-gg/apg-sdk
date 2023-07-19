@@ -5,6 +5,7 @@ import renderIcon from "../../utils/renderIcon";
 export interface ButtonProps {
   type?: "primary" | "outline";
   icon?: ReactNode | string | null;
+  rounded?: boolean;
   iconSize?: string;
   iconPosition?: "left" | "right";
   fontSize?: string;
@@ -14,7 +15,7 @@ export interface ButtonProps {
   children?: ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ type = "primary", icon, iconSize = 'base', iconPosition = "left", fontSize = "base", onClick, className, children, disabled }) => {
+const Button: FC<ButtonProps> = ({ type = "primary", icon, rounded = true, iconSize = 'base', iconPosition = "left", fontSize = "base", onClick, className, children, disabled }) => {
   const iconClass = `text-${iconSize} flex`;
   const hasIconOnly = !children && icon;
 
@@ -30,8 +31,9 @@ const Button: FC<ButtonProps> = ({ type = "primary", icon, iconSize = 'base', ic
           "px-4 py-2": children,
           "p-2": !children,
         },
-        `text-${fontSize} flex items-center justify-center gap-2 rounded-full hover:bg-aqua-100/8 ${className}`,
-        hasIconOnly && "flex-row items-center justify-center"
+        `text-${fontSize} flex items-center justify-center gap-2 hover:bg-aqua-100/8 ${className}`,
+        hasIconOnly && "flex-row items-center justify-center",
+        rounded ? "rounded-full" : "rounded-sm",
       )}
       disabled={disabled}
     >

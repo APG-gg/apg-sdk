@@ -14,6 +14,7 @@ export interface SelectOption {
 
 export interface SelectProps {
   label?: string;
+  rounded?: boolean;
   placeholder: string;
   supportText?: string;
   error?: boolean;
@@ -32,6 +33,7 @@ export interface SelectProps {
 
 const Select: FC<SelectProps> = ({
   label,
+  rounded = true,
   placeholder,
   supportText,
   error,
@@ -169,7 +171,7 @@ const Select: FC<SelectProps> = ({
         "flex items-center border bg-black rounded-2xl px-4 py-2 min-h-10",
         borderColor,
         isFocused && 'shadow-md bg-aqua/10',
-        multiple ? "rounded-2xl" : "rounded-full",
+        multiple ? "rounded-sm" : rounded ? "rounded-full" : "rounded-sm",
       )}>
         {(isSearchable && showSearchIcon) && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 ${label ? 'mr-2' : ''}`} />)}
 

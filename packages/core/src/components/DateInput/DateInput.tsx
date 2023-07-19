@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent, FC, for
 import { InputProps } from '../Input';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
+import classNames from 'classnames';
 
 export interface DateInputProps extends Omit<InputProps, 'onChange' | 'onKeyDown' | 'isSearchable' | 'icon'> {
   name: string;
@@ -132,7 +133,10 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
           {rest.label}
         </label>
       )}
-      <div className={`flex items-center ${borderColor} border bg-black rounded-full px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`}>
+      <div className={classNames(
+        `flex items-center ${borderColor} border bg-black px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`,
+        rest.rounded ? "rounded-full" : "rounded-sm",
+      )}>
         <input
           {...rest}
           className={`w-8 outline-none text-center bg-transparent text-base ${rest.disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
