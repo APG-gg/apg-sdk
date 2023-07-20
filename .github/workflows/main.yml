@@ -28,6 +28,11 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && git checkout main && git pull"
 
+      - name: Install and build storybook
+        run: |
+          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && yarn install"
+          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && yarn storybook:build"
+
       - name: Rebuild image
         run: |
           ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && docker build -t apg-cuk ."
