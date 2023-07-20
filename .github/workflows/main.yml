@@ -30,7 +30,8 @@ jobs:
 
       - name: Install and build storybook
         run: |
-          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && yarn install"
+          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && yarn install -W"
+          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && yarn add @apg.gg/core @apg.gg/icons -W"
           ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-sdk && yarn storybook:build"
 
       - name: Rebuild image
