@@ -1,96 +1,132 @@
-import React, { FC, useEffect, useState } from 'react';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Upload as AntdUpload } from 'antd';
-import styled from 'styled-components';
-import { useCookies } from 'react-cookie';
+import PlusIcon from '@apg.gg/icons/lib/PlusIcon';
+import classNames from 'classnames';
+import React, { FC, forwardRef, useRef, useState } from 'react';
 
-const beforeUpload = (file: File) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    // TODO
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    // TODO
-  }
-  return isJpgOrPng && isLt2M;
+export interface UploadProps {
+  endpoint: string;
+  onSuccess: (response: ApiResponse) => void;
+  onError?: (error: any) => void;
+  shape?: 'square' | 'circle';
+  authToken?: string;
+  title?: string;
+  textSize?: 8 | 12 | 16 | 20 | 24;
+  icon?: React.ReactNode;
+  image?: string;
+  width?: number;
+  height?: number;
 }
 
-const UploadWrapper = styled(AntdUpload)`
-  .ant-upload-select {
-    margin-bottom: 1rem;
-    margin-right: 0;
-  }
-`
-
-interface UploadInterface {
-  apiUrl: string,
-  logo: string,
-  onComplete: (imageUrl: string) => void
+export interface ApiResponse {
+  url: string;
+  message: string;
 }
 
-const Upload: FC<UploadInterface> = ({ apiUrl, logo, onComplete }: UploadInterface) => {
-  const [cookies] = useCookies();
-  const [loading, setLoading] = useState(false);
-  const [teamLogo, setTeamLogo] = useState('');
+const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
+  (
+    { 
+      endpoint, 
+      onSuccess, 
+      onError, 
+      shape = 'square', 
+      title = 'Upload', 
+      textSize = 24,
+      authToken, 
+      icon = <PlusIcon className="text-white text-4xl" />,
+      image = null,
+      width = 200,
+      height = 200
+    }, 
+    ref
+  ) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    const [imageToShow, setImageToShow] = useState<string | null>(image);
+    
+    const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFile = event.target.files?.[0] || null;
 
-  useEffect(() => {
-    setTeamLogo(logo);
-  }, [setTeamLogo, logo])
+      if (selectedFile) {
+        try {
+          const formData = new FormData();
+          formData.append('file', selectedFile, selectedFile.name);
 
-  const handleChange = () => {
-    setLoading(true)
-  };
+          const requestOptions = {
+            method: 'POST',
+            body: formData,
+            headers: {
+              ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {})
+            }
+          };
 
-  const uploadImage = async (options: any) => {
-    const { onSuccess, onError, file } = options;
+          const response = await fetch(endpoint, requestOptions);
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("removeImageURL", teamLogo);
-
-    const headers = {
-      Authorization: `${cookies.APGTOKEN}`,
+          const data: ApiResponse = await response.json();
+          setImageToShow(data.url);
+          onSuccess(data);
+        } catch (error) {
+          onError?.(error);
+        }
+      }
     };
 
-    try {
-      const response = await fetch(`${apiUrl}/tools/upload`, {
-        method: 'POST',
-        headers,
-        body: formData
-      });
+    const handleIconClick = () => {
+      if (inputRef.current) {
+        inputRef.current.click();
+      }
+    };
 
-      const result = await response.json();
-
-      onSuccess("Ok");
-      onComplete(result);
-      setTeamLogo(result);
-      setLoading(false);
-    } catch (err) {
-      onError({ err });
-    }
-  };
-  
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
-
-  return (
-    <UploadWrapper
-      name="team2-logo"
-      listType="picture-card"
-      className="avatar-uploader"
-      showUploadList={false}
-      beforeUpload={beforeUpload}
-      onChange={handleChange}
-      customRequest={uploadImage}
-    >
-      {teamLogo ? <img src={teamLogo} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-    </UploadWrapper>
-  )
-}
+    return (
+      <div>
+        <div 
+          className={
+            classNames(
+              "bg-black-900 flex flex-col items-center justify-center cursor-pointer overflow-hidden",
+              shape === 'square' && "rounded-xl",
+              shape === 'circle' && "rounded-full"
+            )
+          } 
+          onClick={handleIconClick}
+          style={{
+            width: `${width}px`,
+            height: `${height}px`,
+          }}
+        >
+          <input type="file" ref={inputRef} onChange={handleFileChange} accept="image/*,video/*" className="hidden" />
+          {imageToShow ? (
+            <div className="relative group">
+              <img src={imageToShow} alt="Upload" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black-900 bg-opacity-50 items-center justify-center hidden group-hover:flex flex-col">
+                <div className="flex items-center justify-center rounded-full bg-blue p-2">
+                  {icon}
+                </div>
+                <h1 
+                  className="text-white font-poppins font-bold uppercase text-center px-4"
+                  style={{
+                    fontSize: `${textSize}px`,
+                  }}
+                >
+                  Change {title}
+                </h1>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center justify-center rounded-full bg-blue p-2">
+                {icon}
+              </div>
+              <h1 
+                className="text-white font-poppins font-bold uppercase text-center px-4"
+                style={{
+                  fontSize: `${textSize}px`,
+                }}
+              >
+                {title}
+              </h1>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+);
 
 export default Upload;

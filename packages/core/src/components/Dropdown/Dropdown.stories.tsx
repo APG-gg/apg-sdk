@@ -7,7 +7,7 @@ export default {
   title: "Atoms/Dropdown",
   component: Dropdown,
   argTypes: {
-    dropdownItems: { control: 'array' },
+    items: { control: 'array' },
     placement: { control: 'select', options: ['topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight', 'top', 'bottom']},
     width: { control: 'number', defaultValue: 192 },
   },

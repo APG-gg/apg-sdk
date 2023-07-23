@@ -68,7 +68,6 @@ const IconWrapper: FC<IconWrapperProps> = ({ children }) => {
 };
 
 const IconList: FC<IconProps> = ({ size, color }) => {
-  console.log({ size, color });
   return (
     <div className="grid grid-cols-4 grid-rows-1">
       <IconWrapper>

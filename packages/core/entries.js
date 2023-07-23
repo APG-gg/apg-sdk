@@ -29,6 +29,7 @@ module.exports = {
   CardDescription: path.join(COMPONENT_DIR, "CardDescription"),
   Icon: path.join(COMPONENT_DIR, "Icon"),
   DateInput: path.join(COMPONENT_DIR, "DateInput"),
+  Dropdown: path.join(COMPONENT_DIR, "Dropdown"),
   PasswordInput: path.join(COMPONENT_DIR, "PasswordInput"),
   Input: path.join(COMPONENT_DIR, "Input"),
   Link: path.join(COMPONENT_DIR, "Link"),
