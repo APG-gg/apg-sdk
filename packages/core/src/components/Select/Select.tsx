@@ -75,6 +75,17 @@ const Select: FC<SelectProps> = ({
         loadedOptions = options;
       }
 
+      if (multiple) {
+        const filtered = options.filter(option =>
+          option.label.toLowerCase().includes(value.toLowerCase())
+        );
+        setFilteredOptions(filtered);
+      } else {
+        const selected = options.filter(option => option.value === value)[0];
+        setInternalValue(selected);
+      }
+
+
       setFilteredOptions(loadedOptions);
       setIsLoading(false);
     };

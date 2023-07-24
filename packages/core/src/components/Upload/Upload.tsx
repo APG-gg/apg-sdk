@@ -14,6 +14,7 @@ export interface UploadProps {
   image?: string;
   width?: number;
   height?: number;
+  bgClass?: string;
 }
 
 export interface ApiResponse {
@@ -34,7 +35,8 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       icon = <PlusIcon className="text-white text-4xl" />,
       image = null,
       width = 200,
-      height = 200
+      height = 200,
+      bgClass = 'bg-black-900'
     }, 
     ref
   ) => {
@@ -79,7 +81,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
         <div 
           className={
             classNames(
-              "bg-black-900 flex flex-col items-center justify-center cursor-pointer overflow-hidden",
+              `flex flex-col items-center justify-center cursor-pointer overflow-hidden ${bgClass}`,
               shape === 'square' && "rounded-xl",
               shape === 'circle' && "rounded-full"
             )
@@ -94,7 +96,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
           {imageToShow ? (
             <div className="relative group">
               <img src={imageToShow} alt="Upload" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black-900 bg-opacity-50 items-center justify-center hidden group-hover:flex flex-col">
+              <div className={`absolute inset-0 bg-opacity-50 items-center justify-center hidden group-hover:flex flex-col ${bgClass}`}>
                 <div className="flex items-center justify-center rounded-full bg-blue p-2">
                   {icon}
                 </div>

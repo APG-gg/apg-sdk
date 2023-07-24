@@ -32,6 +32,7 @@ Basic.args = {
     { value: 'option-8', label: 'Option 8' },
     { value: 'option-9', label: 'Option 9' }
   ],
+  value: 'option-4'
 };
 
 export const Multiple = Template.bind({});
