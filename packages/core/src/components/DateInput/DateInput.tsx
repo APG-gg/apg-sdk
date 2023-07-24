@@ -125,7 +125,13 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
   }), [inputRef]);
 
   return (
-    <div className="relative">
+    <div className={
+      classNames(
+        "relative",
+        rest.className
+      )}
+      style={rest.style}
+    >
       {rest.label && (
         <label
           className={`absolute -top-2 left-3 px-2 ${labelColor} text-xs bg-black rounded-full`}
@@ -205,7 +211,7 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
         {rest.error && !rest.disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-auto" />}
       </div>
       {rest.supportText && <p className={`text-xs font-semibold ${rest.disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{rest.supportText}</p>}
-      {rest.errorText && <p className="text-red-500 text-xs font-medium mt-1">{rest.errorText.message}</p>}
+      {rest.errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{rest.errorText.message}</p>}
     </div>
   );
 });

@@ -29,11 +29,11 @@ const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width 
   }`;
 
   return (
-    <div className="relative inline-block">
+    <div className="relative flex items-center justify-center">
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="inline-block"
+        className="flex items-center justify-center"
       >
         {children}
       </div>

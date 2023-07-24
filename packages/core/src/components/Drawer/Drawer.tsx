@@ -133,7 +133,7 @@ const Drawer: FC<DrawerProps> = ({
         }} 
         className={backdropClasses}></div>
       <div
-        className={`fixed text-white z-[70] transition-all duration-300 bg-black-900 shadow-md overflow-hidden ${transformClasses} ${sizeClasses} ${edgeClasses}`}
+        className={`flex flex-col fixed text-white z-[70] transition-all duration-300 bg-black-900 shadow-md overflow-hidden ${transformClasses} ${sizeClasses} ${edgeClasses}`}
         style={{
           ...styleClassess,
           ...(edgeToEdge ? { width: "100vw", height: "100vh" } : {})
@@ -141,7 +141,7 @@ const Drawer: FC<DrawerProps> = ({
         ref={drawerRef}
       >
         {header ? (
-          <div className="flex justify-between items-center px-4 py-3 border-b border-juice-gray-100">
+          <div className="flex justify-between items-center px-4 py-3 border-b border-black-800">
             {header}
             {closeButton ? (
               closeButton
@@ -152,8 +152,8 @@ const Drawer: FC<DrawerProps> = ({
             )}
           </div>
         ) : null}
-        <div className="p-4 h-full">{content}</div>
-        {footer && <div className="px-4 py-3 border-t border-juice-gray-100">{footer}</div>}
+        <div className="p-4 flex-grow">{content}</div>
+        {footer && <div className="px-4 py-3 border-t border-black-800">{footer}</div>}
       </div>
     </>
   );

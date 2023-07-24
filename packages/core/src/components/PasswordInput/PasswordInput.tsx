@@ -3,6 +3,7 @@ import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import VisibilityIcon from '@apg.gg/icons/lib/VisibilityIcon';
 import VisibilityOffIcon from '@apg.gg/icons/lib/VisibilityOffIcon';
 import { FieldError } from 'react-hook-form';
+import classNames from 'classnames';
 
 export interface PasswordInputProps {
   label?: string;
@@ -15,6 +16,8 @@ export interface PasswordInputProps {
   onBlur?: () => void;
   onFocus?: () => void;
   errorText?: FieldError | undefined;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const PasswordInput: FC<PasswordInputProps> = forwardRef<HTMLInputElement, PasswordInputProps>(
@@ -30,6 +33,8 @@ const PasswordInput: FC<PasswordInputProps> = forwardRef<HTMLInputElement, Passw
       onBlur,
       onFocus,
       errorText,
+      className = '',
+      style = {},
     },
     ref
   ) => {
@@ -49,7 +54,13 @@ const PasswordInput: FC<PasswordInputProps> = forwardRef<HTMLInputElement, Passw
     const labelColor = error ? 'text-red' : isFocused ? 'text-aqua' : disabled ? 'text-black-800' : 'text-black-400';
 
     return (
-      <div className="relative">
+      <div className={
+        classNames(
+          "relative",
+          className
+        )}
+        style={style}
+      >
         {label && (
           <label className={`absolute -top-2 left-3 px-2 ${labelColor} text-xs bg-black rounded-full`}>
             {label}
@@ -94,7 +105,7 @@ const PasswordInput: FC<PasswordInputProps> = forwardRef<HTMLInputElement, Passw
             {supportText}
           </p>
         )}
-        {errorText && <p className="text-red-500 text-xs font-medium mt-1">{errorText.message}</p>}
+        {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
       </div>
     );
   }

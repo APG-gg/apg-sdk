@@ -5,7 +5,7 @@ import PlusIcon from '@apg.gg/icons/lib/PlusIcon';
 
 export default {
   component: Upload,
-  title: 'Components/Upload',
+  title: 'Atoms/Upload',
   argTypes: {
     size: { control: 'select', options: [8, 12, 16, 20, 24]},
   },

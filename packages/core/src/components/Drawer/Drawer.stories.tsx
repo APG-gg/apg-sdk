@@ -11,6 +11,7 @@ export default {
     disableClickOutsideToClose: { control: 'boolean' },
     header: { control: 'text' },
     content: { control: 'text' },
+    footer: { control: 'text' },
   },
 }
 
@@ -33,4 +34,5 @@ export const Basic = Template.bind({});
 Basic.args = {
   isOpen: false,
   disableClickOutsideToClose: false,
+  content: 'Drawer Content',
 };

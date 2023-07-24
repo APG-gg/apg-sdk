@@ -22,6 +22,8 @@ export interface InputProps {
   onBlur?: () => void;
   onFocus?: () => void;
   errorText?: FieldError | undefined;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
@@ -43,6 +45,8 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       onBlur,
       onFocus,
       errorText,
+      className = '',
+      style = {},
     },
     ref
   ) => {
@@ -63,7 +67,13 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   const labelColor = error ? 'text-red' : isFocused ? 'text-aqua' : disabled ? 'text-black-800' : 'text-black-400';
 
   return (
-    <div className="relative">
+    <div className={
+      classNames(
+        "relative",
+        className
+      )}
+      style={style}
+    >
       {label && (
         <label
           className={`absolute -top-2 left-3 px-2 ${labelColor} text-xs bg-black rounded-full`}
@@ -98,7 +108,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
       </div>
       {supportText && <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>}
-      {errorText && <p className="text-red-500 text-xs font-medium mt-1">{errorText.message}</p>}
+      {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
     </div>
   );
 });

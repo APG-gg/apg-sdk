@@ -29,6 +29,8 @@ export interface SelectProps {
   multiple?: boolean;
   onChange?: (value: string | string[]) => void;
   errorText?: FieldError | undefined;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const Select: FC<SelectProps> = ({
@@ -47,7 +49,9 @@ const Select: FC<SelectProps> = ({
   readOnly = false,
   multiple = false,
   onChange = () => {},
-  errorText
+  errorText,
+  className = '',
+  style = {},
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState<string>(initialValue as string);
@@ -170,7 +174,14 @@ const Select: FC<SelectProps> = ({
   const labelColor = error ? 'text-red' : isFocused ? 'text-aqua' : disabled ? 'text-black-800' : 'text-black-400';
 
   return (
-    <div className="relative" ref={wrapperRef}>
+    <div className={
+      classNames(
+        "relative",
+        className
+      )}
+      style={style} 
+      ref={wrapperRef}
+    >
       {label && (
         <label
           className={`absolute -top-2 left-3 px-2 ${labelColor} text-xs bg-black rounded-full`}
@@ -224,7 +235,7 @@ const Select: FC<SelectProps> = ({
       </div>
 
       {supportText && <div className="text-xs text-black-400 mt-2">{supportText}</div>}
-      {errorText && <p className="text-red-500 text-xs font-medium mt-1">{errorText.message}</p>}
+      {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
 
       {isFocused && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 z-10 overflow-y-auto max-h-[9.5rem]">

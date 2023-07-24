@@ -49,6 +49,8 @@ import VisibilityIcon from "./VisibilityIcon";
 import VisibilityOffIcon from "./VisibilityOffIcon";
 import XCircleIcon from "./XCircleIcon";
 import XIcon from "./XIcon";
+import ThreadsIcon from "./ThreadsIcon";
+import KickIcon from "./KickIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -155,6 +157,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <TelegramIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<TelegramIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ThreadsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ThreadsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <KickIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<KickIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>
