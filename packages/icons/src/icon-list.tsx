@@ -51,6 +51,11 @@ import XCircleIcon from "./XCircleIcon";
 import XIcon from "./XIcon";
 import ThreadsIcon from "./ThreadsIcon";
 import KickIcon from "./KickIcon";
+import SteamIcon from "./SteamIcon";
+import RiotIcon from "./RiotIcon";
+import XboxIcon from "./XboxIcon";
+import EpicIcon from "./EpicIcon";
+import GithubIcon from "./GithubIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -389,6 +394,36 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <ViewListIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<ViewListIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <RiotIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<RiotIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SteamIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SteamIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <XboxIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<XboxIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <EpicIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<EpicIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <GithubIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<GithubIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

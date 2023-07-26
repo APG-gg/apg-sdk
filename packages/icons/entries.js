@@ -72,4 +72,9 @@ module.exports = {
   TwitchIcon: path.resolve(SRC_DIR, "TwitchIcon"),
   TwitterIcon: path.resolve(SRC_DIR, "TwitterIcon"),
   YoutubeIcon: path.resolve(SRC_DIR, "YoutubeIcon"),
+  RiotIcon: path.resolve(SRC_DIR, "RiotIcon"),
+  XboxIcon: path.resolve(SRC_DIR, "XboxIcon"),
+  EpicIcon: path.resolve(SRC_DIR, "EpicIcon"),
+  SteamIcon: path.resolve(SRC_DIR, "SteamIcon"),
+  GithubIcon: path.resolve(SRC_DIR, "GithubIcon"),
 };

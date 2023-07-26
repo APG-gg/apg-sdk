@@ -104,7 +104,7 @@ const Drawer: FC<DrawerProps> = ({
       }
       break;
     case "center":
-      transformClasses = `top-1/2 left-1/2 ${isOpen ? "-translate-x-1/2 -translate-y-1/2 rounded-2xl" : "hidden"}`;
+      transformClasses = `top-1/2 left-1/2 ${isOpen ? "flex flex-col -translate-x-1/2 -translate-y-1/2 rounded-2xl" : "hidden"}`;
       sizeClasses = `${width ? '' : "w-[96%] md:w-1/2"} ${height ? '' : "min-h-[320px]"} ${maxHeight ? `max-h-${maxHeight}` : ""} ${maxWidth ? `max-w-${maxWidth}` : ""}`;
       styleClassess = {
         width: width ? width : "96%",
@@ -133,7 +133,7 @@ const Drawer: FC<DrawerProps> = ({
         }} 
         className={backdropClasses}></div>
       <div
-        className={`flex flex-col fixed text-white z-[70] transition-all duration-300 bg-black-900 shadow-md overflow-hidden ${transformClasses} ${sizeClasses} ${edgeClasses}`}
+        className={`fixed text-white z-[70] transition-all duration-300 bg-black-900 shadow-md overflow-hidden ${transformClasses} ${sizeClasses} ${edgeClasses}`}
         style={{
           ...styleClassess,
           ...(edgeToEdge ? { width: "100vw", height: "100vh" } : {})
