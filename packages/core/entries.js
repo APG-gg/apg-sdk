@@ -34,6 +34,7 @@ module.exports = {
   Input: path.join(COMPONENT_DIR, "Input"),
   Link: path.join(COMPONENT_DIR, "Link"),
   MenuItem: path.join(COMPONENT_DIR, "MenuItem"),
+  Modal: path.join(COMPONENT_DIR, "Modal"),
   Navbar: path.join(COMPONENT_DIR, "Navbar"),
   PasswordInput: path.join(COMPONENT_DIR, "PasswordInput"),
   Select: path.join(COMPONENT_DIR, "Select"),
