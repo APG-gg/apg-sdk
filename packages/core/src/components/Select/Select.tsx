@@ -58,7 +58,7 @@ const Select: FC<SelectProps> = ({
   const [multipleValue, setMultipleValue] = useState<string[]>(initialValue as string[]);
   const [filteredOptions, setFilteredOptions] = useState<SelectOption[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const optionsRef = useRef<HTMLUListElement>(null);
+  const optionsRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const [internalValue, setInternalValue] = useState<SelectOption>({
@@ -149,6 +149,17 @@ const Select: FC<SelectProps> = ({
       setIsFocused(false);
     }
   };
+
+  const shouldOpenUpwards = () => {
+    if (wrapperRef.current) {
+      const wrapperRect = wrapperRef.current.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - wrapperRect.bottom;
+      return spaceBelow < 100;
+    }
+    return false;
+  };
+
+  console.log(shouldOpenUpwards());
   
   useEffect(() => {
     if (isFocused) {
@@ -184,7 +195,7 @@ const Select: FC<SelectProps> = ({
     >
       {label && (
         <label
-          className={`absolute -top-2 left-3 px-2 ${labelColor} text-xs bg-black rounded-full`}
+          className={`absolute -top-2 left-3 px-2 ${labelColor} text-xs bg-black rounded-full z-20`}
         >
           {label}
         </label>
@@ -238,7 +249,14 @@ const Select: FC<SelectProps> = ({
       {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
 
       {isFocused && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 z-10 overflow-y-auto max-h-[9.5rem]">
+        <div
+          className={classNames(
+            'absolute z-10',
+            shouldOpenUpwards() ? 'bottom-full' : 'top-full',
+            'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]'
+          )}
+          ref={optionsRef}
+        >
           {filteredOptions.map((option) => (
             <div
               key={option.value}

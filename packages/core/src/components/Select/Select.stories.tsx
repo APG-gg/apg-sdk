@@ -16,7 +16,7 @@ export default {
   },
 }
 
-const Template: Story<SelectProps> = (args) => <Select {...args} />;
+const Template: Story<SelectProps> = (args) => <Select style={{ marginTop: '620px' }} {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
@@ -51,5 +51,6 @@ Multiple.args = {
     { value: 'option-8', label: 'Option 8' },
     { value: 'option-9', label: 'Option 9' }
   ],
-  onChange: (value) => console.log(value)
+  onChange: (value) => console.log(value),
+  error: true
 };
