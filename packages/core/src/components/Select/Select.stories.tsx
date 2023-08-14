@@ -39,6 +39,7 @@ export const Multiple = Template.bind({});
 Multiple.args = {
   label: 'Label',
   multiple: true,
+  value: ['option-4', 'option-5'],
   options: [
     { value: 'option-1', label: 'Option 1' },
     { value: 'option-2', label: 'Option 2' },
@@ -50,4 +51,5 @@ Multiple.args = {
     { value: 'option-8', label: 'Option 8' },
     { value: 'option-9', label: 'Option 9' }
   ],
+  onChange: (value) => console.log(value)
 };

@@ -133,10 +133,14 @@ const Modal: FC<ModalProps> = ({
     }
   }
 
+  const backdropOpacity = isOpen ? "bg-opacity-5 fixed backdrop-blur-sm" : "bg-opacity-0 hidden";
+  const backdropTransition = "duration-300 ease-in-out";
+  const backdropClasses = `inset-0 z-[70] bg-sky-600 ${backdropOpacity} ${backdropTransition}`;
+
   return ReactDOM.createPortal(
     <div className={modalClassNames}>
       <div
-        className="fixed inset-0 z-[60] bg-black bg-opacity-50"
+        className={backdropClasses}
         onClick={onClose}
       ></div>
       <div

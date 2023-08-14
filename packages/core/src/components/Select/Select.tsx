@@ -81,9 +81,9 @@ const Select: FC<SelectProps> = ({
 
       if (multiple) {
         const filtered = options.filter(option =>
-          option.label.toLowerCase().includes(value.toLowerCase())
+          multipleValue.includes(option.value)
         );
-        setFilteredOptions(filtered);
+        setInternalMultipleValue(filtered);
       } else {
         const selected = options.filter(option => option.value === value)[0];
         setInternalValue(selected);

@@ -1,6 +1,6 @@
 import React from "react";
 import { FC, useEffect, useRef } from "react";
-import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
+import XIcon from "@apg.gg/icons/lib/XIcon";
 
 export interface DrawerProps {
   header?: React.ReactNode;
@@ -147,7 +147,7 @@ const Drawer: FC<DrawerProps> = ({
               closeButton
             ) : (
               <div onClick={onClose} className="cursor-pointer ml-auto">
-                <XCircleIcon className="text-xl" />
+                <XIcon className="text-xl text-gray-100 hover:text-gray-400" />
               </div>
             )}
           </div>
