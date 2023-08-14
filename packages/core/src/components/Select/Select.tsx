@@ -158,8 +158,6 @@ const Select: FC<SelectProps> = ({
     }
     return false;
   };
-
-  console.log(shouldOpenUpwards());
   
   useEffect(() => {
     if (isFocused) {
