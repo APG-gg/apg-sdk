@@ -56,6 +56,7 @@ import RiotIcon from "./RiotIcon";
 import XboxIcon from "./XboxIcon";
 import EpicIcon from "./EpicIcon";
 import GithubIcon from "./GithubIcon";
+import EditIcon from "./EditIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -370,6 +371,12 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <SettingsIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<SettingsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <EditIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<EditIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>

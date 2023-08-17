@@ -27,13 +27,10 @@ module.exports = {
     ],
   },
   externals: [{
-      react: 'react',
-      'react-dom': 'react-dom',
-      immer: 'immer',
-      next: 'next'
-    },
-    /^styled-components.*$/
-  ],
+    react: 'react',
+    'react-dom': 'react-dom',
+    immer: 'immer'
+  }],
   optimization: {
     minimizer: [
       new TerserPlugin({
