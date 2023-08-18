@@ -9,12 +9,15 @@ import ReactCrop, {
   PixelCrop
 } from 'react-image-crop'
 
-import 'react-image-crop/dist/ReactCrop.css'
 import { canvasPreview } from '../../utils/canvasPreview';
 import { useDebounceEffect } from '../../utils/useDebounceEffect';
+import Drawer from '../Drawer';
+import Button from '../Button';
+import { base64ToFile } from '../../utils/base64ToFile';
 
 export interface UploadProps {
   endpoint: string;
+  aspectRatio: number;
   onSuccess: (response: ApiResponse) => void;
   onError?: (error: any) => void;
   editMode?: boolean;
@@ -35,10 +38,37 @@ export interface ApiResponse {
   message: string;
 }
 
+const centerAspectCrop = (
+  mediaWidth: number,
+  mediaHeight: number,
+  aspect: number,
+) => {
+  return centerCrop(
+    makeAspectCrop(
+      {
+        unit: '%',
+        width: 90,
+      },
+      aspect,
+      mediaWidth,
+      mediaHeight,
+    ),
+    mediaWidth,
+    mediaHeight,
+  )
+}
+
+const getBase64 = (img: File, callback: (url: string) => void) => {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result?.toString() || ''));
+  reader.readAsDataURL(img);
+};
+
 const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
   (
     { 
       endpoint, 
+      aspectRatio = 1,
       onSuccess, 
       onError, 
       editMode = true,
@@ -56,22 +86,42 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
     ref
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const previewCanvasRef = useRef<HTMLCanvasElement>(null)
+    const imgRef = useRef<HTMLImageElement>(null)
+    const [imgSrc, setImgSrc] = useState('')
+    const [cropedFile, setFile] = useState<File>();
     const [imageToShow, setImageToShow] = useState<string | null>(image);
     const [crop, setCrop] = useState<Crop>()
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
-    const [aspect] = useState<number | undefined>(1.875) 
+    const [aspect] = useState<number | undefined>(aspectRatio) 
+    const [showModal, setShowModal] = useState(false)
     
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
       const selectedFile = event.target.files?.[0] || null;
 
       if (selectedFile) {
-        if (cropable) {
-          fetchImage(selectedFile);
-        } else {
-          fetchImage(selectedFile);
-        }
+        fetchImage(selectedFile);
       }
     };
+
+    const handleCropChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFile = event.target.files?.[0] || null;
+      setFile(selectedFile as File);
+      getBase64(selectedFile as File, (url) => {
+        setImgSrc(url);
+        setShowModal(true)
+      });
+    }
+
+    const submitCropedImage = () => {
+      if (cropedFile) {
+        const base64Image = previewCanvasRef.current?.toDataURL('image/jpeg');
+        const file = base64Image && base64ToFile(base64Image, cropedFile.name)
+        console.log(file);
+        fetchImage(file as File);
+        setShowModal(false);
+      }
+    }
 
     const fetchImage = async (selectedFile: File) => {
       try {
@@ -102,6 +152,35 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       }
     };
 
+    const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+      if (aspect) {
+        const { width, height } = e.currentTarget
+        setCrop(centerAspectCrop(width, height, aspect))
+      }
+    }
+
+    useDebounceEffect(
+      async () => {
+        if (
+          completedCrop?.width &&
+          completedCrop?.height &&
+          imgRef.current &&
+          previewCanvasRef.current
+        ) {
+          // We use canvasPreview as it's much faster than imgPreview.
+          canvasPreview(
+            imgRef.current,
+            previewCanvasRef.current,
+            completedCrop,
+            1,
+            0,
+          )
+        }
+      },
+      100,
+      [completedCrop],
+    )
+
     return (
       <div>
         <div 
@@ -119,17 +198,24 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             height: height,
           }}
         >
-          <input type="file" ref={inputRef} onChange={handleFileChange} accept="image/*,video/*" className="hidden" />
+          <input 
+            type="file" 
+            ref={inputRef} 
+            onChange={(event) => {
+              if (cropable) {
+                handleCropChange(event)
+              } else {
+                handleFileChange(event)
+              }
+            }} 
+            accept="image/*,video/*" 
+            className="hidden"
+          />
           {imageToShow ? (
             <div className="relative group">
-              <img src={imageToShow} alt="Upload" className="w-full h-full object-cover" />
+              <img src={imageToShow} alt="Upload" className="w-full h-full object-cover" height={height} />
               {editMode ? (
-                <div className={classNames(
-                  `absolute bg-opacity-75 items-center justify-center hidden group-hover:flex flex-col gap-1 ${bgClass}`,
-                  {
-                    'inset-0': shape === 'square' || shape === 'circle',
-                  }
-                )}>
+                <div className={`absolute inset-0 !bg-opacity-[0.75] items-center justify-center hidden group-hover:flex flex-col gap-1 ${bgClass}`}>
                   <div className="flex items-center justify-center rounded-full bg-blue p-2">
                     {iconEdit}
                   </div>
@@ -150,6 +236,66 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             </>
           )}
         </div>
+
+        {cropable && showModal ? (
+          <Drawer
+            header="Crop Image"
+            footer={
+              <div className="flex justify-end gap-2">
+                <Button className="w-24" type="outline" onClick={() => setShowModal(false)}>
+                  Cancel
+                </Button>
+                <Button className="w-40" onClick={() => submitCropedImage()}>
+                  Crop
+                </Button>
+              </div>
+            }
+            isOpen={showModal}
+            disableClickOutsideToClose={false}
+            onClose={() => setShowModal(false)}
+            content={
+              <div className="flex justify-center">
+                <ReactCrop
+                  crop={crop}
+                  onChange={(_: any, percentCrop: any) => setCrop(percentCrop)}
+                  onComplete={(c: any) => setCompletedCrop(c)}
+                  aspect={aspect}
+                  className={
+                    classNames(
+                      'mx-auto',
+                      {
+                        'w-full max-h-none': shape === 'banner',
+                        'w-64 max-h-none': shape === 'square' || shape === 'circle'
+                      }
+                    )
+                  }
+                >
+                  <img
+                    ref={imgRef}
+                    alt="Crop me"
+                    src={imgSrc}
+                    onLoad={onImageLoad}
+                    className="max-h-52 w-full"
+                  />
+                </ReactCrop>
+
+                <div className="hidden">
+                  {!!completedCrop && (
+                    <canvas
+                      ref={previewCanvasRef}
+                      style={{
+                        border: '1px solid black',
+                        objectFit: 'contain',
+                        width: completedCrop.width,
+                        height: completedCrop.height,
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            }
+          />
+        ) : null}
       </div>
     );
   }

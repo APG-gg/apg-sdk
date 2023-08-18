@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.2.7 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -31,6 +31,7 @@
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
 */
 
 html {
@@ -47,6 +48,8 @@ html {
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
 }
 
 /*
@@ -187,6 +190,10 @@ optgroup,
 select,
 textarea {
   font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
   /* 1 */
   font-size: 100%;
   /* 1 */
@@ -339,6 +346,14 @@ menu {
 }
 
 /*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
 Prevent resizing textareas horizontally by default.
 */
 
@@ -433,6 +448,9 @@ video {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -480,6 +498,9 @@ video {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -600,10 +621,7 @@ video {
 }
 
 .inset-0 {
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  inset: 0px;
 }
 
 .-top-2 {
@@ -744,6 +762,10 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -804,8 +826,18 @@ video {
   margin-top: auto;
 }
 
-.mb-1 {
-  margin-bottom: 0.25rem;
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .block {
@@ -992,12 +1024,24 @@ video {
   max-height: 9.5rem;
 }
 
+.max-h-52 {
+  max-height: 13rem;
+}
+
+.max-h-none {
+  max-height: none;
+}
+
 .min-h-\[180px\] {
   min-height: 180px;
 }
 
 .min-h-\[320px\] {
   min-height: 320px;
+}
+
+.\!w-full {
+  width: 100% !important;
 }
 
 .\!w-screen {
@@ -1076,14 +1120,6 @@ video {
   width: 320px;
 }
 
-.w-\[360px\] {
-  width: 360px;
-}
-
-.w-\[650px\] {
-  width: 650px;
-}
-
 .w-\[96\%\] {
   width: 96%;
 }
@@ -1100,8 +1136,12 @@ video {
   width: 100vw;
 }
 
-.\!w-full {
-  width: 100% !important;
+.w-52 {
+  width: 13rem;
+}
+
+.w-64 {
+  width: 16rem;
 }
 
 .min-w-\[400px\] {
@@ -1304,6 +1344,10 @@ video {
   justify-content: space-between;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -1322,10 +1366,6 @@ video {
 
 .gap-\[10px\] {
   gap: 10px;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .overflow-hidden {
@@ -1692,6 +1732,21 @@ video {
   background-color: rgb(0 96 0 / var(--tw-bg-opacity));
 }
 
+.bg-limegreen-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(204 229 173 / var(--tw-bg-opacity));
+}
+
+.bg-orange-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 210 184 / var(--tw-bg-opacity));
+}
+
+.bg-purple-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 208 255 / var(--tw-bg-opacity));
+}
+
 .bg-red {
   --tw-bg-opacity: 1;
   background-color: rgb(237 66 69 / var(--tw-bg-opacity));
@@ -1756,21 +1811,6 @@ video {
   background-color: rgb(96 73 0 / var(--tw-bg-opacity));
 }
 
-.bg-limegreen-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(204 229 173 / var(--tw-bg-opacity));
-}
-
-.bg-orange-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 210 184 / var(--tw-bg-opacity));
-}
-
-.bg-purple-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 208 255 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-0 {
   --tw-bg-opacity: 0;
 }
@@ -1785,6 +1825,14 @@ video {
 
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
+}
+
+.bg-opacity-\[0\.75\] {
+  --tw-bg-opacity: 0.75;
+}
+
+.\!bg-opacity-\[0\.75\] {
+  --tw-bg-opacity: 0.75 !important;
 }
 
 .object-cover {
@@ -2431,6 +2479,10 @@ video {
 
 .group:hover .group-hover\:flex {
   display: flex;
+}
+
+.group:hover .group-hover\:rounded-full {
+  border-radius: 9999px;
 }
 
 .group:hover .group-hover\:rounded-lg {
