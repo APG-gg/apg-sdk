@@ -42,7 +42,7 @@ export type CardTagProps = {
 const CardBase = ({ children, className = '' }: CardBaseProps) => {
   return (
     <div className={`base-card ${className}`}>
-      <div className={`z-20 ${className}`}>
+      <div className="z-20">
         {children}
       </div>
     </div>

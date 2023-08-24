@@ -28,7 +28,7 @@ const CardType: FC<CardTypeProps> = ({
   const LinkComponent = linkComponent || "a";
 
   return (
-    <CardBase className={`flex flex-col max-w-[230px] min-h-[180px] ${className}`}>
+    <CardBase className={`flex flex-col max-w-[230px] min-h-[325px] ${className}`}>
       <div className="flex-grow h-[154px]">
         <img src={banner || "https://statics.apg.gg/default/post.png"} alt={name} className="w-full h-full object-cover" />
       </div>
