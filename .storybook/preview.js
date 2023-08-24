@@ -8,6 +8,7 @@ import {
 } from "@storybook/addon-docs/blocks";
 import "../packages/core/src/styles/index.css";
 import "../packages/core/src/styles/react-image-crop.css";
+import "flag-icons/css/flag-icons.min.css";
 import { themes } from '@storybook/theming';
 
 export const parameters = {

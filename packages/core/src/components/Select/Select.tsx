@@ -249,7 +249,7 @@ const Select: FC<SelectProps> = ({
       {isFocused && (
         <div
           className={classNames(
-            'absolute z-10',
+            'absolute z-40',
             shouldOpenUpwards() ? 'bottom-full' : 'top-full',
             'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]'
           )}

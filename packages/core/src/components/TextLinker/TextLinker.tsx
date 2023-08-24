@@ -2,9 +2,12 @@ import React from 'react';
 
 interface Props {
   text: string;
+  linkComponent?: React.ComponentType<any>
 }
 
-const TextLinker: React.FC<Props> = ({ text }) => {
+const TextLinker: React.FC<Props> = ({ text, linkComponent }) => {
+  const LinkComponent = linkComponent || "a";
+
   const linkRegex = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])|(www\.[-A-Z0-9+&@#\/%=~_|]+(\.[-A-Z0-9+&@#\/%=~_|]+)+)/gi;
   const hashtagRegex = /#\w+/gi;
   const mentionRegex = /@\w+/gi;
@@ -19,24 +22,24 @@ const TextLinker: React.FC<Props> = ({ text }) => {
       const link = part.startsWith('https') ? part : `https://${part}`;
 
       return (
-        <a href={link} key={index} target="_blank" className="text-aqua">
+        <LinkComponent href={link} key={index} target="_blank" className="text-aqua">
           {part}
-        </a>
+        </LinkComponent>
       );
     } else if (hashtagRegex.test(part)) {
       return (
         <React.Fragment key={index}>
-          <a href={`/hashtag/${part.slice(1)}`} className="text-aqua">
+          <LinkComponent href={`/hashtag/${part.slice(1)}`} className="text-aqua">
             {part}
-          </a>
+          </LinkComponent>
         </React.Fragment>
       );
     } else if (mentionRegex.test(part)) {
       return (
         <React.Fragment key={index}>
-          <a href={`/${part.slice(1)}`} className="text-aqua">
+          <LinkComponent href={`/${part.slice(1)}`} className="text-aqua">
             {part}
-          </a>
+          </LinkComponent>
         </React.Fragment>
       );
     } else {

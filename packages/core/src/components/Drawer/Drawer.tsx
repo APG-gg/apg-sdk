@@ -1,6 +1,7 @@
 import React from "react";
 import { FC, useEffect, useRef } from "react";
 import XIcon from "@apg.gg/icons/lib/XIcon";
+import classNames from 'classnames';
 
 export interface DrawerProps {
   header?: React.ReactNode;
@@ -133,7 +134,9 @@ const Drawer: FC<DrawerProps> = ({
         }} 
         className={backdropClasses}></div>
       <div
-        className={`fixed text-white z-[70] transition-all duration-300 bg-black-900 shadow-md overflow-hidden ${transformClasses} ${sizeClasses} ${edgeClasses}`}
+        className={classNames(
+          `fixed text-white z-[70] transition-all duration-300 bg-black-900 shadow-md ${transformClasses} ${sizeClasses} ${edgeClasses}`
+        )}
         style={{
           ...styleClassess,
           ...(edgeToEdge ? { width: "100vw", height: "100vh" } : {})

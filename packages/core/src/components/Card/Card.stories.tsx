@@ -4,6 +4,7 @@ import { CardProps } from './CardBase';
 import Card from './Card';
 import CardPost from '../CardPost';
 import CardLandscape from '../CardLandscape';
+import CardType, { CardTypeProps } from '../CardType';
 
 const basicArgs = {
   id: "266678",
@@ -102,4 +103,16 @@ Landscape.args = {
   ],
   confirmLabel: "Confirm",
   cancelLabel: "Cancel",
+};
+
+const TemplateType: Story<CardTypeProps> = (args) => <CardType {...args} />;
+export const Type = TemplateType.bind({});
+Type.args = {
+  id: "266678",
+  banner: undefined,
+  title: "Card Type",
+  link: "https://www.ddumst.dev",
+  date: "2023-06-27",
+  game: "Valorant",
+  shortDescription: "Played for Mindfreak in the ESL impact league against the best FE CSGO teams in the world",
 };

@@ -19,7 +19,7 @@ const CardDescription: FC<CardDescriptionProps> = ({ shortDescription, showAbout
   return (
     <div className={`p-4 w-full ${className}`}>
       {showAbout && (<strong className="text-white text-base">About me:</strong>)}
-      <div className={`overflow-hidden max-h-10 text-black-400 text-sm text-ellipsis ${columns === 2 ? 'line-clamp-2' : 'line-clamp-3'} d-box`}>
+      <div className={`overflow-hidden max-h-10 text-black-400 text-sm text-ellipsis ${columns === 2 ? 'line-clamp-2' : 'line-clamp-3'} box`}>
         <TextLinker text={shortDescription} />
       </div>
     </div>

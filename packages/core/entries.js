@@ -27,6 +27,7 @@ module.exports = {
   CardHeader: path.join(COMPONENT_DIR, "CardHeader"),
   CardLandscape: path.join(COMPONENT_DIR, "CardLandscape"),
   CardPost: path.join(COMPONENT_DIR, "CardPost"),
+  CardType: path.join(COMPONENT_DIR, "CardType"),
   DateInput: path.join(COMPONENT_DIR, "DateInput"),
   Drawer: path.join(COMPONENT_DIR, "Drawer"),
   Dropdown: path.join(COMPONENT_DIR, "Dropdown"),
@@ -42,6 +43,7 @@ module.exports = {
   SubMenuItem: path.join(COMPONENT_DIR, "SubMenuItem"),
   Switch: path.join(COMPONENT_DIR, "Switch"),
   Tag: path.join(COMPONENT_DIR, "Tag"),
+  Textarea: path.join(COMPONENT_DIR, "Textarea"),
   Tooltip: path.join(COMPONENT_DIR, "Tooltip"),
   Upload: path.join(COMPONENT_DIR, "Upload"),
 };

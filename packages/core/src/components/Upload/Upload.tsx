@@ -117,7 +117,6 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       if (cropedFile) {
         const base64Image = previewCanvasRef.current?.toDataURL('image/jpeg');
         const file = base64Image && base64ToFile(base64Image, cropedFile.name)
-        console.log(file);
         fetchImage(file as File);
         setShowModal(false);
       }
