@@ -44,6 +44,7 @@ module.exports = {
   Switch: path.join(COMPONENT_DIR, "Switch"),
   Tag: path.join(COMPONENT_DIR, "Tag"),
   Textarea: path.join(COMPONENT_DIR, "Textarea"),
+  TextLinker: path.join(COMPONENT_DIR, "TextLinker"),
   Tooltip: path.join(COMPONENT_DIR, "Tooltip"),
   Upload: path.join(COMPONENT_DIR, "Upload"),
 };

@@ -34,7 +34,7 @@ const CardType: FC<CardTypeProps> = ({
       </div>
       <div className="flex flex-col gap-1 py-4 px-4">
         <div className="flex justify-start">
-          <LinkComponent href={link} className="flex gap-2 text-white text-base uppercase font-bold items-center">
+          <LinkComponent href={link} target='_blank' className="flex gap-2 text-white text-base uppercase font-bold items-center">
             {title}
             <OpenLinkIcon />
           </LinkComponent>
