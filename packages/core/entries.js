@@ -2,6 +2,7 @@ const path = require("path");
 
 const SRC_DIR = path.resolve("src");
 const COMPONENT_DIR = path.join(SRC_DIR, "components");
+const DOMAIN_DIR = path.join(SRC_DIR, "domain");
 const UTILS_DIR = path.join(SRC_DIR, "utils");
 const HOOKS_DIR = path.join(SRC_DIR, "hooks");
 const CSS_IN_JS_DIR = path.join(SRC_DIR, "css-in-js/index.ts");
@@ -15,6 +16,16 @@ module.exports = {
   getComponentByName: path.join(UTILS_DIR, "mapping"),
   move: path.join(UTILS_DIR, "move"),
   renderIcon: path.join(UTILS_DIR, "renderIcon"),
+  delay: path.join(UTILS_DIR, "delay"),
+  slugify: path.join(UTILS_DIR, "slugify"),
+  titleCase: path.join(UTILS_DIR, "titleCase"),
+  
+  // Interfaces
+  DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),
+  
+  // Enums
+  EventTypeEnum: path.join(DOMAIN_DIR, "eventType.enum"),
+  ProfileTypeColor: path.join(DOMAIN_DIR, "profileTypeColor.enum"),
 
   // Hooks
   useDebounce: path.join(HOOKS_DIR, "useDebounce"),

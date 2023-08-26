@@ -12,7 +12,7 @@ export type CardProps = {
   shortDescription: string;
   avatar: string;
   banner: string;
-  link: string;
+  link?: string;
   socials: CardSocialProps[];
   tags: CardTagProps[];
   verify: boolean;

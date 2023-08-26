@@ -4,13 +4,19 @@ import OpenLinkIcon from '@apg.gg/icons/lib/OpenLinkIcon';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import TextLinker from '../TextLinker';
+import Tag from '../Tag';
+import ProfileTypeColor from '../../domain/profileTypeColor.enum';
+import EventTypeEnum from '../../domain/eventType.enum';
 
 export interface CardTypeProps extends Omit<CardProps, "description"> {
   className?: string;
   title: string;
   date: string;
   game: string;
+  profileType?: string;
+  type?: string;
   linkComponent?: React.ComponentType<any>
+  link?: string;
 }
 
 const CardType: FC<CardTypeProps> = ({
@@ -23,30 +29,58 @@ const CardType: FC<CardTypeProps> = ({
   game,
   title,
   className,
+  profileType,
+  type,
   linkComponent
 }) => {
   const LinkComponent = linkComponent || "a";
 
   return (
     <CardBase className={`flex flex-col max-w-[230px] min-h-[325px] ${className}`}>
-      <div className="flex-grow h-[154px]">
+      <div className="flex-grow h-[154px] relative">
         <img src={banner || "https://statics.apg.gg/default/post.png"} alt={name} className="w-full h-full object-cover" />
+
+        {type ? (
+          <Tag
+            type={EventTypeEnum[type as keyof typeof EventTypeEnum] as any}
+            className="max-w-none absolute right-2 top-2 h-6 !bg-black-900"
+          >
+          {type}
+        </Tag>
+        ) : null}
       </div>
       <div className="flex flex-col gap-1 py-4 px-4">
         <div className="flex justify-start">
-          <LinkComponent href={link} target='_blank' className="flex gap-2 text-white text-base uppercase font-bold items-center">
-            {title}
-            <OpenLinkIcon />
-          </LinkComponent>
+          {link ? (
+            <LinkComponent href={link} target='_blank' className="flex gap-2 text-white text-base uppercase font-bold items-center">
+              {title}
+              <OpenLinkIcon />
+            </LinkComponent>
+          ) : (
+            <span className="text-white text-base uppercase font-bold">{title}</span>
+          )}
         </div>
         <div className="flex justify-start items-center gap-1">
           <span className="text-white-400 text-xs">{game}</span>
           <span className="text-white-400">-</span>
           <span className="text-white-400 text-xs">{format(new Date(date), "do MMM yyyy", { locale: es })}</span>
         </div>
-        <div className="block text-white text-xs line-clamp-3 mt-1">
-          <TextLinker text={shortDescription} />
-        </div>
+        {shortDescription ? (
+          <div className="block text-white text-xs line-clamp-3 mt-1">
+            <TextLinker text={shortDescription} />
+          </div>
+        ) : null}
+        {profileType ? (
+          <div className="flex justify-start items-center gap-1 mt-1">
+            <Tag
+                type={ProfileTypeColor[profileType as keyof typeof ProfileTypeColor] as any}
+                className="max-w-none h-6"
+              >
+              {profileType}
+            </Tag>
+         </div>
+        ) : null}
+        
       </div>
     </CardBase>
   );

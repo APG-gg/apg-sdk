@@ -116,3 +116,28 @@ Type.args = {
   game: "Valorant",
   shortDescription: "Played for Mindfreak in the ESL impact league against the best FE CSGO teams in the world",
 };
+
+const TemplateEventType: Story<CardTypeProps> = (args) => <CardType {...args} />;
+export const EventType = TemplateEventType.bind({});
+EventType.args = {
+  id: "266678",
+  banner: undefined,
+  title: "Card Type",
+  link: "https://www.ddumst.dev",
+  date: "2023-06-27",
+  game: "Valorant",
+  profileType: "Caster",
+  type: "online"
+};
+
+const TemplateEventTypeNoLink: Story<CardTypeProps> = (args) => <CardType {...args} />;
+export const EventTypeNoLink = TemplateEventTypeNoLink.bind({});
+EventTypeNoLink.args = {
+  id: "266678",
+  banner: undefined,
+  title: "Card Type",
+  date: "2023-06-27",
+  game: "Valorant",
+  profileType: "Caster",
+  type: "online"
+};
