@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -15,7 +15,7 @@
     "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/index.css --watch"
   },
   "dependencies": {
-    "@apg.gg/icons": "^1.1.4",
+    "@apg.gg/icons": "^1.2.0",
     "react-hook-form": "^7.43.9",
     "react-image-crop": "10.0.9",
     "swiper": "8.4.5"

@@ -57,6 +57,8 @@ import XboxIcon from "./XboxIcon";
 import EpicIcon from "./EpicIcon";
 import GithubIcon from "./GithubIcon";
 import EditIcon from "./EditIcon";
+import StarFillIcon from "./StarFillIcon";
+import StarOutlineIcon from "./StarOutlineIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -431,6 +433,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <GithubIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<GithubIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <StarFillIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<StarFillIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <StarOutlineIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<StarOutlineIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>
