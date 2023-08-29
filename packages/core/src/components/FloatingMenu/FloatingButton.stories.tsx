@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import MainButton from './MainButton';
+import MainButton from './MainButton/MainButton';
 import FloatingMenu, { Directions, FloatingMenuItemProps } from './FloatingMenu';
 import ChildButton from './ChildButton';
 import EditIcon from '@apg.gg/icons/lib/EditIcon';
