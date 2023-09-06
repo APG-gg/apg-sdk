@@ -40,7 +40,7 @@ const RadioButton: FC<RadioButtonProps> = ({
         aria-checked={checked}
         aria-labelledby={`${value}-label`}
       />
-      <label htmlFor={value} className="flex items-center gap-2">
+      <label htmlFor={value} className="flex items-start gap-2">
         <span
           className={classNames(
             'w-4 h-4 border border-black-400 rounded-full flex items-center justify-center',

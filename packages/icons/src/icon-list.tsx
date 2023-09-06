@@ -59,6 +59,12 @@ import GithubIcon from "./GithubIcon";
 import EditIcon from "./EditIcon";
 import StarFillIcon from "./StarFillIcon";
 import StarOutlineIcon from "./StarOutlineIcon";
+import ZoomInIcon from "./ZoomInIcon";
+import ZoomOutIcon from "./ZoomOutIcon";
+import AspectRatioIcon from "./AspectRatioIcon";
+import CropPortraitIcon from "./CropPortraitIcon";
+import CropLandscapeIcon from "./CropLandscapeIcon";
+import CropSquareIcon from "./CropSquareIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -445,6 +451,42 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <StarOutlineIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<StarOutlineIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ZoomInIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ZoomInIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ZoomOutIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ZoomOutIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <AspectRatioIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<AspectRatioIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CropSquareIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CropSquareIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CropPortraitIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CropPortraitIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CropLandscapeIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CropLandscapeIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

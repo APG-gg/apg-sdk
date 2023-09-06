@@ -5,8 +5,12 @@ import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
 import ArrowLeftIcon from '@apg.gg/icons/lib/ArrowLeftIcon';
 import ArrowRightIcon from '@apg.gg/icons/lib/ArrowRightIcon';
 import ArrowUpIcon from '@apg.gg/icons/lib/ArrowUpIcon';
+import AspectRatioIcon from '@apg.gg/icons/lib/AspectRatioIcon';
 import BetaColorIcon from '@apg.gg/icons/lib/BetaColorIcon';
 import CommentIcon from '@apg.gg/icons/lib/CommentIcon';
+import CropLandscapeIcon from '@apg.gg/icons/lib/CropLandscapeIcon';
+import CropPortraitIcon from '@apg.gg/icons/lib/CropPortraitIcon';
+import CropSquareIcon from '@apg.gg/icons/lib/CropSquareIcon';
 import DiscordIcon from '@apg.gg/icons/lib/DiscordIcon';
 import DownloadIcon from '@apg.gg/icons/lib/DownloadIcon';
 import DragIcon from '@apg.gg/icons/lib/DragIcon';
@@ -76,6 +80,8 @@ import XboxIcon from '@apg.gg/icons/lib/XboxIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import XIcon from '@apg.gg/icons/lib/XIcon';
 import YoutubeIcon from '@apg.gg/icons/lib/YoutubeIcon';
+import ZoomInIcon from '@apg.gg/icons/lib/ZoomInIcon';
+import ZoomOutIcon from '@apg.gg/icons/lib/ZoomOutIcon';
 
     function getComponentByName(name: string, className: string) {
       switch (name) {
@@ -84,8 +90,12 @@ case "arrowDown": return <ArrowDownIcon className={className} />;
 case "arrowLeft": return <ArrowLeftIcon className={className} />;
 case "arrowRight": return <ArrowRightIcon className={className} />;
 case "arrowUp": return <ArrowUpIcon className={className} />;
+case "aspectRatio": return <AspectRatioIcon className={className} />;
 case "betaColor": return <BetaColorIcon className={className} />;
 case "comment": return <CommentIcon className={className} />;
+case "cropLandscape": return <CropLandscapeIcon className={className} />;
+case "cropPortrait": return <CropPortraitIcon className={className} />;
+case "cropSquare": return <CropSquareIcon className={className} />;
 case "discord": return <DiscordIcon className={className} />;
 case "download": return <DownloadIcon className={className} />;
 case "drag": return <DragIcon className={className} />;
@@ -155,6 +165,8 @@ case "xbox": return <XboxIcon className={className} />;
 case "xCircle": return <XCircleIcon className={className} />;
 case "x": return <XIcon className={className} />;
 case "youtube": return <YoutubeIcon className={className} />;
+case "zoomIn": return <ZoomInIcon className={className} />;
+case "zoomOut": return <ZoomOutIcon className={className} />;
         default: return null;
       }
     }
