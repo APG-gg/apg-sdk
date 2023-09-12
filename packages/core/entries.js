@@ -19,9 +19,11 @@ module.exports = {
   delay: path.join(UTILS_DIR, "delay"),
   slugify: path.join(UTILS_DIR, "slugify"),
   titleCase: path.join(UTILS_DIR, "titleCase"),
+  getCroppedImg: path.join(UTILS_DIR, "getCroppedImg"),
   
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),
+  ImageData: path.join(DOMAIN_DIR, "imageData.interface"),
   
   // Enums
   EventTypeEnum: path.join(DOMAIN_DIR, "eventType.enum"),
@@ -40,6 +42,7 @@ module.exports = {
   CardPost: path.join(COMPONENT_DIR, "CardPost"),
   CardType: path.join(COMPONENT_DIR, "CardType"),
   ChildButton: path.join(COMPONENT_DIR, "FloatingMenu/ChildButton"),
+  ChildContent: path.join(COMPONENT_DIR, "FloatingMenu/ChildContent"),
   DateInput: path.join(COMPONENT_DIR, "DateInput"),
   Drawer: path.join(COMPONENT_DIR, "Drawer"),
   Dropdown: path.join(COMPONENT_DIR, "Dropdown"),
@@ -55,6 +58,8 @@ module.exports = {
   RadioButton: path.join(COMPONENT_DIR, "RadioButton"),
   Select: path.join(COMPONENT_DIR, "Select"),
   Sidebar: path.join(COMPONENT_DIR, "Sidebar"),
+  Steps: path.join(COMPONENT_DIR, "Steps"),
+  StrictModeDroppable: path.join(COMPONENT_DIR, "StrictModeDroppable"),
   SubMenuItem: path.join(COMPONENT_DIR, "SubMenuItem"),
   Switch: path.join(COMPONENT_DIR, "Switch"),
   Tag: path.join(COMPONENT_DIR, "Tag"),
@@ -62,4 +67,5 @@ module.exports = {
   TextLinker: path.join(COMPONENT_DIR, "TextLinker"),
   Tooltip: path.join(COMPONENT_DIR, "Tooltip"),
   Upload: path.join(COMPONENT_DIR, "Upload"),
+  UploadMultiple: path.join(COMPONENT_DIR, "UploadMultiple"),
 };

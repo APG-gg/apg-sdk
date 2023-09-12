@@ -65,6 +65,7 @@ import AspectRatioIcon from "./AspectRatioIcon";
 import CropPortraitIcon from "./CropPortraitIcon";
 import CropLandscapeIcon from "./CropLandscapeIcon";
 import CropSquareIcon from "./CropSquareIcon";
+import ImagesIcon from "./ImagesIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -487,6 +488,12 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <CropLandscapeIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<CropLandscapeIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ImagesIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ImagesIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

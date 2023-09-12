@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 
 export const DIRECTIONS = {
@@ -5,13 +6,29 @@ export const DIRECTIONS = {
   down: 'flex-col',
   left: 'flex-row-reverse',
   right: 'flex-row',
+  'up-right': 'flex-col-reverse',
+  'up-left': 'flex-col-reverse',
+  'down-right': 'flex-col',
+  'down-left': 'flex-col',
+  'left-up': 'flex-row-reverse',
+  'left-down': 'flex-row-reverse',
+  'right-up': 'flex-row',
+  'right-down': 'flex-row'
 };
 
 export enum Directions {
   Up = 'up',
   Down = 'down',
   Left = 'left',
-  Right = 'right'
+  Right = 'right',
+  UpRight = 'up-right',
+  UpLeft = 'up-left',
+  DownRight = 'down-right',
+  DownLeft = 'down-left',
+  LeftUp = 'left-up',
+  LeftDown = 'left-down',
+  RightUp = 'right-up',
+  RightDown = 'right-down'
 }
 
 export interface FloatingMenuItemProps {
@@ -45,9 +62,21 @@ const FloatingMenuItem = ({
     }
   );
 
+  const childClasses = classNames(
+    direction === Directions.UpRight ? 'justify-center items-end' : '',
+    direction === Directions.UpLeft ? 'justify-center items-start' : '',
+    direction === Directions.DownRight ? 'justify-center items-end' : '',
+    direction === Directions.DownLeft ? 'justify-center items-start' : '',
+    direction === Directions.LeftUp ? 'justify-start items-center' : '',
+    direction === Directions.LeftDown ? 'justify-start items-center' : '',
+    direction === Directions.RightUp ? 'justify-end items-center' : '',
+    direction === Directions.RightDown ? 'justify-end items-center' : '',
+    direction === Directions.Up || direction === Directions.Down || direction === Directions.Right || direction === Directions.Left ? 'justify-start items-start' : '',
+  )
+
   return (
     <ul
-      className={`flex ${DIRECTIONS[direction as keyof typeof DIRECTIONS]} justify-center items-center list-none m-0 p-0 gap-2`}
+      className={`flex ${DIRECTIONS[direction as keyof typeof DIRECTIONS]} ${childClasses} list-none m-0 p-0 gap-2`}
       {...rest}
     >
       {childrenWithProps}

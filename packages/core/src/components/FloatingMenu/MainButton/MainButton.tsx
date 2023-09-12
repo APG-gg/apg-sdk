@@ -17,7 +17,7 @@ const MainButton = ({
 }: MainButtonProps) => {
   return (
     <button
-      className={`flex border-none rounded-full shadow-md cursor-pointer outline-none p-0 select-none font-bold justify-center items-center w-10 h-10 ${background}`}
+      className={`flex border-none rounded-full shadow-md cursor-pointer outline-none p-0 select-none font-bold justify-center items-center w-8 h-8 ${background}`}
       onClick={onClick}
     >
       <div

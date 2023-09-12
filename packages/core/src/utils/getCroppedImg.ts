@@ -65,6 +65,6 @@ export default async function getCroppedImg(
         throw new Error('Failed to create blob.');
       }
       resolve(URL.createObjectURL(file));
-    }, 'image/jpeg');
+    }, 'image/png');
   });
 }

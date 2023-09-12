@@ -3,6 +3,10 @@ module.exports = {
   content: ["./packages/**/*.{js,jsx,ts,tsx,css,scss,sass,html}"],
   theme: {
     extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'source-sans-pro': ['Source Sans Pro', 'sans-serif']
+      },
       colors: {
         "blue": "#0076D1",
         "blue-50": "#B9F4FF",

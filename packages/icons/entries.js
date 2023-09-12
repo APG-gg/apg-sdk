@@ -43,6 +43,7 @@ module.exports = {
   ErrorIcon: path.resolve(SRC_DIR, "ErrorIcon"),
   GridViewIcon: path.resolve(SRC_DIR, "GridViewIcon"),
   HeartIcon: path.resolve(SRC_DIR, "HeartIcon"),
+  ImagesIcon: path.resolve(SRC_DIR, "ImagesIcon"),
   LinkIcon: path.resolve(SRC_DIR, "LinkIcon"),
   LogoutIcon: path.resolve(SRC_DIR, "LogoutIcon"),
   MenuIcon: path.resolve(SRC_DIR, "MenuIcon"),
