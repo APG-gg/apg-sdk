@@ -37,4 +37,7 @@ Default.args = {
   onStepChange: (currentStep, currentKey) => {
     action(`Step Changed: ${currentStep}, ${currentKey}`)();
   },
+  onComplete: () => {
+    action('Completed')();
+  }
 };

@@ -106,14 +106,14 @@ const UploadMultiple: FC<UploadMultipleProps> = ({
     setImages(updatedImages);
   };
 
-  const handleCropComplete = useCallback((croppedArea: Area, croppedAreaPixels: Area, index: number) => {
+  const handleCropComplete = (croppedArea: Area, croppedAreaPixels: Area, index: number) => {
     if (images.length > 0 && selectedImageIndex !== null) {
       const updatedImages = [...images];
       updatedImages[index as number].croppedAreaPixels = croppedAreaPixels;
       setImages(updatedImages);
       onChange(updatedImages)
     }
-  }, [images])
+  }
 
   const handleClearImage = (index: number) => {
     const updatedImages = [...images];
@@ -123,27 +123,6 @@ const UploadMultiple: FC<UploadMultipleProps> = ({
     onChange(updatedImages);
     setContainerWidth((updatedImages.length * 64) + ((updatedImages.length) * 8))
   };
-
-  // const handleCompleteCropStep = async () => {
-  //   // Genera las imágenes recortadas para todas las imágenes cargadas
-  //   const croppedImageUrls: string[] = [];
-
-  //   for (const image of images) {
-  //     if (image.croppedAreaPixels) {
-  //       try {
-  //         const imageUrl = URL.createObjectURL(image.file); // Obtiene la URL de la imagen
-  //         const croppedImage = await getCroppedImg(imageUrl, image.croppedAreaPixels);
-  //         croppedImageUrls.push(croppedImage);
-  //         URL.revokeObjectURL(imageUrl); // Libera la URL de la imagen
-  //       } catch (error) {
-  //         console.error('Error al obtener la imagen recortada:', error);
-  //       }
-  //     }
-  //   }
-
-  //   // Actualiza el estado con las imágenes recortadas
-  //   setCroppedImages(croppedImageUrls);
-  // };
 
   const handleThumbnailClick = (index: number) => {
     setSelectedImageIndex(index);

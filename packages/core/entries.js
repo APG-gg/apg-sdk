@@ -20,6 +20,8 @@ module.exports = {
   slugify: path.join(UTILS_DIR, "slugify"),
   titleCase: path.join(UTILS_DIR, "titleCase"),
   getCroppedImg: path.join(UTILS_DIR, "getCroppedImg"),
+  randomInt: path.join(UTILS_DIR, "randomInt"),
+  randomValue: path.join(UTILS_DIR, "randomValue"),
   
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),
@@ -31,6 +33,7 @@ module.exports = {
 
   // Hooks
   useDebounce: path.join(HOOKS_DIR, "useDebounce"),
+  useInterval: path.join(HOOKS_DIR, "useInterval"),
   useWindowSize: path.join(HOOKS_DIR, "useWindowSize"),
 
   // Components
@@ -66,6 +69,7 @@ module.exports = {
   Textarea: path.join(COMPONENT_DIR, "Textarea"),
   TextLinker: path.join(COMPONENT_DIR, "TextLinker"),
   Tooltip: path.join(COMPONENT_DIR, "Tooltip"),
+  TopLoadingBar: path.join(COMPONENT_DIR, "TopLoadingBar"),
   Upload: path.join(COMPONENT_DIR, "Upload"),
   UploadMultiple: path.join(COMPONENT_DIR, "UploadMultiple"),
 };

@@ -10,6 +10,7 @@ interface Step {
 export interface StepsProps {
   stepsData: Step[];
   onStepChange: (currentStep: number, currentKey: string) => void;
+  onComplete: () => void;
   prevText?: string;
   nextText?: string;
   finishText?: string;
@@ -20,6 +21,7 @@ export interface StepsProps {
 const Steps: React.FC<StepsProps> = ({
   stepsData,
   onStepChange,
+  onComplete,
   prevText = 'Volver',
   nextText = 'Continuar',
   finishText = 'Finalizar',
@@ -41,6 +43,8 @@ const Steps: React.FC<StepsProps> = ({
     if (currentStep < stepsData.length - 1) {
       setCurrentStep(currentStep + 1);
       onStepChange(currentStep + 1, stepsData[currentStep + 1].key);
+    } else {
+      onComplete();
     }
   };
 
