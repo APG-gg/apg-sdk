@@ -1,6 +1,6 @@
 import PlusIcon from '@apg.gg/icons/lib/PlusIcon';
 import classNames from 'classnames';
-import React, { FC, forwardRef, useRef, useState } from 'react';
+import React, { FC, forwardRef, useEffect, useRef, useState } from 'react';
 import EditIcon from '@apg.gg/icons/lib/EditIcon';
 import ReactCrop, {
   centerCrop,
@@ -14,6 +14,7 @@ import { useDebounceEffect } from '../../utils/useDebounceEffect';
 import Drawer from '../Drawer';
 import Button from '../Button';
 import { base64ToFile } from '../../utils/base64ToFile';
+import PulseRingIcon from '@apg.gg/icons/lib/PulseRingIcon';
 
 export interface UploadProps {
   endpoint: string;
@@ -25,12 +26,16 @@ export interface UploadProps {
   shape?: 'square' | 'circle' | 'banner';
   authToken?: string;
   title?: string;
+  editText?: string;
+  uploadingText?: string;
   iconAdd?: React.ReactNode;
   iconEdit?: React.ReactNode;
+  iconUploading?: React.ReactNode;
   image?: string;
   width?: number | string;
   height?: number | string;
   bgClass?: string;
+  isLoading?: boolean;
 }
 
 export interface ApiResponse {
@@ -75,13 +80,17 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       cropable = false,
       shape = 'square', 
       title, 
+      editText = 'Choose photo',
+      uploadingText = 'Uploading...',
       authToken, 
       iconAdd = <PlusIcon className="text-white text-lg" />,
       iconEdit = <EditIcon className="text-white text-lg" />,
+      iconUploading = <PulseRingIcon className="text-white text-lg" />,
       image = null,
       width = 200,
       height = 200,
-      bgClass = 'bg-black'
+      bgClass = 'bg-black',
+      isLoading = false
     }, 
     ref
   ) => {
@@ -95,6 +104,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
     const [aspect] = useState<number | undefined>(aspectRatio) 
     const [showModal, setShowModal] = useState(false)
+    const [isUploading, setIsUploading] = useState(isLoading)
     
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
       const selectedFile = event.target.files?.[0] || null;
@@ -123,6 +133,8 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
     }
 
     const fetchImage = async (selectedFile: File) => {
+      setIsUploading(true);
+
       try {
         const formData = new FormData();
         formData.append('file', selectedFile, selectedFile.name);
@@ -139,8 +151,10 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
 
         const data: ApiResponse = await response.json();
         setImageToShow(data.url);
+        setIsUploading(false);
         onSuccess(data);
       } catch (error) {
+        setIsUploading(false);
         onError?.(error);
       }
     }
@@ -180,6 +194,10 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       [completedCrop],
     )
 
+    useEffect(() => {
+      setIsUploading(isLoading);
+    }, [isLoading])
+
     return (
       <div>
         <div 
@@ -211,15 +229,31 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             className="hidden"
           />
           {imageToShow ? (
-            <div className="relative group">
+            <div 
+              className="relative group"
+              style={{
+                width: width,
+                height: height,
+              }}
+            >
               <img src={imageToShow} alt="Upload" className="w-full h-full object-cover" height={height} />
-              {editMode ? (
+              {editMode && !isUploading ? (
                 <div className={`absolute inset-0 !bg-opacity-[0.75] items-center justify-center hidden group-hover:flex flex-col gap-1 ${bgClass}`}>
                   <div className="flex items-center justify-center rounded-full bg-blue p-2">
                     {iconEdit}
                   </div>
                   <h1 className="text-white font-poppins font-bold text-center px-4 text-sm">
-                    Choose photo
+                    {editText}
+                  </h1>
+                </div>
+              ) : null}
+              {editMode && isUploading ? (
+                <div className={`absolute inset-0 !bg-opacity-[0.75] items-center justify-center flex flex-col gap-1 ${bgClass}`}>
+                  <div className="flex items-center justify-center rounded-full bg-blue p-2">
+                    {iconUploading}
+                  </div>
+                  <h1 className="text-white font-poppins font-bold text-center px-4 text-sm">
+                    {uploadingText}
                   </h1>
                 </div>
               ) : null}

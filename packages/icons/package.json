@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/icons",
-  "version": "1.5.0",
+  "version": "1.8.0",
   "description": "APG.gg icons package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -9,7 +9,7 @@
     "lib"
   ],
   "scripts": {
-    "clean": "rimraf lib/*/",
+    "clean": "find lib/ -mindepth 1 -maxdepth 1 -type d ! -name styles ! -name hooks ! -name utils ! -name css-in-js -exec rm -rf {} +",
     "build": "webpack --mode production && tsc --noEmit false --emitDeclarationOnly && node ../../scripts/copy-declaration.js && npm run clean",
     "build:publish": "npm publish --access public",
     "tailwind": "npx tailwindcss -i ./src/styles/index.css -o ../../.storybook/icons.css --watch",

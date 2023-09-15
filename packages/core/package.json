@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -15,7 +15,7 @@
     "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/index.css --watch"
   },
   "dependencies": {
-    "@apg.gg/icons": "^1.5.0",
+    "@apg.gg/icons": "^1.8.0",
     "@splidejs/react-splide": "^0.7.12",
     "@types/react-beautiful-dnd": "^13.1.4",
     "html2canvas": "^1.4.1",

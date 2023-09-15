@@ -1,4 +1,4 @@
-import React, { useState, FC, useCallback, useRef } from 'react';
+import React, { useState, FC } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Cropper, { Area } from 'react-easy-crop';
 import Button from '../Button';
@@ -185,36 +185,36 @@ const UploadMultiple: FC<UploadMultipleProps> = ({
                     onClick={toggleMenu}
                   />
                 </Tooltip>
-                <Tooltip text="16:9" placement="right">
-                  <ChildButton
-                    direction={Directions.Up}
-                    index={1}
-                    isOpen={isOpen}
-                    icon={<CropLandscapeIcon className="text-white" />}
-                    background="bg-black-800"
-                    onClick={() => handleAspectChange(16 / 9)}
-                  />
-                </Tooltip>
-                <Tooltip text="4:5" placement="right">
-                  <ChildButton
-                    direction={Directions.Up}
-                    index={2}
-                    isOpen={isOpen}
-                    icon={<CropPortraitIcon className="text-white" />}
-                    background="bg-black-800"
-                    onClick={() => handleAspectChange(4 / 5)}
-                  />
-                </Tooltip>
-                <Tooltip text="1:1" placement="right">
-                  <ChildButton
-                    direction={Directions.Up}
-                    index={3}
-                    isOpen={isOpen}
-                    icon={<CropSquareIcon className="text-white" />}
-                    background="bg-black-800"
-                    onClick={() => handleAspectChange(1)}
-                  />
-                </Tooltip>
+                <ChildButton
+                  direction={Directions.Up}
+                  tooltipPositon='right'
+                  text='16:9'
+                  index={1}
+                  isOpen={isOpen}
+                  icon={<CropLandscapeIcon className="text-white" />}
+                  background="bg-black-800"
+                  onClick={() => handleAspectChange(16 / 9)}
+                />
+                <ChildButton
+                  direction={Directions.Up}
+                  tooltipPositon='right'
+                  text='4:5'
+                  index={2}
+                  isOpen={isOpen}
+                  icon={<CropPortraitIcon className="text-white" />}
+                  background="bg-black-800"
+                  onClick={() => handleAspectChange(4 / 5)}
+                />
+                <ChildButton
+                  direction={Directions.Up}
+                  tooltipPositon="right"
+                  text='1:1'
+                  index={3}
+                  isOpen={isOpen}
+                  icon={<CropSquareIcon className="text-white" />}
+                  background="bg-black-800"
+                  onClick={() => handleAspectChange(1)}
+                />
               </FloatingMenu>
             </div>
             <div className="absolute bottom-2 right-2">
@@ -312,4 +312,4 @@ const UploadMultiple: FC<UploadMultipleProps> = ({
   );
 };
 
-export default UploadMultiple;
+export default React.memo(UploadMultiple);

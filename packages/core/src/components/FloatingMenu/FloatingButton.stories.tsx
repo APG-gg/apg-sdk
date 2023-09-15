@@ -32,6 +32,8 @@ const Template: Story<FloatingMenuItemProps> = (args) => {
       />
       <ChildButton
         direction={Directions.Left}
+        tooltipPositon='right'
+        text='Edit'
         index={1}
         isOpen={isOpen}
         icon={<EditIcon className="text-white" />}
@@ -39,6 +41,8 @@ const Template: Story<FloatingMenuItemProps> = (args) => {
       />
       <ChildButton
         direction={Directions.Left}
+        tooltipPositon='right'
+        text='Edit'
         index={2}
         isOpen={isOpen}
         icon={<VisibilityOffIcon className="text-white" />}
@@ -46,6 +50,8 @@ const Template: Story<FloatingMenuItemProps> = (args) => {
       />
       <ChildButton
         direction={Directions.Left}
+        tooltipPositon='right'
+        text='Edit'
         index={3}
         isOpen={isOpen}
         icon={<StarFillIcon className="text-white" />}

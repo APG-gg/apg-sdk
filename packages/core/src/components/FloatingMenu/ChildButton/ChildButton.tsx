@@ -1,10 +1,13 @@
 import React from 'react';
 import { Directions } from '../FloatingMenu';
 import classNames from 'classnames';
+import Tooltip from '../../Tooltip';
 
 export interface ChildButtonProps {
   icon?: React.ReactNode;
   direction?: string;
+  tooltipPositon?: "right" | "left" | "top" | "bottom" | undefined;
+  text: string;
   index?: number;
   isOpen?: boolean;
   onClick?: () => void;
@@ -14,6 +17,8 @@ export interface ChildButtonProps {
 
 const ChildButton = ({
   direction = Directions.Up,
+  tooltipPositon = 'right',
+  text,
   index = 1,
   isOpen = false,
   onClick = () => {},
@@ -43,7 +48,9 @@ const ChildButton = ({
       onClick={isOpen ? onClick : undefined}
       style={{ transitionDuration: `${slideSpeed * index}ms` }}
     >
-      {icon}
+      <Tooltip placement={tooltipPositon} text={text}>
+        {icon}
+      </Tooltip>
     </li>
   );
 };

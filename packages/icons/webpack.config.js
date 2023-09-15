@@ -1,6 +1,8 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const svgToMiniDataURI = require('mini-svg-data-uri');
 
 const pkg = require('./package.json');
@@ -59,6 +61,12 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [{ from: path.resolve(__dirname, 'src/styles'), to: path.resolve(__dirname, `${outputFolder}/styles`) }],
+    }),
+  ],
   output: {
     path: path.resolve(__dirname, outputFolder),
     filename: '[name].js',

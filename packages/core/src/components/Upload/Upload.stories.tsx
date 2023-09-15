@@ -35,3 +35,13 @@ WithDefaultImage.args = {
   iconAdd: <PlusIcon className="text-white text-lg" />,
   image: "https://pbs.twimg.com/profile_images/1378918909793996801/zutMgt4H_400x400.jpg"
 };
+
+export const WithDefaultImageUploading = Template.bind({});
+WithDefaultImageUploading.args = {
+  endpoint: 'https://example.com/upload',
+  onSuccess: (response) => console.log('Uploaded successfully:', response),
+  shape: 'square',
+  iconAdd: <PlusIcon className="text-white text-lg" />,
+  image: "https://pbs.twimg.com/profile_images/1378918909793996801/zutMgt4H_400x400.jpg",
+  isLoading: true
+};
