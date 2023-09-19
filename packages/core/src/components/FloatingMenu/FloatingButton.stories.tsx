@@ -57,6 +57,24 @@ const Template: Story<FloatingMenuItemProps> = (args) => {
         icon={<StarFillIcon className="text-white" />}
         background="bg-yellow-200"
       />
+      <ChildButton
+        direction={Directions.Left}
+        tooltipPositon='right'
+        text='Edit'
+        index={4}
+        isOpen={isOpen}
+        icon={<StarFillIcon className="text-white" />}
+        background="bg-yellow-200"
+      />
+      <ChildButton
+        direction={Directions.Left}
+        tooltipPositon='right'
+        text='Edit'
+        index={5}
+        isOpen={isOpen}
+        icon={<StarFillIcon className="text-white" />}
+        background="bg-yellow-200"
+      />
     </FloatingMenu>
   )
 };

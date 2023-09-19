@@ -1,14 +1,16 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, FC, useEffect, useRef, useState } from 'react';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
 import classNames from 'classnames';
 import { FieldError } from 'react-hook-form';
+import useDebounce from '../../hooks/useDebounce';
 
 export interface SelectOption {
   value: string;
   label: string;
+  content?: ReactNode;
   icon?: string;
 }
 
@@ -27,7 +29,9 @@ export interface SelectProps {
   disabled?: boolean;
   readOnly?: boolean;
   multiple?: boolean;
+  searchExternal?: boolean;
   onChange?: (value: string | string[]) => void;
+  onSearch?: (searchQuery: string) => Promise<SelectOption[]>;
   errorText?: FieldError | undefined;
   className?: string;
   style?: React.CSSProperties;
@@ -48,7 +52,9 @@ const Select: FC<SelectProps> = ({
   disabled = false,
   readOnly = false,
   multiple = false,
+  searchExternal = false,
   onChange = () => {},
+  onSearch = async () => [],
   errorText,
   className = '',
   style = {},
@@ -60,6 +66,7 @@ const Select: FC<SelectProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const optionsRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const debouncedSearchValue = useDebounce({ value: value, delay: 500 });
 
   const [internalValue, setInternalValue] = useState<SelectOption>({
     value: '',
@@ -99,18 +106,31 @@ const Select: FC<SelectProps> = ({
 
   const handleFocus = () => !disabled && setIsFocused(true);
 
+  const performSearch = async (searchQuery: string) => {
+    try {
+      setIsLoading(true);
+      const results = await onSearch(searchQuery);
+      setFilteredOptions(results);
+    } catch (error) {
+      console.error('Error during search:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     setValue(inputValue);
     const selected = options.filter(option => option.value === inputValue)[0];
-    setInternalValue(selected);
-
-    if (multiple || isSearchable) {
+    
+    if ((multiple || isSearchable) && !searchExternal) {
       const filtered = options.filter(option =>
         option.label.toLowerCase().includes(inputValue.toLowerCase())
       );
       setFilteredOptions(filtered);
     }
+    
+    setInternalValue(selected);
   };
 
   const handleClear = () => {
@@ -179,6 +199,12 @@ const Select: FC<SelectProps> = ({
     }
   }, [value, multipleValue]);
 
+  useEffect(() => {
+    if (searchExternal && value.length >= 3) {
+      performSearch(debouncedSearchValue)
+    }
+  }, [debouncedSearchValue])
+
   const borderColor = error ? 'border-red' : isFocused ? 'border-aqua' : disabled ? 'border-black-800' : 'border-blue';
   const labelColor = error ? 'text-red' : isFocused ? 'text-aqua' : disabled ? 'text-black-800' : 'text-black-400';
 
@@ -217,8 +243,7 @@ const Select: FC<SelectProps> = ({
                       key={v.value}
                       className="flex items-center text-white bg-aqua/10 rounded-full px-2 py-1 text-xs"
                     >
-                      {option?.icon && <img src={option.icon} alt={option.label} className="w-4 h-4 mr-1" />}
-                      {option?.label}
+                      {option?.content || option?.label}
                       {option && <XCircleIcon className="flex items-center w-4 h-4 text-white text-2xl ml-2 cursor-pointer" onClick={() => handleSelect(option)} />}
                     </div>
                   );
@@ -255,7 +280,7 @@ const Select: FC<SelectProps> = ({
           )}
           ref={optionsRef}
         >
-          {filteredOptions.map((option) => (
+          {!isLoading && filteredOptions.map((option) => (
             <div
               key={option.value}
               className={classNames(
@@ -266,17 +291,17 @@ const Select: FC<SelectProps> = ({
               onClick={() => handleSelect(option)}
             >
               {option.icon && <img src={option.icon} alt={option.label} className="inline-block h-4 w-4 mr-2" />}
-              {option.label}
+              {option?.content || option?.label}
               {multiple && multipleValue.includes(option.value) && <XCircleIcon className="flex w-4 h-4 text-xl text-white ml-auto" />}
             </div>
           ))}
 
-          {filteredOptions.length === 0 && (
-            <div className="px-4 py-2 cursor-default">No options available</div>
+          {!isLoading && filteredOptions.length === 0 && (
+            <div className="px-4 py-2 cursor-default text-white-200">No options available</div>
           )}
 
           {isLoading && (
-            <div className="px-4 py-2 cursor-default">Loading options...</div>
+            <div className="px-4 py-2 cursor-default text-white-200">Loading options...</div>
           )}
         </div>
       )}

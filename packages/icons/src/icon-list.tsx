@@ -67,6 +67,7 @@ import CropLandscapeIcon from "./CropLandscapeIcon";
 import CropSquareIcon from "./CropSquareIcon";
 import ImagesIcon from "./ImagesIcon";
 import PulseRingIcon from "./PulseRingIcon";
+import TrashIcon from "./TrashIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -495,6 +496,12 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <ImagesIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<ImagesIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TrashIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TrashIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>

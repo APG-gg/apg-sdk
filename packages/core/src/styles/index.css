@@ -911,6 +911,10 @@ video {
   display: inline-block;
 }
 
+.inline{
+  display: inline;
+}
+
 .flex{
   display: flex;
 }
@@ -2150,9 +2154,19 @@ video {
   background-position: left;
 }
 
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-center{
+  -o-object-position: center;
+     object-position: center;
 }
 
 .p-0{
@@ -2504,6 +2518,11 @@ video {
 .text-white-100{
   --tw-text-opacity: 1;
   color: rgb(220 221 222 / var(--tw-text-opacity));
+}
+
+.text-white-200{
+  --tw-text-opacity: 1;
+  color: rgb(198 198 199 / var(--tw-text-opacity));
 }
 
 .text-white-400{

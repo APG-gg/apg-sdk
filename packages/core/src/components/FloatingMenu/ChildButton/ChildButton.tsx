@@ -26,27 +26,35 @@ const ChildButton = ({
   slideSpeed = 200,
   ...rest
 }: ChildButtonProps) => {
-  const offsetXright = index === 1 ? '-translate-x-8' : index === 2 ? '-translate-x-16' : '-translate-x-24';
-  const offsetXleft = index === 1 ? 'translate-x-8' : index === 2 ? 'translate-x-16' : 'translate-x-24';
-  const offsetYup = index === 1 ? 'translate-y-8' : index === 2 ? 'translate-y-16' : 'translate-y-24';
-  const offsetYdown = index === 1 ? '-translate-y-8' : index === 2 ? '-translate-y-16' : '-translate-y-24';
+  const offsetXright = `-${2 * index}rem`;
+  const offsetXleft = `${2 * index}rem`;
+  const offsetYup = `${2 * index}rem`;
+  const offsetYdown = `-${2 * index}rem`;
 
   const childClasses = classNames(
     'transition-all ease-in-out',
-    !isOpen && direction === 'right' ? offsetXright : 'translate-x-0',
-    !isOpen && direction === 'left' ? offsetXleft : 'translate-x-0',
-    !isOpen && direction === 'up' ? offsetYup : 'translate-y-0',
-    !isOpen && direction === 'down' ? offsetYdown : 'translate-y-0',
+    !isOpen && direction === 'right' ? '' : 'translate-x-0',
+    !isOpen && direction === 'left' ? '' : 'translate-x-0',
+    !isOpen && direction === 'up' ? '' : 'translate-y-0',
+    !isOpen && direction === 'down' ? '' : 'translate-y-0',
     isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
     rest.background,
     'flex border-none rounded-full shadow-md cursor-pointer outline-none p-0 select-none font-bold justify-center items-center w-8 h-8'
   )
 
+  const childStyles = {
+    transitionDuration: `${slideSpeed * index}ms`,
+    transform: !isOpen && direction === 'right' ? `translateX(${offsetXright})` : 
+              !isOpen && direction === 'left' ? `translateX(${offsetXleft})` :
+              !isOpen && direction === 'up' ? `translate(0, ${offsetYup})` :
+              !isOpen && direction === 'down' ? `translate(0, ${offsetYdown})` : '',
+  };
+
   return (
     <li
       className={childClasses}
       onClick={isOpen ? onClick : undefined}
-      style={{ transitionDuration: `${slideSpeed * index}ms` }}
+      style={childStyles}
     >
       <Tooltip placement={tooltipPositon} text={text}>
         {icon}
