@@ -24,7 +24,6 @@ lib/
 target/
 dist/
 lib/
-storybook-static/
 
 # JetBrains IDE
 .idea/
