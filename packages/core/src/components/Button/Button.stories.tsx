@@ -9,7 +9,7 @@ export default {
     children: { control: 'text' },
     onClick: { action: 'clicked' },
     disabled: { control: 'boolean' },
-    type: { control: 'select', options: ['primary', 'outline'], defaultValue: 'primary'},
+    type: { control: 'select', options: ['primary', 'outline', 'ghost'], defaultValue: 'primary'},
     fontSize: { control: 'select', options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl']},
     iconSize: { control: 'select', options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl']},
     iconPosition: { control: 'radio', options: ['left', 'right']},

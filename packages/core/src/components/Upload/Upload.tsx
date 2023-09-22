@@ -260,12 +260,25 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             </div>
           ) : (
             <>
-              <div className="flex items-center justify-center rounded-full bg-blue p-2 mb-1">
-                {iconAdd}
-              </div>
-              <h1 className="text-white font-poppins font-bold text-center px-4 text-sm">
-                {title}
-              </h1>
+              {isUploading ? (
+                <>
+                  <div className="flex items-center justify-center rounded-full bg-blue p-2">
+                    {iconUploading}
+                  </div>
+                  <h1 className="text-white font-poppins font-bold text-center px-4 text-sm">
+                    {uploadingText}
+                  </h1>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center justify-center rounded-full bg-blue p-2 mb-1">
+                    {iconAdd}
+                  </div>
+                  <h1 className="text-white font-poppins font-bold text-center px-4 text-sm">
+                    {title}
+                  </h1>
+                </>
+              )}
             </>
           )}
         </div>

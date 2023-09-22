@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import renderIcon from "../../utils/renderIcon";
 
 export interface ButtonProps {
-  type?: "primary" | "outline";
+  type?: "primary" | "outline" | "ghost";
   icon?: ReactNode | string | null;
   rounded?: boolean;
   iconSize?: string;
@@ -26,6 +26,8 @@ const Button: FC<ButtonProps> = ({ type = "primary", icon, rounded = true, iconS
         {
           "bg-transparent border border-blue-400 hover:bg-blue-100/10 text-blue-400 hover:text-aqua-100 hover:border-aqua-100 font-medium active:text-aqua-600 active:border-aqua-600": type === "outline" && !disabled,
           "bg-transparent border border-white-600 text-white-600 opacity-40 hover:border-white-600 hover:text-white-600 font-medium": type === "outline" && disabled,
+          "bg-black/40 border-0 hover:bg-blue-100/10 text-white hover:text-aqua-100 hover:border-aqua-100 font-medium active:text-aqua-600 active:border-aqua-600": type === "ghost" && !disabled,
+          "bg-black/40 border-0 text-white-600 opacity-40 hover:border-white-600 hover:text-white-600 font-medium": type === "ghost" && disabled,
           "bg-blue hover:bg-aqua-100 text-white font-medium hover:shadow-sm hover:shadow-black-500 active:bg-aqua-600": type === "primary" && !disabled,
           "bg-white-600 border-white text-white opacity-40 hover:bg-white-600 hover:border-white hover:text-white hover:shadow-none font-medium": type === "primary" && disabled,
           "px-4 py-2": children,

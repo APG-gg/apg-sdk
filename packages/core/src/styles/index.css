@@ -1729,6 +1729,10 @@ video {
   border-width: 2px;
 }
 
+.border-0{
+  border-width: 0px;
+}
+
 .border-b{
   border-bottom-width: 1px;
 }
@@ -2128,6 +2132,10 @@ video {
 .bg-yellow-800{
   --tw-bg-opacity: 1;
   background-color: rgb(96 73 0 / var(--tw-bg-opacity));
+}
+
+.bg-black\/40{
+  background-color: rgb(35 39 42 / 0.4);
 }
 
 .\!bg-opacity-\[0\.75\]{
