@@ -68,6 +68,8 @@ import CropSquareIcon from "./CropSquareIcon";
 import ImagesIcon from "./ImagesIcon";
 import PulseRingIcon from "./PulseRingIcon";
 import TrashIcon from "./TrashIcon";
+import PinFillIcon from "./PinFillIcon";
+import PinOutlineIcon from "./PinOutlineIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -454,6 +456,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <StarOutlineIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<StarOutlineIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <PinFillIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<PinFillIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <PinOutlineIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<PinOutlineIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>

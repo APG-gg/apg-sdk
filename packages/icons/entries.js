@@ -63,6 +63,8 @@ module.exports = {
   SortIcon: path.resolve(SRC_DIR, "SortIcon"),
   StarFillIcon: path.resolve(SRC_DIR, "StarFillIcon"),
   StarOutlineIcon: path.resolve(SRC_DIR, "StarOutlineIcon"),
+  PinFillIcon: path.resolve(SRC_DIR, "PinFillIcon"),
+  PinOutlineIcon: path.resolve(SRC_DIR, "PinOutlineIcon"),
   TrashIcon: path.resolve(SRC_DIR, "TrashIcon"),
   UploadIcon: path.resolve(SRC_DIR, "UploadIcon"),
   VerifiedColorIcon: path.resolve(SRC_DIR, "VerifiedColorIcon"),

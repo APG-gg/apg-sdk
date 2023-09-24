@@ -1,11 +1,11 @@
 import React, { ReactNode, FC, useEffect, useRef, useState } from 'react';
-import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
-import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
-import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
-import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
 import classNames from 'classnames';
 import { FieldError } from 'react-hook-form';
 import useDebounce from '../../hooks/useDebounce';
+import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
+import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
+import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
+import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
 
 export interface SelectOption {
   value: string;
@@ -31,10 +31,12 @@ export interface SelectProps {
   multiple?: boolean;
   searchExternal?: boolean;
   onChange?: (value: string | string[]) => void;
+  onSelect?: (value: string | string[]) => void;
   onSearch?: (searchQuery: string) => Promise<SelectOption[]>;
   errorText?: FieldError | undefined;
   className?: string;
   style?: React.CSSProperties;
+  debounceTime?: number;
 }
 
 const Select: FC<SelectProps> = ({
@@ -54,10 +56,12 @@ const Select: FC<SelectProps> = ({
   multiple = false,
   searchExternal = false,
   onChange = () => {},
+  onSelect = () => {},
   onSearch = async () => [],
   errorText,
   className = '',
   style = {},
+  debounceTime = 500
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState<string>(initialValue as string);
@@ -66,7 +70,7 @@ const Select: FC<SelectProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const optionsRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const debouncedSearchValue = useDebounce({ value: value, delay: 500 });
+  const debouncedSearchValue = useDebounce({ value: value, delay: debounceTime });
 
   const [internalValue, setInternalValue] = useState<SelectOption>({
     value: '',
@@ -162,6 +166,8 @@ const Select: FC<SelectProps> = ({
       setInternalValue(selectedValue);
       setIsFocused(false);
     }
+
+    onSelect(selectedValue.value);
   };
 
   const handleClickOutside = (event: MouseEvent) => {

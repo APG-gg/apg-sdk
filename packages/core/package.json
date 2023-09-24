@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.8.7",
+  "version": "1.8.11",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -10,12 +10,12 @@
   ],
   "scripts": {
     "clean": "find lib/ -mindepth 1 -maxdepth 1 -type d ! -name styles ! -name hooks ! -name utils ! -name css-in-js -exec rm -rf {} +",
-    "build": "webpack --mode production && tsc --noEmit false --emitDeclarationOnly && node ../../scripts/copy-declaration.js && npm run clean",
+    "build": "webpack --mode production && tsc --noEmit false --emitDeclarationOnly && node ../../scripts/copy-declaration.js && npm run clean && npm publish --access public",
     "build:publish": "npm publish --access public",
     "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/index.css --watch"
   },
   "dependencies": {
-    "@apg.gg/icons": "^1.9.0",
+    "@apg.gg/icons": "^1.10.0",
     "@splidejs/react-splide": "^0.7.12",
     "@types/react-beautiful-dnd": "^13.1.4",
     "html2canvas": "^1.4.1",

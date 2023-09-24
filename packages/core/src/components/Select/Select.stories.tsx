@@ -89,7 +89,6 @@ ExternalSearch.args = {
     { value: 'option-9', label: 'Option 9' }
   ],
   onSearch: async (searchQuery: string) => {
-    console.log('searchQuery', searchQuery)
     // Simular una solicitud a una API externa con datos ficticios
     await new Promise(resolve => setTimeout(resolve, 3000)); // Simular retardo de 1 segundo
     return [
