@@ -1,8 +1,9 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import { CardProps, CardSocialProps } from '../Card/CardBase';
 import renderIcon from "../../utils/renderIcon";
 import getRelativeTime from "../../utils/getRelativeTime";
 import VerifiedIcon from "@apg.gg/icons/lib/VerifiedIcon";
+import generateSocialMediaLink from "../../utils/generateSocialMediaLink";
 
 export interface CardHeaderProps extends Pick<CardProps, "id" | "name" | "avatar" | "className" | "verify"> {
   socials?: CardSocialProps[];
@@ -12,6 +13,15 @@ export interface CardHeaderProps extends Pick<CardProps, "id" | "name" | "avatar
 }
 
 const CardHeader: FC<CardHeaderProps> = ({ id, name, avatar, socials, createdAt, postedOn, username, verify, className = '' }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  };
   
   return (
     <div className={`flex card-header px-4 py-[13px] h-[72px] gap-4 ${className}`}>
@@ -20,33 +30,17 @@ const CardHeader: FC<CardHeaderProps> = ({ id, name, avatar, socials, createdAt,
       </div>
       <div className="flex flex-col items-start">
         <div className="flex items-center gap-2">
-          <h4 className="text-white text-base uppercase font-bold !cursor-pointer">{name}</h4>
+          <h4 className="text-white text-title-md uppercase font-bold !cursor-pointer">{name}</h4>
           {verify && (<VerifiedIcon className="text-white text-lg flex" />)}
         </div>
-        {socials && socials.length > 0 && (
-          <div className="socials flex gap-[10px]">
-            {socials?.map((social: CardSocialProps) => (
-              <a
-                key={`${id}-${social.icon}`}
-                className="text-black-400 text-lg leading-3 !cursor-pointer flex"
-                href={social.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {renderIcon(social.icon)}
-              </a>
-            ))}
-          </div>
-        )}
         {username && (
           <div className="flex gap-[10px] items-center text-black-400 text-sm leading-3">
             <a href={`/${username}`} className="!cursor-pointer">
               @{username}
             </a>
-            •
             {createdAt && (
               <span>
-                {getRelativeTime(createdAt)}
+                • {getRelativeTime(createdAt)}
               </span>
             )}
           </div>

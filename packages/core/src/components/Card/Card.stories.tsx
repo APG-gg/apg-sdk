@@ -26,37 +26,78 @@ const TemplateCard: Story<CardProps> = (args) => <Card {...args} />;
 export const Base = TemplateCard.bind({});
 Base.args = {
   ...basicArgs,
+  username: "ddumst",
+  id: "100007",
+  name: "Diego",
+  description: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
+  shortDescription: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
+  avatar: "https://storage.apg.gg/10424f4d0d60e7498ffc096c68e6716d92f469ef7b0b882ea2a6287f35a2cf6d.jpg",
+  banner: "https://storage.apg.gg/6e8360800180b87a886f7cb9059ce9365b87c7f72138b2942862560da631b2f5.png",
   socials: [
     {
-      name: "Discord",
-      url: "https://www.discord.com",
-      icon: "discord"
+      id: "2",
+      name: "Instagram",
+      url: "ddumst",
+      icon: "instagram"
     },
     {
+      id: "1",
       name: "Twitter",
-      url: "https://www.twitter.com",
+      url: "ddumst",
       icon: "twitter"
+    },
+    {
+      id: "5",
+      name: "Twitch",
+      url: "ddumst",
+      icon: "twitch"
+    },
+    {
+      id: "3",
+      name: "Tiktok",
+      url: "ddumst",
+      icon: "tiktok"
+    },
+    {
+      id: "4",
+      name: "Discord",
+      url: "ddumst",
+      icon: "discord"
     }
   ],
   tags: [
     {
-      title: "tag 1",
-      icon: "drake",
-      type: "yellow"
+      "id": "8",
+      "title": "CEO",
+      "type": "purple"
     },
     {
-      title: "tag 2",
-      icon: "drakeInfernal",
-      type: "yellow"
+      "id": "2",
+      "title": "Cosplayer",
+      "type": "yellow"
     },
     {
-      title: "tag 3",
-      icon: "drakeInfernal",
-      type: "yellow"
+      "id": "12",
+      "title": "Host",
+      "type": "aqua"
+    },
+    {
+      "id": "1",
+      "title": "Player",
+      "type": "blue"
+    },
+    {
+      "id": "3",
+      "title": "Streamer",
+      "type": "green"
+    },
+    {
+      "id": "more",
+      "title": "2 more",
+      "type": "white"
     }
   ],
-  confirmLabel: "Confirm",
-  cancelLabel: "Cancel",
+  "verify": false
 };
 
 const TemplatePost: Story<CardProps> = (args) => <CardPost {...args} />;
@@ -66,6 +107,28 @@ Post.args = {
   username: 'ddumst',
   createdAt: '2023-02-01T18:36:07.832054+00:00',
   postedOn: 'twitter',
+  "socials": [
+    {
+      "id": "2",
+      "name": "Instagram",
+      "url": "ddumst"
+    },
+    {
+      "id": "1",
+      "name": "Twitter",
+      "url": "ddumst"
+    },
+    {
+      "id": "5",
+      "name": "Twitch",
+      "url": "ddumst",
+    },
+    {
+      "id": "3",
+      "name": "Tiktok",
+      "url": "tiktok"
+    }
+  ],
   tags: [
     {
       title: "tag 1",
@@ -89,16 +152,26 @@ const TemplateLandscape: Story<CardProps> = (args) => <CardLandscape {...args} /
 export const Landscape = TemplateLandscape.bind({});
 Landscape.args = {
   ...basicArgs,
-  socials: [
+  "socials": [
     {
-      name: "Discord",
-      url: "https://www.discord.com",
-      icon: "discord"
+      "id": "2",
+      "name": "Instagram",
+      "url": "ddumst"
     },
     {
-      name: "Twitter",
-      url: "https://www.twitter.com",
-      icon: "twitter"
+      "id": "1",
+      "name": "Twitter",
+      "url": "ddumst"
+    },
+    {
+      "id": "5",
+      "name": "Twitch",
+      "url": "ddumst",
+    },
+    {
+      "id": "3",
+      "name": "Tiktok",
+      "url": "tiktok"
     }
   ],
   confirmLabel: "Confirm",

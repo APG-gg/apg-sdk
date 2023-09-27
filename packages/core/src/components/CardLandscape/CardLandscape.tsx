@@ -31,36 +31,38 @@ const CardLandscape: FC<CardPostProps> = ({
   const hasFooter = !!confirmLabel;
 
   return (
-    <CardBase className="flex flex-row flex-grow max-w-[480px] max-h-[276px]">
-      {banner && (
-        <div className="w-[190px]">
-          <img src={banner} alt={name} className="w-full h-full object-cover" />
-        </div>
-      )}
-      <div className="flex flex-col flex-grow flex-auto max-w-[290px]">
-        {hasHeader && (
-          <CardHeader id={id} name={name} avatar={avatar} socials={socials} verify={verify}  />
-        )}
-        {hasDescription && (
-          <CardDescription shortDescription={shortDescription} columns={3} className="pt-0" />
-        )}
-        {hasFooter && (
-          <div className="flex items-center justify-end p-4 gap-2 mt-auto">
-            {cancelLabel && (
-              <Button
-                type="outline"
-                onClick={() => onCancel}
-              >
-                {cancelLabel}
-              </Button>
-            )}
-            <Button
-              onClick={() => onConfirm}
-            >
-              {confirmLabel}
-            </Button>
+    <CardBase className="flex max-w-[480px] max-h-[276px]">
+      <div className="flex h-full">
+        {banner && (
+          <div className="w-[190px]">
+            <img src={banner} alt={name} className="w-full h-full object-cover" />
           </div>
         )}
+        <div className="flex flex-col flex-grow flex-auto max-w-[290px]">
+          {hasHeader && (
+            <CardHeader id={id} name={name} avatar={avatar} socials={socials} verify={verify}  />
+          )}
+          {hasDescription && (
+            <CardDescription shortDescription={shortDescription} columns={3} className="pt-0" />
+          )}
+          {hasFooter && (
+            <div className="flex items-center justify-end p-4 gap-2 mt-auto">
+              {cancelLabel && (
+                <Button
+                  type="outline"
+                  onClick={() => onCancel}
+                >
+                  {cancelLabel}
+                </Button>
+              )}
+              <Button
+                onClick={() => onConfirm}
+              >
+                {confirmLabel}
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </CardBase>
   );

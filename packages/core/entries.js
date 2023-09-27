@@ -11,17 +11,18 @@ module.exports = {
   "css-in-js": path.join(CSS_IN_JS_DIR),
 
   // Utils
+  delay: path.join(UTILS_DIR, "delay"),
+  generateSocialMediaLink: path.join(UTILS_DIR, "generateSocialMediaLink"),
+  getComponentByName: path.join(UTILS_DIR, "mapping"),
+  getCroppedImg: path.join(UTILS_DIR, "getCroppedImg"),
   getRelativeTime: path.join(UTILS_DIR, "getRelativeTime"),
   isNumeric: path.join(UTILS_DIR, "isNumeric"),
-  getComponentByName: path.join(UTILS_DIR, "mapping"),
   move: path.join(UTILS_DIR, "move"),
-  renderIcon: path.join(UTILS_DIR, "renderIcon"),
-  delay: path.join(UTILS_DIR, "delay"),
-  slugify: path.join(UTILS_DIR, "slugify"),
-  titleCase: path.join(UTILS_DIR, "titleCase"),
-  getCroppedImg: path.join(UTILS_DIR, "getCroppedImg"),
   randomInt: path.join(UTILS_DIR, "randomInt"),
   randomValue: path.join(UTILS_DIR, "randomValue"),
+  renderIcon: path.join(UTILS_DIR, "renderIcon"),
+  slugify: path.join(UTILS_DIR, "slugify"),
+  titleCase: path.join(UTILS_DIR, "titleCase"),
   
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),

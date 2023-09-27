@@ -12,6 +12,7 @@ const Card: FC<Omit<CardProps, "description">> = ({
   shortDescription,
   avatar,
   banner,
+  username,
   link,
   socials,
   tags,
@@ -49,7 +50,7 @@ const Card: FC<Omit<CardProps, "description">> = ({
         <img src={banner} alt={name} className="w-full h-full object-cover" />
       </div>
       {hasHeader && (
-        <CardHeader id={id} name={name} avatar={avatar} socials={socials} verify={verify} />
+        <CardHeader id={id} name={name} username={username} avatar={avatar} socials={socials} verify={verify} />
       )}
       {hasDescription && (
         <CardDescription shortDescription={shortDescription} showAbout={true} />

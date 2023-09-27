@@ -3,7 +3,7 @@
     @apply flex w-full h-full rounded-2xl overflow-hidden bg-black-900 relative z-10
   }
 
-  .base-card:after {
+  .base-card:before {
     content: "";
     position: absolute;
     left: 0;
@@ -15,7 +15,7 @@
     opacity: 0;
   }
 
-  .base-card:hover:after {
+  .base-card:hover:before {
     opacity: 1;
   }
 }
