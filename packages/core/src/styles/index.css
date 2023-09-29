@@ -1721,6 +1721,10 @@ video {
   border-top-right-radius: 1rem;
 }
 
+.rounded-br-2xl{
+  border-bottom-right-radius: 1rem;
+}
+
 .border{
   border-width: 1px;
 }
@@ -2289,6 +2293,10 @@ video {
 
 .pt-4{
   padding-top: 1rem;
+}
+
+.pb-4{
+  padding-bottom: 1rem;
 }
 
 .text-center{

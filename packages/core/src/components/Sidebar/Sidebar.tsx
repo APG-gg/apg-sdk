@@ -5,6 +5,8 @@ import Input from '../Input/Input';
 import MenuIcon from "@apg.gg/icons/lib/MenuIcon";
 import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
 import SidebarSubItem from "./SidebarSubItem";
+import classNames from "classnames";
+import renderIcon from "../../utils/renderIcon";
 
 export interface ItemProps {
   key: string;
@@ -35,6 +37,8 @@ export interface SidebarProps {
   actions?: ReactNode;
   isOpen?: boolean;
   onToggle?: () => void;
+  linkLogo?: string;
+  linkComponent?: React.ComponentType<any>
 }
 
 const Sidebar: FC<SidebarProps> = ({
@@ -51,6 +55,8 @@ const Sidebar: FC<SidebarProps> = ({
   actions,  
   isOpen = false,
   onToggle,
+  linkLogo,
+  linkComponent
 }) => {
   const { isXs, isLtLg, isLg, isXl } = useWindowSize();
   const [isCollapsed, setIsCollapsed] = useState(
@@ -95,13 +101,7 @@ const Sidebar: FC<SidebarProps> = ({
     ? { marginLeft: "0" } : isLtLg 
     ? { marginLeft: tabletCollapsedWidth } : { marginLeft: desktopCollapsedWidth }
 
-  const renderIcon = (icon: string | React.ReactNode) => {
-    if (typeof icon === 'string') {
-      return <img src={icon as string} alt="Logo" className="h-10" />
-    } else {
-      return icon
-    }
-  }
+  const LinkComponent = linkComponent || "a";
 
   return (
     <div className="relative h-screen w-full">
@@ -111,25 +111,39 @@ const Sidebar: FC<SidebarProps> = ({
           <div className={`flex items-center justify-start h-16 ${isLtLg ? 'px-2' : 'px-4'}`}>
             {isCollapsed && isLtLg && !isXs && <MenuIcon className="flex text-3xl" onClick={toggleSidebar} />}
             {!isCollapsed && isLtLg && !isXs && <MenuOpenIcon className="flex text-3xl" onClick={toggleSidebar} />}
-            {(isLg || isXl) && renderIcon(logo)}
+            {(isLg || isXl) && (
+              <LinkComponent href={linkLogo || '/'}>
+                {renderIcon(logo)}
+              </LinkComponent>
+            )}
           </div>
           {menuItems.map((item) => (
             <SidebarItem 
               key={`sidebaritem-${item.key}`} 
               item={item}
               isActive={activeSection === item.key} 
-              onClick={(key) => setActiveSection(key)}
+              onClick={(key) => {
+                setActiveSection(key)
+                if (!isCollapsed && isLtLg && !isXs) toggleSidebar()
+              }}
             />
           ))}
         </nav>
         {subItems && (
-          <div className="mt-0 pt-4 bg-black-900 w-full h-full rounded-l-lg">
+          <div className={classNames(
+            "mt-0 pt-4 bg-black-900 w-full h-full rounded-l-lg",
+            { "hidden": isCollapsed && isLtLg && !isXs },
+            { "flex flex-col": !isCollapsed && isLtLg && !isXs }
+          )}>
             {subItems.map((item) => (
               <SidebarSubItem 
                 key={`sidebaritem-${item.key}`} 
                 item={item}
                 isActive={activeSubSection === item.key} 
-                onClick={(key) => setActiveSubSection(key)}
+                onClick={(key) => {
+                  setActiveSubSection(key)
+                  if (!isCollapsed && isLtLg && !isXs) toggleSidebar()
+                }}
               />
             ))}
           </div>
@@ -142,7 +156,7 @@ const Sidebar: FC<SidebarProps> = ({
           <div
             className={`${
               !isCollapsed ? "translate-x-0" : "-translate-x-full"
-            } md:hidden fixed top-0 left-0 flex flex-col h-screen bg-black text-white transition-transform ease-in-out duration-30 z-[70] shadow-2xl`}
+            } md:hidden fixed top-0 left-0 flex flex-col h-screen bg-black text-white transition-transform ease-in-out duration-30 z-[70] shadow-2xl rounded-br-2xl`}
             style={sidebarStyle}
           >
             <div className="flex items-center justify-between h-16 px-1">
@@ -150,22 +164,43 @@ const Sidebar: FC<SidebarProps> = ({
                 <MenuOpenIcon className="h-6 w-6 text-2xl" />
               </button>
             </div>
-            <div className="px-4 pt-2 w-full">
+            <div className="px-4 pt-2 w-full pb-4">
               <Input placeholder={searchText} isSearchable={true}  />
             </div>
-            <nav className="mt-5">
-              {menuItems.map((item) => (
-                <SidebarItem 
-                  key={`sidebaritem-${item.key}`} 
-                  item={item}
-                  isActive={activeSection === item.key} 
-                  onClick={(key) => {
-                    setActiveSection(key)
-                    toggleSidebar()
-                  }}
-                />
-              ))}
-            </nav>
+            <div className="flex">
+              <nav className="mt-5">
+                {menuItems.map((item) => (
+                  <SidebarItem 
+                    key={`sidebaritem-${item.key}`} 
+                    item={item}
+                    isActive={activeSection === item.key} 
+                    onClick={(key) => {
+                      setActiveSection(key);
+                      toggleSidebar();
+                    }}
+                  />
+                ))}
+              </nav>
+              {subItems && (
+                <div className={classNames(
+                  "mt-0 py-2 bg-black-900 w-full h-full rounded-2xl mr-1",
+                  { "hidden": isCollapsed },
+                  { "flex flex-col": !isCollapsed }
+                )}>
+                  {subItems.map((item) => (
+                    <SidebarSubItem 
+                      key={`sidebaritem-${item.key}`} 
+                      item={item}
+                      isActive={activeSubSection === item.key} 
+                      onClick={(key) => {
+                        setActiveSubSection(key);
+                        toggleSidebar();
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
             {actions ? (
               <div className="w-full mt-auto">
                 {actions}
@@ -175,7 +210,7 @@ const Sidebar: FC<SidebarProps> = ({
           <>
             {!isCollapsed && (
               <div
-                className="md:hidden fixed top-0 left-0 w-full h-screen bg-black opacity-50 z-[60]"
+                className="md:hidden fixed top-0 left-0 w-full h-screen bg-black-900 opacity-50 z-[60]"
                 onClick={toggleSidebar}
               ></div>
             )}

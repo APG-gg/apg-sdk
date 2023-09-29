@@ -54,25 +54,25 @@ const menuItemsExtend = [
     key: "feeds",
     name: "Feeds",
     bgColor: "blue",
-    href: "/feeds"
+    href: "#"
   },
   {
     key: "gamers", 
     name: "Gamers",
     bgColor: "aqua",
-    href: "/gamers"
+    href: "#"
   },
   {
     key: "streamers", 
     name: "Streamers",
     bgColor: "green",
-    href: "/streamers"
+    href: "#"
   },
   {
     key: "cosplayers", 
     name: "Cosplayers",
     bgColor: "yellow",
-    href: "/cosplayers"
+    href: "#"
   }
 ];
 
@@ -87,7 +87,7 @@ const menuFeed = [
     key: "achievements",
     name: "Achievements",
     bgColor: "aqua",
-    href: "/feeds?type=achievements",
+    href: "#",
     icon: "https://github.com/fluidicon.png",
     type: "link"
   },
@@ -95,7 +95,7 @@ const menuFeed = [
     key: "friends",
     name: "Friends",
     bgColor: "green",
-    href: "/feeds?type=friends",
+    href: "#",
     icon: "person",
     type: "link",
   },
@@ -103,7 +103,7 @@ const menuFeed = [
     key: "events",
     name: "Events",
     bgColor: "yellow",
-    href: "/feeds?type=events",
+    href: "#",
     icon: "tiktok",
     type: "link"
   },
@@ -111,7 +111,7 @@ const menuFeed = [
     key: "galleries",
     name: "Galleries",
     bgColor: "fucsia",
-    href: "/feeds?type=galleries",
+    href: "#",
     icon: "heart",
     type: "link"
   },
@@ -119,7 +119,7 @@ const menuFeed = [
     key: "videos",
     name: "Videos",
     bgColor: "red",
-    href: "/feeds?type=videos",
+    href: "#",
     icon: "https://static.figma.com/app/icon/1/favicon.png",
     type: "link"
   }
@@ -135,7 +135,7 @@ const menuFeedNoIcons = [
     key: "achievements",
     name: "Achievements",
     bgColor: "aqua",
-    href: "/feeds?type=achievements",
+    href: "#",
     type: "link",
     showCircle: false
   },
@@ -143,7 +143,7 @@ const menuFeedNoIcons = [
     key: "friends",
     name: "Friends",
     bgColor: "green",
-    href: "/feeds?type=friends",
+    href: "#",
     type: "link",
     showCircle: false
   },
@@ -151,7 +151,7 @@ const menuFeedNoIcons = [
     key: "events",
     name: "Events",
     bgColor: "yellow",
-    href: "/feeds?type=events",
+    href: "#",
     type: "link",
     showCircle: false
   },
@@ -159,7 +159,7 @@ const menuFeedNoIcons = [
     key: "galleries",
     name: "Galleries",
     bgColor: "fucsia",
-    href: "/feeds?type=galleries",
+    href: "#",
     type: "link",
     showCircle: false
   },
@@ -167,7 +167,7 @@ const menuFeedNoIcons = [
     key: "videos",
     name: "Videos",
     bgColor: "red",
-    href: "/feeds?type=videos",
+    href: "#",
     type: "link",
     showCircle: false
   }
