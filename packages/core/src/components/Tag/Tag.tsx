@@ -56,11 +56,23 @@ export const typeMap = {
     textColor: "text-limegreen-400",
     hoverBgColor: "hover:bg-limegreen-100/10",
     hoverBgOpacity: "hover:bg-limegreen-100/8"
+  },
+  white: {
+    borderColor: "border-white-400",
+    textColor: "text-white-400",
+    hoverBgColor: "hover:bg-white-100/10",
+    hoverBgOpacity: "hover:bg-white-100/8"
+  },
+  black: {
+    borderColor: "border-black-400",
+    textColor: "text-black-400",
+    hoverBgColor: "hover:bg-black-100/10",
+    hoverBgOpacity: "hover:bg-black-100/8"
   }
 };
 
 export interface TagProps {
-  type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red" | "purple" | "orange" | "limegreen";
+  type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red" | "purple" | "orange" | "limegreen" | "white" | "black";
   icon?: ReactNode | string | null;
   iconPosition?: "left" | "right";
   link?: string;

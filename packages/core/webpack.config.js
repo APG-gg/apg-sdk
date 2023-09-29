@@ -29,7 +29,8 @@ module.exports = {
   externals: [{
     react: 'react',
     'react-dom': 'react-dom',
-    immer: 'immer'
+    immer: 'immer',
+    'next-translate': 'next-translate'
   }],
   optimization: {
     minimizer: [

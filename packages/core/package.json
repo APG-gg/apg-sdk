@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.8.14",
+  "version": "1.8.21",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -19,6 +19,7 @@
     "@splidejs/react-splide": "^0.7.12",
     "@types/react-beautiful-dnd": "^13.1.4",
     "html2canvas": "^1.4.1",
+    "next-translate": "^2.6.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dropzone": "^14.2.3",
     "react-easy-crop": "^5.0.0",

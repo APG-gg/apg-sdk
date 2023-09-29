@@ -3,6 +3,7 @@ import CardBase, { CardProps, CardTagProps } from '../Card/CardBase';
 import CardDescription from '../CardDescription/CardDescription';
 import CardHeader from '../CardHeader/CardHeader';
 import Tag from '../Tag';
+import TranslationObject from '../../domain/translationObject.interface';
 
 export interface CardPostProps extends Omit<CardProps, "description"> {
   className?: string;
@@ -12,7 +13,7 @@ export interface CardPostProps extends Omit<CardProps, "description"> {
   showAbout?: boolean;
 }
 
-const CardPost: FC<CardPostProps> = ({
+const CardPost: FC<CardPostProps & TranslationObject> = ({
   id,
   name,
   shortDescription,
@@ -20,12 +21,14 @@ const CardPost: FC<CardPostProps> = ({
   banner,
   link,
   tags,
-  verify,
+  isVerify,
+  isBeta,
   createdAt,
   postedOn,
   username,
   className,
   showAbout = true,
+  translationObject
 }) => {
   // Determine whether the header, description, and tags sections are visible
   const hasHeader = !!name && !!avatar;
@@ -35,7 +38,17 @@ const CardPost: FC<CardPostProps> = ({
   return (
     <CardBase className={`flex flex-col max-w-[360px] min-h-[180px] ${className}`}>
       {hasHeader && (
-        <CardHeader id={id} name={name} avatar={avatar} createdAt={createdAt} postedOn={postedOn} username={username} verify={verify} />
+        <CardHeader 
+          {...{
+            id,
+            name,
+            username,
+            avatar,
+            isVerify,
+            isBeta,
+            translationObject
+          }}
+        />
       )}
       {banner && (
         <div className="flex-grow h-[212px]">
@@ -43,7 +56,13 @@ const CardPost: FC<CardPostProps> = ({
       </div>
       )}
       {hasDescription && (
-        <CardDescription shortDescription={shortDescription} showAbout={showAbout} />
+        <CardDescription 
+          {...{
+            shortDescription,
+            translationObject,
+            showAbout
+          }}
+        />
       )}
       {hasTags && (
         <div className="grid grid-cols-3 gap-2 p-4">

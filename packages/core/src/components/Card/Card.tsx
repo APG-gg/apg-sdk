@@ -5,8 +5,9 @@ import CardHeader from '../CardHeader/CardHeader';
 import Tag from '../Tag';
 import Button from '../Button';
 import classNames from 'classnames';
+import TranslationObject from '../../domain/translationObject.interface';
 
-const Card: FC<Omit<CardProps, "description">> = ({
+const Card: FC<Omit<CardProps, "description"> & TranslationObject> = ({
   id,
   name,
   shortDescription,
@@ -16,11 +17,13 @@ const Card: FC<Omit<CardProps, "description">> = ({
   link,
   socials,
   tags,
-  verify,
+  isVerify,
+  isBeta,
   confirmLabel,
   cancelLabel,
   onConfirm,
-  onCancel
+  onCancel,
+  translationObject
 }) => {
   // Determine whether the header, description, and tags sections are visible
   const hasHeader = !!name && !!avatar;
@@ -50,10 +53,27 @@ const Card: FC<Omit<CardProps, "description">> = ({
         <img src={banner} alt={name} className="w-full h-full object-cover" />
       </div>
       {hasHeader && (
-        <CardHeader id={id} name={name} username={username} avatar={avatar} socials={socials} verify={verify} />
+        <CardHeader 
+          {...{
+            id,
+            name,
+            username,
+            avatar,
+            socials,
+            isVerify,
+            isBeta,
+            translationObject
+          }}
+        />
       )}
       {hasDescription && (
-        <CardDescription shortDescription={shortDescription} showAbout={true} />
+        <CardDescription 
+          {...{
+            shortDescription,
+            translationObject
+          }}
+          showAbout={true}
+        />
       )}
       {hasTags && (
         <div className="grid grid-cols-3 gap-2 p-4">

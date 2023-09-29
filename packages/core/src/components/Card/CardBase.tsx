@@ -15,7 +15,11 @@ export type CardProps = {
   link?: string;
   socials: CardSocialProps[];
   tags: CardTagProps[];
-  verify: boolean;
+  isVerify: boolean;
+  isBeta: boolean;
+  isWorker: boolean;
+  isPartner: boolean;
+  isSponsored: boolean;
   username?: string;
   confirmLabel?: string;
   cancelLabel?: string;
@@ -35,8 +39,8 @@ export type CardTagProps = {
   id: string;
   title: string;
   link: string;
-  icon: string;
-  type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red";
+  icon?: string;
+  type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red" | "purple" | "orange" | "limegreen" | "white" | "black";
 }
 
 const CardBase = ({ children, className = '' }: CardBaseProps) => {

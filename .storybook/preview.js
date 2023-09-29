@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { addParameters } from "@storybook/react";
 import {
   DocsContainer,
   Title,
   Primary,
-  Stories,
+  Stories
 } from "@storybook/addon-docs/blocks";
 import "../packages/core/src/styles/index.css";
 import "../packages/core/src/styles/react-image-crop.css";
@@ -41,7 +41,6 @@ export const parameters = {
 }
 
 addParameters({
-  
   docs: {
     page: () => (
       <>

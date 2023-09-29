@@ -31,7 +31,7 @@ Basic.args = {
       icon: "twitter"
     }
   ],
-  verify: true
+  isVerify: true
 };
 
 export const WithUsername = TemplateHeader.bind({});

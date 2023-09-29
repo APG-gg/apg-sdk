@@ -1,28 +1,38 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, ReactNode } from "react";
 import { CardProps, CardSocialProps } from '../Card/CardBase';
 import renderIcon from "../../utils/renderIcon";
 import getRelativeTime from "../../utils/getRelativeTime";
-import VerifiedIcon from "@apg.gg/icons/lib/VerifiedIcon";
-import generateSocialMediaLink from "../../utils/generateSocialMediaLink";
+import VerifiedColorIcon from '@apg.gg/icons/lib/VerifiedColorIcon';
+import BetaColorIcon from '@apg.gg/icons/lib/BetaColorIcon';
+import Tooltip from "../Tooltip";
+import TranslationObject from "../../domain/translationObject.interface";
 
-export interface CardHeaderProps extends Pick<CardProps, "id" | "name" | "avatar" | "className" | "verify"> {
+export interface CardHeaderProps extends Pick<CardProps, "id" | "name" | "avatar" | "className" | "isVerify" | "isBeta"> {
   socials?: CardSocialProps[];
   createdAt?: string;
   postedOn?: ReactNode | string | null;
   username?: string;
+  isWorker?: boolean;
+  isPartner?: boolean;
+  isSponsored?: boolean;
 }
 
-const CardHeader: FC<CardHeaderProps> = ({ id, name, avatar, socials, createdAt, postedOn, username, verify, className = '' }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => {
-      setCopied(false);
-    }, 1000);
-  };
-  
+const CardHeader: FC<CardHeaderProps & TranslationObject> = ({ 
+  id, 
+  name, 
+  avatar, 
+  socials, 
+  createdAt, 
+  postedOn, 
+  username, 
+  isVerify, 
+  isBeta, 
+  isWorker, 
+  isPartner, 
+  isSponsored, 
+  className = '',
+  translationObject
+}) => {
   return (
     <div className={`flex card-header px-4 py-[13px] h-[72px] gap-4 ${className}`}>
       <div className="flex items-center">
@@ -31,7 +41,16 @@ const CardHeader: FC<CardHeaderProps> = ({ id, name, avatar, socials, createdAt,
       <div className="flex flex-col items-start">
         <div className="flex items-center gap-2">
           <h4 className="text-white text-title-md uppercase font-bold !cursor-pointer">{name}</h4>
-          {verify && (<VerifiedIcon className="text-white text-lg flex" />)}
+          {isVerify ? (
+            <Tooltip placement="top" text={translationObject?.thisAccountIsVerified || "Esta cuenta está verificada"}>
+              <VerifiedColorIcon className="text-lg flex cursor-pointer" />
+            </Tooltip>
+          ): null}
+          {isBeta ? (
+            <Tooltip placement="top" text={translationObject?.thisAccountIsBetaTester || "Esta cuenta es de un beta tester"}>
+              <BetaColorIcon className="text-lg flex cursor-pointer" />
+            </Tooltip>
+          ): null}
         </div>
         {username && (
           <div className="flex gap-[10px] items-center text-black-400 text-sm leading-3">

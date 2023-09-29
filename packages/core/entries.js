@@ -27,6 +27,7 @@ module.exports = {
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),
   ImageData: path.join(DOMAIN_DIR, "imageData.interface"),
+  TranslationObject: path.join(DOMAIN_DIR, "translationObject.interface"),
   
   // Enums
   EventTypeEnum: path.join(DOMAIN_DIR, "eventType.enum"),

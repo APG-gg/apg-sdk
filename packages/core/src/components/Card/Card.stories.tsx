@@ -31,40 +31,8 @@ Base.args = {
   name: "Diego",
   description: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
   shortDescription: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
-  avatar: "https://storage.apg.gg/10424f4d0d60e7498ffc096c68e6716d92f469ef7b0b882ea2a6287f35a2cf6d.jpg",
-  banner: "https://storage.apg.gg/6e8360800180b87a886f7cb9059ce9365b87c7f72138b2942862560da631b2f5.png",
-  socials: [
-    {
-      id: "2",
-      name: "Instagram",
-      url: "ddumst",
-      icon: "instagram"
-    },
-    {
-      id: "1",
-      name: "Twitter",
-      url: "ddumst",
-      icon: "twitter"
-    },
-    {
-      id: "5",
-      name: "Twitch",
-      url: "ddumst",
-      icon: "twitch"
-    },
-    {
-      id: "3",
-      name: "Tiktok",
-      url: "ddumst",
-      icon: "tiktok"
-    },
-    {
-      id: "4",
-      name: "Discord",
-      url: "ddumst",
-      icon: "discord"
-    }
-  ],
+  avatar: "https://storage.apg.gg/d731feadb5967855e538cc45d4a88f952df0f8949bd2400b098a03cbfc87e0ea.png",
+  banner: "https://storage.apg.gg/63ee2446322f8bb7321fc9951006a575669e7e540d4fdc071f7f5866f98ceb00.jpg",
   tags: [
     {
       "id": "8",
@@ -97,7 +65,12 @@ Base.args = {
       "type": "white"
     }
   ],
-  "verify": false
+  isVerify: true,
+  isBeta: true,
+  translationObject: {
+    thisAccountIsVerified: "This account is fakin verified",
+    thisAccountIsBetaTester: "This account is in beta",
+  }
 };
 
 const TemplatePost: Story<CardProps> = (args) => <CardPost {...args} />;
@@ -145,7 +118,9 @@ Post.args = {
       icon: "drakeInfernal",
       type: "yellow"
     }
-  ]
+  ],
+  isVerify: true,
+  isBeta: true
 };
 
 const TemplateLandscape: Story<CardProps> = (args) => <CardLandscape {...args} />;
@@ -176,6 +151,8 @@ Landscape.args = {
   ],
   confirmLabel: "Confirm",
   cancelLabel: "Cancel",
+  isVerify: true,
+  isBeta: true
 };
 
 const TemplateType: Story<CardTypeProps> = (args) => <CardType {...args} />;
