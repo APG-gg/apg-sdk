@@ -205,7 +205,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             classNames(
               `flex flex-col cursor-pointer overflow-hidden items-center justify-center ${bgClass}`,
               shape === 'square' && "rounded-xl",
-              shape === 'banner' && "rounded-none !w-full",
+              shape === 'banner' && "rounded-none",
               shape === 'circle' && "rounded-full"
             )
           } 
