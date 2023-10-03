@@ -45,6 +45,7 @@ module.exports = {
   CardHeader: path.join(COMPONENT_DIR, "CardHeader"),
   CardLandscape: path.join(COMPONENT_DIR, "CardLandscape"),
   CardPost: path.join(COMPONENT_DIR, "CardPost"),
+  CardProfile: path.join(COMPONENT_DIR, "CardProfile"),
   CardType: path.join(COMPONENT_DIR, "CardType"),
   ChildButton: path.join(COMPONENT_DIR, "FloatingMenu/ChildButton"),
   ChildContent: path.join(COMPONENT_DIR, "FloatingMenu/ChildContent"),

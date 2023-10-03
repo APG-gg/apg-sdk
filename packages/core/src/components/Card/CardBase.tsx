@@ -1,8 +1,10 @@
+import classNames from 'classnames';
 import React, { ReactNode } from 'react';
 
 export type CardBaseProps = {
   children: ReactNode;
   className?: string;
+  classNameWrapper?: string;
 };
 
 export type CardProps = {
@@ -24,6 +26,7 @@ export type CardProps = {
   confirmLabel?: string;
   cancelLabel?: string;
   className?: string;
+  classNameWrapper?: string;
   onConfirm?: () => void;
   onCancel?: () => void;
 }
@@ -43,10 +46,13 @@ export type CardTagProps = {
   type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red" | "purple" | "orange" | "limegreen" | "white" | "black";
 }
 
-const CardBase = ({ children, className = '' }: CardBaseProps) => {
+const CardBase = ({ children, className = '', classNameWrapper = '' }: CardBaseProps) => {
   return (
     <div className={`base-card ${className}`}>
-      <div className="z-20 w-full">
+      <div className={classNames(
+        "z-20 w-full",
+        classNameWrapper
+      )}>
         {children}
       </div>
     </div>

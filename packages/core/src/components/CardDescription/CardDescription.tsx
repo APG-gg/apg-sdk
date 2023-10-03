@@ -14,6 +14,7 @@ export interface CardDescriptionProps {
   showAbout?: boolean;
   columns?: number;
   className?: string;
+  linkComponent?: React.ComponentType<any>;
 }
 
 const CardDescription: FC<CardDescriptionProps & TranslationObject> = ({ 
@@ -21,13 +22,14 @@ const CardDescription: FC<CardDescriptionProps & TranslationObject> = ({
   showAbout = false, 
   columns = 2, 
   className,
+  linkComponent,
   translationObject
 }) => {  
   return (
     <div className={`p-4 w-full ${className}`}>
       {showAbout && (<strong className="text-white text-base">{translationObject?.aboutMe}</strong>)}
-      <div className={`overflow-hidden max-h-10 text-black-400 text-sm text-ellipsis ${columns === 2 ? 'line-clamp-2' : 'line-clamp-3'} box`}>
-        <TextLinker text={shortDescription} />
+      <div className={`overflow-hidden text-black-400 text-sm text-ellipsis ${columns === 2 ? 'line-clamp-2 max-h-10' : 'line-clamp-3 max-h-20'} box`}>
+        <TextLinker text={shortDescription} linkComponent={linkComponent} />
       </div>
     </div>
   );

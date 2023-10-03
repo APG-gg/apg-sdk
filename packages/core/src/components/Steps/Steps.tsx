@@ -80,7 +80,7 @@ const Steps: React.FC<StepsProps> = ({
             <Button
               onClick={handleNextStep}
               fontSize="xs"
-              className="w-24"
+              className="w-28"
             >
               {currentStep === stepsData.length - 1 ? finishText : nextText}
             </Button>

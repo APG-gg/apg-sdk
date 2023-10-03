@@ -35,6 +35,11 @@ const CardType: FC<CardTypeProps> = ({
 }) => {
   const LinkComponent = linkComponent || "a";
 
+  const dateSplited = date.split("-");
+  const year = parseInt(dateSplited[0]);
+  const month = parseInt(dateSplited[1]) - 1;
+  const day = parseInt(dateSplited[2]);
+
   return (
     <CardBase className={`flex flex-col max-w-[230px] min-h-[325px] ${className}`}>
       <div className="flex-grow h-[154px] relative">
@@ -63,7 +68,7 @@ const CardType: FC<CardTypeProps> = ({
         <div className="flex justify-start items-center gap-1">
           <span className="text-white-400 text-xs">{game}</span>
           <span className="text-white-400">-</span>
-          <span className="text-white-400 text-xs">{format(new Date(date), "do MMM yyyy", { locale: es })}</span>
+          <span className="text-white-400 text-xs">{format(new Date(year, month, day), "dd MMM yyyy", { locale: es })}</span>
         </div>
         {shortDescription ? (
           <div className="block text-white text-xs line-clamp-3 mt-1">

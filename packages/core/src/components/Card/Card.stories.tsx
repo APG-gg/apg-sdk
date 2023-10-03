@@ -5,6 +5,7 @@ import Card from './Card';
 import CardPost from '../CardPost';
 import CardLandscape from '../CardLandscape';
 import CardType, { CardTypeProps } from '../CardType';
+import CardProfile, { CardProfileProps } from '../CardProfile/CardProfile';
 
 const basicArgs = {
   id: "266678",
@@ -190,4 +191,60 @@ EventTypeNoLink.args = {
   game: "Valorant",
   profileType: "Caster",
   type: "online"
+};
+
+const TemplateProfileCard: Story<CardProfileProps> = (args) => <CardProfile {...args} />;
+export const ProfileCard = TemplateProfileCard.bind({});
+ProfileCard.args = {
+  username: "ddumst",
+  id: "100007",
+  name: "Diego",
+  description: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
+  shortDescription: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
+  avatar: "https://storage.apg.gg/d731feadb5967855e538cc45d4a88f952df0f8949bd2400b098a03cbfc87e0ea.png",
+  banner: "https://storage.apg.gg/63ee2446322f8bb7321fc9951006a575669e7e540d4fdc071f7f5866f98ceb00.jpg",
+  tags: [
+    {
+      "id": "8",
+      "title": "CEO",
+      "type": "purple",
+      "link": "https://www.ddumst.dev"
+    },
+    {
+      "id": "2",
+      "title": "Cosplayer",
+      "type": "yellow",
+      "link": "https://www.ddumst.dev"
+    },
+    {
+      "id": "12",
+      "title": "Host",
+      "type": "aqua",
+      "link": "https://www.ddumst.dev"
+    },
+    {
+      "id": "1",
+      "title": "Player",
+      "type": "blue",
+      "link": "https://www.ddumst.dev"
+    },
+    {
+      "id": "3",
+      "title": "Streamer",
+      "type": "green",
+      "link": "https://www.ddumst.dev"
+    },
+    {
+      "id": "more",
+      "title": "2 more",
+      "type": "white",
+      "link": "https://www.ddumst.dev"
+    }
+  ],
+  isVerify: true,
+  isBeta: true,
+  translationObject: {
+    thisAccountIsVerified: "This account is fakin verified",
+    thisAccountIsBetaTester: "This account is in beta",
+  }
 };

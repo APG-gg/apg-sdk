@@ -58,7 +58,7 @@ const Dropdown: React.FC<DropdownProps> = ({ items, placement = 'bottomLeft', ch
               'top-10': placement === 'bottom' && children,
               'bottom-10': placement === 'top' && children,
             },
-            'bg-black-900 shadow-md rounded p-2 z-10'
+            'bg-black-900 shadow-md rounded p-2 z-50'
           )}
           style={{
             width: `${width}px`
