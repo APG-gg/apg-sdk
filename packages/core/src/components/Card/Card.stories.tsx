@@ -51,16 +51,6 @@ Base.args = {
       "type": "aqua"
     },
     {
-      "id": "1",
-      "title": "Player",
-      "type": "blue"
-    },
-    {
-      "id": "3",
-      "title": "Streamer",
-      "type": "green"
-    },
-    {
       "id": "more",
       "title": "2 more",
       "type": "white"
@@ -220,18 +210,6 @@ ProfileCard.args = {
       "id": "12",
       "title": "Host",
       "type": "aqua",
-      "link": "https://www.ddumst.dev"
-    },
-    {
-      "id": "1",
-      "title": "Player",
-      "type": "blue",
-      "link": "https://www.ddumst.dev"
-    },
-    {
-      "id": "3",
-      "title": "Streamer",
-      "type": "green",
       "link": "https://www.ddumst.dev"
     },
     {

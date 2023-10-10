@@ -72,13 +72,13 @@ const CardProfile: FC<CardProfileProps & TranslationObject> = ({
         ) : null }
       
       {hasTags && (
-        <div className="grid grid-cols-3 gap-2 px-4 pb-4 mt-auto">
+        <div className="grid grid-cols-2 gap-2 px-4 pb-4 mt-auto">
           {tags?.map((tag: CardTagProps) => (
             <Tag
               key={`${id}-${tag.title}`}
               link={tag.link}
               icon={tag.icon}
-              className="flex-1"
+              className="flex-1 max-w-xs"
               type={tag.type}
             >
               {tag.title}

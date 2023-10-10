@@ -70,6 +70,8 @@ import PulseRingIcon from "./PulseRingIcon";
 import TrashIcon from "./TrashIcon";
 import PinFillIcon from "./PinFillIcon";
 import PinOutlineIcon from "./PinOutlineIcon";
+import LockIcon from "./LockIcon";
+import LockOpenIcon from "./LockOpenIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -516,6 +518,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <TrashIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<TrashIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <LockIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<LockIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <LockOpenIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<LockOpenIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>

@@ -72,10 +72,7 @@ const Select: FC<SelectProps> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const debouncedSearchValue = useDebounce({ value: value, delay: debounceTime });
 
-  const [internalValue, setInternalValue] = useState<SelectOption>({
-    value: '',
-    label: '',
-  });
+  const [selectedOption, setSelectedOption] = useState<SelectOption | null>(null);
   const [internalMultipleValue, setInternalMultipleValue] = useState<SelectOption[]>([]);
 
   useEffect(() => {
@@ -97,7 +94,7 @@ const Select: FC<SelectProps> = ({
         setInternalMultipleValue(filtered);
       } else {
         const selected = options.filter(option => option.value === value)[0];
-        setInternalValue(selected);
+        setSelectedOption(selected || null);
       }
 
 
@@ -108,7 +105,7 @@ const Select: FC<SelectProps> = ({
     loadOptions();
   }, [options]);
 
-  const handleFocus = () => !disabled && setIsFocused(true);
+  const handleFocus = () => (!disabled || !readOnly) && setIsFocused(!isFocused);
 
   const performSearch = async (searchQuery: string) => {
     try {
@@ -123,9 +120,11 @@ const Select: FC<SelectProps> = ({
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!disabled || !readOnly) return;
+
     const inputValue = event.target.value;
     setValue(inputValue);
-    const selected = options.filter(option => option.value === inputValue)[0];
+    const selected = options.find(option => option.value === inputValue);
     
     if ((multiple || isSearchable) && !searchExternal) {
       const filtered = options.filter(option =>
@@ -134,12 +133,12 @@ const Select: FC<SelectProps> = ({
       setFilteredOptions(filtered);
     }
     
-    setInternalValue(selected);
+    setSelectedOption(selected || null);
   };
 
   const handleClear = () => {
     setValue('');
-    setInternalValue({
+    setSelectedOption({
       value: '',
       label: '',
     });
@@ -163,7 +162,7 @@ const Select: FC<SelectProps> = ({
       setFilteredOptions(options);
     } else {
       setValue(selectedValue.value);
-      setInternalValue(selectedValue);
+      setSelectedOption(selectedValue);
       setIsFocused(false);
     }
 
@@ -257,16 +256,27 @@ const Select: FC<SelectProps> = ({
               </>
             )
           }
-          <input
-            className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
-            type="text"
-            placeholder={placeholder}
-            value={internalValue?.label}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            disabled={disabled}
-            readOnly={readOnly}
-          />
+
+          {selectedOption?.content ? (
+            <div 
+              role='button'
+              onClick={handleFocus}
+              className="w-full"
+            >
+              {selectedOption.content}
+            </div>
+          ) : (
+            <input
+              className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
+              type="text"
+              placeholder={placeholder}
+              value={selectedOption?.label}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              disabled={disabled}
+              readOnly={readOnly}
+            />
+          )}
         </div>
 
         {clearable && ((multiple && multipleValue.length > 0) || (!multiple && value)) && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
@@ -297,7 +307,7 @@ const Select: FC<SelectProps> = ({
               onClick={() => handleSelect(option)}
             >
               {option.icon && <img src={option.icon} alt={option.label} className="inline-block h-4 w-4 mr-2" />}
-              {option?.content || option?.label}
+              {option.content || option?.label}
               {multiple && multipleValue.includes(option.value) && <XCircleIcon className="flex w-4 h-4 text-xl text-white ml-auto" />}
             </div>
           ))}

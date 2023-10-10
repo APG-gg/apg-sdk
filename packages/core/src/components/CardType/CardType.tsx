@@ -41,9 +41,9 @@ const CardType: FC<CardTypeProps> = ({
   const day = parseInt(dateSplited[2]);
 
   return (
-    <CardBase className={`flex flex-col max-w-[230px] min-h-[325px] ${className}`}>
+    <CardBase className={`flex flex-col max-w-[320px] min-h-[325px] ${className}`}>
       <div className="flex-grow h-[154px] relative">
-        <img src={banner || "https://statics.apg.gg/default/post.png"} alt={name} className="w-full h-full object-cover" />
+        <img src={banner || "https://statics.apg.gg/default/post.png"} alt={name} className="w-full h-full object-cover object-center" />
 
         {type ? (
           <Tag

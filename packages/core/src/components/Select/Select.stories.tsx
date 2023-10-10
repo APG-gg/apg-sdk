@@ -29,13 +29,12 @@ Basic.args = {
       content: (
         <div className="flex items-center gap-4">
           <img 
-            src="https://params-gg-storage.s3.eu-west-1.amazonaws.com/385oreo4bzulbcpqjw3frt6z3zsp?response-content-disposition=inline%3B%20filename%3D%22Logitech%20G%20Pro.png%22%3B%20filename%2A%3DUTF-8%27%27Logitech%2520G%2520Pro.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2RWTDMGZRLA4VR6P%2F20230915%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20230915T152818Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=3ad23f563e354725b3f6fc0fe71e4ebf0d222e7417b2b7146c1ade78b7fecc4a"
+            src="https://statics.apg.gg/games/valorant/thumbnail.png"
             alt="Logitech G Pro"
-            className="h-12 w-12 object-contain object-center"
+            className="h-8 w-8 object-contain object-center"
           />
           <div className="flex flex-col">
             <h3 className="text-white text-title-sm">Logitech G Pro</h3>
-            <span className="text-white text-caption">Mouse</span>
           </div>
         </div>
       )  
@@ -49,7 +48,8 @@ Basic.args = {
     { value: 'option-8', label: 'Option 8' },
     { value: 'option-9', label: 'Option 9' }
   ],
-  value: 'option-4'
+  value: 'option-4',
+  onChange: (value) => console.log(value),
 };
 
 export const Multiple = Template.bind({});
