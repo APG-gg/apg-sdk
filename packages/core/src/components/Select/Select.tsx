@@ -11,7 +11,7 @@ export interface SelectOption {
   value: string;
   label: string;
   content?: ReactNode;
-  icon?: string;
+  icon?: ReactNode;
 }
 
 export interface SelectProps {
@@ -37,6 +37,8 @@ export interface SelectProps {
   className?: string;
   style?: React.CSSProperties;
   debounceTime?: number;
+  noOptionsText?: string;
+  loadingText?: string;
 }
 
 const Select: FC<SelectProps> = ({
@@ -61,10 +63,13 @@ const Select: FC<SelectProps> = ({
   errorText,
   className = '',
   style = {},
-  debounceTime = 500
+  debounceTime = 500,
+  noOptionsText = 'No options available',
+  loadingText = 'Loading options...',
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState<string>(initialValue as string);
+  const [value, setValue] = useState<string>(!multiple ? initialValue as string : '');
+  const [selectedLabel, setSelectedLabel] = useState<string | null>(null);
   const [multipleValue, setMultipleValue] = useState<string[]>(initialValue as string[]);
   const [filteredOptions, setFilteredOptions] = useState<SelectOption[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -95,8 +100,8 @@ const Select: FC<SelectProps> = ({
       } else {
         const selected = options.filter(option => option.value === value)[0];
         setSelectedOption(selected || null);
+        setSelectedLabel(selected?.label);
       }
-
 
       setFilteredOptions(loadedOptions);
       setIsLoading(false);
@@ -120,11 +125,13 @@ const Select: FC<SelectProps> = ({
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disabled || !readOnly) return;
+    if (disabled || readOnly) return;
 
     const inputValue = event.target.value;
     setValue(inputValue);
     const selected = options.find(option => option.value === inputValue);
+
+    if (inputValue.length >= 1) setSelectedLabel(null)
     
     if ((multiple || isSearchable) && !searchExternal) {
       const filtered = options.filter(option =>
@@ -132,12 +139,13 @@ const Select: FC<SelectProps> = ({
       );
       setFilteredOptions(filtered);
     }
-    
+
     setSelectedOption(selected || null);
   };
 
   const handleClear = () => {
     setValue('');
+    setSelectedLabel(null);
     setSelectedOption({
       value: '',
       label: '',
@@ -162,8 +170,11 @@ const Select: FC<SelectProps> = ({
       setFilteredOptions(options);
     } else {
       setValue(selectedValue.value);
+      setSelectedLabel(selectedValue.label);
       setSelectedOption(selectedValue);
       setIsFocused(false);
+
+      if (isSearchable) setFilteredOptions(options);
     }
 
     onSelect(selectedValue.value);
@@ -253,31 +264,47 @@ const Select: FC<SelectProps> = ({
                     </div>
                   );
                 })}
+                <input
+                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
+                  type="text"
+                  placeholder={placeholder}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  disabled={disabled}
+                  readOnly={readOnly}
+                  value={value}
+                />
               </>
             )
           }
 
-          {selectedOption?.content ? (
-            <div 
-              role='button'
-              onClick={handleFocus}
-              className="w-full"
-            >
-              {selectedOption.content}
+          {!multiple ? (
+          <div className="relative h-6">
+              <span className={classNames(
+                "absolute top-0 bottom-0",
+                selectedOption?.icon ? 'left-8' : 'left-0'
+              )}>
+                <input
+                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
+                  type="text"
+                  placeholder={placeholder}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  disabled={disabled}
+                  readOnly={readOnly}
+                  value={selectedLabel && selectedLabel?.length > 0 ? '' : value}
+                />
+              </span>
+              {selectedLabel ? (
+                <div className="flex gap-2">
+                  {selectedOption?.icon && <div className="flex items-center">{selectedOption?.icon}</div>}
+                  <span className={`text-base ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}>{selectedLabel}</span>
+                </div>
+              ) : null}
             </div>
-          ) : (
-            <input
-              className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
-              type="text"
-              placeholder={placeholder}
-              value={selectedOption?.label}
-              onChange={handleChange}
-              onFocus={handleFocus}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          )}
+          ) : null}
         </div>
+
 
         {clearable && ((multiple && multipleValue.length > 0) || (!multiple && value)) && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
@@ -306,18 +333,18 @@ const Select: FC<SelectProps> = ({
               )}
               onClick={() => handleSelect(option)}
             >
-              {option.icon && <img src={option.icon} alt={option.label} className="inline-block h-4 w-4 mr-2" />}
+              {option.icon && <div className="flex items-center mr-2">{option.icon}</div>}
               {option.content || option?.label}
               {multiple && multipleValue.includes(option.value) && <XCircleIcon className="flex w-4 h-4 text-xl text-white ml-auto" />}
             </div>
           ))}
 
           {!isLoading && filteredOptions.length === 0 && (
-            <div className="px-4 py-2 cursor-default text-white-200">No options available</div>
+            <div className="px-4 py-2 cursor-default text-white-200">{noOptionsText}</div>
           )}
 
           {isLoading && (
-            <div className="px-4 py-2 cursor-default text-white-200">Loading options...</div>
+            <div className="px-4 py-2 cursor-default text-white-200">{loadingText}</div>
           )}
         </div>
       )}

@@ -2,15 +2,7 @@ import PlusIcon from '@apg.gg/icons/lib/PlusIcon';
 import classNames from 'classnames';
 import React, { FC, forwardRef, useEffect, useRef, useState } from 'react';
 import EditIcon from '@apg.gg/icons/lib/EditIcon';
-import ReactCrop, {
-  centerCrop,
-  makeAspectCrop,
-  Crop,
-  PixelCrop
-} from 'react-image-crop'
-
-import { canvasPreview } from '../../utils/canvasPreview';
-import { useDebounceEffect } from '../../utils/useDebounceEffect';
+import AvatarEditor from 'react-avatar-editor';
 import Drawer from '../Drawer';
 import Button from '../Button';
 import { base64ToFile } from '../../utils/base64ToFile';
@@ -32,10 +24,11 @@ export interface UploadProps {
   iconEdit?: React.ReactNode;
   iconUploading?: React.ReactNode;
   image?: string;
-  width?: number | string;
-  height?: number | string;
+  width?: number;
+  height?: number;
   bgClass?: string;
   isLoading?: boolean;
+  circularCrop?: boolean;
 }
 
 export interface ApiResponse {
@@ -43,25 +36,7 @@ export interface ApiResponse {
   message: string;
 }
 
-const centerAspectCrop = (
-  mediaWidth: number,
-  mediaHeight: number,
-  aspect: number,
-) => {
-  return centerCrop(
-    makeAspectCrop(
-      {
-        unit: '%',
-        width: 90,
-      },
-      aspect,
-      mediaWidth,
-      mediaHeight,
-    ),
-    mediaWidth,
-    mediaHeight,
-  )
-}
+const MAX_WIDTH = 620;
 
 const getBase64 = (img: File, callback: (url: string) => void) => {
   const reader = new FileReader();
@@ -90,21 +65,19 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       width = 200,
       height = 200,
       bgClass = 'bg-black',
-      isLoading = false
+      isLoading = false,
+      circularCrop = false
     }, 
     ref
   ) => {
+    const editor = useRef<AvatarEditor | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const previewCanvasRef = useRef<HTMLCanvasElement>(null)
-    const imgRef = useRef<HTMLImageElement>(null)
-    const [imgSrc, setImgSrc] = useState('')
+    const [imgSrc, setImgSrc] = useState('');
     const [cropedFile, setFile] = useState<File>();
     const [imageToShow, setImageToShow] = useState<string | null>(image);
-    const [crop, setCrop] = useState<Crop>()
-    const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
-    const [aspect] = useState<number | undefined>(aspectRatio) 
-    const [showModal, setShowModal] = useState(false)
-    const [isUploading, setIsUploading] = useState(isLoading)
+    const [showModal, setShowModal] = useState(false);
+    const [isUploading, setIsUploading] = useState(isLoading);
+    const [scale, setScale] = useState(1);
     
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
       const selectedFile = event.target.files?.[0] || null;
@@ -125,8 +98,9 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
 
     const submitCropedImage = () => {
       if (cropedFile) {
-        const base64Image = previewCanvasRef.current?.toDataURL('image/png');
-        const file = base64Image && base64ToFile(base64Image, cropedFile.name)
+        const canvas = editor.current?.getImageScaledToCanvas();
+        const dataURL = canvas?.toDataURL(cropedFile.type);
+        const file = dataURL && base64ToFile(dataURL, cropedFile.name)
         fetchImage(file as File);
         setShowModal(false);
       }
@@ -156,6 +130,10 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       } catch (error) {
         setIsUploading(false);
         onError?.(error);
+      } finally {
+        setScale(1);
+        setFile(undefined);
+        setImgSrc('');
       }
     }
 
@@ -165,34 +143,24 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       }
     };
 
-    const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-      if (aspect) {
-        const { width, height } = e.currentTarget
-        setCrop(centerAspectCrop(width, height, aspect))
-      }
-    }
+    const handleWheel = (e: React.WheelEvent) => {
+      const minScale = 1;
+      const maxScale = 2;
+  
+      const deltaY = e.deltaY;
 
-    useDebounceEffect(
-      async () => {
-        if (
-          completedCrop?.width &&
-          completedCrop?.height &&
-          imgRef.current &&
-          previewCanvasRef.current
-        ) {
-          // We use canvasPreview as it's much faster than imgPreview.
-          canvasPreview(
-            imgRef.current,
-            previewCanvasRef.current,
-            completedCrop,
-            1,
-            0,
-          )
+      if (deltaY > 0) {
+        const newScale = scale - 0.1;
+        if (newScale >= minScale) {
+          setScale(newScale);
         }
-      },
-      100,
-      [completedCrop],
-    )
+      } else if (deltaY < 0) {
+        const newScale = scale + 0.1;
+        if (newScale <= maxScale) {
+          setScale(newScale);
+        }
+      }
+    };
 
     useEffect(() => {
       setIsUploading(isLoading);
@@ -300,44 +268,21 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             disableClickOutsideToClose={false}
             onClose={() => setShowModal(false)}
             content={
-              <div className="flex justify-center">
-                <ReactCrop
-                  crop={crop}
-                  onChange={(_: any, percentCrop: any) => setCrop(percentCrop)}
-                  onComplete={(c: any) => setCompletedCrop(c)}
-                  aspect={aspect}
-                  className={
-                    classNames(
-                      'mx-auto',
-                      {
-                        'w-full max-h-none': shape === 'banner',
-                        'w-64 max-h-none': shape === 'square' || shape === 'circle'
-                      }
-                    )
-                  }
-                >
-                  <img
-                    ref={imgRef}
-                    alt="Crop me"
-                    src={imgSrc}
-                    onLoad={onImageLoad}
-                    className="max-h-52 w-full"
-                  />
-                </ReactCrop>
-
-                <div className="hidden">
-                  {!!completedCrop && (
-                    <canvas
-                      ref={previewCanvasRef}
-                      style={{
-                        border: '1px solid black',
-                        objectFit: 'contain',
-                        width: completedCrop.width,
-                        height: completedCrop.height,
-                      }}
-                    />
-                  )}
-                </div>
+              <div 
+                className="flex justify-center flex-1 items-center min-h-[200px]"
+                onWheel={handleWheel}
+              >
+                <AvatarEditor
+                  ref={editor}
+                  image={imgSrc}
+                  width={shape !== 'banner' ? width * 2 : MAX_WIDTH}
+                  height={shape !== 'banner' ? height * 2 : MAX_WIDTH/aspectRatio}
+                  border={0}
+                  color={[0, 0, 0, 0.7]}
+                  scale={scale}
+                  rotate={0}
+                  borderRadius={circularCrop ? 999 : 0}
+                />
               </div>
             }
           />

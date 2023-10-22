@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.9.8",
+  "version": "1.10.6",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -20,11 +20,15 @@
     "@types/react-beautiful-dnd": "^13.1.4",
     "html2canvas": "^1.4.1",
     "next-translate": "^2.6.0",
+    "react-avatar-editor": "^13.0.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dropzone": "^14.2.3",
     "react-easy-crop": "^5.0.0",
     "react-hook-form": "^7.43.9",
     "react-image-crop": "10.0.9",
     "swiper": "8.4.5"
+  },
+  "devDependencies": {
+    "@types/react-avatar-editor": "^13.0.1"
   }
 }

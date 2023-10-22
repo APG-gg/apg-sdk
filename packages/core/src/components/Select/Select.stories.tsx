@@ -24,19 +24,14 @@ Basic.args = {
   label: 'Label',
   options: [
     { 
-      value: 'option-1', 
-      label: 'Option 1', 
-      content: (
-        <div className="flex items-center gap-4">
-          <img 
-            src="https://statics.apg.gg/games/valorant/thumbnail.png"
-            alt="Logitech G Pro"
-            className="h-8 w-8 object-contain object-center"
-          />
-          <div className="flex flex-col">
-            <h3 className="text-white text-title-sm">Logitech G Pro</h3>
-          </div>
-        </div>
+      value: 'logitech-g-pro', 
+      label: 'Logitech G Pro', 
+      icon: (
+        <img 
+          src="https://statics.apg.gg/games/valorant/thumbnail.png"
+          alt="Logitech G Pro"
+          className="h-6 w-6 object-contain object-center"
+        />
       )  
     },
     { value: 'option-2', label: 'Option 2' },
@@ -88,9 +83,8 @@ ExternalSearch.args = {
     { value: 'option-8', label: 'Option 8' },
     { value: 'option-9', label: 'Option 9' }
   ],
+  debounceTime: 1500,
   onSearch: async (searchQuery: string) => {
-    // Simular una solicitud a una API externa con datos ficticios
-    await new Promise(resolve => setTimeout(resolve, 3000)); // Simular retardo de 1 segundo
     return [
       { value: 'external-1', label: 'External Option 1' },
       { value: 'external-2', label: 'External Option 2' },
