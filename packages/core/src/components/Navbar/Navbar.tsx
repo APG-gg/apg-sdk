@@ -5,24 +5,19 @@ import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
 
 export interface NavbarProps {
   logo: string | ReactNode
-  searchText?: string;
+  search?: ReactNode;
   actions?: ReactNode;
   onMenuToggle: () => void;
 }
 
 const Navbar: FC<NavbarProps> = ({ 
   logo,
-  searchText = 'Search',
+  search,
   actions,
   onMenuToggle 
 }) => {
   const { isXs } = useWindowSize()
-  const searchInput = !isXs ? (
-    <Input
-      placeholder={searchText}
-      isSearchable={true}
-    />
-  ) : null;
+  const searchInput = !isXs ? search: null;
 
   const renderIcon = (icon: string | React.ReactNode) => {
     if (typeof icon === 'string') {
