@@ -23,6 +23,10 @@
     left: 275px
   }
 
+  .border-\[#FFBBAE\] {
+    color: #FFBBAE;
+  }
+
   .text-body-sm {
     @apply text-xs font-source-sans-pro;
   }

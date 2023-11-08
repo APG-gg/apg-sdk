@@ -23,6 +23,7 @@ module.exports = {
   renderIcon: path.join(UTILS_DIR, "renderIcon"),
   slugify: path.join(UTILS_DIR, "slugify"),
   titleCase: path.join(UTILS_DIR, "titleCase"),
+  colorTypeMap: path.join(UTILS_DIR, "colorTypeMap"),
   
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),

@@ -4,7 +4,6 @@ import ArrowDownIcon from "./ArrowDownIcon";
 import ArrowLeftIcon from "./ArrowLeftIcon";
 import ArrowRightIcon from "./ArrowRightIcon";
 import ArrowUpIcon from "./ArrowUpIcon";
-import BetaColorIcon from "./BetaColorIcon";
 import CommentIcon from "./CommentIcon";
 import DiscordIcon from "./DiscordIcon";
 import DownloadIcon from "./DownloadIcon";
@@ -42,7 +41,6 @@ import TiktokIcon from "./TiktokIcon";
 import TwitchIcon from "./TwitchIcon";
 import TwitterIcon from "./TwitterIcon";
 import UploadIcon from "./UploadIcon";
-import VerifiedColorIcon from "./VerifiedColorIcon";
 import VerifiedIcon from './VerifiedIcon';
 import ViewListIcon from "./ViewListIcon";
 import VisibilityIcon from "./VisibilityIcon";
@@ -72,6 +70,7 @@ import PinFillIcon from "./PinFillIcon";
 import PinOutlineIcon from "./PinOutlineIcon";
 import LockIcon from "./LockIcon";
 import LockOpenIcon from "./LockOpenIcon";
+import AbacusIcon from "./AbacusIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -335,12 +334,6 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         </div>
       </IconWrapper>
       <IconWrapper>
-        <BetaColorIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<BetaColorIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
         <DownloadIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<DownloadIcon />'}</pre> 
@@ -404,12 +397,6 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <UploadIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<UploadIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <VerifiedColorIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<VerifiedColorIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>
@@ -536,6 +523,12 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <PulseRingIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<PulseRingIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <AbacusIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<AbacusIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

@@ -1,105 +1,54 @@
 import React, { FC, ReactNode } from "react";
 import renderIcon from "../../utils/renderIcon";
 import classNames from 'classnames';
-
-export const typeMap = {
-  blue: {
-    borderColor: "border-blue-400",
-    textColor: "text-blue-400",
-    hoverBgColor: "hover:bg-blue-100/10",
-    hoverBgOpacity: "hover:bg-aqua-100/8"
-  },
-  aqua: {
-    borderColor: "border-aqua-400",
-    textColor: "text-aqua-400",
-    hoverBgColor: "hover:bg-aqua-100/10",
-    hoverBgOpacity: "hover:bg-aqua-100/8"
-  },
-  green: {
-    borderColor: "border-green-400",
-    textColor: "text-green-400",
-    hoverBgColor: "hover:bg-green-100/10",
-    hoverBgOpacity: "hover:bg-green-100/8"
-  },
-  yellow: {
-    borderColor: "border-yellow-400",
-    textColor: "text-yellow-400",
-    hoverBgColor: "hover:bg-yellow-100/10",
-    hoverBgOpacity: "hover:bg-yellow-100/8"
-  },
-  fucsia: {
-    borderColor: "border-fucsia-400",
-    textColor: "text-fucsia-400",
-    hoverBgColor: "hover:bg-fucsia-100/10",
-    hoverBgOpacity: "hover:bg-fucsia-100/8"
-  },
-  red: {
-    borderColor: "border-red-400",
-    textColor: "text-red-400",
-    hoverBgColor: "hover:bg-red-100/10",
-    hoverBgOpacity: "hover:bg-red-100/8"
-  },
-  purple: {
-    borderColor: "border-purple-400",
-    textColor: "text-purple-400",
-    hoverBgColor: "hover:bg-purple-100/10",
-    hoverBgOpacity: "hover:bg-purple-100/8"
-  },
-  orange: {
-    borderColor: "border-orange-400",
-    textColor: "text-orange-400",
-    hoverBgColor: "hover:bg-orange-100/10",
-    hoverBgOpacity: "hover:bg-orange-100/8"
-  },
-  limegreen: {
-    borderColor: "border-limegreen-400",
-    textColor: "text-limegreen-400",
-    hoverBgColor: "hover:bg-limegreen-100/10",
-    hoverBgOpacity: "hover:bg-limegreen-100/8"
-  },
-  white: {
-    borderColor: "border-white-400",
-    textColor: "text-white-400",
-    hoverBgColor: "hover:bg-white-100/10",
-    hoverBgOpacity: "hover:bg-white-100/8"
-  },
-  black: {
-    borderColor: "border-black-400",
-    textColor: "text-black-400",
-    hoverBgColor: "hover:bg-black-100/10",
-    hoverBgOpacity: "hover:bg-black-100/8"
-  }
-};
+import { TypeMapKey, typeMap } from "../../utils/colorTypeMap";
 
 export interface TagProps {
-  type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red" | "purple" | "orange" | "limegreen" | "white" | "black";
+  type?: TypeMapKey;
   icon?: ReactNode | string | null;
   iconPosition?: "left" | "right";
   link?: string;
   className?: string;
   disabled?: boolean;
   children?: ReactNode;
+  size?: "sm" | "md" | "lg";
+  linkComponent?: React.ComponentType<any>
 }
 
-const Tag: FC<TagProps> = ({ type = "blue", icon, iconPosition = "left", link, className, children }) => {
+const Tag: FC<TagProps> = ({ type = 'blue', icon, iconPosition = "left", link, className, children, size = 'md', linkComponent }) => {
+  const typeStyles = typeMap[type] || {};
+  const textColor = typeStyles.textColor;
+  const borderColor = typeStyles.borderColor;
+  const hoverBgColor = typeStyles.hoverBgColor;
+  const activeBgColor = typeStyles.activeBgColor;
+
+  const LinkComponent = linkComponent || "a";
+
   return (
-    <a
+    <LinkComponent
       href={link}
       className={classNames(
         "bg-transparent border",
-        typeMap[type]?.borderColor,
-        typeMap[type]?.hoverBgColor,
-        typeMap[type]?.textColor,
-        "font-medium py-2 px-4 flex !leading-none text-sm rounded-full",
-        typeMap[type]?.hoverBgOpacity,
+        borderColor,
+        hoverBgColor,
+        textColor,
+        "font-medium px-2 inline-flex rounded-full",
+        activeBgColor,
         className,
-        "max-h-8 items-center justify-center gap-2 max-w-[100px] !cursor-pointer"
+        size === "sm" && "h-5 max-h-5",
+        size === "md" && "h-6 max-h-6",
+        size === "lg" && "h-7 max-h-7",
+        "items-center justify-center gap-1 cursor-pointer"
       )}
     >
-      {iconPosition === "left" && renderIcon(icon)}
-      {children}
-      {iconPosition === "right" && renderIcon(icon)}
-    </a>
+      {iconPosition === "left" && renderIcon(icon, (size === "sm" ? "w-3 h-3 text-xs" : size === "lg" ? " w-4 h-4 text-base" : "w-[14px] h-[14px] text-sm"))}
+      <span className={classNames(
+        size === "sm" && "text-[11px] leading-[20px]",
+        size === "md" && "text-xs leading-[24px]",
+        size === "lg" && "text-sm leading-[28px]",
+      )}>{children}</span>
+      {iconPosition === "right" && renderIcon(icon, (size === "sm" ? "w-3 h-3 text-xs" : size === "lg" ? " w-4 h-4 text-base" : "w-[14px] h-[14px] text-sm"))}
+    </LinkComponent>
   );
 };
 

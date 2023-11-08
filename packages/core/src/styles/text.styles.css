@@ -29,3 +29,19 @@
 .text-4xl {
   font-size: 2.25rem;
 }
+
+.border-red-50 {
+  color: #FFBBAE;
+}
+
+.border-blue-100 {
+  color: #A0DEFF;
+}
+
+.hover\:bg-blue-100\/50:hover {
+  background-color: rgb(160 222 255 / 0.5);
+}
+
+.active\:bg-blue-100\/20:hover {
+  background-color: rgb(160 222 255 / 0.2);
+}

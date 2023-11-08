@@ -191,38 +191,42 @@ ProfileCard.args = {
   name: "Diego",
   description: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
   shortDescription: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
-  avatar: "https://storage.apg.gg/d731feadb5967855e538cc45d4a88f952df0f8949bd2400b098a03cbfc87e0ea.png",
-  banner: "https://storage.apg.gg/63ee2446322f8bb7321fc9951006a575669e7e540d4fdc071f7f5866f98ceb00.jpg",
+  avatar: "https://storage.apg.gg/3b9dfd1625beda1ddfca0863db941a4c9eefea28f7a264c15267c3f5f9c0442e.png",
+  banner: "https://storage.apg.gg/bf74ca58d812a0ceaf2ce720798a0871a4ef93fea67d6c84b3d9171b11adc1d1.jpg",
   tags: [
     {
       "id": "8",
       "title": "CEO",
       "type": "purple",
+      icon: "tie",
       "link": "https://www.ddumst.dev"
     },
     {
       "id": "2",
       "title": "Cosplayer",
       "type": "yellow",
+      icon: "comedy",
       "link": "https://www.ddumst.dev"
     },
     {
       "id": "12",
       "title": "Host",
       "type": "aqua",
+      icon: "microphoneExt",
       "link": "https://www.ddumst.dev"
     },
     {
       "id": "more",
       "title": "2 more",
       "type": "white",
+      icon: "plus",
       "link": "https://www.ddumst.dev"
     }
   ],
   isVerify: true,
   isBeta: true,
   translationObject: {
-    thisAccountIsVerified: "This account is fakin verified",
-    thisAccountIsBetaTester: "This account is in beta",
+    thisAccountIsVerified: "Cuenta verificada",
+    thisAccountIsBetaTester: "Beta Tester",
   }
 };
