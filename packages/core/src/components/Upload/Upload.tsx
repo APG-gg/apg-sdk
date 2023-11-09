@@ -36,7 +36,7 @@ export interface ApiResponse {
   message: string;
 }
 
-const MAX_WIDTH = 620;
+const MAX_WIDTH = 510;
 
 const getBase64 = (img: File, callback: (url: string) => void) => {
   const reader = new FileReader();
@@ -275,13 +275,17 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
                 <AvatarEditor
                   ref={editor}
                   image={imgSrc}
-                  width={shape !== 'banner' ? width * 2 : MAX_WIDTH}
-                  height={shape !== 'banner' ? height * 2 : MAX_WIDTH/aspectRatio}
+                  width={
+                    shape == 'banner' ? MAX_WIDTH : width === 200 ? 500 : width}
+                  height={shape == 'banner' ? MAX_WIDTH/aspectRatio : height === 200 ? 500/aspectRatio : height}
                   border={0}
                   color={[0, 0, 0, 0.7]}
                   scale={scale}
                   rotate={0}
                   borderRadius={circularCrop ? 999 : 0}
+                  className={classNames(
+                    shape !== 'banner' && "!w-full !h-auto",
+                  )}
                 />
               </div>
             }

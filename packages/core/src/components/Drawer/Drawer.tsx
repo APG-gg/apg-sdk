@@ -109,9 +109,9 @@ const Drawer: FC<DrawerProps> = ({
       sizeClasses = `${width ? '' : "w-[96%] md:w-1/2"} ${height ? '' : "min-h-[320px]"} ${maxHeight ? `max-h-${maxHeight}` : ""} ${maxWidth ? `max-w-${maxWidth}` : ""}`;
       styleClassess = {
         width: width ? width : "96%",
-        maxWidth: maxWidth ? maxWidth : "640px",
+        maxWidth: maxWidth ? maxWidth : "540px",
         height: height ? height : "auto",
-        maxHeight: maxHeight ? maxHeight : "640px",
+        maxHeight: maxHeight ? maxHeight : "auto",
       }
       break;
     default:

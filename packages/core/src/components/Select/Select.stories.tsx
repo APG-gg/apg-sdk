@@ -44,6 +44,7 @@ Basic.args = {
     { value: 'option-9', label: 'Option 9' }
   ],
   value: 'option-4',
+  placeholder: 'Placeholder',
   onChange: (value) => console.log(value),
 };
 

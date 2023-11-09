@@ -6,6 +6,7 @@ import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
+import { createPortal } from 'react-dom';
 
 export interface SelectOption {
   value: string;
@@ -31,6 +32,7 @@ export interface SelectProps {
   multiple?: boolean;
   searchExternal?: boolean;
   onChange?: (value: string | string[]) => void;
+  onBlur?: (value: string | string[]) => void;
   onSelect?: (value: string | string[]) => void;
   onSearch?: (searchQuery: string) => Promise<SelectOption[]>;
   errorText?: FieldError | undefined;
@@ -57,8 +59,9 @@ const Select: FC<SelectProps> = ({
   readOnly = false,
   multiple = false,
   searchExternal = false,
-  onChange = () => {},
-  onSelect = () => {},
+  onChange = () => { },
+  onBlur = () => { },
+  onSelect = () => { },
   onSearch = async () => [],
   errorText,
   className = '',
@@ -132,7 +135,7 @@ const Select: FC<SelectProps> = ({
     const selected = options.find(option => option.value === inputValue);
 
     if (inputValue.length >= 1) setSelectedLabel(null)
-    
+
     if ((multiple || isSearchable) && !searchExternal) {
       const filtered = options.filter(option =>
         option.label.toLowerCase().includes(inputValue.toLowerCase())
@@ -168,6 +171,7 @@ const Select: FC<SelectProps> = ({
 
       setValue('');
       setFilteredOptions(options);
+      setIsFocused(false);
     } else {
       setValue(selectedValue.value);
       setSelectedLabel(selectedValue.label);
@@ -194,7 +198,7 @@ const Select: FC<SelectProps> = ({
     }
     return false;
   };
-  
+
   useEffect(() => {
     if (isFocused) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -207,7 +211,7 @@ const Select: FC<SelectProps> = ({
     }
   }, [isFocused]);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (multiple) {
       onChange(multipleValue);
     } else {
@@ -230,7 +234,8 @@ const Select: FC<SelectProps> = ({
         "relative",
         className
       )}
-      style={style} 
+      style={style}
+      onClick={handleFocus}
       ref={wrapperRef}
     >
       {label && (
@@ -240,12 +245,14 @@ const Select: FC<SelectProps> = ({
           {label}
         </label>
       )}
-      <div className={classNames(
-        "flex items-center border bg-black rounded-2xl px-4 py-2 min-h-10",
-        borderColor,
-        isFocused && 'shadow-md bg-aqua/10',
-        multiple ? "rounded-sm" : rounded ? "rounded-full" : "rounded-sm",
-      )}>
+      <div 
+        className={classNames(
+          "flex items-center border bg-black rounded-2xl px-4 py-2 min-h-10",
+          borderColor,
+          isFocused && 'shadow-md bg-aqua/10',
+          multiple ? "rounded-sm" : rounded ? "rounded-full" : "rounded-sm",
+        )}
+      >
         {(isSearchable && showSearchIcon) && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 ${label ? 'mr-2' : ''}`} />)}
 
         <div className="flex items-center relative flex-wrap flex-1 gap-2">
@@ -269,7 +276,6 @@ const Select: FC<SelectProps> = ({
                   type="text"
                   placeholder={placeholder}
                   onChange={handleChange}
-                  onFocus={handleFocus}
                   disabled={disabled}
                   readOnly={readOnly}
                   value={value}
@@ -279,7 +285,7 @@ const Select: FC<SelectProps> = ({
           }
 
           {!multiple ? (
-          <div className="relative h-6">
+            <div className="relative h-6">
               <span className={classNames(
                 "absolute top-0 bottom-0",
                 selectedOption?.icon ? 'left-8' : 'left-0'
@@ -287,9 +293,8 @@ const Select: FC<SelectProps> = ({
                 <input
                   className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
                   type="text"
-                  placeholder={placeholder}
+                  placeholder={selectedLabel ? '' : placeholder}
                   onChange={handleChange}
-                  onFocus={handleFocus}
                   disabled={disabled}
                   readOnly={readOnly}
                   value={selectedLabel && selectedLabel?.length > 0 ? '' : value}
@@ -315,38 +320,43 @@ const Select: FC<SelectProps> = ({
       {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
 
       {isFocused && (
-        <div
-          className={classNames(
-            'absolute z-40',
-            shouldOpenUpwards() ? 'bottom-full' : 'top-full',
-            'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]'
-          )}
-          ref={optionsRef}
-        >
-          {!isLoading && filteredOptions.map((option) => (
+        <>
+          {createPortal(
             <div
-              key={option.value}
               className={classNames(
-                'flex px-4 py-2 text-sm',
-                !multiple && value === option.value ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
-                multiple && multipleValue.includes(option.value) ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
+                'absolute z-40',
+                shouldOpenUpwards() ? 'bottom-11' : 'top-11',
+                'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]'
               )}
-              onClick={() => handleSelect(option)}
+              ref={optionsRef}
             >
-              {option.icon && <div className="flex items-center mr-2">{option.icon}</div>}
-              {option.content || option?.label}
-              {multiple && multipleValue.includes(option.value) && <XCircleIcon className="flex w-4 h-4 text-xl text-white ml-auto" />}
-            </div>
-          ))}
+              {!isLoading && filteredOptions.map((option) => (
+                <div
+                  key={option.value}
+                  className={classNames(
+                    'flex px-4 py-2 text-sm',
+                    !multiple && value === option.value ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
+                    multiple && multipleValue.includes(option.value) ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
+                  )}
+                  onClick={() => handleSelect(option)}
+                >
+                  {option.icon && <div className="flex items-center mr-2">{option.icon}</div>}
+                  {option.content || option?.label}
+                  {multiple && multipleValue.includes(option.value) && <XCircleIcon className="flex w-4 h-4 text-xl text-white ml-auto" />}
+                </div>
+              ))}
 
-          {!isLoading && filteredOptions.length === 0 && (
-            <div className="px-4 py-2 cursor-default text-white-200">{noOptionsText}</div>
-          )}
+              {!isLoading && filteredOptions.length === 0 && (
+                <div className="px-4 py-2 cursor-default text-white-200">{noOptionsText}</div>
+              )}
 
-          {isLoading && (
-            <div className="px-4 py-2 cursor-default text-white-200">{loadingText}</div>
+              {isLoading && (
+                <div className="px-4 py-2 cursor-default text-white-200">{loadingText}</div>
+              )}
+            </div>,
+            wrapperRef.current || document.body,
           )}
-        </div>
+        </>
       )}
     </div>
   );

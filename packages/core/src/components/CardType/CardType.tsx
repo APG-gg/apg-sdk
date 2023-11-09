@@ -13,7 +13,7 @@ export interface CardTypeProps extends Omit<CardProps, "description"> {
   title: string;
   date: string;
   game: string;
-  profileType?: string;
+  profileType?: Record<string, any>;
   type?: string;
   linkComponent?: React.ComponentType<any>
   link?: string;
@@ -78,10 +78,11 @@ const CardType: FC<CardTypeProps> = ({
         {profileType ? (
           <div className="flex justify-start items-center gap-1 mt-1">
             <Tag
-                type={ProfileTypeColor[profileType as keyof typeof ProfileTypeColor] as any}
+                type={profileType.color}
+                icon={profileType.icon}
                 className="max-w-none h-6"
               >
-              {profileType}
+              {profileType.name}
             </Tag>
          </div>
         ) : null}
