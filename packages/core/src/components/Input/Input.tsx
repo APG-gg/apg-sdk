@@ -1,9 +1,13 @@
-import React, { FC, forwardRef, useState } from 'react';
+import React, { FC, Ref, forwardRef, useState } from 'react';
 import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import { FieldError } from 'react-hook-form';
 import classNames from 'classnames';
+
+type InputRef = {
+  focus: () => void;
+};
 
 export interface InputProps {
   label?: string;
@@ -24,6 +28,7 @@ export interface InputProps {
   errorText?: FieldError | undefined;
   className?: string;
   style?: React.CSSProperties;
+  ref?: Ref<HTMLInputElement>;
 }
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(

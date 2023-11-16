@@ -7,13 +7,20 @@ import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
 import SidebarSubItem from "./SidebarSubItem";
 import classNames from "classnames";
 import renderIcon from "../../utils/renderIcon";
+import Button from "../Button";
+import { TypeMapKey } from "../../utils/colorTypeMap";
+import { createPortal } from "react-dom";
+import Drawer from "../Drawer";
 
 export interface ItemProps {
   key: string;
   name: string;
-  href: string;
+  onClick?: (key: string) => void;
+  href?: string;
   icon?: ReactNode;
-  bgColor?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red";
+  iconHoverColor?: TypeMapKey;
+  bgColor?: TypeMapKey;
+  activeBgColor?: TypeMapKey;
   target?: string;
   linkComponent?: React.ComponentType<any>
 }
@@ -26,7 +33,9 @@ export interface SubItemProps extends ItemProps {
 export interface SidebarProps {
   logo: string | ReactNode;
   menuItems: ItemProps[];
+  recentPages?: ItemProps[];
   activeItem: string;
+  onLogout: () => void;
   subItems?: SubItemProps[];
   activeSubItem?: string;
   defaultWidth?: string;
@@ -37,26 +46,32 @@ export interface SidebarProps {
   actions?: ReactNode;
   isOpen?: boolean;
   onToggle?: () => void;
+  onToggleDrawer?: (key: string) => void;
   linkLogo?: string;
   linkComponent?: React.ComponentType<any>
+  showHeadline?: boolean;
 }
 
 const Sidebar: FC<SidebarProps> = ({
   logo,
   menuItems,
+  recentPages,
   subItems,
   activeItem = "home", 
   activeSubItem = "achievements",
   defaultWidth = "324px",
-  desktopCollapsedWidth = "72px",
+  desktopCollapsedWidth = "64px",
   tabletCollapsedWidth = "46px",
   children,
   searchText = "Search", 
   actions,  
   isOpen = false,
   onToggle,
+  onToggleDrawer,
+  onLogout,
   linkLogo,
-  linkComponent
+  linkComponent,
+  showHeadline = true
 }) => {
   const { isXs, isLtLg, isLg, isXl } = useWindowSize();
   const [isCollapsed, setIsCollapsed] = useState(
@@ -104,11 +119,11 @@ const Sidebar: FC<SidebarProps> = ({
   const LinkComponent = linkComponent || "a";
 
   return (
-    <div className="relative h-screen w-full">
+    <div id="sidebar" className="relative w-full">
       {/* Desktop/tablet sidebar */}
-      <div className={`fixed h-full bg-black text-white z-[70] transition-all duration-150 ease-in-out ${isXs ? "hidden" : "flex"}`} style={sidebarStyle}>
-        <nav className="mt-0">
-          <div className={`flex items-center justify-start h-16 ${isLtLg ? 'px-2' : 'px-4'}`}>
+      <div className={`fixed h-full bg-black text-white z-[80] transition-all duration-150 ease-in-out ${isXs ? "hidden" : "flex"}`} style={sidebarStyle}>
+        <nav className="flex flex-col content-between justify-between mt-0 w-16">
+          <div className={`flex items-center justify-center h-16 px-2`}>
             {isCollapsed && isLtLg && !isXs && <MenuIcon className="flex text-3xl" onClick={toggleSidebar} />}
             {!isCollapsed && isLtLg && !isXs && <MenuOpenIcon className="flex text-3xl" onClick={toggleSidebar} />}
             {(isLg || isXl) && (
@@ -117,17 +132,49 @@ const Sidebar: FC<SidebarProps> = ({
               </LinkComponent>
             )}
           </div>
-          {menuItems.map((item) => (
-            <SidebarItem 
-              key={`sidebaritem-${item.key}`} 
-              item={item}
-              isActive={activeSection === item.key} 
-              onClick={(key) => {
-                setActiveSection(key)
-                if (!isCollapsed && isLtLg && !isXs) toggleSidebar()
-              }}
-            />
-          ))}
+          <div className="mt-16">
+            {showHeadline && (
+              <span className="flex justify-center text-black-800 uppercase text-xs font-source-sans-pro font-semibold mb-4">MENU</span>
+            )}
+            {menuItems.map((item) => (
+              <SidebarItem 
+                key={`sidebaritem-${item.key}`} 
+                item={item}
+                isActive={activeSection === item.key} 
+                onClick={(key) => {
+                  setActiveSection(key)
+                  if (!item.href) onToggleDrawer?.(item.key);
+                  if (!isCollapsed && isLtLg && !isXs) toggleSidebar()
+                }}
+              />
+            ))}
+            {recentPages && recentPages.length > 0 ? (
+              <>
+                <span className="flex h-[1px] bg-black-800 my-2 mx-2"></span>
+                {recentPages.map((item) => (
+                  <SidebarItem 
+                    key={`sidebaritem-${item.key}`} 
+                    item={item}
+                    isActive={activeSection === item.key} 
+                    onClick={(key) => {
+                      setActiveSection(key)
+                      if (!item.href) onToggleDrawer?.(item.key);
+                      if (!isCollapsed && isLtLg && !isXs) toggleSidebar()
+                    }}
+                  />
+                ))}
+              </>
+            ) : null}
+          </div>
+          <div className="flex px-2 justify-center mt-auto mb-6">
+            <Button 
+              className="w-10 h-10" 
+              type="outline" 
+              onClick={onLogout}
+              icon="logout"
+            >
+            </Button>
+          </div>
         </nav>
         {subItems && (
           <div className={classNames(

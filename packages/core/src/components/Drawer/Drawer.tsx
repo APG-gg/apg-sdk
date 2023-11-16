@@ -17,6 +17,7 @@ export interface DrawerProps {
   isOpen: boolean;
   disableClickOutsideToClose : boolean;
   onClose: () => void;
+  className?: string;
 }
 
 const Drawer: FC<DrawerProps> = ({
@@ -33,6 +34,7 @@ const Drawer: FC<DrawerProps> = ({
   isOpen,
   disableClickOutsideToClose = false,
   onClose,
+  className,
 }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -120,9 +122,9 @@ const Drawer: FC<DrawerProps> = ({
 
   const edgeClasses = edgeToEdge ? "inset-0 w-screen h-screen" : "";
 
-  const backdropOpacity = isOpen ? "bg-opacity-5 fixed backdrop-blur-sm" : "bg-opacity-0 hidden";
+  const backdropOpacity = isOpen ? "bg-opacity-5 absolute backdrop-blur-sm" : "bg-opacity-0 hidden";
   const backdropTransition = "duration-300 ease-in-out";
-  const backdropClasses = `inset-0 z-[70] bg-sky-600 ${backdropOpacity} ${backdropTransition}`;
+  const backdropClasses = `inset-0 z-[70] bg-sky-600 ${backdropOpacity} ${backdropTransition} ${className}`;
 
   return (
     <>
@@ -135,7 +137,7 @@ const Drawer: FC<DrawerProps> = ({
         className={backdropClasses}></div>
       <div
         className={classNames(
-          `fixed text-white z-[70] transition-all duration-300 bg-black-900 shadow-md ${transformClasses} ${sizeClasses} ${edgeClasses}`
+          `absolute text-white z-[70] transition-all duration-300 bg-black-900 shadow-md ${transformClasses} ${sizeClasses} ${edgeClasses} ${className}`
         )}
         style={{
           ...styleClassess,

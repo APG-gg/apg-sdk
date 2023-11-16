@@ -19,9 +19,16 @@ const Button: FC<ButtonProps> = ({ type = "primary", icon, rounded = true, iconS
   const iconClass = `text-${iconSize} flex`;
   const hasIconOnly = !children && icon;
 
+  const handleClick = (event: any) => {
+    event.stopPropagation();
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className={classNames(
         {
           "bg-transparent border border-blue-400 hover:bg-blue-100/10 text-blue-400 hover:text-aqua-100 hover:border-aqua-100 font-medium active:text-aqua-600 active:border-aqua-600": type === "outline" && !disabled,

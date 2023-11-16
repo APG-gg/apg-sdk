@@ -10,11 +10,7 @@ export interface DateInputProps extends Omit<InputProps, 'onChange' | 'onKeyDown
   onChange: (name: string, value: string) => void;
 }
 
-type InputRef = {
-  focus: () => void;
-};
-
-const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
+const DateInput: FC<DateInputProps> = forwardRef<HTMLInputElement, DateInputProps>(
   (
     {
       name,
@@ -115,14 +111,6 @@ const DateInput: FC<DateInputProps> = forwardRef<InputRef, DateInputProps>(
     const formattedDate = `${padValue(day)}/${padValue(month)}/${year}`;
     onChange(name, formattedDate);
   }, [day, month, year]);
-
-  const inputRef = useRef<InputRef>(null);
-  
-  useImperativeHandle(ref, () => ({
-    focus: () => {
-      inputRef.current?.focus();
-    },
-  }), [inputRef]);
 
   return (
     <div className={

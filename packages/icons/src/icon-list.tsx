@@ -5,12 +5,9 @@ import ArrowLeftIcon from "./ArrowLeftIcon";
 import ArrowRightIcon from "./ArrowRightIcon";
 import ArrowUpIcon from "./ArrowUpIcon";
 import CommentIcon from "./CommentIcon";
-import DiscordIcon from "./DiscordIcon";
 import DownloadIcon from "./DownloadIcon";
 import DragIcon from "./DragIcon";
 import ErrorIcon from "./ErrorIcon";
-import FacebookIcon from "./FacebookIcon";
-import GoogleIcon from "./GoogleIcon";
 import GridViewIcon from "./GridViewIcon";
 import HeartIcon from "./HeartIcon";
 import IconBaron from './IconBaron';
@@ -22,7 +19,6 @@ import IconDrakeOcean from "./IconDrakeOcean";
 import IconHamburger from "./IconHamburger";
 import IconHerald from "./IconHerald";
 import IconTurret from "./IconTurret";
-import InstagramIcon from "./InstagramIcon";
 import LinkIcon from "./LinkIcon";
 import LogoutIcon from "./LogoutIcon";
 import MenuIcon from "./MenuIcon";
@@ -36,10 +32,6 @@ import SearchIcon from "./SearchIcon";
 import SettingsIcon from "./SettingsIcon";
 import ShareIcon from "./ShareIcon";
 import SocialIcon from "./SocialIcon";
-import TelegramIcon from "./TelegramIcon";
-import TiktokIcon from "./TiktokIcon";
-import TwitchIcon from "./TwitchIcon";
-import TwitterIcon from "./TwitterIcon";
 import UploadIcon from "./UploadIcon";
 import VerifiedIcon from './VerifiedIcon';
 import ViewListIcon from "./ViewListIcon";
@@ -47,13 +39,6 @@ import VisibilityIcon from "./VisibilityIcon";
 import VisibilityOffIcon from "./VisibilityOffIcon";
 import XCircleIcon from "./XCircleIcon";
 import XIcon from "./XIcon";
-import ThreadsIcon from "./ThreadsIcon";
-import KickIcon from "./KickIcon";
-import SteamIcon from "./SteamIcon";
-import RiotIcon from "./RiotIcon";
-import XboxIcon from "./XboxIcon";
-import EpicIcon from "./EpicIcon";
-import GithubIcon from "./GithubIcon";
 import EditIcon from "./EditIcon";
 import StarFillIcon from "./StarFillIcon";
 import StarOutlineIcon from "./StarOutlineIcon";
@@ -70,7 +55,14 @@ import PinFillIcon from "./PinFillIcon";
 import PinOutlineIcon from "./PinOutlineIcon";
 import LockIcon from "./LockIcon";
 import LockOpenIcon from "./LockOpenIcon";
-import AbacusIcon from "./AbacusIcon";
+import HomeIcon from "./HomeIcon";
+import GroupIcon from "./GroupIcon";
+import JoytickIcon from "./JoytickIcon";
+import TouchpadMouseIcon from "./TouchpadMouseIcon";
+import StarsIcon from "./StarsIcon";
+import GalleryIcon from "./GalleryIcon";
+import TrophyIcon from "./TrophyIcon";
+import TicketIcon from "./TicketIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -141,69 +133,6 @@ const IconList: FC<IconProps> = ({ size, color }) => {
           <pre>{'<IconDrakeOcean />'}</pre> 
         </div>
       </IconWrapper>
-
-      <IconWrapper>
-        <DiscordIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<DiscordIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <TwitterIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<TwitterIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <GoogleIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<GoogleIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <TwitchIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<TwitchIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-
-      <IconWrapper>
-        <TiktokIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<TiktokIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <TelegramIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<TelegramIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <ThreadsIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<ThreadsIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <KickIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<KickIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <FacebookIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<FacebookIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <InstagramIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<InstagramIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-
       <IconWrapper>
         <ArrowLeftIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
@@ -406,36 +335,6 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         </div>
       </IconWrapper>
       <IconWrapper>
-        <RiotIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<RiotIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <SteamIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<SteamIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <XboxIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<XboxIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <EpicIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<EpicIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
-        <GithubIcon style={{ fontSize: size, color: color }} />
-        <div className="text-white text-xs">
-          <pre>{'<GithubIcon />'}</pre> 
-        </div>
-      </IconWrapper>
-      <IconWrapper>
         <StarFillIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<StarFillIcon />'}</pre> 
@@ -526,9 +425,51 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         </div>
       </IconWrapper>
       <IconWrapper>
-        <AbacusIcon style={{ fontSize: size, color: color }} />
+        <HomeIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
-          <pre>{'<AbacusIcon />'}</pre> 
+          <pre>{'<HomeIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <GroupIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<GroupIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <JoytickIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<JoytickIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TouchpadMouseIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TouchpadMouseIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <StarsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<StarsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <GalleryIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<GalleryIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TrophyIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TrophyIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TicketIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TicketIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

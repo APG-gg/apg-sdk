@@ -78,6 +78,14 @@ module.exports = {
   XIcon: path.resolve(SRC_DIR, "XIcon"),
   ZoomInIcon: path.resolve(SRC_DIR, "ZoomInIcon"),
   ZoomOutIcon: path.resolve(SRC_DIR, "ZoomOutIcon"),
+  HomeIcon: path.resolve(SRC_DIR, "HomeIcon"),
+  GroupIcon: path.resolve(SRC_DIR, "GroupIcon"),
+  JoytickIcon: path.resolve(SRC_DIR, "JoytickIcon"),
+  TouchpadMouseIcon: path.resolve(SRC_DIR, "TouchpadMouseIcon"),
+  StarsIcon: path.resolve(SRC_DIR, "StarsIcon"),
+  GalleryIcon: path.resolve(SRC_DIR, "GalleryIcon"),
+  TrophyIcon: path.resolve(SRC_DIR, "TrophyIcon"),
+  TicketIcon: path.resolve(SRC_DIR, "TicketIcon"),
   // Social icons
   DiscordIcon: path.resolve(SRC_DIR, "DiscordIcon"),
   FacebookIcon: path.resolve(SRC_DIR, "FacebookIcon"),
@@ -95,6 +103,8 @@ module.exports = {
   EpicIcon: path.resolve(SRC_DIR, "EpicIcon"),
   SteamIcon: path.resolve(SRC_DIR, "SteamIcon"),
   GithubIcon: path.resolve(SRC_DIR, "GithubIcon"),
+  PatreonIcon: path.resolve(SRC_DIR, "PatreonIcon"),
+  KoFiIcon: path.resolve(SRC_DIR, "KoFiIcon"),
   // Colored icons
   AbacusColorIcon: path.resolve(SRC_DIR, "AbacusColorIcon"),
   BarChartColorIcon: path.resolve(SRC_DIR, "BarChartColorIcon"),

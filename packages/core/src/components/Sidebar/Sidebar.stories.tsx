@@ -1,8 +1,8 @@
 import React from 'react';
 import Sidebar, { SidebarProps } from './Sidebar';
 import { Story } from "@storybook/react"
-import TwitchIcon from '@apg.gg/icons/lib/TwitchIcon';
 import ApgIcon from '@apg.gg/icons/lib/ApgIcon';
+import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 
 export default {
   title: "Organisms/Sidebar",
@@ -13,66 +13,87 @@ const menuItems = [
   {
     key: "home",
     name: "Home",
-    bgColor: "blue",
-    href: "/#home"
+    icon: "home",
+    iconHoverColor: "blue-300",
+    bgColor: "black-600",
+    activeBgColor: "blue",
+    href: "/home"
   },
   {
-    key: "gamers", 
-    name: "For Gamers",
-    icon: <TwitchIcon />,
-    bgColor: "aqua",
-    href: "/#gamers"
+    key: "search", 
+    name: "Search",
+    icon: "search",
+    iconHoverColor: "aqua-100",
+    bgColor: "black-600",
+    activeBgColor: "aqua",
+    onClick: () => console.log("search")
   },
   {
-    key: "streamers", 
-    name: "For Streamers",
-    bgColor: "green",
-    href: "/#streamers"
-  },
-  {
-    key: "cosplayers", 
-    name: "For Cosplayers",
-    bgColor: "yellow",
-    href: "/#cosplayers"
-  },
-  {
-    key: "you", 
-    name: "For You",
-    bgColor: "fucsia",
-    href: "/#you"
-  },
-  {
-    key: "join", 
-    name: "Join us",
-    bgColor: "red",
-    href: "/#join"
-  },
+    key: "group", 
+    name: "Community",
+    icon: "group",
+    iconHoverColor: "green",
+    bgColor: "black-600",
+    activeBgColor: "green",
+    href: "/community"
+  }
 ];
 
 const menuItemsExtend = [
   {
-    key: "feeds",
-    name: "Feeds",
-    bgColor: "blue",
-    href: "#"
+    key: "viewprofile",
+    name: "MegFerrari",
+    icon: (
+      <div className="hover:border-blue hover:border-2 rounded-full overflow-hidden">
+        <img src='https://storage.apg.gg/b4d99ba5b710a6612b360dbbca6e52379c688f73ff4acabeeeb43970a4471820.jpg' className="rounded-full" />
+      </div>
+    ),
+    iconHoverColor: "blue-300",
+    bgColor: "black-600",
+    activeBgColor: "blue",
+    onClick: () => console.log("viewprofile")
   },
   {
-    key: "gamers", 
-    name: "Gamers",
-    bgColor: "aqua",
-    href: "#"
+    key: "home",
+    name: "Home",
+    icon: "home",
+    iconHoverColor: "blue-300",
+    bgColor: "black-600",
+    activeBgColor: "blue",
+    href: "/home"
   },
   {
-    key: "streamers", 
-    name: "Streamers",
-    bgColor: "green",
-    href: "#"
+    key: "search", 
+    name: "Search",
+    icon: (
+      <div className="rounded-full relative w-10 h-10">
+        <img 
+          src="https://storage.apg.gg/b4d99ba5b710a6612b360dbbca6e52379c688f73ff4acabeeeb43970a4471820.jpg" 
+          className="rounded-full" 
+          alt={'APG Profile'}
+          width={40}
+          height={40}
+        />
+
+        <XCircleIcon 
+          className="absolute -top-1 -right-1 text-sm"
+          color="white"
+        />
+      </div>
+    ),
+    iconHoverColor: "aqua-100",
+    bgColor: "black-600",
+    activeBgColor: "aqua",
+    onClick: () => console.log("search")
   },
   {
-    key: "cosplayers", 
-    name: "Cosplayers",
-    bgColor: "yellow",
-    href: "#"
+    key: "group", 
+    name: "Community",
+    icon: "group",
+    iconHoverColor: "green",
+    bgColor: "black-600",
+    activeBgColor: "green",
+    href: "/community"
   }
 ];
 
@@ -179,6 +200,28 @@ export const Basic = Template.bind({});
 Basic.args = {
   logo: <ApgIcon className="text-4xl" />,
   menuItems,
+  recentPages: [
+    {
+      key: "search", 
+      name: "Search",
+      icon: (
+        <div className="rounded-full relative w-10 h-10">
+          <img 
+            src="https://storage.apg.gg/b4d99ba5b710a6612b360dbbca6e52379c688f73ff4acabeeeb43970a4471820.jpg" 
+            className="rounded-full" 
+            alt={'APG Profile'}
+            width={40}
+            height={40}
+          />
+
+          <XCircleIcon 
+            className="absolute -top-1 -right-1 text-sm"
+            color="white"
+          />
+        </div>
+      )
+    }
+  ],
   children: <div>
     <section id="home" className="container bg-black-800 p-10" style={{ height: "1000px" }}>Main content</section>
     <section id="gamers" className="container bg-blue-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>

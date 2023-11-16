@@ -19,8 +19,8 @@ const Tag: FC<TagProps> = ({ type = 'blue', icon, iconPosition = "left", link, c
   const typeStyles = typeMap[type] || {};
   const textColor = typeStyles.textColor;
   const borderColor = typeStyles.borderColor;
-  const hoverBgColor = typeStyles.hoverBgColor;
-  const activeBgColor = typeStyles.activeBgColor;
+  const hoverBgColor = typeStyles.hoverBgColor14;
+  const activeBgColor = typeStyles.activeBgColor08;
 
   const LinkComponent = linkComponent || "a";
 
