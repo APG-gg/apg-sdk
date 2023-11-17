@@ -1,6 +1,4 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
@@ -38,7 +36,7 @@ module.exports = {
     immer: 'immer'
   }],
   optimization: {
-    minimizer: false,
+    minimize: true,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -46,7 +44,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin({
-      patterns: [{ from: path.resolve(__dirname, 'src/styles'), to: path.resolve(__dirname, `${outputFolder}/styles`) }],
+      patterns: [{ from: 'src/styles', to: `${outputFolder}/styles` }],
     }),
   ],
   output: {

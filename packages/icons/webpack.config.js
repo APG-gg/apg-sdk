@@ -1,6 +1,4 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const svgToMiniDataURI = require('mini-svg-data-uri');
@@ -16,11 +14,12 @@ module.exports = {
   entry,
   devtool: 'source-map',
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.(j|t)sx?$/,
         use: [{
           loader: 'babel-loader',
-        }, ],
+        }],
         exclude: /node_modules/,
         include: __dirname,
       },
@@ -31,8 +30,8 @@ module.exports = {
           options: {
             generator: (content) => svgToMiniDataURI(content.toString()),
           },
-        }, ],
-      },
+        }],
+      }
     ],
   },
   externals: [{
@@ -41,22 +40,7 @@ module.exports = {
     immer: 'immer',
   }],
   optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        terserOptions: {
-          output: {
-            beautify: false,
-          },
-          compress: {
-            passes: 3,
-            drop_console: true,
-          },
-        },
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
+    minimize: true,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -64,7 +48,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin({
-      patterns: [{ from: path.resolve(__dirname, 'src/styles'), to: path.resolve(__dirname, `${outputFolder}/styles`) }],
+      patterns: [{ from: 'src/styles', to: `${outputFolder}/styles` }],
     }),
   ],
   output: {
