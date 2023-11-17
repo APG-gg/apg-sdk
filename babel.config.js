@@ -12,4 +12,10 @@ module.exports = {
       },
     ],
   ],
+  overrides: [
+    {
+      "test": "./node_modules/tailwind-merge",
+      "presets": []
+    }
+  ]
 };

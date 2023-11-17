@@ -18,11 +18,17 @@ module.exports = {
     rules: [
       {
         test: /\.(j|t)sx?$/,
-        use: [{
-          loader: 'babel-loader',
-        }, ],
         exclude: /node_modules/,
-        include: __dirname,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+        test: /tailwind-merge\/dist\/bundle-cjs\.js$/,
+        use: 'babel-loader',
       }
     ],
   },
@@ -32,22 +38,7 @@ module.exports = {
     immer: 'immer'
   }],
   optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        terserOptions: {
-          output: {
-            beautify: false,
-          },
-          compress: {
-            passes: 3,
-            drop_console: true,
-          },
-        },
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
+    minimizer: false,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

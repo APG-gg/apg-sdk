@@ -18,6 +18,7 @@ export interface DrawerProps {
   disableClickOutsideToClose : boolean;
   onClose: () => void;
   className?: string;
+  classNameContent?: string;
 }
 
 const Drawer: FC<DrawerProps> = ({
@@ -35,6 +36,7 @@ const Drawer: FC<DrawerProps> = ({
   disableClickOutsideToClose = false,
   onClose,
   className,
+  classNameContent
 }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -157,7 +159,10 @@ const Drawer: FC<DrawerProps> = ({
             )}
           </div>
         ) : null}
-        <div className="p-4 flex-grow">{content}</div>
+        <div className={classNames(
+          "p-4 flex-grow",
+          classNameContent
+        )}>{content}</div>
         {footer && <div className="px-4 py-3 border-t border-black-800">{footer}</div>}
       </div>
     </>

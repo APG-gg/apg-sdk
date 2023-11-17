@@ -24,6 +24,7 @@ module.exports = {
   slugify: path.join(UTILS_DIR, "slugify"),
   titleCase: path.join(UTILS_DIR, "titleCase"),
   colorTypeMap: path.join(UTILS_DIR, "colorTypeMap"),
+  cn: path.join(UTILS_DIR, "cn"),
   
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),
