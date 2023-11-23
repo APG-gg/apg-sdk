@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.12.9",
+  "version": "1.14.0",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -14,12 +14,13 @@
     "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/index.css --watch"
   },
   "dependencies": {
-    "@apg.gg/icons": "^1.16.1",
+    "@apg.gg/icons": "^1.18.0",
     "@splidejs/react-splide": "^0.7.12",
     "@types/react-beautiful-dnd": "^13.1.4",
     "clsx": "^2.0.0",
     "html2canvas": "^1.4.1",
     "next-translate": "^2.6.0",
+    "rc-util": "^5.38.1",
     "react-avatar-editor": "^13.0.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dropzone": "^14.2.3",

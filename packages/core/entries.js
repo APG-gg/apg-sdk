@@ -24,7 +24,6 @@ module.exports = {
   slugify: path.join(UTILS_DIR, "slugify"),
   titleCase: path.join(UTILS_DIR, "titleCase"),
   colorTypeMap: path.join(UTILS_DIR, "colorTypeMap"),
-  cn: path.join(UTILS_DIR, "cn"),
   
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),
@@ -43,6 +42,7 @@ module.exports = {
   // Components
   Button: path.join(COMPONENT_DIR, "Button"),
   Card: path.join(COMPONENT_DIR, "Card"),
+  CardBase: path.join(COMPONENT_DIR, "CardBase"),
   CardDescription: path.join(COMPONENT_DIR, "CardDescription"),
   CardHeader: path.join(COMPONENT_DIR, "CardHeader"),
   CardLandscape: path.join(COMPONENT_DIR, "CardLandscape"),
@@ -66,6 +66,7 @@ module.exports = {
   RadioButton: path.join(COMPONENT_DIR, "RadioButton"),
   Select: path.join(COMPONENT_DIR, "Select"),
   Sidebar: path.join(COMPONENT_DIR, "Sidebar"),
+  SidebarItem: path.join(COMPONENT_DIR, "SidebarItem"),
   Steps: path.join(COMPONENT_DIR, "Steps"),
   StrictModeDroppable: path.join(COMPONENT_DIR, "StrictModeDroppable"),
   SubMenuItem: path.join(COMPONENT_DIR, "SubMenuItem"),

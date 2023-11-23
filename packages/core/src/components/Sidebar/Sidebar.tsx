@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactNode, FC } from "react";
-import SidebarItem from './SidebarItem';
+import SidebarItem from '../SidebarItem';
 import useWindowSize from '../../hooks/useWindowSize/useWindowSize';
 import Input from '../Input/Input';
 import MenuIcon from "@apg.gg/icons/lib/MenuIcon";
@@ -7,10 +7,7 @@ import MenuOpenIcon from '@apg.gg/icons/lib/MenuOpenIcon';
 import SidebarSubItem from "./SidebarSubItem";
 import classNames from "classnames";
 import renderIcon from "../../utils/renderIcon";
-import Button from "../Button";
 import { TypeMapKey } from "../../utils/colorTypeMap";
-import { createPortal } from "react-dom";
-import Drawer from "../Drawer";
 
 export interface ItemProps {
   key: string;
@@ -35,7 +32,6 @@ export interface SidebarProps {
   menuItems: ItemProps[];
   recentPages?: ItemProps[];
   activeItem: string;
-  onLogout: () => void;
   subItems?: SubItemProps[];
   activeSubItem?: string;
   defaultWidth?: string;
@@ -44,6 +40,7 @@ export interface SidebarProps {
   children: ReactNode;
   searchText?: string;
   actions?: ReactNode;
+  actionsMobile?: ReactNode;
   isOpen?: boolean;
   onToggle?: () => void;
   onToggleDrawer?: (key: string) => void;
@@ -64,11 +61,11 @@ const Sidebar: FC<SidebarProps> = ({
   tabletCollapsedWidth = "46px",
   children,
   searchText = "Search", 
-  actions,  
+  actions,
+  actionsMobile,  
   isOpen = false,
   onToggle,
   onToggleDrawer,
-  onLogout,
   linkLogo,
   linkComponent,
   showHeadline = true
@@ -166,15 +163,11 @@ const Sidebar: FC<SidebarProps> = ({
               </>
             ) : null}
           </div>
-          <div className="flex px-2 justify-center mt-auto mb-6">
-            <Button 
-              className="w-10 h-10" 
-              type="outline" 
-              onClick={onLogout}
-              icon="logout"
-            >
-            </Button>
-          </div>
+          {actions ? (
+            <div className="flex flex-col gap-2 px-2 justify-center mt-auto mb-6 ">
+              {actions}
+            </div>
+          ) : null}
         </nav>
         {subItems && (
           <div className={classNames(
@@ -248,9 +241,9 @@ const Sidebar: FC<SidebarProps> = ({
                 </div>
               )}
             </div>
-            {actions ? (
+            {actionsMobile ? (
               <div className="w-full mt-auto">
-                {actions}
+                {actionsMobile}
               </div>
             ) : null }
           </div>

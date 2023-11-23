@@ -12,6 +12,7 @@ export default {
     unCheckedChildren: { control: 'text' },
     disabled: { control: 'boolean' },
     checked: { control: 'boolean' },
+    defaultChecked: { control: 'boolean' },
   },
 } as Meta;
 
@@ -19,14 +20,13 @@ const Template: React.VFC<SwitchProps> = (args) => <Switch {...args} onClick={(e
 
 export const Default = Template.bind({});
 Default.args = {
-  checkedChildren: <PlusIcon className="text-blue text-2xl" />,
-  unCheckedChildren: <XIcon className="text-black-800 text-2xl" />,
+  checkedChildren: <PlusIcon className="text-blue text-lg" />,
+  unCheckedChildren: <XIcon className="text-black-800 text-lg" />,
+  defaultChecked: true,
 };
 
 export const Checked = Template.bind({});
 Checked.args = {
-  checkedChildren: 'On',
-  unCheckedChildren: 'Off',
   checked: true,
 };
 

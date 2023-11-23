@@ -25,6 +25,7 @@ const MenuItem: FC<MenuItemProps> = ({
   const { isLtLg, isLg, isXl } = useWindowSize();
   const icon = renderIcon(item.icon) || item.key.charAt(0).toUpperCase()
 
+  const bgColor = typeMap[item.bgColor as TypeMapKey] || {};
   const activeBgColor = typeMap[item.activeBgColor as TypeMapKey] || {};
   const iconHoverColor = typeMap[item.iconHoverColor as TypeMapKey] || {};
   const LinkComponent = item.linkComponent || "a";
@@ -48,7 +49,7 @@ const MenuItem: FC<MenuItemProps> = ({
               "w-[30px] h-[30px]": isSubitem || isLtLg,
               "!text-black": isActive
             },
-            isActive ? activeBgColor.bgColor : 'bg-black-600',
+            isActive ? activeBgColor.bgColor : bgColor.bgColor || "bg-black-600",
             iconHoverColor.hoverTextColor
           )}
         >

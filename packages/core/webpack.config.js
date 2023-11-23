@@ -38,7 +38,22 @@ module.exports = {
     immer: 'immer'
   }],
   optimization: {
-    minimizer: false,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        terserOptions: {
+          output: {
+            beautify: false,
+          },
+          compress: {
+            passes: 3,
+            drop_console: true,
+          },
+        },
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

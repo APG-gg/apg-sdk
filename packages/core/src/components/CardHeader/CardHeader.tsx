@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { CardProps, CardSocialProps } from '../Card/CardBase';
+import { CardProps, CardSocialProps } from '../CardBase/CardBase';
 import renderIcon from "../../utils/renderIcon";
 import getRelativeTime from "../../utils/getRelativeTime";
 import VerifiedColorIcon from '@apg.gg/icons/lib/VerifiedColorIcon';

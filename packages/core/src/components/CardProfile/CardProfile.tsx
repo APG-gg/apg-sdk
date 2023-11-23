@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import CardBase, { CardProps, CardTagProps } from '../Card/CardBase';
+import CardBase, { CardProps, CardTagProps } from '../CardBase/CardBase';
 import Tag from '../Tag';
 import TranslationObject from '../../domain/translationObject.interface';
-import CardHeader from '../CardHeader';
 import CardDescription from '../CardDescription';
 import Tooltip from '../Tooltip';
 import VerifiedColorIcon from '@apg.gg/icons/lib/VerifiedColorIcon';

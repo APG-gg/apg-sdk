@@ -172,9 +172,10 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
           className={
             classNames(
               `flex flex-col cursor-pointer overflow-hidden items-center justify-center ${bgClass}`,
-              shape === 'square' && "rounded-xl",
-              shape === 'banner' && "rounded-none",
-              shape === 'circle' && "rounded-full"
+              {
+                "rounded-xl": shape === 'square' || shape === 'banner',
+                "rounded-full": shape === 'circle'
+              }
             )
           } 
           onClick={handleIconClick}

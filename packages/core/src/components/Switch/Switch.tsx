@@ -48,7 +48,9 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     ref,
   ) => {
     const [innerChecked, setInnerChecked] = useState<boolean>(defaultChecked || false);
-    const toggleClass = " transform translate-x-6";
+    const toggleClass = " transform translate-x-4";
+
+    console.log('innerChecked', innerChecked);
 
     function triggerChange(
       newChecked: boolean,
@@ -71,11 +73,12 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
 
     function onInternalClick(e: React.MouseEvent<HTMLButtonElement>) {
       const ret = !innerChecked;
+      console.log(ret);
       triggerChange(ret, e);
       onClick?.(ret, e);
     }
 
-    const switchClassName = classNames("rounded-full w-14 h-8 px-1", prefixCls, className, {
+    const switchClassName = classNames("rounded-full w-10 h-6 px-1 group", prefixCls, className, {
       [`${prefixCls}-checked`]: innerChecked,
       [`${prefixCls}-disabled`]: disabled,
       'cursor-not-allowed': disabled,
@@ -96,12 +99,18 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
         onClick={onInternalClick}
       >
         <div
+          id="switch-inner"
           className={classNames(
-            "h-6 w-6 rounded-full shadow-md transform duration-300 ease-in-out flex items-center justify-center",
-            innerChecked ? `${toggleClass} bg-black` : "bg-white-200",
+            "h-4 w-4 rounded-full shadow-md transform duration-300 ease-in-out flex items-center justify-center",
+            "group-hover:scale-110",
+            innerChecked ? `${toggleClass} bg-white-200` : "bg-white-200"
           )}
         >
-          {innerChecked ? checkedChildren : unCheckedChildren}
+          {innerChecked ? (
+            <span className={`${prefixCls}-inner-checked`}>{checkedChildren}</span>
+          ) : (
+            <span className={`${prefixCls}-inner-unchecked`}>{unCheckedChildren}</span>
+          )}
         </div>
       </button>
     );

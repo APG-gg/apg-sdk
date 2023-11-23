@@ -7,10 +7,14 @@ export const socialMediaUrls = {
   kick: 'https://www.kick.com/',
   threads: 'https://www.threads.com/',
   discord: '',
+  website: '',
+  mail: 'mailto:',
+  epic: '',
+  riot: '',
 };
 
 const generateSocialMediaLink = (socialMedia: string, link: string): string => {
-  if (socialMedia === 'discord') {
+  if (socialMedia === 'discord' || socialMedia === 'website' || socialMedia === 'epic' || socialMedia === 'riot') {
     // Para Discord, simplemente copiamos el valor del usuario
     return link;
   } else {

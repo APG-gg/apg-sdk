@@ -17,6 +17,10 @@ import TiktokIcon from "./TiktokIcon";
 import TwitchIcon from "./TwitchIcon";
 import TwitterIcon from "./TwitterIcon";
 import XboxIcon from "./XboxIcon";
+import HoyolabIcon from "./HoyolabIcon";
+import PaypalIcon from "./PaypalIcon";
+import CafecitoIcon from "./CafecitoIcon";
+import AmazonIcon from "./AmazonIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -147,6 +151,30 @@ const IconSocialsList: FC<IconProps> = ({ size, color }) => {
         <KoFiIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<KoFiIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <HoyolabIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<HoyolabIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <PaypalIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<PaypalIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CafecitoIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CafecitoIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <AmazonIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<AmazonIcon />'}</pre> 
         </div>
       </IconWrapper>
       

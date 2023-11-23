@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import CardBase, { CardProps, CardTagProps } from '../Card/CardBase';
+import CardBase, { CardProps, CardTagProps } from '../CardBase/CardBase';
 import CardDescription from '../CardDescription/CardDescription';
 import CardHeader from '../CardHeader/CardHeader';
 import Tag from '../Tag';

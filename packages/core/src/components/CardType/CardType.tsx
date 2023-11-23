@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import CardBase, { CardProps } from '../Card/CardBase';
+import CardBase, { CardProps } from '../CardBase/CardBase';
 import OpenLinkIcon from '@apg.gg/icons/lib/OpenLinkIcon';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';

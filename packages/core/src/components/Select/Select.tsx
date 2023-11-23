@@ -35,6 +35,7 @@ export interface SelectProps {
   onBlur?: (value: string | string[]) => void;
   onSelect?: (value: string | string[]) => void;
   onSearch?: (searchQuery: string) => Promise<SelectOption[]>;
+  onClear?: () => void;
   errorText?: FieldError | undefined;
   className?: string;
   style?: React.CSSProperties;
@@ -63,6 +64,7 @@ const Select: FC<SelectProps> = ({
   onBlur = () => { },
   onSelect = () => { },
   onSearch = async () => [],
+  onClear = () => { },
   errorText,
   className = '',
   style = {},
@@ -157,6 +159,7 @@ const Select: FC<SelectProps> = ({
     setInternalMultipleValue([]);
     setFilteredOptions(options);
     setIsFocused(false);
+    onClear();
   };
 
   const handleSelect = (selectedValue: SelectOption) => {
