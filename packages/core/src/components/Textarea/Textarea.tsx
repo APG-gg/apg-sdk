@@ -1,15 +1,11 @@
-import React, { FC, forwardRef, useState, useEffect, ReactNode, useRef, useMemo, useCallback } from 'react';
+import React, { FC, forwardRef, useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import cls from 'classnames';
-import Mentions from 'rc-mentions';
-import { OptionProps } from 'rc-mentions/lib/Option';
-import Highlighter from "react-highlight-words";
 import { ContentState, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import createMentionPlugin, { MentionData, MentionPluginTheme } from '@draft-js-plugins/mention';
 import createLinkifyPlugin from '@draft-js-plugins/linkify';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
-import { ItalicButton, BoldButton, UnderlineButton } from '@draft-js-plugins/buttons';
 
 export interface EntryComponentProps {
   className?: string;
@@ -27,9 +23,10 @@ export interface EntryComponentProps {
 
 const mentionTheme = {
   mention: "text-aqua z-10 bg-trasnparent relative font-normal no-underline",
+  mentionSuggestions: "absolute z-[1] bg-black rounded-sm border border-black p-1 -translate-x-2/4 absolute border shadow-[0px_1px_3px_0px_#000] z-[2] scale-0 left-2/4 max-h-[400px] overflow-y-auto",
   mentionSuggestionsEntry: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] pt-2 pb-1 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center",
   mentionSuggestionsEntryFocused: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] pt-2 pb-1 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center bg-aqua/10",
-  mentionSuggestionsEntryAvatar: "w-10 h-10 rounded-full block"
+  mentionSuggestionsEntryAvatar: "w-10 h-10 rounded-full block",
 }
 
 const Entry = (props: EntryComponentProps, renderItem: (item: any) => JSX.Element) => {
@@ -132,13 +129,16 @@ const Textarea: FC<TextareaProps> = forwardRef<HTMLTextAreaElement, TextareaProp
         rawValue ? convertFromRaw(rawValue) : ContentState.createFromText('')
       ) as EditorState
     );
-    const [openMentions, setOpenMentions] = useState(false);
-    const [openEvents, setOpenEvents] = useState(false);
-    const [openGames, setOpenGames] = useState(false);
+    const [open, setOpen] = useState({
+      mentions: false,
+      events: false,
+      games: false,
+      hashtags: false,
+    });
 
     const [suggestions, setSuggestions] = useState(data);
 
-    const { MentionSuggestions, MentionEventSuggestions, MentionGameSuggestions, InlineToolbar, plugins } = useMemo(() => {
+    const { MentionSuggestions, MentionEventSuggestions, MentionGameSuggestions, MentionHashtagSuggestions, InlineToolbar, plugins } = useMemo(() => {
       const mentionPlugin = createMentionPlugin({
         entityMutability: 'IMMUTABLE',
         supportWhitespace: true,
@@ -201,33 +201,18 @@ const Textarea: FC<TextareaProps> = forwardRef<HTMLTextAreaElement, TextareaProp
       const { MentionSuggestions } = mentionPlugin;
       const { MentionSuggestions: MentionEventSuggestions } = mentionEventPlugin;
       const { MentionSuggestions: MentionGameSuggestions } = mentionGamePlugin;
+      const { MentionSuggestions: MentionHashtagSuggestions } = mentionHahtagPlugin;
       const { InlineToolbar } = inlineToolbarPlugin;
       // eslint-disable-next-line no-shadow
-      const plugins = [mentionPlugin, mentionEventPlugin, mentionGamePlugin, linkifyPlugin, inlineToolbarPlugin];
-      return { plugins, MentionSuggestions, MentionEventSuggestions, MentionGameSuggestions, InlineToolbar };
+      const plugins = [mentionPlugin, mentionEventPlugin, mentionGamePlugin, mentionHahtagPlugin, linkifyPlugin, inlineToolbarPlugin];
+      return { plugins, MentionSuggestions, MentionEventSuggestions, MentionGameSuggestions, MentionHashtagSuggestions, InlineToolbar };
     }, []);
 
-    const onOpenChangeMentions = useCallback((_open: boolean) => {
-      setOpenMentions(_open);
+    const onOpenChange = useCallback((type: string, _open: boolean) => {
+      setOpen(prevState => ({ ...prevState, [type]: _open }));
     }, []);
 
-    const onOpenChangeEvents = useCallback((_open: boolean) => {
-      setOpenEvents(_open);
-    }, []);
-
-    const onOpenChangeGames = useCallback((_open: boolean) => {
-      setOpenGames(_open);
-    }, []);
-
-    const onSearchChangeMentions = useCallback(({ trigger, value }: { trigger: string; value: string }) => {
-      onSearch && onSearch(value, trigger);
-    }, []);
-
-    const onSearchChangeEvents = useCallback(({ trigger, value }: { trigger: string; value: string }) => {
-      onSearch && onSearch(value, trigger);
-    }, []);
-
-    const onSearchChangeGames = useCallback(({ trigger, value }: { trigger: string; value: string }) => {
+    const onSearchChange = useCallback(({ trigger, value }: { trigger: string; value: string }) => {
       onSearch && onSearch(value, trigger);
     }, []);
 
@@ -285,66 +270,36 @@ const Textarea: FC<TextareaProps> = forwardRef<HTMLTextAreaElement, TextareaProp
             ref={reference}
           />
           <MentionSuggestions
-            open={openMentions}
-            onOpenChange={onOpenChangeMentions}
+            open={open.mentions}
+            onOpenChange={(_open: boolean) => onOpenChange('mentions', _open)}
             suggestions={suggestions}
-            onSearchChange={onSearchChangeMentions}
+            onSearchChange={onSearchChange}
             entryComponent={(props) => Entry(props, renderItem)}
           />
           <MentionEventSuggestions
-            open={openEvents}
-            onOpenChange={onOpenChangeEvents}
+            open={open.events}
+            onOpenChange={(_open: boolean) => onOpenChange('events', _open)}
             suggestions={suggestions}
-            onSearchChange={onSearchChangeEvents}
+            onSearchChange={onSearchChange}
             entryComponent={(props) => Entry(props, renderItem)}
           />
           <MentionGameSuggestions
-            open={openGames}
-            onOpenChange={onOpenChangeGames}
+            open={open.games}
+            onOpenChange={(_open: boolean) => onOpenChange('games', _open)}
             suggestions={suggestions}
-            onSearchChange={onSearchChangeGames}
+            onSearchChange={onSearchChange}
             entryComponent={(props) => Entry(props, renderItem)}
           />
+          {/* <MentionHashtagSuggestions
+            open={open.hashtags}
+            onOpenChange={(_open: boolean) => onOpenChange('hashtags', _open)}
+            suggestions={suggestions}
+            onSearchChange={onSearchChange}
+            entryComponent={(props) => Entry(props, renderItem)}
+          /> */}
           <InlineToolbar />
         </div>
 
-        {/* <Mentions
-          prefix={prefix}
-          prefixCls='apg-mentions'
-          onChange={handleChange}
-          onSearch={handleSearch}
-          onSelect={(option: OptionProps, prefix: string) => {
-            setMentions((prev) => [
-              ...prev, 
-              { 
-                prefix, 
-                slug: option.key || '',
-                value: option.value || ''
-              }
-            ]);
-          }}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          style={{ width: '100%' }}
-          autoFocus
-          options={options}
-          autoSize={{ minRows: 2, maxRows: 10 }}
-          className={cls(
-            `${prefixCls}-wrapper`,
-            classNames?.wrapper,
-            `flex relative min-h-[6rem] z-10 ${borderColor} border bg-black px-4 py-2 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`,
-            rounded ? "rounded-2xl" : "rounded-sm",
-          )}
-        /> */}
-
-        {/* <Highlighter
-          searchWords={mentions.map((mention) => `${mention.prefix}${mention.value}`)}
-          autoEscape={true}
-          textToHighlight={value}
-          className="w-full h-[120%] bg-transparent text-white resize-none outline-none inset-0 absolute px-4 py-2 whitespace-pre-line max-h-[240px] overflow-hidden"
-          highlightTag={Highlight}
-          style={{ whiteSpace: "pre-wrap" }}
-        /> */}
         {error && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
         <div className="flex items-center justify-between mt-2">
           {supportText && <p className={`text-xs font-semibold ${error ? 'text-red-600' : 'text-black-400'} ml-4`}>{supportText}</p>}

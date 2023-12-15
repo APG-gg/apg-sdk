@@ -94,7 +94,6 @@ const Template: ComponentStory<typeof Textarea> = (args: TextareaProps) => {
         onChange={(contentAsRaw) => {
           console.log(contentAsRaw)
         }}
-        value="Hola @Panda @ddumst @MegFerrari podrían por favor colocar mi evento como oficial? *Argentina Game Show"
         rawValue={{
           "blocks": [
             {
@@ -102,7 +101,28 @@ const Template: ComponentStory<typeof Textarea> = (args: TextareaProps) => {
               "text": "Hola @Panda @ddumst @MegFerrari podrían por favor colocar mi evento como oficial? *Argentina Game Show ",
               "type": "unstyled",
               "depth": 0,
-              "inlineStyleRanges": [],
+              "inlineStyleRanges": [
+                {
+                  "offset": 32,
+                  "length": 7,
+                  "style": "ITALIC"
+                },
+                {
+                  "offset": 44,
+                  "length": 5,
+                  "style": "UNDERLINE"
+                },
+                {
+                  "offset": 58,
+                  "length": 9,
+                  "style": "CODE"
+                },
+                {
+                  "offset": 68,
+                  "length": 4,
+                  "style": "BOLD"
+                }
+              ],
               "entityRanges": [
                 {
                   "offset": 5,
@@ -123,6 +143,48 @@ const Template: ComponentStory<typeof Textarea> = (args: TextareaProps) => {
                   "offset": 82,
                   "length": 20,
                   "key": 3
+                }
+              ],
+              "data": {}
+            },
+            {
+              "key": "2rtoq",
+              "text": "",
+              "type": "unstyled",
+              "depth": 0,
+              "inlineStyleRanges": [],
+              "entityRanges": [],
+              "data": {}
+            },
+            {
+              "key": "4i98l",
+              "text": "Link a mi pagina web: www.google.com ",
+              "type": "unstyled",
+              "depth": 0,
+              "inlineStyleRanges": [],
+              "entityRanges": [],
+              "data": {}
+            },
+            {
+              "key": "620g9",
+              "text": "",
+              "type": "unstyled",
+              "depth": 0,
+              "inlineStyleRanges": [],
+              "entityRanges": [],
+              "data": {}
+            },
+            {
+              "key": "3vouf",
+              "text": "Este es el link a un video favorito &Genshin Impact ",
+              "type": "unstyled",
+              "depth": 0,
+              "inlineStyleRanges": [],
+              "entityRanges": [
+                {
+                  "offset": 36,
+                  "length": 15,
+                  "key": 4
                 }
               ],
               "data": {}
@@ -183,6 +245,19 @@ const Template: ComponentStory<typeof Textarea> = (args: TextareaProps) => {
                   "name": "Argentina Game Show",
                   "username": "Panda",
                   "key": "Argentina Game Show-undefined"
+                }
+              }
+            },
+            "4": {
+              "type": "&mention",
+              "mutability": "IMMUTABLE",
+              "data": {
+                "mention": {
+                  "avatar": "https://statics.apg.gg/games/genshin-impact/thumbnail.png",
+                  "name": "Genshin Impact",
+                  "username": "genshin-impact",
+                  "slug": "genshin-impact",
+                  "key": "27-genshin-impact"
                 }
               }
             }
