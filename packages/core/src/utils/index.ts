@@ -1,7 +1,7 @@
-import isNumeric from './isNumeric';
-import getComponentByName from './mapping';
-import move from './move';
-import renderIcon from './renderIcon';
-import getRelativeTime from './getRelativeTime';
+import { ES, EN, PT } from './locales';
 
-export { isNumeric, getComponentByName, move, renderIcon, getRelativeTime };
+export const locales = {
+  es: ES,
+  en: EN,
+  pt: PT,
+};

@@ -24,6 +24,8 @@ module.exports = {
   slugify: path.join(UTILS_DIR, "slugify"),
   titleCase: path.join(UTILS_DIR, "titleCase"),
   colorTypeMap: path.join(UTILS_DIR, "colorTypeMap"),
+  locales: path.join(UTILS_DIR, "locales"),
+  convertToHrefObject: path.join(UTILS_DIR, "convertToHrefObject"),
   
   // Interfaces
   DispatchObject: path.join(DOMAIN_DIR, "dispatchObject"),
@@ -52,6 +54,7 @@ module.exports = {
   ChildButton: path.join(COMPONENT_DIR, "FloatingMenu/ChildButton"),
   ChildContent: path.join(COMPONENT_DIR, "FloatingMenu/ChildContent"),
   DateInput: path.join(COMPONENT_DIR, "DateInput"),
+  DatePicker: path.join(COMPONENT_DIR, "DatePicker"),
   Drawer: path.join(COMPONENT_DIR, "Drawer"),
   Dropdown: path.join(COMPONENT_DIR, "Dropdown"),
   FloatingMenu: path.join(COMPONENT_DIR, "FloatingMenu"),

@@ -1,21 +1,20 @@
 import React, { FC } from 'react';
-import CardBase, { CardProps, CardTagProps } from '../CardBase/CardBase';
-import Tag from '../Tag';
+import CardBase, { CardProps } from '../CardBase/CardBase';
 import TranslationObject from '../../domain/translationObject.interface';
 import CardDescription from '../CardDescription';
 import Tooltip from '../Tooltip';
 import VerifiedColorIcon from '@apg.gg/icons/lib/VerifiedColorIcon';
 import BetaColorIcon from '@apg.gg/icons/lib/BetaColorIcon';
-import Button from '../Button';
 
-export interface CardProfileProps extends Omit<CardProps, "description"> {
-  onAction: () => void;
+export interface CardProfileProps extends Omit<CardProps, "description" | "tags"> {
   className?: string;
   classNameWrapper?: string;
   profileType?: string;
   type?: string;
   linkComponent?: React.ComponentType<any>
   link?: string;
+  actions?: React.ReactNode;
+  tags?: React.ReactNode;
 }
 
 const CardProfile: FC<CardProfileProps & TranslationObject> = ({
@@ -26,18 +25,16 @@ const CardProfile: FC<CardProfileProps & TranslationObject> = ({
   link,
   username,
   avatar,
-  socials,
   isVerify,
   isBeta,
   className,
   linkComponent,
   tags,
   translationObject,
-  onAction
+  actions
 }) => {
   const LinkComponent = linkComponent || "a";
   const hasDescription = !!shortDescription;
-  const hasTags = !!tags && tags.length > 0;
 
   return (
     <CardBase
@@ -50,18 +47,16 @@ const CardProfile: FC<CardProfileProps & TranslationObject> = ({
         </LinkComponent>
       </div>
 
-      <div className="card-profile-header flex w-full px-3.5 justify-center">
+      <div className="card-profile-header flex w-full px-3.5 justify-start">
         <LinkComponent href={link} className="flex items-center w-[90px] h-auto min-w-[3rem] -mt-[15%] relative z-40">
           <img className="w-[90px] h-[90px] border-2 border-black-800 rounded-full" alt={name} src={avatar} draggable="false" />
         </LinkComponent>
 
-        <Button 
-          className="ml-auto max-h-10 min-w-[80px]"
-          fontSize="sm"
-          onClick={() => onAction()}
-        >
-          {translationObject?.buttonFollow || "Seguir"}
-        </Button>
+        {actions ? (
+          <div className="flex flex-col gap-2 ml-auto">
+            {actions}
+          </div>
+        ) : null}
       </div>
 
       <div className="flex flex-col w-full px-3.5">
@@ -102,19 +97,9 @@ const CardProfile: FC<CardProfileProps & TranslationObject> = ({
         />
       ) : null}
 
-      {hasTags && (
+      {tags && (
         <div className="flex flex-wrap gap-2 px-3.5 pb-4 mt-auto">
-          {tags?.map((tag: CardTagProps) => (
-            <Tag
-              key={`${id}-${tag.title}`}
-              link={tag.link}
-              icon={tag.icon}
-              className="max-w-none"
-              type={tag.type}
-            >
-              {tag.title}
-            </Tag>
-          ))}
+          {tags}
         </div>
       )}
     </CardBase>

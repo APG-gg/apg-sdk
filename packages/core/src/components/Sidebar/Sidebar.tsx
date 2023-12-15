@@ -106,8 +106,8 @@ const Sidebar: FC<SidebarProps> = ({
       : subItems ? defaultWidth : desktopCollapsedWidth;
 
   const sidebarStyle = isCollapsed
-    ? { width: collapsedWidth }
-    : { width: defaultWidth };
+    ? { width: desktopCollapsedWidth }
+    : { width: desktopCollapsedWidth };
 
   const contentStyle = isXs
     ? { marginLeft: "0" } : isLtLg 
@@ -119,20 +119,13 @@ const Sidebar: FC<SidebarProps> = ({
     <div id="sidebar" className="relative w-full">
       {/* Desktop/tablet sidebar */}
       <div className={`fixed h-full bg-black text-white z-[80] transition-all duration-150 ease-in-out ${isXs ? "hidden" : "flex"}`} style={sidebarStyle}>
-        <nav className="flex flex-col content-between justify-between mt-0 w-16">
+        <nav className="flex flex-col content-start justify-start mt-0 w-16">
           <div className={`flex items-center justify-center h-16 px-2`}>
-            {isCollapsed && isLtLg && !isXs && <MenuIcon className="flex text-3xl" onClick={toggleSidebar} />}
-            {!isCollapsed && isLtLg && !isXs && <MenuOpenIcon className="flex text-3xl" onClick={toggleSidebar} />}
-            {(isLg || isXl) && (
-              <LinkComponent href={linkLogo || '/'}>
-                {renderIcon(logo)}
-              </LinkComponent>
-            )}
+            <LinkComponent href={linkLogo || '/'}>
+              {renderIcon(logo)}
+            </LinkComponent>
           </div>
-          <div className="mt-16">
-            {showHeadline && (
-              <span className="flex justify-center text-black-800 uppercase text-xs font-source-sans-pro font-semibold mb-4">MENU</span>
-            )}
+          <div className="mt-4">
             {menuItems.map((item) => (
               <SidebarItem 
                 key={`sidebaritem-${item.key}`} 
@@ -164,7 +157,7 @@ const Sidebar: FC<SidebarProps> = ({
             ) : null}
           </div>
           {actions ? (
-            <div className="flex flex-col gap-2 px-2 justify-center mt-auto mb-6 ">
+            <div className="flex flex-col px-2 justify-center mt-auto mb-4">
               {actions}
             </div>
           ) : null}
@@ -196,51 +189,31 @@ const Sidebar: FC<SidebarProps> = ({
           <div
             className={`${
               !isCollapsed ? "translate-x-0" : "-translate-x-full"
-            } md:hidden fixed top-0 left-0 flex flex-col h-screen bg-black text-white transition-transform ease-in-out duration-30 z-[70] shadow-2xl rounded-br-2xl`}
+            } md:hidden fixed top-0 left-0 flex flex-col h-screen bg-black text-white transition-transform ease-in-out duration-30 z-[90] shadow-2xl`}
             style={sidebarStyle}
           >
-            <div className="flex items-center justify-between h-16 px-1">
-              <button className="text-white p-2" onClick={toggleSidebar}>
-                <MenuOpenIcon className="h-6 w-6 text-2xl" />
-              </button>
+            <div className="flex flex-col content-start justify-start mt-0 w-16">
+
             </div>
-            <div className="px-4 pt-2 w-full pb-4">
-              <Input placeholder={searchText} isSearchable={true}  />
+            <div className={`flex items-center justify-center h-16 px-2`}>
+              <LinkComponent href={linkLogo || '/'}>
+                {renderIcon(logo)}
+              </LinkComponent>
             </div>
-            <div className="flex">
-              <nav className="mt-5">
-                {menuItems.map((item) => (
-                  <SidebarItem 
-                    key={`sidebaritem-${item.key}`} 
-                    item={item}
-                    isActive={activeSection === item.key} 
-                    onClick={(key) => {
-                      setActiveSection(key);
-                      toggleSidebar();
-                    }}
-                  />
-                ))}
-              </nav>
-              {subItems && (
-                <div className={classNames(
-                  "mt-0 py-2 bg-black-900 w-full h-full rounded-2xl mr-1",
-                  { "hidden": isCollapsed },
-                  { "flex flex-col": !isCollapsed }
-                )}>
-                  {subItems.map((item) => (
-                    <SidebarSubItem 
-                      key={`sidebaritem-${item.key}`} 
-                      item={item}
-                      isActive={activeSubSection === item.key} 
-                      onClick={(key) => {
-                        setActiveSubSection(key);
-                        toggleSidebar();
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
+            <nav className="mt-4">
+              {menuItems.map((item) => (
+                <SidebarItem 
+                  key={`sidebaritem-${item.key}`} 
+                  item={item}
+                  isActive={activeSection === item.key} 
+                  onClick={(key) => {
+                    setActiveSection(key);
+                    if (!item.href) onToggleDrawer?.(item.key);
+                    if (item.href) toggleSidebar();
+                  }}
+                />
+              ))}
+            </nav>
             {actionsMobile ? (
               <div className="w-full mt-auto">
                 {actionsMobile}

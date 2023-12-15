@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { useState, useRef } from 'react';
-import { renderIcon } from '../../utils';
+import renderIcon from '../../utils/renderIcon';
 
 export interface DropdownItem {
   key: string;

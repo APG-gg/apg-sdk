@@ -6,3 +6,7 @@
 
 @import "tailwindcss/utilities";
 @import "./text.styles.css";
+@import "./rc-picker-custom.css";
+@import "./rc-mentions-custom.css";
+@import "@draft-js-plugins/mention/lib/plugin.css";
+@import "@draft-js-plugins/linkify/lib/plugin.css";

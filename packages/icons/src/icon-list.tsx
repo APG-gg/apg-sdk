@@ -64,6 +64,9 @@ import GalleryIcon from "./GalleryIcon";
 import TrophyIcon from "./TrophyIcon";
 import TicketIcon from "./TicketIcon";
 import MailIcon from "./MailIcon";
+import CalendarIcon from "./CalendarIcon";
+import LoyaltyIcon from "./LoyaltyIcon";
+import TranslateIcon from "./TranslateIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -477,6 +480,24 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <MailIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<MailIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CalendarIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CalendarIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <LoyaltyIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<LoyaltyIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TranslateIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TranslateIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

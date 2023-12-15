@@ -1,11 +1,12 @@
 import React from 'react';
 import { Story } from "@storybook/react"
-import { CardProps } from './CardBase';
 import Card from './Card';
 import CardPost from '../CardPost';
 import CardLandscape from '../CardLandscape';
 import CardType, { CardTypeProps } from '../CardType';
 import CardProfile, { CardProfileProps } from '../CardProfile/CardProfile';
+import { CardProps } from '../CardBase/CardBase';
+import Button from '../Button';
 
 const basicArgs = {
   id: "266678",
@@ -193,36 +194,6 @@ ProfileCard.args = {
   shortDescription: "#React #MERN #Fullstack developer 🇵🇪 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 👕 #EsportDev #JuicerDev",
   avatar: "https://storage.apg.gg/3b9dfd1625beda1ddfca0863db941a4c9eefea28f7a264c15267c3f5f9c0442e.png",
   banner: "https://storage.apg.gg/bf74ca58d812a0ceaf2ce720798a0871a4ef93fea67d6c84b3d9171b11adc1d1.jpg",
-  tags: [
-    {
-      "id": "8",
-      "title": "CEO",
-      "type": "purple",
-      icon: "tie",
-      "link": "https://www.ddumst.dev"
-    },
-    {
-      "id": "2",
-      "title": "Cosplayer",
-      "type": "yellow",
-      icon: "comedy",
-      "link": "https://www.ddumst.dev"
-    },
-    {
-      "id": "12",
-      "title": "Host",
-      "type": "aqua",
-      icon: "microphoneExt",
-      "link": "https://www.ddumst.dev"
-    },
-    {
-      "id": "more",
-      "title": "2 more",
-      "type": "white",
-      icon: "plus",
-      "link": "https://www.ddumst.dev"
-    }
-  ],
   isVerify: true,
   isBeta: true,
   translationObject: {

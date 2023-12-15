@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import classNames from "classnames";
 import useWindowSize from "../../hooks/useWindowSize";
 import { ItemProps } from "../Sidebar/Sidebar";
-import { renderIcon } from "../../utils";
+import renderIcon from "../../utils/renderIcon";
 import { TypeMapKey, typeMap } from "../../utils/colorTypeMap";
 
 export interface MenuItemProps {
@@ -43,10 +43,8 @@ const MenuItem: FC<MenuItemProps> = ({
       {showCircle && (
         <span
           className={classNames(
-            "flex text-white text-2xl items-center justify-center text-center font-bold rounded-full transition-all duration-500 ease-in-out",
+            "flex text-white text-2xl items-center justify-center text-center font-bold rounded-full transition-all duration-500 ease-in-out w-10 h-10",
             {
-              "w-10 h-10": isLg || isXl,
-              "w-[30px] h-[30px]": isSubitem || isLtLg,
               "!text-black": isActive
             },
             isActive ? activeBgColor.bgColor : bgColor.bgColor || "bg-black-600",

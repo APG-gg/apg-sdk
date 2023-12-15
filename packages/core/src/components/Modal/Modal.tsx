@@ -1,6 +1,6 @@
-import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
-import classNames from "classnames";
+import React, { CSSProperties, FC, ReactNode, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import clx from "classnames";
 import XCircleIcon from "@apg.gg/icons/lib/XCircleIcon";
 import ErrorIcon from "@apg.gg/icons/lib/ErrorIcon";
 import Button from "../Button";
@@ -19,6 +19,7 @@ export enum ConfirmButtonType {
 }
 
 export interface ModalProps {
+  prefixCls?: string;
   title?: ReactNode;
   content: ReactNode;
   footer?: ReactNode;
@@ -32,9 +33,16 @@ export interface ModalProps {
   confirmType?: ConfirmButtonType;
   confirmText?: string;
   cancelText?: string;
+  classNames?: { 
+    wrapper?: string; 
+    header?: string; 
+    content?: string; 
+    footer?: string
+  }
 }
 
 const Modal: FC<ModalProps> = ({
+  prefixCls = "apg-modal",
   title,
   content,
   footer,
@@ -48,6 +56,7 @@ const Modal: FC<ModalProps> = ({
   confirmType = ConfirmButtonType.Default,
   confirmText = "Confirm",
   cancelText = "Cancel",
+  classNames
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isPromisePending, setIsPromisePending] = useState(false);
@@ -105,7 +114,7 @@ const Modal: FC<ModalProps> = ({
     onClose();
   };
 
-  const modalClassNames = classNames(
+  const modalClassNames = clx(
     "fixed inset-0 z-[70]",
     isOpen ? "" : "hidden"
   );
@@ -137,14 +146,16 @@ const Modal: FC<ModalProps> = ({
   const backdropTransition = "duration-300 ease-in-out";
   const backdropClasses = `inset-0 z-[70] bg-sky-600 ${backdropOpacity} ${backdropTransition}`;
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <div className={modalClassNames}>
       <div
         className={backdropClasses}
         onClick={onClose}
       ></div>
       <div
-        className={classNames(
+        className={clx(
+          `${prefixCls}-wrapper`,
+          classNames?.wrapper,
           "fixed p-4 text-white z-[70] transition-all duration-300 bg-black-900 left-1/2 -translate-x-1/2 rounded-2xl shadow-md overflow-hidden min-w-[400px] max-w-[600px]",
           {
             "top-1/2 transform -translate-y-1/2": centered && isOpen,
@@ -153,7 +164,11 @@ const Modal: FC<ModalProps> = ({
         )}
         ref={modalRef}
       >
-        <div className="flex gap-2 items-center mb-2">
+        <div className={clx(
+          `${prefixCls}-header`,
+          classNames?.header,
+          "flex gap-2 items-center mb-2"
+        )}>
           {mergedIcon}
           {title && (
             <div className="flex items-center justify-between w-full">
@@ -168,7 +183,9 @@ const Modal: FC<ModalProps> = ({
             </div>
           )}
         </div>
-        <div className={classNames(
+        <div className={clx(
+          `${prefixCls}-content`,
+          classNames?.content,
           "flex",
           {
             'ml-8': mergedIcon
@@ -176,13 +193,17 @@ const Modal: FC<ModalProps> = ({
         )}>
           {content}
         </div>
-        <div className="mt-3">
+        <div className={clx(
+          `${prefixCls}-footer`,
+          classNames?.footer,
+          "mt-3"
+        )}>
           {footer ? (
             footer
           ) : (
             <div className="flex justify-end gap-2">
               <Button
-                className={classNames(
+                className={clx(
                   {
                     "bg-transparent border-yellow hover:border-yellow-200 text-yellow hover:text-yellow-200": confirmType === ConfirmButtonType.Danger,
                   }
@@ -195,7 +216,7 @@ const Modal: FC<ModalProps> = ({
                 {cancelText}
               </Button>
               <Button
-                className={classNames(
+                className={clx(
                   "min-w-[7rem] focus:outline-none focus:ring-2",
                   {
                     "bg-red hover:bg-red-600": confirmType === ConfirmButtonType.Danger,

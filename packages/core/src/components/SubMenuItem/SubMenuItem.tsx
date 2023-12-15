@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import classNames from "classnames";
 import { ItemProps } from "../Sidebar/Sidebar";
-import { renderIcon } from "../../utils";
+import renderIcon from "../../utils/renderIcon";
 
 export interface SubMenuItemProps {
   item: ItemProps;

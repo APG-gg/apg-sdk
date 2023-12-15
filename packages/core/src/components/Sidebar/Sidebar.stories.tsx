@@ -194,7 +194,22 @@ const menuFeedNoIcons = [
   }
 ];
 
-const Template: Story<SidebarProps> = (args) => <Sidebar {...args}>{args.children}</Sidebar>;
+const Template: Story<SidebarProps> = (args) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <Sidebar isOpen={isOpen} {...args}>
+      <div>
+        <button onClick={() => setIsOpen(!isOpen)}>Click</button>
+        <section id="home" className="container bg-black-800 p-10" style={{ height: "1000px" }}>Main content</section>
+        <section id="gamers" className="container bg-blue-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+        <section id="streamers" className="container bg-red-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+        <section id="cosplayers" className="container bg-green-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+        <section id="you" className="container bg-yellow-800 p-10" style={{ height: "1000px" }}>asdasdd content</section>
+      </div>
+    </Sidebar>
+  )
+};
 
 export const Basic = Template.bind({});
 Basic.args = {

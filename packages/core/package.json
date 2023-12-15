@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.14.0",
+  "version": "1.17.0",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -14,23 +14,38 @@
     "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/index.css --watch"
   },
   "dependencies": {
-    "@apg.gg/icons": "^1.18.0",
+    "@apg.gg/icons": "^1.20.0",
+    "@draft-js-plugins/editor": "^4.1.4",
+    "@draft-js-plugins/inline-toolbar": "^4.2.1",
+    "@draft-js-plugins/linkify": "^4.2.2",
+    "@draft-js-plugins/mention": "^5.2.2",
     "@splidejs/react-splide": "^0.7.12",
     "@types/react-beautiful-dnd": "^13.1.4",
+    "@types/react-highlight-words": "^0.16.7",
+    "@types/react-mentions": "^4.1.13",
     "clsx": "^2.0.0",
+    "dayjs": "^1.11.10",
+    "draft-js": "^0.11.7",
     "html2canvas": "^1.4.1",
+    "moment": "^2.29.4",
     "next-translate": "^2.6.0",
+    "rc-mentions": "^2.9.1",
+    "rc-picker": "^3.14.6",
     "rc-util": "^5.38.1",
     "react-avatar-editor": "^13.0.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dropzone": "^14.2.3",
     "react-easy-crop": "^5.0.0",
+    "react-highlight-words": "^0.20.0",
     "react-hook-form": "^7.43.9",
     "react-image-crop": "10.0.9",
+    "react-mentions": "^4.4.10",
     "swiper": "8.4.5",
     "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
-    "@types/react-avatar-editor": "^13.0.1"
+    "@types/draft-js": "^0.11.16",
+    "@types/react-avatar-editor": "^13.0.1",
+    "meilisearch": "^0.36.0"
   }
 }

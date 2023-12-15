@@ -2,9 +2,9 @@ import React from "react";
 import { SubItemProps } from "./Sidebar";
 import useWindowSize from "../../hooks/useWindowSize";
 import SubMenuItem from "../SubMenuItem";
-import { renderIcon } from "../../utils";
 import ArrowDownIcon from "@apg.gg/icons/lib/ArrowDownIcon";
 import classNames from "classnames";
+import renderIcon from "../../utils/renderIcon";
 
 export interface SidebarSubItemProps {
   item: SubItemProps;
