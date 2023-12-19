@@ -5,6 +5,7 @@ import CardDescription from '../CardDescription';
 import Tooltip from '../Tooltip';
 import VerifiedColorIcon from '@apg.gg/icons/lib/VerifiedColorIcon';
 import BetaColorIcon from '@apg.gg/icons/lib/BetaColorIcon';
+import { RawDraftContentState } from 'draft-js';
 
 export interface CardProfileProps extends Omit<CardProps, "description" | "tags"> {
   className?: string;
@@ -15,12 +16,14 @@ export interface CardProfileProps extends Omit<CardProps, "description" | "tags"
   link?: string;
   actions?: React.ReactNode;
   tags?: React.ReactNode;
+  shortRichDescription: RawDraftContentState; 
 }
 
 const CardProfile: FC<CardProfileProps & TranslationObject> = ({
   id,
   name,
   shortDescription,
+  shortRichDescription,
   banner,
   link,
   username,
@@ -89,6 +92,7 @@ const CardProfile: FC<CardProfileProps & TranslationObject> = ({
           className="!py-0 px-3.5"
           {...{
             shortDescription,
+            shortRichDescription,
             translationObject,
             linkComponent,
             columns: 3

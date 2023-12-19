@@ -17,6 +17,7 @@ const CardPost: FC<CardPostProps & TranslationObject> = ({
   id,
   name,
   shortDescription,
+  shortRichDescription,
   avatar,
   banner,
   link,
@@ -59,6 +60,7 @@ const CardPost: FC<CardPostProps & TranslationObject> = ({
         <CardDescription 
           {...{
             shortDescription,
+            shortRichDescription,
             translationObject,
             showAbout
           }}

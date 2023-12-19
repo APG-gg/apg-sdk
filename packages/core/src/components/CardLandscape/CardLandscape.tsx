@@ -16,6 +16,7 @@ const CardLandscape: FC<CardPostProps & TranslationObject> = ({
   id,
   name,
   shortDescription,
+  shortRichDescription,
   avatar,
   banner,
   socials,
@@ -63,6 +64,7 @@ const CardLandscape: FC<CardPostProps & TranslationObject> = ({
             <CardDescription 
               {...{
                 shortDescription,
+                shortRichDescription,
                 translationObject
               }}
               showAbout={true}

@@ -11,6 +11,7 @@ const Card: FC<Omit<CardProps, "description"> & TranslationObject> = ({
   id,
   name,
   shortDescription,
+  shortRichDescription,
   avatar,
   banner,
   username,
@@ -70,6 +71,7 @@ const Card: FC<Omit<CardProps, "description"> & TranslationObject> = ({
         <CardDescription 
           {...{
             shortDescription,
+            shortRichDescription,
             translationObject
           }}
           showAbout={true}

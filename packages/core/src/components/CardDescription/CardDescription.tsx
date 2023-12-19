@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import TextLinker from "../TextLinker";
 import TranslationObject from "../../domain/translationObject.interface";
+import { RawDraftContentState } from "draft-js";
 
 export interface Social {
   id: string;
@@ -11,6 +12,7 @@ export interface Social {
 
 export interface CardDescriptionProps {
   shortDescription: string;
+  shortRichDescription: RawDraftContentState;
   showAbout?: boolean;
   columns?: number;
   className?: string;
@@ -18,18 +20,34 @@ export interface CardDescriptionProps {
 }
 
 const CardDescription: FC<CardDescriptionProps & TranslationObject> = ({ 
-  shortDescription, 
+  shortDescription = '', 
+  shortRichDescription = { blocks: [], entityMap: {} },
   showAbout = false, 
   columns = 2, 
   className,
   linkComponent,
   translationObject
 }) => {  
+  const hasRichDescription = (aboutRich: RawDraftContentState) => {
+    if ('blocks' in aboutRich && 'entityMap' in aboutRich) {
+      // Verificar si blocks es un array con al menos un elemento
+      if (Array.isArray(aboutRich.blocks) && aboutRich.blocks.length > 0) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   return (
     <div className={`p-4 w-full ${className}`}>
       {showAbout && (<strong className="text-white text-base">{translationObject?.aboutMe}</strong>)}
       <div className={`overflow-hidden text-black-400 text-sm text-ellipsis ${columns === 2 ? 'line-clamp-2 max-h-10' : 'line-clamp-3 max-h-20'} box`}>
-        <TextLinker text={shortDescription} linkComponent={linkComponent} />
+        {hasRichDescription(shortRichDescription) ? (
+          <TextLinker content={shortRichDescription} text={''} linkComponent={linkComponent} />
+        ) : (
+          <TextLinker text={shortDescription} linkComponent={linkComponent} />
+        )} 
       </div>
     </div>
   );

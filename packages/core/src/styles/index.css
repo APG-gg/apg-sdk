@@ -1692,10 +1692,6 @@ video {
   height: 24rem;
 }
 
-.h-\[120\%\] {
-  height: 120%;
-}
-
 .h-\[136px\] {
   height: 136px;
 }
@@ -1852,10 +1848,6 @@ video {
   max-height: 200px;
 }
 
-.max-h-\[240px\] {
-  max-height: 240px;
-}
-
 .max-h-\[276px\] {
   max-height: 276px;
 }
@@ -1886,6 +1878,10 @@ video {
 
 .max-h-none {
   max-height: none;
+}
+
+.min-h-\[1\.5rem\] {
+  min-height: 1.5rem;
 }
 
 .min-h-\[180px\] {
@@ -4426,6 +4422,10 @@ video {
 
 .font-\[bold\] {
   font-family: bold;
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .font-poppins {

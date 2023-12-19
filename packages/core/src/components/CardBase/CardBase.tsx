@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { RawDraftContentState } from 'draft-js';
 import React, { ReactNode } from 'react';
 
 export type CardBaseProps = {
@@ -12,6 +13,7 @@ export type CardProps = {
   name: string;
   description: string;
   shortDescription: string;
+  shortRichDescription: RawDraftContentState; 
   avatar: string;
   banner: string;
   link?: string;
