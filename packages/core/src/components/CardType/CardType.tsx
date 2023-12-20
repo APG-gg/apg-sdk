@@ -5,8 +5,8 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import TextLinker from '../TextLinker';
 import Tag from '../Tag';
-import ProfileTypeColor from '../../domain/profileTypeColor.enum';
 import EventTypeEnum from '../../domain/eventType.enum';
+import { RawDraftContentState } from 'draft-js';
 
 export interface CardTypeProps extends Omit<CardProps, "description"> {
   className?: string;
@@ -23,6 +23,7 @@ const CardType: FC<CardTypeProps> = ({
   id,
   name,
   shortDescription,
+  shortRichDescription,
   banner,
   link,
   date,
@@ -39,6 +40,19 @@ const CardType: FC<CardTypeProps> = ({
   const year = parseInt(dateSplited[0]);
   const month = parseInt(dateSplited[1]) - 1;
   const day = parseInt(dateSplited[2]);
+
+  const hasRichDescription = (shortRichDescription: RawDraftContentState) => {
+    if (!shortRichDescription || shortRichDescription === undefined) return false;
+
+    if ('blocks' in shortRichDescription && 'entityMap' in shortRichDescription) {
+      // Verificar si blocks es un array con al menos un elemento
+      if (Array.isArray(shortRichDescription.blocks) && shortRichDescription.blocks.length > 0) {
+        return true;
+      }
+    }
+
+    return false;
+  };
 
   return (
     <CardBase className={`flex flex-col max-w-[320px] min-h-[325px] ${className}`}>
@@ -72,7 +86,11 @@ const CardType: FC<CardTypeProps> = ({
         </div>
         {shortDescription ? (
           <div className="block text-white text-xs line-clamp-3 mt-1">
-            <TextLinker text={shortDescription} />
+             {hasRichDescription(shortRichDescription) ? (
+                <TextLinker content={shortRichDescription} linkComponent={linkComponent} />
+              ) : (
+                <TextLinker text={shortDescription} linkComponent={linkComponent} />
+              )} 
           </div>
         ) : null}
         {profileType ? (
