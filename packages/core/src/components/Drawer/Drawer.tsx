@@ -1,7 +1,7 @@
 import React from "react";
 import { FC, useEffect, useRef } from "react";
 import XIcon from "@apg.gg/icons/lib/XIcon";
-import classNames from 'classnames';
+import clx from 'classnames';
 
 export interface DrawerProps {
   header?: React.ReactNode;
@@ -19,6 +19,13 @@ export interface DrawerProps {
   onClose: () => void;
   className?: string;
   classNameContent?: string;
+  classNames?: {
+    wrapper?: string;
+    header?: string;
+    content?: string;
+    footer?: string
+  },
+  prefixCls?: string;
 }
 
 const Drawer: FC<DrawerProps> = ({
@@ -36,7 +43,9 @@ const Drawer: FC<DrawerProps> = ({
   disableClickOutsideToClose = false,
   onClose,
   className,
-  classNameContent
+  classNameContent,
+  classNames = {},
+  prefixCls = "apg-drawer",
 }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -82,41 +91,19 @@ const Drawer: FC<DrawerProps> = ({
   switch (position) {
     case "right":
       transformClasses = `top-0 right-0 bottom-0 ${isOpen ? "translate-x-0 h-screen rounded-l-2xl" : "translate-x-full"}`;
-      styleClassess = {
-        width: width ? width : "320px",
-        height: height ? height : "100%",
-      };
       break;
     case "left":
       transformClasses = `top-0 left-0 bottom-0 w-[320px] ${isOpen ? "translate-x-0 h-screen rounded-r-2xl" : "-translate-x-full"}`;
-      styleClassess = {
-        width: width ? width : "320px",
-        height: height ? height : "100%",
-      };
       break;
     case "top":
       transformClasses = `top-0 left-0 right-0 h-[320px] ${isOpen ? "translate-y-0 w-screen rounded-b-2xl" : "-translate-y-full"}`;
-      styleClassess = {
-        width: width ? width : "100%",
-        height: height ? height : "320px",
-      }
       break;
     case "bottom":
       transformClasses = `left-0 right-0 bottom-0 h-[320px] ${isOpen ? "translate-y-0 w-screen rounded-t-2xl" : "translate-y-full"}`;
-      styleClassess = {
-        width: width ? width : "100%",
-        height: height ? height : "320px",
-      }
       break;
     case "center":
       transformClasses = `top-1/2 left-1/2 ${isOpen ? "flex flex-col -translate-x-1/2 -translate-y-1/2 rounded-2xl" : "hidden"}`;
       sizeClasses = `${width ? '' : "w-[96%] md:w-1/2"} ${height ? '' : "min-h-[320px]"} ${maxHeight ? `max-h-${maxHeight}` : ""} ${maxWidth ? `max-w-${maxWidth}` : ""}`;
-      styleClassess = {
-        width: width ? width : "96%",
-        maxWidth: maxWidth ? maxWidth : "540px",
-        height: height ? height : "auto",
-        maxHeight: maxHeight ? maxHeight : "auto",
-      }
       break;
     default:
       break;
@@ -138,17 +125,27 @@ const Drawer: FC<DrawerProps> = ({
         }} 
         className={backdropClasses}></div>
       <div
-        className={classNames(
-          `absolute text-white z-[70] transition-all duration-300 bg-black-900 shadow-md ${transformClasses} ${sizeClasses} ${edgeClasses} ${className}`
+        className={clx(
+          `${prefixCls}-wrapper`,
+          `absolute text-white z-[70] transition-all duration-300 bg-black-900 shadow-md w-full h-full ${transformClasses} ${sizeClasses} ${edgeClasses} ${className}`,
+          {
+            "max-w-xl max-h-[auto] h-auto w-[96%]": position === "center",
+            "max-w-[320px] max-h-[100%]": position === "left" || position === "right",
+            "max-w-[100%] max-h-[320px]": position === "top" || position === "bottom",
+          },
+          classNames.wrapper
         )}
         style={{
-          ...styleClassess,
           ...(edgeToEdge ? { width: "100vw", height: "100vh" } : {})
         }}
         ref={drawerRef}
       >
         {header ? (
-          <div className="flex justify-between items-center px-4 py-3 border-b border-black-800">
+          <div className={clx(
+            `${prefixCls}-header`,
+            "flex justify-between items-center px-4 py-3 border-b border-black-800",
+            classNames.header,
+          )}>
             {header}
             {closeButton ? (
               closeButton
@@ -159,11 +156,19 @@ const Drawer: FC<DrawerProps> = ({
             )}
           </div>
         ) : null}
-        <div className={classNames(
+        <div className={clx(
+          `${prefixCls}-content`,
           "p-4 flex-grow",
+          classNames.content,
           classNameContent
         )}>{content}</div>
-        {footer && <div className="px-4 py-3 border-t border-black-800">{footer}</div>}
+        {footer && (
+          <div className={clx(
+            `${prefixCls}-footer`,
+            "px-4 py-3 border-t border-black-800",
+            classNames.footer,
+          )}>{footer}</div>
+        )}
       </div>
     </>
   );

@@ -162,15 +162,90 @@ Type.args = {
 const TemplateEventType: Story<CardTypeProps> = (args) => <CardType {...args} />;
 export const EventType = TemplateEventType.bind({});
 EventType.args = {
-  id: "266678",
-  banner: undefined,
-  title: "Card Type",
-  link: "https://www.ddumst.dev",
-  date: "2023-06-27",
-  game: "Valorant",
-  profileType: "Caster",
-  type: "online"
-};
+  "date": "2023-11-15",
+  "banner": "https://storage.apg.gg/8536c0a992cfe5287d925d0c4422c41d44dc526e9b75ba8a8c9dfcbae73b869b.jpg",
+  "id": 47,
+  "game": null,
+  "eventTypeId": 2,
+  "gameId": null,
+  "link": "https://gamerawardsvenezuela.com/",
+  "isActive": true,
+  "profileType": {
+    "name": "Developer",
+    "slug": "developer",
+    "color": "red-600",
+    "category": "production",
+    "icon": "barChart"
+  },
+  type: "online",
+  "participationTypeId": 49,
+  "title": "Game Awards Venezuela",
+  "eventType": {
+    "active": true,
+    "name": "online"
+  },
+  "shortRichDescription": {
+    "blocks": [
+      {
+        "data": {},
+        "depth": 0,
+        "entityRanges": [
+          {
+            "key": 0,
+            "length": 6,
+            "offset": 23
+          },
+          {
+            "key": 1,
+            "length": 10,
+            "offset": 30
+          }
+        ],
+        "inlineStyleRanges": [],
+        "key": "cjkdf",
+        "text": "Desarrollado junto con @Panda @Spiritsun ",
+        "type": "unstyled"
+      }
+    ],
+    "entityMap": {
+      "0": {
+        "data": {
+          "mention": {
+            "avatar": "https://storage.apg.gg/3b55946966ce8835c380abb31cfa58c640142f0df4da9db4f550186abd502e3d.png",
+            "key": "Panda",
+            "name": "Panda",
+            "slug": "Panda",
+            "username": "Panda"
+          }
+        },
+        "mutability": "IMMUTABLE",
+        "type": "mention"
+      },
+      "1": {
+        "data": {
+          "mention": {
+            "avatar": "https://statics.apg.gg/default/profile-pic.png",
+            "key": "Spiritsun",
+            "name": "Spiritsun",
+            "slug": "Spiritsun",
+            "username": "Spiritsun"
+          }
+        },
+        "mutability": "IMMUTABLE",
+        "type": "mention"
+      }
+    }
+  },
+  "isParent": false,
+  "parentEventId": null,
+  "userId": 100007,
+  "owner": {
+    "name": "Diego B.",
+    "username": "ddumst",
+    "profileImage": "https://storage.apg.gg/3b9dfd1625beda1ddfca0863db941a4c9eefea28f7a264c15267c3f5f9c0442e.png"
+  },
+  "isFeature": false
+}
 
 const TemplateEventTypeNoLink: Story<CardTypeProps> = (args) => <CardType {...args} />;
 export const EventTypeNoLink = TemplateEventTypeNoLink.bind({});

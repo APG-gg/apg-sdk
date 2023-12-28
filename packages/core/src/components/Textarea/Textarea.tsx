@@ -23,7 +23,7 @@ export interface EntryComponentProps {
 
 const mentionTheme = {
   mention: "text-aqua z-10 bg-trasnparent relative font-normal no-underline",
-  mentionSuggestions: "absolute z-[1] bg-black rounded-sm border border-black p-1 -translate-x-2/4 absolute border shadow-[0px_1px_3px_0px_#000] z-[2] scale-0 left-2/4 max-h-[400px] overflow-y-auto",
+  mentionSuggestions: "absolute z-50 bg-black rounded-sm border border-black p-1 -translate-x-2/4 shadow-[0px_1px_3px_0px_#000] scale-0 left-2/4 max-h-[400px] overflow-y-auto",
   mentionSuggestionsEntry: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] pt-2 pb-1 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center",
   mentionSuggestionsEntryFocused: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] pt-2 pb-1 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center bg-aqua/10",
   mentionSuggestionsEntryAvatar: "w-10 h-10 rounded-full block",

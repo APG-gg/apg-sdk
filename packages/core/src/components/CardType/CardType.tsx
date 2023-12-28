@@ -12,7 +12,7 @@ export interface CardTypeProps extends Omit<CardProps, "description"> {
   className?: string;
   title: string;
   date: string;
-  game: string;
+  game?: string;
   profileType?: Record<string, any>;
   type?: string;
   linkComponent?: React.ComponentType<any>
@@ -55,7 +55,7 @@ const CardType: FC<CardTypeProps> = ({
   };
 
   return (
-    <CardBase className={`flex flex-col max-w-[320px] min-h-[325px] ${className}`}>
+    <CardBase className={`flex flex-col max-w-[320px] min-h-[325px] h-full ${className}`}>
       <div className="flex-grow h-[154px] relative">
         <img src={banner || "https://statics.apg.gg/default/post.png"} alt={name} className="w-full h-full object-cover object-center" />
 
@@ -68,33 +68,39 @@ const CardType: FC<CardTypeProps> = ({
         </Tag>
         ) : null}
       </div>
-      <div className="flex flex-col gap-1 py-4 px-4">
-        <div className="flex justify-start">
-          {link ? (
-            <LinkComponent href={link} target='_blank' className="flex gap-2 text-white text-base uppercase font-bold items-center">
-              {title}
-              <OpenLinkIcon />
-            </LinkComponent>
-          ) : (
-            <span className="text-white text-base uppercase font-bold">{title}</span>
-          )}
-        </div>
-        <div className="flex justify-start items-center gap-1">
-          <span className="text-white-400 text-xs">{game}</span>
-          <span className="text-white-400">-</span>
-          <span className="text-white-400 text-xs">{format(new Date(year, month, day), "dd MMM yyyy", { locale: es })}</span>
-        </div>
-        {shortDescription ? (
-          <div className="block text-white text-xs line-clamp-3 mt-1">
-             {hasRichDescription(shortRichDescription) ? (
-                <TextLinker content={shortRichDescription} linkComponent={linkComponent} />
-              ) : (
-                <TextLinker text={shortDescription} linkComponent={linkComponent} />
-              )} 
+      <div className="flex flex-col gap-1 pt-4 px-4">
+        <div className="flex flex-col">
+          <div className="flex justify-start">
+            {link ? (
+              <LinkComponent href={link} target='_blank' className="flex gap-2 text-white text-base uppercase font-bold items-center leading-none">
+                {title}
+                <OpenLinkIcon />
+              </LinkComponent>
+            ) : (
+              <span className="text-white text-base uppercase font-bold">{title}</span>
+            )}
           </div>
-        ) : null}
+          <div className="flex justify-start items-center gap-1">
+            {game ? (
+              <>
+                <span className="text-white-400 text-xs">{game}</span>
+                <span className="text-white-400">-</span>
+              </>
+            ) : null}
+            <span className="text-white-400 text-xs">{format(new Date(year, month, day), "dd MMM yyyy", { locale: es })}</span>
+          </div>
+        </div>
+      
+        <div className="block text-white text-xs line-clamp-3">
+          {hasRichDescription(shortRichDescription) ? (
+            <TextLinker content={shortRichDescription} linkComponent={linkComponent} />
+          ) : (
+            <TextLinker text={shortDescription} linkComponent={linkComponent} />
+          )} 
+        </div>
+
         {profileType ? (
-          <div className="flex justify-start items-center gap-1 mt-1">
+          <div className="flex justify-start items-center gap-1 mt-2">
             <Tag
                 type={profileType.color}
                 icon={profileType.icon}
@@ -104,7 +110,6 @@ const CardType: FC<CardTypeProps> = ({
             </Tag>
          </div>
         ) : null}
-        
       </div>
     </CardBase>
   );
