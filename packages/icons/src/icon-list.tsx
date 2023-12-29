@@ -23,6 +23,7 @@ import LinkIcon from "./LinkIcon";
 import LogoutIcon from "./LogoutIcon";
 import MenuIcon from "./MenuIcon";
 import MenuOpenIcon from "./MenuOpenIcon";
+import MoreIcon from "./MoreIcon";
 import MoreVerticalIcon from "./MoreVerticalIcon";
 import OpenLinkIcon from "./OpenLinkIcon";
 import PasswordIcon from "./PasswordIcon";
@@ -67,6 +68,8 @@ import MailIcon from "./MailIcon";
 import CalendarIcon from "./CalendarIcon";
 import LoyaltyIcon from "./LoyaltyIcon";
 import TranslateIcon from "./TranslateIcon";
+import BlockIcon from "./BlockIcon";
+import ReportIcon from "./ReportIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -212,6 +215,12 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         </div>
       </IconWrapper>
 
+      <IconWrapper>
+        <MoreIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<MoreIcon />'}</pre> 
+        </div>
+      </IconWrapper>
       <IconWrapper>
         <MoreVerticalIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
@@ -498,6 +507,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <TranslateIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<TranslateIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <BlockIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<BlockIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ReportIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ReportIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

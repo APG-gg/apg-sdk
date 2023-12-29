@@ -1,5 +1,6 @@
-import classNames from 'classnames';
-import React, { useState, useRef } from 'react';
+import clx from 'classnames';
+import React, { useState, useRef, useEffect, ReactElement } from 'react';
+import { composeRef, supportRef } from 'rc-util/lib/ref';
 import renderIcon from '../../utils/renderIcon';
 
 export interface DropdownItem {
@@ -9,22 +10,62 @@ export interface DropdownItem {
   danger?: boolean;
   icon?: string;
   onClick?: () => void;
+  className?: string;
 }
 
 export interface DropdownProps {
   items: DropdownItem[];
+  children: React.ReactElement;
+  prefixCls?: string;
+  trigger?: 'click' | 'hover';
   placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight' | 'top' | 'bottom';
-  children?: React.ReactNode;
-  width?: number;
+  delay?: number;
+  classNames?: {
+    container: string;
+    menu: string;
+    item: string;
+  }
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ items, placement = 'bottomLeft', children, width = 192 }) => {
+const Dropdown: React.FC<DropdownProps> = ({ 
+  items, 
+  children,
+  prefixCls = 'apg-dropdown',
+  trigger, 
+  placement = 'bottomLeft', 
+  delay = 200,
+  classNames = {
+    container: '',
+    menu: '',
+    item: '',
+  }
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<number | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const childRef = useRef(null);
+
+  // Cerrar el dropdown cuando se hace clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleItemClick = (onClick?: () => void) => {
     setIsOpen(false);
     onClick && onClick();
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setIsOpen(!isOpen);
   };
 
   const handleMouseEnter = () => {
@@ -33,20 +74,63 @@ const Dropdown: React.FC<DropdownProps> = ({ items, placement = 'bottomLeft', ch
   };
 
   const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(false);
-    }, 200);
+    if (trigger === 'hover' && delay) {
+      timeoutRef.current = setTimeout(() => {
+        setIsOpen(false);
+      }, delay);
+    }
   };
+
+  // Asegúrate de limpiar el timeout si el componente se desmonta
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const triggerEvent = trigger === 'hover';
+
+  const childrenNode = React.cloneElement(children, {
+    className: clx(
+      children.props?.className
+    ),
+    onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      // Llama al controlador de eventos original, si existe
+      if (children.props.onClick) {
+        children.props.onClick(event);
+      }
+      
+      if (triggerEvent) {
+        return;
+      }
+
+      handleClick(event);
+    },
+    ref: supportRef(children)
+      ? composeRef(
+          childRef,
+          (children as ReactElement & { ref: React.Ref<HTMLElement> }).ref,
+        )
+      : undefined,
+  });
 
   return (
     <div
-      className="relative h-8 flex items-center justify-center cursor-pointer"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      ref={dropdownRef}
+      className={clx(
+        prefixCls,
+        "relative h-8 flex items-center justify-center cursor-pointer",
+        classNames.container
+      )}
+      onMouseEnter={trigger === 'hover' ? handleMouseEnter : undefined} // Agrega el evento onMouseEnter aquí
+      onMouseLeave={trigger === 'hover' ? handleMouseLeave : undefined} // Agrega el evento onMouseLeave aquí
     >
       {isOpen && (
         <div
-          className={classNames(
+          className={clx(
+            `${prefixCls}-menu`,
             'absolute',
             {
               'top-10 left-0': placement === 'bottomLeft',
@@ -58,28 +142,36 @@ const Dropdown: React.FC<DropdownProps> = ({ items, placement = 'bottomLeft', ch
               'top-10': placement === 'bottom' && children,
               'bottom-10': placement === 'top' && children,
             },
-            'bg-black-900 shadow-md rounded p-2 z-50'
+            'bg-black-900 shadow-md rounded p-2 z-50',
+            classNames.menu
           )}
-          style={{
-            width: `${width}px`
-          }}
-          onMouseEnter={handleMouseEnter}  // Evitar que se cierre el menú flotante cuando el usuario pase sobre él.
+          onMouseEnter={handleMouseEnter}  // Evitar que el menú se cierre cuando el usuario pase el ratón sobre él.
           onMouseLeave={handleMouseLeave}  // Volver a activar el cierre del menú cuando el usuario salga del Dropdown.
         >
           {items.map((item) => (
             <div
               key={item.key}
               onClick={() => handleItemClick(item.onClick)}
-              className={`flex gap-3 items-center cursor-pointer p-2 hover:bg-black-800 ${
-                item.disabled ? 'text-gray-400' : 'text-white'
-              } ${item.danger ? 'text-red-600' : ''}`}
+              className={clx(
+                `${prefixCls}-item`,
+                'flex gap-3 items-center p-2',
+                {
+                  'text-white': !item.disabled,
+                  'text-gray-400': item.disabled,
+                  'hover:bg-black-800': !item.disabled,
+                  'cursor-pointer': !item.disabled,
+                  'text-red-600': item.danger,
+                },
+                classNames.item,
+                item.className
+              )}
             >
-              {item.icon && renderIcon(item.icon)} {item.label}
+              {item.icon && renderIcon(item.icon, item.className)} {item.label}
             </div>
           ))}
         </div>
       )}
-      {children}
+      {childrenNode}
     </div>
   );
 };

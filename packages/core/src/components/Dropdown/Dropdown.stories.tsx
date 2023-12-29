@@ -9,6 +9,7 @@ export default {
   argTypes: {
     items: { control: 'array' },
     placement: { control: 'select', options: ['topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight', 'top', 'bottom']},
+    trigger: { control: 'select', options: ['click', 'hover']},
     width: { control: 'number', defaultValue: 192 },
   },
 }
