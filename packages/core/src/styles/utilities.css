@@ -1,0 +1,129 @@
+@layer utilities {
+  .line-clamp-2 {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .line-clamp-3 {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .box {
+    display: -webkit-box;
+  }
+
+  .left-\[46px\] {
+    left: 46px
+  }
+
+  .left-\[72px\] {
+    left: 72px
+  }
+
+  .left-\[275px\] {
+    left: 275px
+  }
+
+  .border-\[#FFBBAE\] {
+    color: #FFBBAE;
+  }
+
+  .text-body-sm {
+    @apply text-xs font-source-sans-pro;
+  }
+  
+  .text-body-md {
+    @apply text-sm font-source-sans-pro;
+  }
+  
+  .text-body-lg {
+    @apply text-base font-source-sans-pro;
+  }
+  
+  .text-label-sm {
+    @apply text-[11px] leading-4 font-source-sans-pro font-semibold;
+  }
+  
+  .text-label-md {
+    @apply text-xs font-source-sans-pro font-semibold;
+  }
+  
+  .text-label-lg {
+    @apply text-base font-source-sans-pro font-semibold;
+  }
+  
+  .text-title-sm {
+    @apply text-sm font-poppins font-bold;
+  }
+  
+  .text-title-md {
+    @apply text-base font-poppins font-bold;
+  }
+  
+  .text-title-lg {
+    @apply text-[22px] leading-7 font-poppins font-bold;
+  }
+  
+  .text-headline-sm {
+    @apply text-2xl font-poppins font-bold;
+  }
+  
+  .text-headline-md {
+    @apply text-[28px] leading-9 font-poppins font-bold;
+  }
+  
+  .text-headline-lg {
+    @apply text-[32px] leading-10 font-poppins font-bold;
+  }
+  
+  .text-display-sm {
+    @apply text-4xl leading-[44px] font-poppins font-black;
+  }
+  
+  .text-display-md {
+    @apply text-[45px] leading-[52px] font-poppins font-black;
+  }
+  
+  .text-display-lg {
+    @apply text-[57px] leading-[64px] font-poppins font-black;
+  }
+
+  .row {
+    @apply flex flex-wrap -mx-4
+  }
+  
+  .row > * {
+    @apply px-4 py-0 flex-[0_0_auto]
+  }
+
+  .apg-section {
+    @apply h-[calc(100vh-56px)] max-h-[732px];
+  }
+
+  .apg-section-full {
+    @apply md:h-[calc(100vh-56px)] lg:max-h-[732px] overflow-hidden;
+  }
+
+  .split-background-join {
+    background: linear-gradient(to right, transparent 0%, transparent 50%, #353A3D 50%, #353A3D 100%),
+      url("/assets/resources/landing/section-bg-join.png") center/cover no-repeat;
+    @apply bg-left bg-black-900
+  }
+
+  @media screen and (max-width: 1280px) {
+    .split-background-join {
+      background: linear-gradient(to bottom, transparent 0%, transparent 40%, #353A3D 40%, #353A3D 100%),
+        url("/assets/resources/landing/section-bg-join.png") center/cover no-repeat;
+      @apply bg-left bg-black-900
+    }
+  }
+
+  .animate-scale {
+    animation: scale-animate 0.5s ease-in-out;
+  }
+  
+  @keyframes scale-animate {
+    0% { transform: 'scale(1)' }
+    50% { transform: 'scale(1.2)' }
+    100% { transform: 'scale(1)' }
+  }
+} 

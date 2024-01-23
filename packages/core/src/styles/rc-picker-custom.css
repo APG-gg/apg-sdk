@@ -1,0 +1,282 @@
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+.apg-picker {
+  @apply inline-flex w-full;
+}
+.apg-picker-rtl {
+  direction: rtl;
+}
+.apg-picker-focused {
+  @apply border-none;
+}
+.apg-picker-panel {
+  @apply flex-1 outline-none bg-black-900 text-white text-base p-3 w-[17rem];
+}
+.apg-picker-panel-focused {
+  @apply border-aqua;
+}
+.apg-picker-panel-rtl {
+  direction: rtl;
+}
+.apg-picker-decade-panel,
+.apg-picker-year-panel,
+.apg-picker-month-panel,
+.apg-picker-week-panel,
+.apg-picker-date-panel,
+.apg-picker-time-panel {
+  @apply flex flex-col;
+}
+.apg-picker-decade-panel table,
+.apg-picker-year-panel table,
+.apg-picker-month-panel table,
+.apg-picker-week-panel table,
+.apg-picker-date-panel table,
+.apg-picker-time-panel table {
+  @apply text-center border-collapse;
+}
+.apg-picker-header {
+  @apply flex px-2 border-b border-solid border-blue-300;
+}
+.apg-picker-header > button {
+  @apply cursor-pointer w-4 text-base leading-10;
+}
+.apg-picker-header > * {
+  @apply flex-none;
+}
+.apg-picker-header-view {
+  @apply flex flex-auto justify-center text-center font-semibold leading-10 gap-2;
+}
+.apg-picker-header-view > button {
+  @apply p-0 border-0;
+}
+.apg-picker-cell {
+  @apply text-white-500 py-1.5 min-w-[24px];
+}
+.apg-picker-cell-disabled {
+  @apply opacity-20;
+}
+.apg-picker-cell-inner {
+  @apply inline-block box-border h-6 text-xs leading-6 rounded min-w-[24px] cursor-pointer transition-[background] duration-[0.3s,border] delay-[0.3s] m-0 p-0 border-0 border-[none];
+  background: transparent;
+  outline: none;
+}
+.apg-picker-cell-inner:hover {
+  @apply bg-blue/70;
+}
+.apg-picker-cell-in-view {
+  @apply text-white;
+}
+.apg-picker-cell-in-range > .apg-picker-cell-inner {
+  background: rgba(0, 0, 255, 0.05);
+}
+.apg-picker-cell-range-hover-start,
+.apg-picker-cell-range-hover-end,
+.apg-picker-cell-range-hover {
+  @apply relative;
+}
+.apg-picker-cell-range-hover-start::after,
+.apg-picker-cell-range-hover-end::after,
+.apg-picker-cell-range-hover::after {
+  @apply absolute border content-[''] pointer-events-none border-x-0 border-solid border-[green] top-[3px] bottom-0 inset-x-0;
+}
+.apg-picker-cell-range-hover-start::after {
+  @apply border-l-[green] border-l border-solid;
+}
+.apg-picker-cell-range-hover-end::after {
+  @apply border-r-[green] border-r border-solid;
+}
+.apg-picker-cell-today > .apg-picker-cell-inner {
+  @apply border border-solid border-blue;
+}
+.apg-picker-cell-range-start > .apg-picker-cell-inner,
+.apg-picker-cell-range-end > .apg-picker-cell-inner,
+.apg-picker-cell-selected > .apg-picker-cell-inner {
+  @apply bg-blue;
+}
+.apg-picker-presets {
+  background: #ccccff;
+}
+.apg-picker-presets ul {
+  @apply m-0 p-0;
+  list-style: none;
+}
+.apg-picker-footer,
+.apg-picker-picker-footer {
+  @apply border-t border-solid border-blue-300 leading-9 w-min min-w-full text-center;
+}
+.apg-picker-ranges {
+  @apply overflow-hidden m-0 p-0;
+  list-style: none;
+}
+.apg-picker-ranges > li {
+  @apply inline-block;
+}
+.apg-picker-ok {
+  @apply float-right;
+}
+.apg-picker-year-panel .apg-picker-cell-inner,
+.apg-picker-month-panel .apg-picker-cell-inner {
+  @apply w-20;
+}
+.apg-picker-week-panel-row:hover .apg-picker-cell {
+  background: red;
+}
+.apg-picker-week-panel-row-selected .apg-picker-cell {
+  background: rgba(0, 0, 255, 0.3);
+}
+.apg-picker-week-panel-row-range-hover .apg-picker-cell {
+  background: rgba(0, 255, 0, 0.1);
+}
+.apg-picker-week-panel-row-range-start .apg-picker-cell,
+.apg-picker-week-panel-row-range-end .apg-picker-cell {
+  background: rgba(0, 255, 0, 0.3);
+}
+.apg-picker-week-panel .apg-picker-cell,
+.apg-picker-week-panel .apg-picker-cell-inner {
+  @apply w-5;
+}
+.apg-picker-week-panel .apg-picker-cell-week {
+  @apply text-[#999] font-[bold] text-xs;
+}
+.apg-picker-week-panel .apg-picker-cell:hover > .apg-picker-cell-inner,
+.apg-picker-week-panel .apg-picker-cell-selected > .apg-picker-cell-inner {
+  background: transparent;
+}
+.apg-picker-date-panel .apg-picker-cell-inner {
+  @apply h-6 min-w-[24px] leading-5 rounded
+}
+.apg-picker-time-panel {
+  @apply w-auto;
+}
+.apg-picker-time-panel .apg-picker-content {
+  @apply flex max-h-[200px];
+}
+.apg-picker-content th {
+  @apply w-9 h-9 text-xs;
+}
+.apg-picker-time-panel-column {
+  @apply flex-none w-[50px] overflow-x-hidden overflow-y-hidden text-xs text-left transition-[background] duration-[0.3s] m-0 pt-0 pb-[180px] px-0 hover:overflow-y-auto;
+  list-style: none;
+}
+.apg-picker-time-panel-column-active {
+  background: rgba(0, 0, 255, 0.1);
+}
+.apg-picker-time-panel-column > li {
+  @apply cursor-pointer m-0 p-0;
+}
+.apg-picker-time-panel-column > li.apg-picker-time-panel-cell-disabled {
+  @apply opacity-50;
+}
+.apg-picker-time-panel-column > li .apg-picker-time-panel-cell-inner {
+  @apply block w-full h-5 text-[#333] leading-5 text-left m-0 pl-3 pr-0 py-0;
+}
+.apg-picker-panel-rtl
+  .apg-picker-time-panel-column
+  > li
+  .apg-picker-time-panel-cell-inner {
+  @apply text-right pl-0 pr-3 py-0;
+}
+.apg-picker-datetime-panel {
+  @apply flex;
+}
+.apg-picker-datetime-panel .apg-picker-time-panel {
+  @apply border-l-[#999] border-l border-solid;
+}
+.apg-picker-datetime-panel .apg-picker-date-panel,
+.apg-picker-datetime-panel .apg-picker-time-panel {
+  @apply transition-opacity duration-[0.3s];
+}
+.apg-picker-datetime-panel-active .apg-picker-date-panel,
+.apg-picker-datetime-panel-active .apg-picker-time-panel {
+  @apply opacity-30;
+}
+.apg-picker-datetime-panel-active .apg-picker-date-panel-active,
+.apg-picker-datetime-panel-active .apg-picker-time-panel-active {
+  @apply opacity-100;
+}
+.apg-picker-input {
+  @apply relative inline-flex w-full;
+}
+.apg-picker-rtl .apg-picker-input {
+  @apply text-right;
+}
+.apg-picker-input > input {
+  @apply flex-1 outline-none bg-transparent text-base w-full text-white;
+}
+.apg-picker-input > input:disabled {
+  @apply cursor-not-allowed text-black-800;
+}
+.apg-picker-input > input::-moz-placeholder {
+  @apply opacity-100;
+}
+.apg-picker-input > input::placeholder {
+  @apply text-[hsv(0,0,75%)];
+}
+.apg-picker-input > input:placeholder-shown {
+  @apply text-ellipsis;
+}
+.apg-picker-input-placeholder > input {
+  @apply text-[hsv(0,0,75%)];
+}
+.apg-picker-clear {
+  @apply absolute cursor-pointer right-5 top-0 opacity-50;
+}
+.apg-picker-clear:hover {
+  @apply opacity-100;
+}
+.apg-picker-rtl .apg-picker-clear {
+  @apply left-1 right-auto;
+}
+.apg-picker-dropdown {
+  @apply absolute shadow-[0_0_1px] shadow-blue-300;
+}
+.apg-picker-dropdown-range {
+  @apply px-0 py-2.5;
+}
+.apg-picker-dropdown-hidden {
+  @apply hidden;
+}
+.apg-picker-dropdown-placement-topLeft .apg-picker-range-arrow,
+.apg-picker-dropdown-placement-topRight .apg-picker-range-arrow {
+  @apply rotate-[135deg] bottom-1.5;
+}
+.apg-picker-dropdown-placement-bottomLeft .apg-picker-range-arrow,
+.apg-picker-dropdown-placement-bottomright .apg-picker-range-arrow {
+  @apply -rotate-45 top-1.5;
+}
+.apg-picker-dropdown .apg-picker-range-arrow {
+  @apply absolute z-[1] w-2.5 h-2.5 transition-all duration-[0.3s] ml-2.5 left-2.5 before:w-2.5 before:h-2.5 before:border-[5px] before:border-solid before:border-blue-300 before:border-t-blue-300 before:border-r-blue-300 after:w-2 after:h-2 after:border-4 after:border-solid after:border-blue-300 after:border-[#fff0ff_#fff0ff_transparent_transparent];
+}
+.apg-picker-dropdown-rtl.apg-picker-dropdown .apg-picker-range-arrow {
+  @apply ml-0 mr-2.5 left-auto right-2.5;
+}
+.apg-picker-dropdown .apg-picker-range-arrow::before,
+.apg-picker-dropdown .apg-picker-range-arrow::after {
+  @apply absolute box-border -translate-x-2/4 -translate-y-2/4 content-[''] left-2/4 top-2/4;
+}
+.apg-picker-dropdown-rtl.apg-picker-dropdown .apg-picker-range-arrow::before,
+.apg-picker-dropdown-rtl.apg-picker-dropdown .apg-picker-range-arrow::after {
+  @apply translate-x-2/4 -translate-y-2/4 left-auto right-2/4;
+}
+.apg-picker-range {
+  @apply relative inline-flex;
+}
+.apg-picker-range-wrapper {
+  @apply flex;
+}
+.apg-picker-range .apg-picker-active-bar {
+  @apply h-[3px] opacity-0 transition-all duration-[0.3s] pointer-events-none bottom-0;
+  background: green;
+}
+.apg-picker-range.apg-picker-focused .apg-picker-active-bar {
+  @apply opacity-100;
+}
+.apg-picker-panel-container {
+  @apply inline-block align-top transition-[margin] duration-[0.3s];
+}
+.apg-picker-panel-layout {
+  @apply flex flex-nowrap items-stretch;
+}
