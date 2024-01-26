@@ -1839,6 +1839,10 @@ video {
   max-height: 5rem;
 }
 
+.max-h-24 {
+  max-height: 6rem;
+}
+
 .max-h-32 {
   max-height: 8rem;
 }
@@ -2681,6 +2685,10 @@ video {
 
 .text-wrap {
   text-wrap: wrap;
+}
+
+.break-all {
+  word-break: break-all;
 }
 
 .rounded {
@@ -4472,6 +4480,10 @@ video {
 
 .align-bottom {
   vertical-align: bottom;
+}
+
+.align-\[-15\%\] {
+  vertical-align: -15%;
 }
 
 .font-\[bold\] {

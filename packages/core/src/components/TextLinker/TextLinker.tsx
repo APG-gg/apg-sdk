@@ -146,6 +146,9 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
         } else if (entity.type === '*mention') {
           prefix = '*';
           valueName = `${prefix}${mention.name}`;
+        } else if (entity.type === '#mention') {
+          prefix = '#';
+          valueName = `${prefix}${mention.name}`;
         } else if (entity.type === 'emoji') {	
           valueName = entity.data.emojiUnicode;	
         } else if (entity.type === 'LINK') {
@@ -167,10 +170,12 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
             mentionJsx = <LinkComponent href={`/${locale}/games/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
           } else if (entity.type === '*mention') {
             mentionJsx = <LinkComponent href={`/${locale}/events/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
+          } else if (entity.type === '#mention' ) {
+            mentionJsx = <LinkComponent href={`/${locale}/hashtags/${mention.name}`} className="text-aqua">{valueName}</LinkComponent>
           } else if (entity.type === 'LINK') {
             mentionJsx = <LinkComponent href={entity.data.href} target={entity.data.target || "_blank"} className="text-aqua">{valueName}</LinkComponent>
           } else if (entity.type === 'IMAGE') {
-            mentionJsx = <Image src={entity.data.src} alt={valueName} className="text-aqua w-[18px] h-[18px]" width={18} height={18} />
+            mentionJsx = <span className='inline-block align-[-15%]'><Image src={entity.data.src} alt={valueName} className="text-aqua w-[18px] h-[18px]" width={18} height={18} /></span>
           }
 
           arrayInternalOfJs.push(splitted[0]);
@@ -186,10 +191,12 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
             mentionJsx = <LinkComponent href={`/${locale}/games/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
           } else if (entity.type === '*mention') {
             mentionJsx = <LinkComponent href={`/${locale}/events/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
+          } else if (entity.type === '#mention' ) {
+            mentionJsx = <LinkComponent href={`/${locale}/hashtags/${mention.name}`} className="text-aqua">{valueName}</LinkComponent>
           } else if (entity.type === 'LINK') {
             mentionJsx = <LinkComponent href={entity.data.href} target={entity.data.target || "_blank"} className="text-aqua">{valueName}</LinkComponent>
           } else if (entity.type === 'IMAGE') {
-            mentionJsx = <Image src={entity.data.src} alt={valueName} className="text-aqua w-[18px] h-[18px]" width={18} height={18} />
+            mentionJsx = <span className='inline-block align-[-15%]'><Image src={entity.data.src} alt={valueName} className="text-aqua w-[18px] h-[18px]" width={18} height={18} /></span>
           }
 
           arrayInternalOfJs[arrayInternalOfJs.length - 1] = splitted[0];
@@ -303,8 +310,6 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
           const parts = item.split(/(\s+)/);
 
           const elements = parts.map((part, index) => {
-            const hashtagResult = hashtagRegex.test(part);
-
             if (linkRegex.test(part)) {
               const link = convertToLink(part);
 
@@ -322,22 +327,8 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
                 </LinkComponent>
               );
             }
-            
-            if (hashtagResult) {
-              return (
-                <React.Fragment key={index}>
-                  <LinkComponent href={`/${locale}/hashtag/${part.slice(1)}`} className="text-aqua">
-                    {part}
-                  </LinkComponent>
-                </React.Fragment>
-              );
-            }
 
-            return (
-              <React.Fragment key={index}>
-                {part}
-              </React.Fragment>
-            );
+            return part
           });
 
           return <>{elements}</>;
@@ -347,10 +338,48 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
       });
 
       const blockJsx: any[] = [];
+      const newElements: any[] = [];
+      
+      arrayInternalOfJs.forEach((element, index) => {
+        if (element.props.children.length > 0) {
+          
+          if (element.props.children.some((child: any) => typeof child !== 'string')) {
+            const allStrings: string[] = [];
+
+            element.props.children.forEach((child: any) => {
+              if (typeof child === 'string') {
+                allStrings.push(child);
+              } else {
+                if (allStrings.length > 0) {
+                  const newString = allStrings.join('');
+                  newElements.push(newString);
+                  allStrings.length = 0;
+                }
+                newElements.push(child);
+              }
+            });
+
+            if (allStrings.length > 0) {
+              const newString = allStrings.join('');
+              newElements.push(newString);
+              allStrings.length = 0;
+            }
+          } else {
+            newElements.push(element.props.children.join(''));
+          }
+
+        } else {
+          newElements.push(element);
+        }
+      });
 
       blockJsx.push(
-        <div className='min-h-[1.5rem] flex flex-wrap items-center gap-1'>
-          {arrayInternalOfJs.map((item, index) => {
+        <div className='min-h-[1.5rem] items-center gap-0.5' style={{
+          textOverflow: 'unset',
+          wordBreak: 'break-word',
+          whiteSpace: 'pre-wrap',
+        }}>
+          {newElements.map((item, index) => {
             if (typeof item === 'string') {
               return <span key={index}>{item}</span>
             } else {
@@ -367,7 +396,7 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
       <>
         {arrayOfJs.map((item, index) => {
           if (typeof item === 'string') {
-            return <React.Fragment key={index}>{item}</React.Fragment>
+            return <span key={index}>{item}</span>
           } else {
             return <React.Fragment key={index}>{item}</React.Fragment>
           }

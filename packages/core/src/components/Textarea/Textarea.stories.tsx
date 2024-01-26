@@ -45,6 +45,13 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
             attributesToSearchOn: ['name', 'slug'],
             attributesToRetrieve: ['name', 'slug', 'thumbnail', 'id'],
           },
+          {
+            indexUid: 'hashtags-collections',
+            q: searchedWord,
+            limit: 16,
+            attributesToSearchOn: ['hashtag'],
+            attributesToRetrieve: ['hashtag', 'count', 'id'],
+          },
         ]
       });
 
@@ -80,6 +87,24 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
         }))
       }
 
+      if (prefix === '#') {
+        if (data = search?.results[3].hits.length > 0) {
+          data = search?.results[3].hits.map((item: any) => ({
+            name: item.hashtag,
+            count: item.count,
+            key: `${item.id}-${item.hashtag}`
+          }))
+        } else {
+          const randomInt = Math.floor(Math.random() * 1000000000);
+          data = [{
+            name: searchedWord,
+            count: 1,
+            isNew: true,
+            key: `${randomInt}-${searchedWord}`
+          }]
+        }
+      }
+
       setSearch(data);
     }
     // Execute the created function directly
@@ -92,10 +117,11 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
         {...args}
         data={search}
         onSearch={onSearch}
-        clearSearch={() => setSearch([])}
-        onChange={(contentAsRaw) => {
-          console.log(contentAsRaw)
+        clearSearch={() => setSearch(undefined)}
+        onAddMention={(mention, prefix) => {
+          console.log('onAddMention', mention, prefix);
         }}
+        onChange={(contentAsRaw) => {}}
         rawValue={{
           "blocks": [
             {
@@ -233,6 +259,11 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
                   <span className="text-white-400 text-sm leading-none">{`@${item.username}`}</span>
                 </div>
               </>
+            )}
+            {prefix === '#' && (
+              <div className="flex flex-col justify-center items-start gap-0.5">
+               <span className="font-bold text-white leading-tight">{item.name}</span>
+              </div>
             )}
           </>
         )}

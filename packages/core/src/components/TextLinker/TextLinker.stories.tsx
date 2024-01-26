@@ -28,28 +28,33 @@ WithMentions.args = {
         "entityRanges": [
           {
             "key": 0,
-            "length": 1,
+            "length": 3,
             "offset": 20
           },
           {
             "key": 1,
-            "length": 9,
-            "offset": 28
+            "length": 4,
+            "offset": 40
           },
           {
             "key": 2,
-            "length": 1,
-            "offset": 107
+            "length": 11,
+            "offset": 80
           },
           {
             "key": 3,
-            "length": 10,
-            "offset": 109
+            "length": 17,
+            "offset": 92
+          },
+          {
+            "key": 4,
+            "length": 4,
+            "offset": 110
           }
         ],
         "inlineStyleRanges": [],
         "key": "e2ktd",
-        "text": "Software developer  📷 Owner @APGstats || Tools para Valorant/WildRift || Esports Hoodies/Jerseys Collector 📷 #EsportDev",
+        "text": "Software developer  🇵🇪 Owner/Founder @apg | Esports Jerseys/Hoodies collector | #EsportsDev #EsportsCollector #APG ",
         "type": "unstyled"
       }
     ],
@@ -64,27 +69,49 @@ WithMentions.args = {
       },
       "1": {
         "data": {
-          "href": "https://twitter.com/APGstats",
-          "url": "https://twitter.com/APGstats"
+          "mention": {
+            "avatar": "https://statics.apg.gg/default/profile-pic.png",
+            "key": "apg",
+            "name": "apg",
+            "slug": "apg",
+            "username": "apg"
+          }
         },
-        "mutability": "MUTABLE",
-        "type": "LINK"
+        "mutability": "IMMUTABLE",
+        "type": "mention"
       },
       "2": {
         "data": {
-          "alt": "👕",
-          "src": "https://abs-0.twimg.com/emoji/v2/svg/1f455.svg"
+          "mention": {
+            "count": 3,
+            "key": "13-EsportsDev",
+            "name": "EsportsDev"
+          }
         },
         "mutability": "IMMUTABLE",
-        "type": "IMAGE"
+        "type": "#mention"
       },
       "3": {
         "data": {
-          "href": "https://twitter.com/search?q=%23EsportDev&src=hashtag_click",
-          "url": "https://twitter.com/search?q=%23EsportDev&src=hashtag_click"
+          "mention": {
+            "count": 2,
+            "key": "16-EsportsCollector",
+            "name": "EsportsCollector"
+          }
         },
-        "mutability": "MUTABLE",
-        "type": "LINK"
+        "mutability": "IMMUTABLE",
+        "type": "#mention"
+      },
+      "4": {
+        "data": {
+          "mention": {
+            "count": 4,
+            "key": "1-APG",
+            "name": "APG"
+          }
+        },
+        "mutability": "IMMUTABLE",
+        "type": "#mention"
       }
     }
   }

@@ -25,8 +25,8 @@ export interface EntryComponentProps {
 const mentionTheme = {
   mention: "text-aqua z-10 bg-trasnparent relative font-normal no-underline",
   mentionSuggestions: "absolute z-50 bg-black rounded-sm border border-black p-1 -translate-x-2/4 shadow-[0px_1px_3px_0px_#000] scale-0 left-2/4 max-h-[400px] overflow-y-auto",
-  mentionSuggestionsEntry: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] pt-2 pb-1 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center",
-  mentionSuggestionsEntryFocused: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] pt-2 pb-1 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center bg-aqua/10",
+  mentionSuggestionsEntry: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] py-2 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center",
+  mentionSuggestionsEntryFocused: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] py-2 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center bg-aqua/10",
   mentionSuggestionsEntryAvatar: "w-10 h-10 rounded-full block",
 }
 
@@ -40,7 +40,7 @@ const Entry = (props: EntryComponentProps, renderItem: (item: any) => JSX.Elemen
   } = props;
   return (
     <div {...parentProps} className={cls(
-      "flex gap-2 w-64 transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] pt-2 pb-1 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer focus",
+      "flex gap-2 w-64 transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] py-2 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer focus",
       {
         'bg-aqua/10': isFocused
       }
@@ -72,6 +72,7 @@ export interface TextareaProps {
   onSearch?: (text: string, prefix: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  onAddMention?: (Mention: MentionData, prefix: string) => void;
   renderItem: (item: any) => JSX.Element;
   errorText?: string | undefined;
   className?: string;
@@ -103,6 +104,7 @@ const Textarea: FC<TextareaProps> = forwardRef<HTMLTextAreaElement, TextareaProp
       onSearch,
       onBlur,
       onFocus,
+      onAddMention,
       renderItem,
       errorText,
       className = '',
@@ -262,8 +264,6 @@ const Textarea: FC<TextareaProps> = forwardRef<HTMLTextAreaElement, TextareaProp
               const contentAsRaw = convertToRaw(editorState.getCurrentContent());
               const contextAsText = editorState.getCurrentContent().getPlainText();
 
-              console.log('contextAsText', contextAsText);
-
               setRawValue(contentAsRaw);
               onChange && onChange(contentAsRaw);
 
@@ -304,7 +304,8 @@ const Textarea: FC<TextareaProps> = forwardRef<HTMLTextAreaElement, TextareaProp
             suggestions={suggestions}
             onSearchChange={onSearchChange}
             entryComponent={(props) => Entry(props, renderItem)}
-            onAddMention={() => {
+            onAddMention={(Mention: MentionData) => {
+              onAddMention && onAddMention(Mention, '#');
               clearSearch();
             }}
           />
