@@ -28,6 +28,8 @@ export interface DatePickerProps {
   format?: string;
   locale?: Record<string, any>;
   ref?: Ref<HTMLInputElement>;
+  autoComplete?: string
+  showNow?: boolean;
 }
 
 const DatePicker: FC<DatePickerProps> = forwardRef<HTMLInputElement, DatePickerProps>(
@@ -48,6 +50,8 @@ const DatePicker: FC<DatePickerProps> = forwardRef<HTMLInputElement, DatePickerP
       format = 'DD/MM/YYYY',
       style = {},
       locale = locales.es,
+      autoComplete = 'off',
+      showNow = false
     },
     ref
   ) => {
@@ -59,7 +63,7 @@ const DatePicker: FC<DatePickerProps> = forwardRef<HTMLInputElement, DatePickerP
   
     const handleChange = (date: dayjs.Dayjs | dayjs.Dayjs[], dayString: string | string[]) => {
       setIsFocused(false)
-      setValue(value);
+      setValue(dayjs(dayString as string, format));
       onChange && onChange(dayString as string);
     };
   
@@ -101,7 +105,8 @@ const DatePicker: FC<DatePickerProps> = forwardRef<HTMLInputElement, DatePickerP
           disabled={disabled}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          showToday
+          autoComplete={autoComplete}
+          showNow={showNow}	
           format={format}
           suffixIcon={
             <CalendarIcon 

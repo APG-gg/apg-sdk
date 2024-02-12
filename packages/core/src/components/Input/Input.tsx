@@ -29,6 +29,7 @@ export interface InputProps {
   className?: string;
   style?: React.CSSProperties;
   ref?: Ref<HTMLInputElement>;
+  autoComplete?: string;
 }
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
@@ -52,6 +53,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       errorText,
       className = '',
       style = {},
+      autoComplete = 'off'
     },
     ref
   ) => {
@@ -108,6 +110,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           disabled={disabled}
           readOnly={readOnly}
           ref={ref}
+          autoComplete={autoComplete}
         />
         {clearable && value && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}

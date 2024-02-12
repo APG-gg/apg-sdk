@@ -231,7 +231,7 @@
   @apply left-1 right-auto;
 }
 .apg-picker-dropdown {
-  @apply absolute shadow-[0_0_1px] shadow-blue-300;
+  @apply absolute shadow-[0_0_1px] shadow-blue-300 !min-w-48;
 }
 .apg-picker-dropdown-range {
   @apply px-0 py-2.5;

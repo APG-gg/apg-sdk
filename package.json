@@ -65,6 +65,7 @@
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "postcss": "8",
     "postcss-loader": "7.0.0",
+    "qrcode.react": "^3.1.0",
     "rc-picker": "4.0.0-alpha.13",
     "rc-util": "^5.38.1",
     "react-avatar-editor": "^13.0.2",

@@ -42,6 +42,7 @@ export interface SelectProps {
   debounceTime?: number;
   noOptionsText?: string;
   loadingText?: string;
+  autoComplete?: string;
 }
 
 const Select: FC<SelectProps> = ({
@@ -71,6 +72,7 @@ const Select: FC<SelectProps> = ({
   debounceTime = 500,
   noOptionsText = 'No options available',
   loadingText = 'Loading options...',
+  autoComplete = 'off'
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState<string>(!multiple ? initialValue as string : '');
@@ -282,6 +284,7 @@ const Select: FC<SelectProps> = ({
                   disabled={disabled}
                   readOnly={readOnly}
                   value={value}
+                  autoComplete={autoComplete}
                 />
               </>
             )

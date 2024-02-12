@@ -418,7 +418,7 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
       } else if (hashtagRegex.test(part)) {
         return (
           <React.Fragment key={index}>
-            <LinkComponent href={`/${locale}/hashtag/${part.slice(1)}`} className="text-aqua">
+            <LinkComponent href={`/${locale}/hashtags/${part.slice(1)}`} className="text-aqua">
               {part}
             </LinkComponent>
           </React.Fragment>
