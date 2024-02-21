@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/icons",
-  "version": "1.22.0",
+  "version": "1.24.0",
   "description": "APG.gg icons package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@apg.gg/core": "1.18.9",
-    "@apg.gg/icons": "1.22.0"
+    "@apg.gg/icons": "1.22.0",
+    "babel-plugin-styled-components": "^2.1.4",
+    "lodash": "^4.17.21",
+    "url-loader": "^4.1.1"
   }
 }

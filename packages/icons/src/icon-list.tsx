@@ -70,6 +70,19 @@ import LoyaltyIcon from "./LoyaltyIcon";
 import TranslateIcon from "./TranslateIcon";
 import BlockIcon from "./BlockIcon";
 import ReportIcon from "./ReportIcon";
+import SwordsIcon from "./SwordsIcon";
+import GroupsIcon from "./GroupsIcon";
+import TagIcon from "./TagIcon";
+import TrendingUpIcon from "./TrendingUpIcon";
+import SortIcon from "./SortIcon";
+import NewsIcon from "./NewsIcon";
+import CrosswordIcon from "./CrosswordIcon";
+import ImageIcon from "./ImageIcon";
+import MoonIcon from "./MoonIcon";
+import CrownIcon from "./CrownIcon";
+import MilitaryBadgeIcon from "./MilitaryBadgeIcon";
+import ArrowLeftAltIcon from "./ArrowLeftAltIcon";
+import ArrowRightAltIcon from "./ArrowRightAltIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -138,6 +151,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <IconDrakeOcean style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<IconDrakeOcean />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ArrowLeftAltIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ArrowLeftAltIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ArrowRightAltIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ArrowRightAltIcon />'}</pre> 
         </div>
       </IconWrapper>
       <IconWrapper>
@@ -519,6 +544,72 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <ReportIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<ReportIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SwordsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SwordsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <GroupsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<GroupsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TagIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TagIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <TrendingUpIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<TrendingUpIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SortIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SortIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <NewsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<NewsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CrosswordIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CrosswordIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ImageIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ImageIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <MoonIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<MoonIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <CrownIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<CrownIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <MilitaryBadgeIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<MilitaryBadgeIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

@@ -61,7 +61,7 @@ const DatePicker: FC<DatePickerProps> = forwardRef<HTMLInputElement, DatePickerP
     const handleFocus = () => !disabled && setIsFocused(true);
     const handleBlur = () => !disabled && setIsFocused(false);
   
-    const handleChange = (date: dayjs.Dayjs | dayjs.Dayjs[], dayString: string | string[]) => {
+    const handleChange = (value: dayjs.Dayjs | null, dayString: string | string[]) => {
       setIsFocused(false)
       setValue(dayjs(dayString as string, format));
       onChange && onChange(dayString as string);

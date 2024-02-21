@@ -1053,6 +1053,10 @@ video {
   pointer-events: auto;
 }
 
+.\!visible {
+  visibility: visible !important;
+}
+
 .visible {
   visibility: visible;
 }
@@ -1091,6 +1095,10 @@ video {
 
 .sticky {
   position: sticky;
+}
+
+.-inset-1 {
+  inset: -0.25rem;
 }
 
 .inset-0 {
@@ -2467,6 +2475,12 @@ video {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+
+.select-all {
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
 }
 
 .resize-none {
@@ -4616,6 +4630,11 @@ video {
 
 .normal-nums {
   font-variant-numeric: normal;
+}
+
+.\!ordinal {
+  --tw-ordinal: ordinal !important;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction) !important;
 }
 
 .ordinal {

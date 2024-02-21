@@ -5,6 +5,7 @@ import IconList, { IconProps } from './src/icon-list';
 import IconColoredList from './src/icon-colored-list';
 import IconRolesList from './src/icon-roles-list';
 import IconSocialsList from './src/icon-socials';
+import IconPixeledList from './src/icon-pixeled-list';
 
 export default {
   title: "Atoms/Icons",
@@ -55,6 +56,21 @@ Colored.args = {
 };
 
 Colored.parameters = {
+  docs: {
+    disable: true,
+  },
+};
+
+export const Pixeled: Story<IconProps> = (args) => (
+  <IconPixeledList {...args} />
+);
+
+Pixeled.args = {
+  size: 32,
+  color: "#FFFFFF",
+};
+
+Pixeled.parameters = {
   docs: {
     disable: true,
   },
