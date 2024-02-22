@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@apg.gg/icons':
-    specifier: ^1.24.0
-    version: 1.24.0(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2)
+    specifier: ^1.24.1
+    version: 1.24.1(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2)
   '@draft-js-plugins/editor':
     specifier: ^4.1.4
     version: 4.1.4(draft-js@0.11.7)(react-dom@18.2.0)(react@18.2.0)
@@ -117,7 +117,7 @@ packages:
   /@apg.gg/core@1.18.9(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2):
     resolution: {integrity: sha512-RuTQGQrFcHtI3mO379RTRWk7Z3x7xSUi43FyJ22WYz68mgF+maZrZ7CZd5r6p9jMpLlttIfX+dgM2TbxG0R2tA==}
     dependencies:
-      '@apg.gg/icons': 1.24.0(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2)
+      '@apg.gg/icons': 1.24.1(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2)
       '@draft-js-plugins/editor': 4.1.4(draft-js@0.11.7)(react-dom@18.2.0)(react@18.2.0)
       '@draft-js-plugins/inline-toolbar': 4.2.1(draft-js@0.11.7)(react-dom@18.2.0)(react@18.2.0)
       '@draft-js-plugins/linkify': 4.2.2(draft-js@0.11.7)(react-dom@18.2.0)(react@18.2.0)
@@ -296,8 +296,8 @@ packages:
       - supports-color
     dev: false
 
-  /@apg.gg/icons@1.24.0(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2):
-    resolution: {integrity: sha512-2XWJcKbE2CKX26e6SOjXoOeXHAxFwnh0Q2Jv5qJxM0wsUI5m8H5Wqf9Pizt2cVwF506Qpzl01YdNh6scZN6+uA==}
+  /@apg.gg/icons@1.24.1(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2):
+    resolution: {integrity: sha512-VnHHqkgHeIW+s+bZ2xRAfyzi5aRmNG4ee8KyOt+7vH6H7oiF1W6uv0oYbiUaXvvoLZUI4i3TwUMcBb3KktLlEQ==}
     dependencies:
       '@apg.gg/core': 1.18.9(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)(webpack@5.90.2)
       '@apg.gg/icons': 1.22.0(@babel/core@7.23.9)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)

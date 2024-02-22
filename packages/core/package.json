@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.25.0",
+  "version": "1.25.1",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -14,7 +14,7 @@
     "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./src/styles/index.css --watch"
   },
   "dependencies": {
-    "@apg.gg/icons": "^1.24.0",
+    "@apg.gg/icons": "^1.24.1",
     "@draft-js-plugins/editor": "^4.1.4",
     "@draft-js-plugins/inline-toolbar": "^4.2.1",
     "@draft-js-plugins/linkify": "^4.2.2",
