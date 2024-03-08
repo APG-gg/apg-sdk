@@ -31,8 +31,8 @@ export interface ModalProps {
   type?: ModalType;
   icon?: ReactNode;
   confirmType?: ConfirmButtonType;
-  confirmText?: string;
-  cancelText?: string;
+  confirmText?: string | ReactNode;
+  cancelText?: string | ReactNode;
   classNames?: { 
     wrapper?: string; 
     header?: string; 

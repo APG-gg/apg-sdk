@@ -6,6 +6,7 @@ export type CardBaseProps = {
   children: ReactNode;
   className?: string;
   classNameWrapper?: string;
+  style?: React.CSSProperties;
 };
 
 export type CardProps = {
@@ -31,6 +32,7 @@ export type CardProps = {
   cancelLabel?: string;
   className?: string;
   classNameWrapper?: string;
+  style?: React.CSSProperties;
   onConfirm?: () => void;
   onCancel?: () => void;
 }
@@ -50,9 +52,9 @@ export type CardTagProps = {
   type?: "blue" | "aqua" | "green" | "yellow" | "fucsia" | "red" | "purple" | "orange" | "limegreen" | "white" | "black";
 }
 
-const CardBase = ({ children, className = '', classNameWrapper = '' }: CardBaseProps) => {
+const CardBase = ({ children, className = '', classNameWrapper = '', style }: CardBaseProps) => {
   return (
-    <div className={`base-card ${className}`}>
+    <div className={`base-card ${className}`} style={style}>
       <div className={classNames(
         "z-20 w-full",
         classNameWrapper

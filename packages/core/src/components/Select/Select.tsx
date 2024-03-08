@@ -317,9 +317,9 @@ const Select: FC<SelectProps> = ({
         </div>
 
 
-        {clearable && ((multiple && multipleValue.length > 0) || (!multiple && value)) && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
+        {clearable && ((multiple && multipleValue.length > 0) || (!multiple && value)) && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer z-50" onClick={handleClear} />}
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
-        <ArrowDownIcon className="flex w-6 h-6 text-gray-400 text-xs cursor-pointer items-center justify-center" onClick={handleFocus} />
+        <ArrowDownIcon className="flex w-6 h-6 text-gray-400 text-xs cursor-pointer items-center justify-center z-50" onClick={handleFocus} />
       </div>
 
       {supportText && <div className="text-xs text-black-400 mt-2">{supportText}</div>}
@@ -330,7 +330,7 @@ const Select: FC<SelectProps> = ({
           {createPortal(
             <div
               className={classNames(
-                'absolute z-40',
+                'absolute z-[60]',
                 shouldOpenUpwards() ? 'bottom-11' : 'top-11',
                 'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]'
               )}

@@ -7,6 +7,7 @@ import CardType, { CardTypeProps } from '../CardType';
 import CardProfile, { CardProfileProps } from '../CardProfile/CardProfile';
 import { CardProps } from '../CardBase/CardBase';
 import Button from '../Button';
+import CardEvent, { CardEventProps } from '../CardEvent/index';
 
 const basicArgs = {
   id: "266678",
@@ -184,58 +185,7 @@ EventType.args = {
     "active": true,
     "name": "online"
   },
-  "shortRichDescription": {
-    "blocks": [
-      {
-        "data": {},
-        "depth": 0,
-        "entityRanges": [
-          {
-            "key": 0,
-            "length": 6,
-            "offset": 23
-          },
-          {
-            "key": 1,
-            "length": 10,
-            "offset": 30
-          }
-        ],
-        "inlineStyleRanges": [],
-        "key": "cjkdf",
-        "text": "Desarrollado junto con @Panda @Spiritsun ",
-        "type": "unstyled"
-      }
-    ],
-    "entityMap": {
-      "0": {
-        "data": {
-          "mention": {
-            "avatar": "https://storage.apg.gg/3b55946966ce8835c380abb31cfa58c640142f0df4da9db4f550186abd502e3d.png",
-            "key": "Panda",
-            "name": "Panda",
-            "slug": "Panda",
-            "username": "Panda"
-          }
-        },
-        "mutability": "IMMUTABLE",
-        "type": "mention"
-      },
-      "1": {
-        "data": {
-          "mention": {
-            "avatar": "https://statics.apg.gg/default/profile-pic.png",
-            "key": "Spiritsun",
-            "name": "Spiritsun",
-            "slug": "Spiritsun",
-            "username": "Spiritsun"
-          }
-        },
-        "mutability": "IMMUTABLE",
-        "type": "mention"
-      }
-    }
-  },
+  "shortRichDescription": {"blocks":[{"data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[{"length":128,"offset":0,"style":"BOLD"}],"key":"cjkdf","text":"¡Prepárate para la revolución de los videojuegos! Te invitamos al lanzamiento oficial del Sistema de Votaciones \"Gamers' Choice\", donde la comunidad gamer tendrá la voz cantante.","type":"unstyled"}],"entityMap":{}},
   "isParent": false,
   "parentEventId": null,
   "userId": 100007,
@@ -257,6 +207,46 @@ EventTypeNoLink.args = {
   game: "Valorant",
   profileType: "Caster",
   type: "online"
+};
+
+const TemplateCardEventTypeNoLink: Story<CardEventProps> = (args) => <CardEvent {...args} />;
+export const CardEventTypeNoLink = TemplateCardEventTypeNoLink.bind({});
+CardEventTypeNoLink.args = {
+  "date": "2023-11-15",
+  "banner": "https://storage.apg.gg/8536c0a992cfe5287d925d0c4422c41d44dc526e9b75ba8a8c9dfcbae73b869b.jpg",
+  "id": 47,
+  "game": null,
+  "eventTypeId": 2,
+  "gameId": null,
+  "link": "https://gamerawardsvenezuela.com/",
+  "isActive": true,
+  "profileType": {
+    "name": "Developer",
+    "slug": "developer",
+    "color": "red-600",
+    "category": "production",
+    "icon": "barChart"
+  },
+  "type": "online",
+  "category": "Conferencia",
+  "tag": "General",
+  "participationTypeId": 49,
+  "title": "Game Awards Venezuela",
+  "slug": "game-awards-venezuela",
+  "eventType": {
+    "active": true,
+    "name": "online"
+  },
+  "shortRichDescription": {"blocks":[{"data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[{"length":128,"offset":0,"style":"BOLD"}],"key":"cjkdf","text":"¡Prepárate para la revolución de los videojuegos! Te invitamos al lanzamiento oficial del Sistema de Votaciones \"Gamers' Choice\", donde la comunidad gamer tendrá la voz cantante.","type":"unstyled"}],"entityMap":{}},
+  "isParent": false,
+  "parentEventId": null,
+  "userId": 100007,
+  "owner": {
+    "name": "Diego B.",
+    "username": "ddumst",
+    "profileImage": "https://storage.apg.gg/43ea9459d9db394cbf479864e68ca49f9bd71ea1cf78cfd969743810ccdb9037"
+  },
+  "isFeature": false,
 };
 
 const TemplateProfileCard: Story<CardProfileProps> = (args) => <CardProfile {...args} />;

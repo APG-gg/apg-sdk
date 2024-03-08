@@ -7,18 +7,22 @@ import TextLinker from '../TextLinker';
 import Tag from '../Tag';
 import EventTypeEnum from '../../domain/eventType.enum';
 import { RawDraftContentState } from 'draft-js';
+import EventCategoryEnum from '../../domain/eventCategory.enum';
+import EventTagEnum from '../../domain/eventTag.enum';
 
-export interface CardTypeProps extends Omit<CardProps, "description"> {
+export interface CardAchievementProps extends Omit<CardProps, "description"> {
   className?: string;
   title: string;
   date: string;
   game?: string;
   profileType?: Record<string, any>;
   type?: string;
+  category?: string;
+  tag?: string;
   link?: string;
 }
 
-const CardType: FC<CardTypeProps> = ({
+const CardAchievement: FC<CardAchievementProps> = ({
   id,
   name,
   shortDescription,
@@ -31,6 +35,8 @@ const CardType: FC<CardTypeProps> = ({
   className,
   profileType,
   type,
+  category,
+  tag,
   linkComponent,
   locale
 }) => {
@@ -55,20 +61,23 @@ const CardType: FC<CardTypeProps> = ({
   };
 
   return (
-    <CardBase className={`flex flex-col max-w-[320px] min-h-[325px] h-full ${className}`}>
-      <div className="flex-grow h-[154px] relative">
+    <CardBase 
+      className={`flex flex-col w-full max-w-[360px] min-h-[350px] h-full ${className}`}
+      classNameWrapper="flex flex-col h-[27rem] gap-2 overflow-visible"
+    >
+      <div className="flex-grow max-h-[200px] relative">
         <img src={banner || "https://statics.apg.gg/default/post.png"} alt={name} className="w-full h-full object-cover object-center" />
 
-        {type ? (
+        {tag ? (
           <Tag
-            type={EventTypeEnum[type as keyof typeof EventTypeEnum] as any}
+            type={EventTagEnum[tag as keyof typeof EventTagEnum] as any}
             className="max-w-none absolute right-2 top-2 h-6 !bg-black-900"
           >
-          {type}
+          {tag}
         </Tag>
         ) : null}
       </div>
-      <div className="flex flex-col gap-1 pt-4 px-4">
+      <div className="flex flex-col gap-1 py-4 px-4 flex-1">
         <div className="flex flex-col">
           <div className="flex justify-start">
             {link ? (
@@ -99,8 +108,24 @@ const CardType: FC<CardTypeProps> = ({
           )} 
         </div>
 
-        {profileType ? (
-          <div className="flex justify-start items-center gap-1 mt-2">
+        <div className="flex justify-start items-center gap-1 mt-auto">
+          {type ? (
+            <Tag
+              type={EventTypeEnum[type as keyof typeof EventTypeEnum] as any}
+              className="max-w-none h-6"
+            >
+            {type}
+          </Tag>
+          ) : null}
+          {category ? (
+            <Tag
+              type={EventCategoryEnum[category as keyof typeof EventCategoryEnum] as any}
+              className="max-w-none h-6"
+            >
+            {category}
+          </Tag>
+          ) : null}
+          {profileType ? (
             <Tag
                 type={profileType.color}
                 icon={profileType.icon}
@@ -108,11 +133,11 @@ const CardType: FC<CardTypeProps> = ({
               >
               {profileType.name}
             </Tag>
+          ) : null}
          </div>
-        ) : null}
       </div>
     </CardBase>
   );
 };
 
-export default CardType;
+export default CardAchievement;

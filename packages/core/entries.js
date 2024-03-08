@@ -35,6 +35,8 @@ module.exports = {
   
   // Enums
   EventTypeEnum: path.join(DOMAIN_DIR, "eventType.enum"),
+  EventCategoryEnum: path.join(DOMAIN_DIR, "eventCategory.enum"),
+  EventTagEnum: path.join(DOMAIN_DIR, "eventTag.enum"),
   ProfileTypeColor: path.join(DOMAIN_DIR, "profileTypeColor.enum"),
 
   // Hooks
@@ -44,9 +46,12 @@ module.exports = {
 
   // Components
   Button: path.join(COMPONENT_DIR, "Button"),
+  Checkbox: path.join(COMPONENT_DIR, "Checkbox"),
   Card: path.join(COMPONENT_DIR, "Card"),
+  CardAchievement: path.join(COMPONENT_DIR, "CardAchievement"),
   CardBase: path.join(COMPONENT_DIR, "CardBase"),
   CardDescription: path.join(COMPONENT_DIR, "CardDescription"),
+  CardEvent: path.join(COMPONENT_DIR, "CardEvent"),
   CardHeader: path.join(COMPONENT_DIR, "CardHeader"),
   CardLandscape: path.join(COMPONENT_DIR, "CardLandscape"),
   CardPost: path.join(COMPONENT_DIR, "CardPost"),

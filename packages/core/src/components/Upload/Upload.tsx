@@ -9,15 +9,16 @@ import { base64ToFile } from '../../utils/base64ToFile';
 import PulseRingIcon from '@apg.gg/icons/lib/PulseRingIcon';
 
 export interface UploadProps {
-  endpoint: string;
-  aspectRatio: number;
-  onSuccess: (response: ApiResponse) => void;
+  endpoint?: string;
+  aspectRatio?: number;
+  onSuccess?: (response: ApiResponse) => void;
   onError?: (error: any) => void;
   editMode?: boolean;
   cropable?: boolean;
   shape?: 'square' | 'circle' | 'banner';
   authToken?: string;
   title?: string;
+  headline?: string;
   editText?: string;
   uploadingText?: string;
   iconAdd?: React.ReactNode;
@@ -29,6 +30,8 @@ export interface UploadProps {
   bgClass?: string;
   isLoading?: boolean;
   circularCrop?: boolean;
+  useBase64?: boolean;
+  onBase64?: (base64: string) => void;
 }
 
 export interface ApiResponse {
@@ -55,6 +58,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       cropable = false,
       shape = 'square', 
       title, 
+      headline,
       editText = 'Choose photo',
       uploadingText = 'Uploading...',
       authToken, 
@@ -66,7 +70,9 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       height = 200,
       bgClass = 'bg-black',
       isLoading = false,
-      circularCrop = false
+      circularCrop = false,
+      useBase64 = false,
+      onBase64
     }, 
     ref
   ) => {
@@ -83,7 +89,14 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
       const selectedFile = event.target.files?.[0] || null;
 
       if (selectedFile) {
-        fetchImage(selectedFile);
+        if (useBase64) {
+          getBase64(selectedFile, (url) => {
+            // Aquí puedes manejar el base64 de la imagen
+            onBase64?.(url.split(';base64,')[1]);
+          });
+        } else {
+          fetchImage(selectedFile);
+        }
       }
     };
 
@@ -101,7 +114,14 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
         const canvas = editor.current?.getImageScaledToCanvas();
         const dataURL = canvas?.toDataURL(cropedFile.type);
         const file = dataURL && base64ToFile(dataURL, cropedFile.name)
-        fetchImage(file as File);
+        if (useBase64) {
+          getBase64(file as File, (url) => {
+            // Aquí puedes manejar el base64 de la imagen
+            onBase64?.(url.split(';base64,')[1]);
+          });
+        } else {
+          fetchImage(file as File);
+        }
         setShowModal(false);
       }
     }
@@ -121,12 +141,14 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
           }
         };
 
-        const response = await fetch(endpoint, requestOptions);
-
-        const data: ApiResponse = await response.json();
-        setImageToShow(data.url);
-        setIsUploading(false);
-        onSuccess(data);
+        if (endpoint) {
+          const response = await fetch(endpoint, requestOptions);
+  
+          const data: ApiResponse = await response.json();
+          setImageToShow(data.url);
+          setIsUploading(false);
+          onSuccess?.(data);
+        }
       } catch (error) {
         setIsUploading(false);
         onError?.(error);
@@ -165,6 +187,10 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
     useEffect(() => {
       setIsUploading(isLoading);
     }, [isLoading])
+
+    useEffect(() => {
+      setImageToShow(image);
+    }, [image])
 
     return (
       <div>
@@ -214,6 +240,9 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
                   <h1 className="text-white font-poppins font-bold text-center px-4 text-sm">
                     {editText}
                   </h1>
+                  <span className="text-white-300 font-poppins font-bold text-center px-4 text-xs">
+                    {headline}
+                  </span>
                 </div>
               ) : null}
               {editMode && isUploading ? (
@@ -246,6 +275,9 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
                   <h1 className="text-white font-poppins font-bold text-center px-4 text-sm">
                     {title}
                   </h1>
+                  <span className="text-white-300 font-poppins font-bold text-center px-4 text-xs">
+                    {headline}
+                  </span>
                 </>
               )}
             </>

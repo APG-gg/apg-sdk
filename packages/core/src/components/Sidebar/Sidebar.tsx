@@ -145,12 +145,7 @@ const Sidebar: FC<SidebarProps> = ({
                   <SidebarItem 
                     key={`sidebaritem-${item.key}`} 
                     item={item}
-                    isActive={activeSection === item.key} 
-                    onClick={(key) => {
-                      setActiveSection(key)
-                      if (!item.href) onToggleDrawer?.(item.key);
-                      if (!isCollapsed && isLtLg && !isXs) toggleSidebar()
-                    }}
+                    isActive={activeSection === item.key}
                   />
                 ))}
               </>
