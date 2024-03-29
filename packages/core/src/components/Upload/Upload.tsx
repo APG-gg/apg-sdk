@@ -92,6 +92,10 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
         if (useBase64) {
           getBase64(selectedFile, (url) => {
             // Aquí puedes manejar el base64 de la imagen
+            const image = new Image();
+            image.src = URL.createObjectURL(selectedFile);
+            
+            setImageToShow(image.src);
             onBase64?.(url.split(';base64,')[1]);
           });
         } else {
@@ -117,6 +121,10 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
         if (useBase64) {
           getBase64(file as File, (url) => {
             // Aquí puedes manejar el base64 de la imagen
+            const image = new Image();
+            image.src = URL.createObjectURL(file as File);
+            
+            setImageToShow(image.src);
             onBase64?.(url.split(';base64,')[1]);
           });
         } else {
@@ -245,7 +253,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
                   </span>
                 </div>
               ) : null}
-              {editMode && isUploading ? (
+              {isUploading ? (
                 <div className={`absolute inset-0 !bg-opacity-[0.75] items-center justify-center flex flex-col gap-1 ${bgClass}`}>
                   <div className="flex items-center justify-center rounded-full bg-blue p-2">
                     {iconUploading}

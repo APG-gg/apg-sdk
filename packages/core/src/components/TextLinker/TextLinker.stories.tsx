@@ -23,95 +23,65 @@ WithMentions.args = {
   content: {
     "blocks": [
       {
-        "data": {},
+        "key": "e2ktd",
+        "text": "Software developer  🇵🇪 Owner/Founder @apg #EsportsDev  https://www.apg.gg 😁",
+        "type": "unstyled",
         "depth": 0,
+        "inlineStyleRanges": [],
         "entityRanges": [
           {
-            "key": 0,
+            "offset": 20,
             "length": 3,
-            "offset": 20
+            "key": 0
           },
           {
-            "key": 1,
+            "offset": 37,
             "length": 4,
-            "offset": 40
+            "key": 1
           },
           {
-            "key": 2,
+            "offset": 42,
             "length": 11,
-            "offset": 80
-          },
-          {
-            "key": 3,
-            "length": 17,
-            "offset": 92
-          },
-          {
-            "key": 4,
-            "length": 4,
-            "offset": 110
+            "key": 2
           }
         ],
-        "inlineStyleRanges": [],
-        "key": "e2ktd",
-        "text": "Software developer  🇵🇪 Owner/Founder @apg | Esports Jerseys/Hoodies collector | #EsportsDev #EsportsCollector #APG ",
-        "type": "unstyled"
+        "data": {}
       }
     ],
     "entityMap": {
       "0": {
+        "type": "IMAGE",
+        "mutability": "IMMUTABLE",
         "data": {
           "alt": "🇵🇪",
           "src": "https://abs-0.twimg.com/emoji/v2/svg/1f1f5-1f1ea.svg"
-        },
-        "mutability": "IMMUTABLE",
-        "type": "IMAGE"
+        }
       },
       "1": {
+        "type": "mention",
+        "mutability": "IMMUTABLE",
         "data": {
           "mention": {
-            "avatar": "https://statics.apg.gg/default/profile-pic.png",
-            "key": "apg",
+            "avatar": "https://profiles.cache.apg.gg/apg.webp",
             "name": "apg",
+            "username": "apg",
             "slug": "apg",
-            "username": "apg"
+            "key": "apg",
+            "link": "/apg"
           }
-        },
-        "mutability": "IMMUTABLE",
-        "type": "mention"
+        }
       },
       "2": {
-        "data": {
-          "mention": {
-            "count": 3,
-            "key": "13-EsportsDev",
-            "name": "EsportsDev"
-          }
-        },
+        "type": "#mention",
         "mutability": "IMMUTABLE",
-        "type": "#mention"
-      },
-      "3": {
         "data": {
           "mention": {
-            "count": 2,
-            "key": "16-EsportsCollector",
-            "name": "EsportsCollector"
-          }
-        },
-        "mutability": "IMMUTABLE",
-        "type": "#mention"
-      },
-      "4": {
-        "data": {
-          "mention": {
+            "name": "EsportsDev",
             "count": 4,
-            "key": "1-APG",
-            "name": "APG"
+            "key": "13-EsportsDev",
+            "link": "/hashtags/EsportsDev"
           }
-        },
-        "mutability": "IMMUTABLE",
-        "type": "#mention"
+        }
       }
     }
   }

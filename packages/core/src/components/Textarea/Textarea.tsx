@@ -264,6 +264,8 @@ const Textarea: FC<TextareaProps> = forwardRef<HTMLTextAreaElement, TextareaProp
               const contentAsRaw = convertToRaw(editorState.getCurrentContent());
               const contextAsText = editorState.getCurrentContent().getPlainText();
 
+              console.log(contentAsRaw);
+
               setRawValue(contentAsRaw);
               onChange && onChange(contentAsRaw);
 

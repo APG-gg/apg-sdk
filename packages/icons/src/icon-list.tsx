@@ -83,6 +83,8 @@ import CrownIcon from "./CrownIcon";
 import MilitaryBadgeIcon from "./MilitaryBadgeIcon";
 import ArrowLeftAltIcon from "./ArrowLeftAltIcon";
 import ArrowRightAltIcon from "./ArrowRightAltIcon";
+import NotificationIcon from "./NotificationIcon";
+import SendIcon from "./SendIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -610,6 +612,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <MilitaryBadgeIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<MilitaryBadgeIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <NotificationIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<NotificationIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SendIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SendIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

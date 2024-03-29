@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn  } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import Textarea, { TextareaProps } from './Textarea'; // Ajusta la ruta según la ubicación de tu componente Textarea
 import { MeiliSearch, MultiSearchResponse } from 'meilisearch';
 
@@ -13,7 +13,7 @@ export default {
   component: Textarea,
 }
 
-const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
+const Template: StoryFn<typeof Textarea> = (args: TextareaProps) => {
   const [search, setSearch] = React.useState<any>();
   const [prefix, setPrefix] = React.useState<string>('@');
 
@@ -63,7 +63,8 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
           name: item.username,
           username: item.username,
           slug: item.username,
-          key: item.username
+          key: item.username,
+          link: `/${item.username}`
         }))
       }
 
@@ -73,7 +74,8 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
           name: item.title,
           username: item.user.name,
           slug: item.slug,
-          key: `${item.id}-${item.slug}`
+          key: `${item.id}-${item.slug}`,
+          link: `/events/${item.slug}`
         }))
       }
 
@@ -83,7 +85,8 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
           name: item.name,
           username: item.slug,
           slug: item.slug,
-          key: `${item.id}-${item.slug}`
+          key: `${item.id}-${item.slug}`,
+          link: `/games/${item.slug}`
         }))
       }
 
@@ -92,7 +95,8 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
           data = search?.results[3].hits.map((item: any) => ({
             name: item.hashtag,
             count: item.count,
-            key: `${item.id}-${item.hashtag}`
+            key: `${item.id}-${item.hashtag}`,
+            link: `/hashtags/${item.hashtag}`
           }))
         } else {
           const randomInt = Math.floor(Math.random() * 1000000000);
@@ -100,7 +104,8 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
             name: searchedWord,
             count: 1,
             isNew: true,
-            key: `${randomInt}-${searchedWord}`
+            key: `${randomInt}-${searchedWord}`,
+            link: `/hashtag/${searchedWord}`
           }]
         }
       }
@@ -121,113 +126,69 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
         onAddMention={(mention, prefix) => {
           console.log('onAddMention', mention, prefix);
         }}
-        onChange={(contentAsRaw) => {}}
+        onChange={(contentAsRaw) => { }}
         rawValue={{
           "blocks": [
             {
-              "data": {},
+              "key": "e2ktd",
+              "text": "Software developer  🇵🇪 Owner/Founder @apg #EsportsDev  https://www.apg.gg 😁",
+              "type": "unstyled",
               "depth": 0,
+              "inlineStyleRanges": [],
               "entityRanges": [
                 {
-                  "key": 0,
-                  "length": 1,
-                  "offset": 0
+                  "offset": 20,
+                  "length": 3,
+                  "key": 0
                 },
                 {
-                  "key": 1,
-                  "length": 24,
-                  "offset": 16
+                  "offset": 37,
+                  "length": 4,
+                  "key": 1
                 },
                 {
-                  "key": 2,
-                  "length": 1,
-                  "offset": 43
-                },
-                {
-                  "key": 3,
-                  "length": 1,
-                  "offset": 66
-                },
-                {
-                  "key": 4,
-                  "length": 9,
-                  "offset": 83
-                },
-                {
-                  "key": 5,
-                  "length": 1,
-                  "offset": 95
-                },
-                {
-                  "key": 6,
-                  "length": 10,
-                  "offset": 107
+                  "offset": 42,
+                  "length": 11,
+                  "key": 2
                 }
               ],
-              "inlineStyleRanges": [],
-              "key": "7e5dt",
-              "text": "📷Twitch Partner http://twitch.tv/feryfer | 📷feryfergg@gmail.com | 📷Head of Socials @APGstats | 📷Partnered: @NZXTLATAM",
-              "type": "unstyled"
+              "data": {}
             }
           ],
           "entityMap": {
             "0": {
-              "data": {
-                "alt": "✨",
-                "src": "https://abs-0.twimg.com/emoji/v2/svg/2728.svg"
-              },
+              "type": "IMAGE",
               "mutability": "IMMUTABLE",
-              "type": "IMAGE"
+              "data": {
+                "alt": "🇵🇪",
+                "src": "https://abs-0.twimg.com/emoji/v2/svg/1f1f5-1f1ea.svg"
+              }
             },
             "1": {
+              "type": "mention",
+              "mutability": "IMMUTABLE",
               "data": {
-                "href": "https://t.co/ciMeRshbwS",
-                "rel": "noopener noreferrer nofollow",
-                "target": "_blank",
-                "url": "https://t.co/ciMeRshbwS"
-              },
-              "mutability": "MUTABLE",
-              "type": "LINK"
+                "mention": {
+                  "avatar": "https://profiles.cache.apg.gg/apg.webp",
+                  "name": "apg",
+                  "username": "apg",
+                  "slug": "apg",
+                  "key": "apg",
+                  "link": "/apg"
+                }
+              }
             },
             "2": {
-              "data": {
-                "alt": "✉️",
-                "src": "https://abs-0.twimg.com/emoji/v2/svg/2709.svg"
-              },
+              "type": "#mention",
               "mutability": "IMMUTABLE",
-              "type": "IMAGE"
-            },
-            "3": {
               "data": {
-                "alt": "💖",
-                "src": "https://abs-0.twimg.com/emoji/v2/svg/1f496.svg"
-              },
-              "mutability": "IMMUTABLE",
-              "type": "IMAGE"
-            },
-            "4": {
-              "data": {
-                "href": "https://twitter.com/APGstats",
-                "url": "https://twitter.com/APGstats"
-              },
-              "mutability": "MUTABLE",
-              "type": "LINK"
-            },
-            "5": {
-              "data": {
-                "alt": "🍄",
-                "src": "https://abs-0.twimg.com/emoji/v2/svg/1f344.svg"
-              },
-              "mutability": "IMMUTABLE",
-              "type": "IMAGE"
-            },
-            "6": {
-              "data": {
-                "href": "https://twitter.com/NZXTLATAM",
-                "url": "https://twitter.com/NZXTLATAM"
-              },
-              "mutability": "MUTABLE",
-              "type": "LINK"
+                "mention": {
+                  "name": "EsportsDev",
+                  "count": 4,
+                  "key": "13-EsportsDev",
+                  "link": "/hashtags/EsportsDev"
+                }
+              }
             }
           }
         }}
@@ -262,7 +223,7 @@ const Template: StoryFn <typeof Textarea> = (args: TextareaProps) => {
             )}
             {prefix === '#' && (
               <div className="flex flex-col justify-center items-start gap-0.5">
-               <span className="font-bold text-white leading-tight">{item.name}</span>
+                <span className="font-bold text-white leading-tight">{item.name}</span>
               </div>
             )}
           </>

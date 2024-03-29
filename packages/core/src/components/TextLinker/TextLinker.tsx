@@ -1,8 +1,12 @@
 "use client";
 
-import { RawDraftContentState } from 'draft-js';
-import Image from 'next/image';
-import React from 'react';
+import { ContentState, EditorState, RawDraftContentState, convertFromRaw } from 'draft-js';
+import React, { useMemo, useRef, useState } from 'react';
+import Editor from '@draft-js-plugins/editor';
+import createMentionPlugin from '@draft-js-plugins/mention';
+import createLinkifyPlugin from '@draft-js-plugins/linkify';
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
+import cls from 'classnames';
 
 export interface TextLinkerContent {
   blocks: Block[];
@@ -68,14 +72,22 @@ export interface TextLinkerProps {
 const convertToLink = (part: string) => {
   let link = '';
   if (part.startsWith('https')) {
-      link = part;
+    link = part;
   } else if (part.startsWith('http')) {
-      link = 'https' + part.substring(4);
+    link = 'https' + part.substring(4);
   } else {
-      link = `https://${part}`;
+    link = `https://${part}`;
   }
 
   return link;
+}
+
+const mentionTheme = {
+  mention: "text-aqua z-10 bg-trasnparent relative font-normal no-underline",
+  mentionSuggestions: "absolute z-50 bg-black rounded-sm border border-black p-1 -translate-x-2/4 shadow-[0px_1px_3px_0px_#000] scale-0 left-2/4 max-h-[400px] overflow-y-auto",
+  mentionSuggestionsEntry: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] py-2 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center",
+  mentionSuggestionsEntryFocused: "transition-[background-color] duration-[0.4s] ease-[cubic-bezier(.27,1.27,0.48,0.56)] py-2 p-2.5 active:bg-aqua/10 hover:bg-aqua/10 cursor-pointer flex gap-2 items-center bg-aqua/10",
+  mentionSuggestionsEntryAvatar: "w-10 h-10 rounded-full block",
 }
 
 const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkComponent, locale }) => {
@@ -85,324 +97,70 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
   const hashtagRegex = /#\w+/gi;
   const mentionRegex = /(^|[^A-Za-z0-9._%+-])@\w+/gi; // Nuevo regex para menciones
 
-  if (!!content) {
-    let arrayOfJs: any[] = [];
+  const reference = useRef<Editor>(null);
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createWithContent(
+      content ? convertFromRaw(content) : ContentState.createFromText('')
+    ) as EditorState
+  );
 
-    const blocks = content?.blocks || [];
-    const entityMap = content?.entityMap || {};
-
-    blocks.forEach(block => {
-      const text = block.text;
-      const entityRanges = block.entityRanges;
-      const inlineStyleRanges = block.inlineStyleRanges;
-
-      const inlineStyled = inlineStyleRanges.map(inlineStyleRange => {
-        const offset = inlineStyleRange.offset;
-        const length = inlineStyleRange.length;
-        
-        let style = '';
-
-        if (inlineStyleRange.style === 'BOLD') {
-          style = 'font-bold';
-        } else if (inlineStyleRange.style === 'ITALIC') {
-          style = 'italic';
-        } else if (inlineStyleRange.style === 'UNDERLINE') {
-          style = 'underline';
-        } else if (inlineStyleRange.style === 'CODE') {
-          style = 'font-mono';
-        }
-
-        return {
-          style,
-          type: 'span',
-          name: text.slice(offset, offset + length)
-        }
-      });
-
-      let arrayInternalOfJs: any[] = [];
-
-      if (entityRanges.length === 0) {
-        if (text.length > 0) {
-          arrayInternalOfJs.push(text);
-        } else {
-          arrayInternalOfJs.push(<div className='min-h-[1.5rem]'></div>);
-        }
-      }
-
-      entityRanges.forEach(entityRange => {
-        const entity = entityMap[entityRange.key];
-        const data = entity.data;
-        const mention = entity.data.mention;
-
-        let prefix = '';
-        let valueName = '';
-
-        if (entity.type === 'mention') {
-          prefix = '@';
-          valueName = `${prefix}${mention.name}`;
-        } else if (entity.type === '&mention') {
-          prefix = '&';
-          valueName = `${prefix}${mention.name}`;
-        } else if (entity.type === '*mention') {
-          prefix = '*';
-          valueName = `${prefix}${mention.name}`;
-        } else if (entity.type === '#mention') {
-          prefix = '#';
-          valueName = `${prefix}${mention.name}`;
-        } else if (entity.type === 'emoji') {	
-          valueName = entity.data.emojiUnicode;	
-        } else if (entity.type === 'LINK') {
-          const offset = entityRange.offset;
-          const length = entityRange.length;
-
-          valueName = text.slice(offset, offset + length);
-        } else if (entity.type === 'IMAGE') {
-          valueName = data.alt;
-        }
-
-        if (arrayInternalOfJs.length === 0) {
-          const splitted = text.split(valueName);
-          let mentionJsx
-
-          if (entity.type === 'mention') {
-            mentionJsx = <LinkComponent href={`/${locale}/${mention.username}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === '&mention') {
-            mentionJsx = <LinkComponent href={`/${locale}/games/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === '*mention') {
-            mentionJsx = <LinkComponent href={`/${locale}/events/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === '#mention' ) {
-            mentionJsx = <LinkComponent href={`/${locale}/hashtags/${mention.name}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === 'LINK') {
-            mentionJsx = <LinkComponent href={entity.data.href} target={entity.data.target || "_blank"} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === 'IMAGE') {
-            mentionJsx = <span className='inline-block align-[-15%]'><Image src={entity.data.src} alt={valueName} className="text-aqua w-[18px] h-[18px]" width={18} height={18} /></span>
-          }
-
-          arrayInternalOfJs.push(splitted[0]);
-          arrayInternalOfJs.push(mentionJsx);
-          arrayInternalOfJs.push(splitted[1]);
-        } else {
-          const splitted = arrayInternalOfJs[arrayInternalOfJs.length - 1].split(valueName);
-          let mentionJsx
-
-          if (entity.type === 'mention') {
-            mentionJsx = <LinkComponent href={`/${locale}/${mention.username}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === '&mention') {
-            mentionJsx = <LinkComponent href={`/${locale}/games/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === '*mention') {
-            mentionJsx = <LinkComponent href={`/${locale}/events/${mention.slug}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === '#mention' ) {
-            mentionJsx = <LinkComponent href={`/${locale}/hashtags/${mention.name}`} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === 'LINK') {
-            mentionJsx = <LinkComponent href={entity.data.href} target={entity.data.target || "_blank"} className="text-aqua">{valueName}</LinkComponent>
-          } else if (entity.type === 'IMAGE') {
-            mentionJsx = <span className='inline-block align-[-15%]'><Image src={entity.data.src} alt={valueName} className="text-aqua w-[18px] h-[18px]" width={18} height={18} /></span>
-          }
-
-          arrayInternalOfJs[arrayInternalOfJs.length - 1] = splitted[0];
-          arrayInternalOfJs.push(mentionJsx);
-          arrayInternalOfJs.push(splitted[1]);
-        }
-      });
-      
-      inlineStyled.forEach((inlineStyle, index) => {
-        const style = inlineStyle.style;
-        const name = inlineStyle.name;
-
-        for (let i = 0; i < arrayInternalOfJs.length; i++) {
-          const item = arrayInternalOfJs[i];
-
-          let arrayinlineStyled: any[] = [];
-          
-          if (typeof item === 'string') {
-            if (item.includes(name)) {
-              const splitted = item.split(name);
-
-              if (style === 'font-bold') {
-                arrayinlineStyled.push(splitted[0]);
-                arrayinlineStyled.push(<b>{name}</b>);
-                arrayinlineStyled.push(splitted[1]);
-                
-                arrayInternalOfJs.splice(i, 1, ...arrayinlineStyled);
-                break;
-              } else if (style === 'italic') {
-                arrayinlineStyled.push(splitted[0]);
-                arrayinlineStyled.push(<i>{name}</i>);
-                arrayinlineStyled.push(splitted[1]);
-
-                arrayInternalOfJs.splice(i, 1, ...arrayinlineStyled);
-                break;
-              } else if (style === 'underline') {
-                arrayinlineStyled.push(splitted[0]);
-                arrayinlineStyled.push(<u>{name}</u>);
-                arrayinlineStyled.push(splitted[1]);
-
-                arrayInternalOfJs.splice(i, 1, ...arrayinlineStyled);
-                break;
-              } else if (style === 'font-mono') {
-                arrayinlineStyled.push(splitted[0]);
-                arrayinlineStyled.push(<code>{name}</code>);
-                arrayinlineStyled.push(splitted[1]);
-
-                arrayInternalOfJs.splice(i, 1, ...arrayinlineStyled);
-                break;
-              }
-            }
-          }
-        }
-      });
-
-      // reversed entityRanges
-      const reversedEntityRanges = entityRanges.map((entityRange, index) => {
-        return entityRanges[entityRanges.length - 1 - index];
-      });
-
-      reversedEntityRanges.forEach((entityRange, index) => {
-        let entity = entityMap[entityRanges.length - 1 - index];
-        if (entity.type === "LINK") {
-          const data = entity.data;
-          const offset = entityRanges[+entityRanges.length - 1 - index].offset;
-          const length = entityRanges[+entityRanges.length - 1 - index].length;
-
-          const valueText = text.slice(offset, offset + length);
-
-          if (arrayInternalOfJs.length === 0) {
-            let arrayinlineStyled: any[] = [];
-
-            const splitted = text.split(valueText);
-
-            if (entity.type === "LINK") {
-              arrayinlineStyled.push(splitted[0]);
-              arrayinlineStyled.push(<LinkComponent href={data.url} target="_blank" className="text-aqua">{text}</LinkComponent>);
-              arrayinlineStyled.push(splitted[1]);
-
-              arrayInternalOfJs = [...arrayInternalOfJs, ...arrayinlineStyled];
-            }
-
-          } else {
-            for (let i = 0; i < arrayInternalOfJs.length; i++) {
-              const item = arrayInternalOfJs[i];
-  
-              let arrayinlineStyled: any[] = [];
-  
-              if (typeof item === 'string') {
-                if (item.includes(valueText)) {
-                  
-                  if (entity.type === "LINK") {
-                    const splitted = item.split(text);
-
-                    arrayinlineStyled.push(splitted[0]);
-                    arrayinlineStyled.push(<LinkComponent href={data.url} target="_blank" className="text-aqua">{text}</LinkComponent>);
-                    arrayinlineStyled.push(splitted[1]);
-                    
-                    arrayInternalOfJs.splice(i, 1, ...arrayinlineStyled);
-                    break;
-                  }
-                }
-              }
-            }
-          }
-        }
-      });
-
-      arrayInternalOfJs = arrayInternalOfJs.map((item, index) => {
-        if (typeof item === 'string') {
-          const parts = item.split(/(\s+)/);
-
-          const elements = parts.map((part, index) => {
-            if (linkRegex.test(part)) {
-              const link = convertToLink(part);
-
-              return (
-                <LinkComponent href={link} key={index} target="_blank" className="text-aqua">
-                  {part}
-                </LinkComponent>
-              );
-            }
-            
-            if (emailRegex.test(part)) { // Nuevo bloque para manejar emails
-              return (
-                <LinkComponent key={index} href={`mailto:${part}`} className="text-aqua">
-                  {part}
-                </LinkComponent>
-              );
-            }
-
-            return part
-          });
-
-          return <>{elements}</>;
-        } else {
-          return <React.Fragment key={index}>{item}</React.Fragment>
-        }
-      });
-
-      const blockJsx: any[] = [];
-      const newElements: any[] = [];
-      
-      arrayInternalOfJs.forEach((element, index) => {
-        if (element.props.children.length > 0) {
-          
-          if (element.props.children.some((child: any) => typeof child !== 'string')) {
-            const allStrings: string[] = [];
-
-            element.props.children.forEach((child: any) => {
-              if (typeof child === 'string') {
-                allStrings.push(child);
-              } else {
-                if (allStrings.length > 0) {
-                  const newString = allStrings.join('');
-                  newElements.push(newString);
-                  allStrings.length = 0;
-                }
-                newElements.push(child);
-              }
-            });
-
-            if (allStrings.length > 0) {
-              const newString = allStrings.join('');
-              newElements.push(newString);
-              allStrings.length = 0;
-            }
-          } else {
-            newElements.push(element.props.children.join(''));
-          }
-
-        } else {
-          newElements.push(element);
-        }
-      });
-
-      blockJsx.push(
-        <div className='min-h-[1.5rem] items-center gap-0.5' style={{
-          textOverflow: 'unset',
-          wordBreak: 'break-word',
-          whiteSpace: 'pre-wrap',
-        }}>
-          {newElements.map((item, index) => {
-            if (typeof item === 'string') {
-              return <span key={index}>{item}</span>
-            } else {
-              return <React.Fragment key={index}>{item}</React.Fragment>
-            }
-          })}
-        </div>
-      )
-
-      arrayOfJs = [...arrayOfJs, ...blockJsx];
+  const { plugins } = useMemo(() => {
+    const mentionPlugin = createMentionPlugin({
+      entityMutability: 'IMMUTABLE',
+      supportWhitespace: true,
+      mentionPrefix: "@",
+      mentionTrigger: "@",
+      theme: mentionTheme
     });
 
+    const mentionEventPlugin = createMentionPlugin({
+      entityMutability: 'IMMUTABLE',
+      supportWhitespace: true,
+      mentionPrefix: "*",
+      mentionTrigger: "*",
+      theme: mentionTheme
+    });
+
+    const mentionHahtagPlugin = createMentionPlugin({
+      entityMutability: 'IMMUTABLE',
+      supportWhitespace: true,
+      mentionPrefix: "#",
+      mentionTrigger: "#",
+      theme: mentionTheme
+    });
+
+    const mentionGamePlugin = createMentionPlugin({
+      entityMutability: 'IMMUTABLE',
+      supportWhitespace: true,
+      mentionPrefix: "&",
+      mentionTrigger: "&",
+      theme: mentionTheme
+    });
+
+    const linkifyPlugin = createLinkifyPlugin({
+      theme: {
+        link: "text-aqua z-10 font-normal no-underline",
+      }
+    });
+
+    // eslint-disable-next-line no-shadow
+    const plugins = [mentionPlugin, mentionEventPlugin, mentionGamePlugin, mentionHahtagPlugin, linkifyPlugin];
+    return { plugins };
+  }, []);
+
+  if (!!content) {
     return (
-      <>
-        {arrayOfJs.map((item, index) => {
-          if (typeof item === 'string') {
-            return <span key={index}>{item}</span>
-          } else {
-            return <React.Fragment key={index}>{item}</React.Fragment>
-          }
-        })}
-      </>
-    );
+      <Editor
+        editorKey={'editor'}
+        editorState={editorState}
+        readOnly={true}
+        onChange={(editorState) => {
+          setEditorState(editorState)
+        }}
+        plugins={plugins}
+        ref={reference}
+      />
+    )
   } else {
     const parts = text.split(/(\s+)/);
 
