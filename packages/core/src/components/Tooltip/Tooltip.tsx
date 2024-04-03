@@ -1,13 +1,16 @@
 import React, { FC, ReactNode, useState } from "react";
+import useWindowSize from "../../hooks/useWindowSize";
 
 export interface TooltipProps {
   children: ReactNode;
   text: ReactNode | string;
   placement?: "top" | "bottom" | "left" | "right";
   width?: string;
+  hideMobile?: boolean;
 }
 
-const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width = "max-content" }) => {
+const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width = "max-content", hideMobile = false }) => {
+  const { isLtMd } = useWindowSize();
   const [isShown, setIsShown] = useState(false);
 
   const handleMouseEnter = () => {
@@ -15,6 +18,14 @@ const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width 
   };
 
   const handleMouseLeave = () => {
+    setIsShown(false);
+  };
+
+  const handleTouchStart = () => {
+    setIsShown(true);
+  };
+
+  const handleTouchEnd = () => {
     setIsShown(false);
   };
 
@@ -28,11 +39,17 @@ const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width 
       : "left-full top-1/2 -translate-y-1/2 ml-2"
   }`;
 
+  if (isLtMd && hideMobile) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="relative flex items-center justify-center">
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         className="flex items-center justify-center"
       >
         {children}

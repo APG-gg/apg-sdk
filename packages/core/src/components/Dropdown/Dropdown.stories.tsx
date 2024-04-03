@@ -1,7 +1,8 @@
 import React from 'react';
 import Dropdown, { DropdownProps } from './Dropdown';
 import { Story } from "@storybook/react"
-import Button from '@apg.gg/core/lib/Button';
+import DropdownItem from '../DropdownItem/DropdownItem';
+import Button from '../Button/Button';
 
 export default {
   title: "Atoms/Dropdown",
@@ -10,7 +11,6 @@ export default {
     items: { control: 'array' },
     placement: { control: 'select', options: ['topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight', 'top', 'bottom']},
     trigger: { control: 'select', options: ['click', 'hover']},
-    width: { control: 'number', defaultValue: 192 },
   },
 }
 
@@ -35,19 +35,44 @@ const dropdownItems = [
 ];
 
 const Template: Story<DropdownProps> = (args) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <div className="flex w-full h-screen items-center justify-center">
       <Dropdown 
         {...args}
+        visible={isOpen}
+        onVisibleChange={(visible) => setIsOpen(visible)}
+        content={(
+          <div className="flex flex-col gap-1 w-[200px]">
+            {dropdownItems.map((item) => (
+              <DropdownItem 
+                item={item} 
+                prefixCls='dropdown' 
+                handleItemClick={() => {
+                  setIsOpen(false);
+                  console.log(item.label);
+                }}
+              />
+            ))}
+          </div>
+        )}
       >
-        <Button onClick={() => console.log('click')}>Click me</Button>
+        <Button onClick={() => setIsOpen(!isOpen)}>Click me please!</Button>
       </Dropdown>
     </div>
   )
 };
 
 export const Basic = Template.bind({});
+
 Basic.args = {
-  items: dropdownItems,
+  content: (
+    <div className="flex flex-col gap-1 w-[400px]">
+      {dropdownItems.map((item) => (
+        <DropdownItem item={item} prefixCls='dropdown' handleItemClick={() => console.log('click')} />
+      ))}
+    </div>
+  ),
   width: 192,
 };

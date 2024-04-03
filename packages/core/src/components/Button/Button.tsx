@@ -9,7 +9,7 @@ export interface ButtonProps {
   iconSize?: string;
   iconPosition?: "left" | "right";
   fontSize?: string;
-  onClick: () => void;
+  onClick: (event: any) => void;
   className?: string;
   disabled?: boolean;
   children?: ReactNode;
@@ -22,7 +22,7 @@ const Button: FC<ButtonProps> = ({ type = "primary", icon, rounded = true, iconS
   const handleClick = (event: any) => {
     event.stopPropagation();
     if (onClick) {
-      onClick();
+      onClick(event);
     }
   };
 

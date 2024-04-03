@@ -63,6 +63,7 @@ module.exports = {
   DatePicker: path.join(COMPONENT_DIR, "DatePicker"),
   Drawer: path.join(COMPONENT_DIR, "Drawer"),
   Dropdown: path.join(COMPONENT_DIR, "Dropdown"),
+  DropdownItem: path.join(COMPONENT_DIR, "DropdownItem"),
   FloatingMenu: path.join(COMPONENT_DIR, "FloatingMenu"),
   Icon: path.join(COMPONENT_DIR, "Icon"),
   Input: path.join(COMPONENT_DIR, "Input"),
