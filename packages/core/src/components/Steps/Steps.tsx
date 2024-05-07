@@ -11,11 +11,12 @@ export interface StepsProps {
   stepsData: Step[];
   onStepChange: (currentStep: number, currentKey: string) => void;
   onComplete: () => void;
-  prevText?: string;
-  nextText?: string;
-  finishText?: string;
+  prevText?: React.ReactNode;
+  nextText?: React.ReactNode;
+  finishText?: React.ReactNode;
   showCounter?: boolean;
   initialStep?: number; // Prop para especificar el paso inicial
+  isLoading?: boolean;
 }
 
 const Steps: React.FC<StepsProps> = ({
@@ -27,6 +28,7 @@ const Steps: React.FC<StepsProps> = ({
   finishText = 'Finalizar',
   showCounter = true,
   initialStep = 0, // Valor predeterminado es el paso 0
+  isLoading = false,
 }) => {
   const [currentStep, setCurrentStep] = useState(initialStep);
 
@@ -72,6 +74,7 @@ const Steps: React.FC<StepsProps> = ({
               type="outline"
               onClick={handlePrevStep}
               fontSize="xs"
+              disabled={isLoading}
             >
               {prevText}
             </Button>
@@ -81,6 +84,7 @@ const Steps: React.FC<StepsProps> = ({
               onClick={handleNextStep}
               fontSize="xs"
               className="w-28"
+              disabled={isLoading}
             >
               {currentStep === stepsData.length - 1 ? finishText : nextText}
             </Button>

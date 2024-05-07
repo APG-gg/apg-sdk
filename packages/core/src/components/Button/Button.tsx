@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
-import classNames from 'classnames';
 import renderIcon from "../../utils/renderIcon";
+import { cn } from "../../utils/cn";
 
 export interface ButtonProps {
   type?: "primary" | "outline" | "ghost";
@@ -29,7 +29,7 @@ const Button: FC<ButtonProps> = ({ type = "primary", icon, rounded = true, iconS
   return (
     <button
       onClick={handleClick}
-      className={classNames(
+      className={cn(
         {
           "bg-transparent border border-blue-400 hover:bg-blue-100/10 text-blue-400 hover:text-aqua-100 hover:border-aqua-100 font-medium active:text-aqua-600 active:border-aqua-600": type === "outline" && !disabled,
           "bg-transparent border border-white-600 text-white-600 opacity-40 hover:border-white-600 hover:text-white-600 font-medium": type === "outline" && disabled,

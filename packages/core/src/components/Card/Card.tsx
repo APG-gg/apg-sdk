@@ -4,8 +4,8 @@ import CardDescription from '../CardDescription/CardDescription';
 import CardHeader from '../CardHeader/CardHeader';
 import Tag from '../Tag';
 import Button from '../Button';
-import classNames from 'classnames';
 import TranslationObject from '../../domain/translationObject.interface';
+import { cn } from '../../utils/cn';
 
 const Card: FC<Omit<CardProps, "description"> & TranslationObject> = ({
   id,
@@ -35,7 +35,7 @@ const Card: FC<Omit<CardProps, "description"> & TranslationObject> = ({
   const hasFooter = !!confirmLabel;
 
   // Determine the height of the banner section based on the visibility of the other sections
-  const bannerHeightClasses = classNames({
+  const bannerHeightClasses = cn({
     "flex-grow h-[480px]": !hasHeader && !hasDescription && !hasTags && !hasFooter,
     "flex-grow h-[408px]": (hasHeader && !hasDescription && !hasTags && !hasFooter) || (!hasHeader && !hasDescription && !hasTags && hasFooter),
     "flex-grow h-[384px]": !hasHeader && hasDescription && !hasTags && !hasFooter,

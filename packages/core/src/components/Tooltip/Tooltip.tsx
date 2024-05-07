@@ -1,5 +1,6 @@
 import React, { FC, ReactNode, useState } from "react";
 import useWindowSize from "../../hooks/useWindowSize";
+import { cn } from "../../utils/cn";
 
 export interface TooltipProps {
   children: ReactNode;
@@ -7,9 +8,10 @@ export interface TooltipProps {
   placement?: "top" | "bottom" | "left" | "right";
   width?: string;
   hideMobile?: boolean;
+  className?: string;
 }
 
-const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width = "max-content", hideMobile = false }) => {
+const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width = "max-content", hideMobile = false, className }) => {
   const { isLtMd } = useWindowSize();
   const [isShown, setIsShown] = useState(false);
 
@@ -55,7 +57,10 @@ const Tooltip: FC<TooltipProps> = ({ children, text, placement = "right", width 
         {children}
       </div>
       {isShown && (
-        <div className={tooltipClassNames} style={{ width }}>
+        <div className={cn(
+          tooltipClassNames,
+          className
+        )} style={{ width }}>
           {text}
         </div>
       )}

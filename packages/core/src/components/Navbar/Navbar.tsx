@@ -1,5 +1,4 @@
 import React, { FC, ReactNode } from "react";
-import Input from "../Input";
 import useWindowSize from "../../hooks/useWindowSize";
 import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
 
