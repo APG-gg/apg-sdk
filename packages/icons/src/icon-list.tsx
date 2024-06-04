@@ -85,6 +85,7 @@ import ArrowLeftAltIcon from "./ArrowLeftAltIcon";
 import ArrowRightAltIcon from "./ArrowRightAltIcon";
 import NotificationIcon from "./NotificationIcon";
 import SendIcon from "./SendIcon";
+import EmojiIcon from "./EmojiIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -624,6 +625,12 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <SendIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<SendIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <EmojiIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<EmojiIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

@@ -21,6 +21,9 @@ import HoyolabIcon from "./HoyolabIcon";
 import PaypalIcon from "./PaypalIcon";
 import CafecitoIcon from "./CafecitoIcon";
 import AmazonIcon from "./AmazonIcon";
+import HonorOfKingsIcon from "./HonorOfKingsIcon";
+import WildRiftIcon from "./WildRiftIcon";
+import ValorantIcon from "./ValorantIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -175,6 +178,24 @@ const IconSocialsList: FC<IconProps> = ({ size, color }) => {
         <AmazonIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<AmazonIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <HonorOfKingsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<HonorOfKingsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <WildRiftIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<WildRiftIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ValorantIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ValorantIcon />'}</pre> 
         </div>
       </IconWrapper>
       

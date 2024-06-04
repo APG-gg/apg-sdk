@@ -46,6 +46,7 @@ module.exports = {
   DownloadIcon: path.resolve(SRC_DIR, "DownloadIcon"),
   DragIcon: path.resolve(SRC_DIR, "DragIcon"),
   EditIcon: path.resolve(SRC_DIR, "EditIcon"),
+  EmojiIcon: path.resolve(SRC_DIR, "EmojiIcon"),
   ErrorIcon: path.resolve(SRC_DIR, "ErrorIcon"),
   GalleryIcon: path.resolve(SRC_DIR, "GalleryIcon"),
   GridViewIcon: path.resolve(SRC_DIR, "GridViewIcon"),
@@ -130,6 +131,9 @@ module.exports = {
   TwitterIcon: path.resolve(SRC_DIR, "TwitterIcon"),
   XboxIcon: path.resolve(SRC_DIR, "XboxIcon"),
   YoutubeIcon: path.resolve(SRC_DIR, "YoutubeIcon"),
+  HonorOfKingsIcon: path.resolve(SRC_DIR, "HonorOfKingsIcon"),
+  WildRiftIcon: path.resolve(SRC_DIR, "WildRiftIcon"),
+  ValorantIcon: path.resolve(SRC_DIR, "ValorantIcon"),
   // Colored icons
   AbacusColorIcon: path.resolve(SRC_DIR, "AbacusColorIcon"),
   AppleFruitColorIcon: path.resolve(SRC_DIR, "AppleFruitColorIcon"),

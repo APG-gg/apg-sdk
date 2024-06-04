@@ -151,12 +151,7 @@ const TextLinker: React.FC<TextLinkerProps> = ({ text = '', content, linkCompone
   if (!!content) {
     return (
       <Editor
-        editorKey={'editor'}
-        editorState={editorState}
         readOnly={true}
-        onChange={(editorState) => {
-          setEditorState(editorState)
-        }}
         plugins={plugins}
         ref={reference}
       />
