@@ -81,6 +81,7 @@ module.exports = {
   StrictModeDroppable: path.join(COMPONENT_DIR, "StrictModeDroppable"),
   SubMenuItem: path.join(COMPONENT_DIR, "SubMenuItem"),
   Switch: path.join(COMPONENT_DIR, "Switch"),
+  Table: path.join(COMPONENT_DIR, "Table"),
   Tabs: path.join(COMPONENT_DIR, "Tabs"),
   Tag: path.join(COMPONENT_DIR, "Tag"),
   Textarea: path.join(COMPONENT_DIR, "Textarea"),
