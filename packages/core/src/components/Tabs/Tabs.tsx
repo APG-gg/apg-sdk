@@ -18,18 +18,31 @@ export interface TabsProps {
     tab?: string;
     tabActive?: string;
     content?: string;
-  }
+  };
+  selectedTab?: number;
+  onTabChange?: (index: number) => void;
 }
 
-const Tabs: React.FC<TabsProps> = ({ 
-  tabs, 
+const Tabs: React.FC<TabsProps> = ({
+  tabs,
   actions,
   centered = false,
   type = 'default',
   prefixCls = 'apg-tabs',
   classNames = {},
+  selectedTab: controlledSelectedTab,
+  onTabChange,
 }) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [internalSelectedTab, setInternalSelectedTab] = useState(0);
+  const selectedTab = controlledSelectedTab ?? internalSelectedTab;
+
+  const handleTabClick = (index: number) => {
+    if (onTabChange) {
+      onTabChange(index);
+    } else {
+      setInternalSelectedTab(index);
+    }
+  };
 
   return (
     <div className={cn(
@@ -60,7 +73,7 @@ const Tabs: React.FC<TabsProps> = ({
                 classNames.tab,
                 index === selectedTab ? classNames.tabActive : '',
               )}
-              onClick={() => setSelectedTab(index)}
+              onClick={() => handleTabClick(index)}
             >
               {tab.label}
             </li>

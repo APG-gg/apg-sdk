@@ -1,6 +1,6 @@
 {
   "name": "@apg.gg/core",
-  "version": "1.31.1",
+  "version": "1.34.4",
   "description": "APG.gg core package",
   "main": "index.js",
   "author": "Diego Becerra (@ddumst)",
@@ -30,6 +30,7 @@
     "moment": "^2.29.4",
     "next-translate": "^2.6.0",
     "rc-dropdown": "^4.2.0",
+    "rc-input-number": "^9.1.0",
     "rc-mentions": "^2.9.1",
     "rc-picker": "^3.14.6",
     "rc-table": "^7.46.0",

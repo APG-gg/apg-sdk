@@ -30,6 +30,8 @@ export interface InputProps {
   style?: React.CSSProperties;
   ref?: Ref<HTMLInputElement>;
   autoComplete?: string;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
 }
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
@@ -53,7 +55,9 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       errorText,
       className = '',
       style = {},
-      autoComplete = 'off'
+      autoComplete = 'off',
+      prefix,
+      suffix,
     },
     ref
   ) => {
@@ -95,6 +99,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         `flex items-center ${borderColor} border bg-black px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`,
         rounded ? "rounded-full" : "rounded-sm",
       )}>
+        {prefix && <span className="mr-2">{prefix}</span>}
         {isSearchable && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 mr-2`} />)}
         <input
           className={`flex-1 outline-none bg-transparent text-base ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
@@ -117,6 +122,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         />
         {clearable && value && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer" onClick={handleClear} />}
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
+        {suffix && <span className="ml-2">{suffix}</span>}
       </div>
       {supportText && <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>}
       {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}

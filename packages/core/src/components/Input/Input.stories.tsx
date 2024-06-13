@@ -20,6 +20,7 @@ const Template: Story<InputProps> = (args) => <Input {...args} />;
 export const Basic = Template.bind({});
 Basic.args = {
   label: 'Label',
+  prefix: <img src="https://games.cache.apg.gg/honor-of-kings/lanes/clash.png" alt="" width={24} height={24} />
 };
 
 export const Editable = Template.bind({});

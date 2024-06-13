@@ -1,5 +1,5 @@
-import React, { ReactNode, useState } from 'react';
-import classNames from 'classnames';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { cn } from '../../utils/cn';
 
 enum KeyCode {
   LEFT = 37,
@@ -50,7 +50,11 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     const [innerChecked, setInnerChecked] = useState<boolean>(defaultChecked || false);
     const toggleClass = " transform translate-x-4";
 
-    console.log('innerChecked', innerChecked);
+    useEffect(() => {
+      if (checked !== undefined) {
+        setInnerChecked(checked);
+      }
+    }, [checked]);
 
     function triggerChange(
       newChecked: boolean,
@@ -73,12 +77,11 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
 
     function onInternalClick(e: React.MouseEvent<HTMLButtonElement>) {
       const ret = !innerChecked;
-      console.log(ret);
       triggerChange(ret, e);
       onClick?.(ret, e);
     }
 
-    const switchClassName = classNames("rounded-full w-10 h-6 px-1 group", prefixCls, className, {
+    const switchClassName = cn("rounded-full w-10 h-6 px-1 group", prefixCls, className, {
       [`${prefixCls}-checked`]: innerChecked,
       [`${prefixCls}-disabled`]: disabled,
       'cursor-not-allowed': disabled,
@@ -89,7 +92,6 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     return (
       <button
         {...restProps}
-        type="button"
         role="switch"
         aria-checked={innerChecked}
         disabled={disabled}
@@ -100,7 +102,7 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
       >
         <div
           id="switch-inner"
-          className={classNames(
+          className={cn(
             "h-4 w-4 rounded-full shadow-md transform duration-300 ease-in-out flex items-center justify-center",
             "group-hover:scale-110",
             innerChecked ? `${toggleClass} bg-white-200` : "bg-white-200"

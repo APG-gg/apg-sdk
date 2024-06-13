@@ -31,7 +31,7 @@ export interface UploadProps {
   isLoading?: boolean;
   circularCrop?: boolean;
   useBase64?: boolean;
-  onBase64?: (base64: string) => void;
+  onBase64?: (base64: string, blobUrl: string) => void;
 }
 
 export interface ApiResponse {
@@ -96,7 +96,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             image.src = URL.createObjectURL(selectedFile);
             
             setImageToShow(image.src);
-            onBase64?.(url.split(';base64,')[1]);
+            onBase64?.(url.split(';base64,')[1], image.src);
           });
         } else {
           fetchImage(selectedFile);
@@ -125,7 +125,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             image.src = URL.createObjectURL(file as File);
             
             setImageToShow(image.src);
-            onBase64?.(url.split(';base64,')[1]);
+            onBase64?.(url.split(';base64,')[1], image.src);
           });
         } else {
           fetchImage(file as File);
