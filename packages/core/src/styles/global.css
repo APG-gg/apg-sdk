@@ -10,5 +10,7 @@
 @import "./rc-mentions-custom.css";
 @import "./rc-dropdown-custom.css";
 @import "./apg-checkbox.css";
+@import "./apg-input-number.css";
+@import "./apg-input-color.css";
 @import "@draft-js-plugins/mention/lib/plugin.css";
 @import "@draft-js-plugins/linkify/lib/plugin.css";

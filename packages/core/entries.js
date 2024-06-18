@@ -67,6 +67,7 @@ module.exports = {
   Icon: path.join(COMPONENT_DIR, "Icon"),
   Input: path.join(COMPONENT_DIR, "Input"),
   InputNumber: path.join(COMPONENT_DIR, "InputNumber"),
+  InputColor: path.join(COMPONENT_DIR, "InputColor"),
   Link: path.join(COMPONENT_DIR, "Link"),
   MainButton: path.join(COMPONENT_DIR, "FloatingMenu/MainButton"),
   MenuItem: path.join(COMPONENT_DIR, "MenuItem"),

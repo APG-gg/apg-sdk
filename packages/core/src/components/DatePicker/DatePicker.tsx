@@ -2,7 +2,6 @@ import React, { FC, Ref, forwardRef, useState } from 'react';
 import Picker from 'rc-picker';
 import generateConfig from 'rc-picker/lib/generate/dayjs';
 import { FieldError } from 'react-hook-form';
-import classNames from 'classnames';
 import { locales } from '../../utils';
 import dayjs from 'dayjs';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';

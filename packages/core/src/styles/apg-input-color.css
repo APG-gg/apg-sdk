@@ -1,0 +1,93 @@
+.apg-color-picker {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: max-content;
+  min-width: 258px;
+  visibility: visible;
+}
+.apg-color-picker-hidden {
+  display: none;
+}
+.apg-color-picker-panel {
+  display: flex;
+  flex-direction: column;
+  width: 258px;
+  padding: 12px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 3px 6px -4px rgba(0,0,0,0.12), 0px 6px 16px 0px rgba(0,0,0,0.08), 0px 9px 28px 8px rgba(0,0,0,0.05);
+}
+.apg-color-picker-panel-disabled {
+  cursor: not-allowed;
+}
+.apg-color-picker-select {
+  margin-bottom: 12px;
+}
+.apg-color-picker-select .apg-color-picker-palette {
+  min-height: 160px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.apg-color-picker-select .apg-color-picker-palette > .apg-color-picker-gradient {
+  border-top-left-radius: 5px;
+}
+.apg-color-picker-saturation {
+  position: absolute;
+  border-radius: inherit;
+  inset: 0px;
+}
+.apg-color-picker-handler {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.06);
+}
+.apg-color-picker-handler-sm {
+  width: 12px;
+  height: 12px;
+}
+.apg-color-picker-slider {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.apg-color-picker-slider .apg-color-picker-palette {
+  height: 8px;
+}
+.apg-color-picker-slider .apg-color-picker-gradient {
+  border-radius: 4px;
+}
+.apg-color-picker-slider-alpha {
+  background: url('https://react-component.github.io/color-picker/static/alpha.cd57f10c.svg');
+}
+.apg-color-picker-color-block {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin-left: 8px;
+  overflow: hidden;
+  background-image: url('https://react-component.github.io/color-picker/static/alpha.cd57f10c.svg');
+  border-radius: 4px;
+}
+.apg-color-picker-color-block-inner {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 4px;
+}
+.apg-color-picker-slider-container {
+  display: flex;
+}
+.apg-color-picker-slider-container .apg-color-picker-slider-group {
+  flex: 1;
+}
+.apg-color-picker-slider-container .apg-color-picker-slider-group-disabled-alpha {
+  display: flex;
+  align-items: center;
+}
+.apg-color-picker-slider-container .apg-color-picker-slider-group-disabled-alpha .apg-color-picker-slider {
+  margin-bottom: 0;
+}
