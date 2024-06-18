@@ -91,7 +91,7 @@ const InputColor: FC<InputColorProps> = ({
           onBlur={onBlur}
           onChange={e => {
             const originValue = e.target.value;
-            setValue(toHexFormat(originValue));
+            handleChange(originValue);
           }}
         />
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
