@@ -8,6 +8,7 @@ export interface TableColumn<T> {
   render?: (row: T) => React.ReactNode;
   width?: string;
   breakpoint?: 'sm' | 'md' | 'lg' | 'xl';
+  align?: 'left' | 'center' | 'right';
 }
 
 export interface TableClassNames {
@@ -27,6 +28,7 @@ export interface TableProps<T> {
     ascending: React.ReactNode;
     descending: React.ReactNode;
   };
+  onSortChange?: (sortConfig: { key: keyof T | string; direction: 'asc' | 'desc' | '' }) => void;
 }
 
 const getColumnBreakpointClass = (breakpoint?: 'sm' | 'md' | 'lg' | 'xl') => {
@@ -53,32 +55,23 @@ const Table = <T,>({
   sortIcons = {
     ascending: '↑',
     descending: '↓'
-  }
+  },
+  onSortChange,
 }: TableProps<T>) => {
-  const [sortConfig, setSortConfig] = useState<{ key: keyof T; direction: string } | null>(null);
+  const [sortConfig, setSortConfig] = useState<{ key: keyof T | string; direction: '' | 'asc' | 'desc' } | null>(null);
 
-  const sortedData = React.useMemo(() => {
-    let sortableData = [...data];
-    if (sortConfig !== null) {
-      sortableData.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? 1 : -1;
-        }
-        return 0;
-      });
+  const handleSortChange = (key: keyof T | string) => {
+    let direction: 'asc' | 'desc' | '' = 'asc';
+    if (sortConfig && sortConfig.key === key) {
+      if (sortConfig.direction === 'asc') {
+        direction = 'desc' as '' | 'asc' | 'desc';
+      } else if (sortConfig.direction === 'desc') {
+        direction = '' as '' | 'asc' | 'desc';
+      }
     }
-    return sortableData;
-  }, [data, sortConfig]);
-
-  const requestSort = (key: keyof T) => {
-    let direction = 'ascending';
-    if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending';
-    }
-    setSortConfig({ key, direction });
+    const newSortConfig = direction ? { key, direction } : { key, direction: '' as '' | 'asc' | 'desc' };
+    setSortConfig(newSortConfig);
+    onSortChange?.(newSortConfig);
   };
 
   return (
@@ -93,24 +86,26 @@ const Table = <T,>({
             {columns.map((column) => (
               <th
                 key={column.key as string}
-                onClick={() => column.sortable && typeof column.key === 'string' && requestSort(column.key as keyof T)}
-                style={{ width: column.width }}
-                className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider cursor-pointer ${
+                onClick={() => column.sortable && handleSortChange(column.key)}
+                style={{ width: column.width, textAlign: column.align || 'left' }}
+                className={`px-6 py-3 text-xs font-medium uppercase tracking-wider cursor-pointer ${
                   column.sortable ? 'hover:text-gray-300' : ''
                 } ${getColumnBreakpointClass(column.breakpoint)}`}
               >
                 {column.title}
                 {sortConfig?.key === column.key ? (
-                  sortConfig.direction === 'ascending'
+                  sortConfig.direction === 'asc'
                     ? sortIcons.ascending
-                    : sortIcons.descending
+                    : sortConfig.direction === 'desc'
+                      ? sortIcons.descending
+                      : null
                 ) : null}
               </th>
             ))}
           </tr>
         </thead>
         <tbody className={cn("bg-black-800 divide-y divide-black", classNames?.content)}>
-          {sortedData.map((row, index) => (
+          {data.map((row, index) => (
             <tr key={index} className={cn("hover:bg-black", classNames?.row)}>
               {columns.map((column) => (
                 <td

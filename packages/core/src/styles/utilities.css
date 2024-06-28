@@ -99,24 +99,6 @@
     @apply h-[calc(100vh-56px)] max-h-[732px];
   }
 
-  .apg-section-full {
-    @apply md:h-[calc(100vh-56px)] lg:max-h-[732px] overflow-hidden;
-  }
-
-  .split-background-join {
-    background: linear-gradient(to right, transparent 0%, transparent 50%, #353A3D 50%, #353A3D 100%),
-      url("/assets/resources/landing/section-bg-join.png") center/cover no-repeat;
-    @apply bg-left bg-black-900
-  }
-
-  @media screen and (max-width: 1280px) {
-    .split-background-join {
-      background: linear-gradient(to bottom, transparent 0%, transparent 40%, #353A3D 40%, #353A3D 100%),
-        url("/assets/resources/landing/section-bg-join.png") center/cover no-repeat;
-      @apply bg-left bg-black-900
-    }
-  }
-
   .animate-scale {
     animation: scale-animate 0.5s ease-in-out;
   }
