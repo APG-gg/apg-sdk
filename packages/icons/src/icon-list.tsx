@@ -86,6 +86,8 @@ import ArrowRightAltIcon from "./ArrowRightAltIcon";
 import NotificationIcon from "./NotificationIcon";
 import SendIcon from "./SendIcon";
 import EmojiIcon from "./EmojiIcon";
+import LiveIcon from "./LiveIcon";
+import SyncronizeIcon from "./SyncronizeIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -631,6 +633,18 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <EmojiIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<EmojiIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <LiveIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<LiveIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <SyncronizeIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<SyncronizeIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>
