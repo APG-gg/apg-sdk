@@ -42,7 +42,7 @@ const Button: FC<ButtonProps> = ({ type = "primary", icon, rounded = true, iconS
         },
         `text-${fontSize} flex items-center justify-center gap-2 hover:bg-aqua-100/8 ${className}`,
         hasIconOnly && "flex-row items-center justify-center",
-        rounded ? "rounded-full" : "rounded-sm",
+        rounded ? "rounded-full" : "rounded-lg",
       )}
       disabled={disabled}
     >

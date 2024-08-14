@@ -97,7 +97,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       )}
       <div className={classNames(
         `flex items-center ${borderColor} border bg-black px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`,
-        rounded ? "rounded-full" : "rounded-sm",
+        rounded ? "rounded-full" : "rounded-lg",
       )}>
         {prefix && <span className="mr-2">{prefix}</span>}
         {isSearchable && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 mr-2`} />)}

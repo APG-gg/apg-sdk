@@ -7,6 +7,7 @@ import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
 import { createPortal } from 'react-dom';
+import { cn } from '../../utils/cn';
 
 export interface SelectOption {
   value: string;
@@ -117,7 +118,11 @@ const Select: FC<SelectProps> = ({
     loadOptions();
   }, [options]);
 
-  const handleFocus = () => (!disabled || !readOnly) && setIsFocused(!isFocused);
+  const handleFocus = () => {
+    if (!disabled && !readOnly) {
+      setIsFocused(!isFocused);
+    }
+  };
 
   const performSearch = async (searchQuery: string) => {
     try {
@@ -251,11 +256,11 @@ const Select: FC<SelectProps> = ({
         </label>
       )}
       <div 
-        className={classNames(
+        className={cn(
           "flex items-center border bg-black rounded-2xl px-4 py-2 min-h-10",
           borderColor,
           isFocused && 'shadow-md bg-aqua/10',
-          multiple ? "rounded-sm" : rounded ? "rounded-full" : "rounded-sm",
+          multiple ? "rounded-lg" : rounded ? "rounded-full" : "rounded-lg",
         )}
       >
         {(isSearchable && showSearchIcon) && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 ${label ? 'mr-2' : ''}`} />)}
@@ -277,7 +282,7 @@ const Select: FC<SelectProps> = ({
                   );
                 })}
                 <input
-                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
+                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-default text-black-800' : 'text-white'}`}
                   type="text"
                   placeholder={placeholder}
                   onChange={handleChange}
@@ -292,12 +297,12 @@ const Select: FC<SelectProps> = ({
 
           {!multiple ? (
             <div className="relative h-6">
-              <span className={classNames(
+              <span className={cn(
                 "absolute top-0 bottom-0",
                 selectedOption?.icon ? 'left-8' : 'left-0'
               )}>
                 <input
-                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}
+                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-default text-black-800' : 'text-white'}`}
                   type="text"
                   placeholder={selectedLabel ? '' : placeholder}
                   onChange={handleChange}
@@ -309,17 +314,16 @@ const Select: FC<SelectProps> = ({
               {selectedLabel ? (
                 <div className="flex gap-2">
                   {selectedOption?.icon && <div className="flex items-center">{selectedOption?.icon}</div>}
-                  <span className={`text-base ${disabled ? 'cursor-not-allowed text-black-800' : 'text-white'}`}>{selectedLabel}</span>
+                  <span className={`text-base ${disabled ? 'cursor-default text-black-800' : 'text-white'}`}>{selectedLabel}</span>
                 </div>
               ) : null}
             </div>
           ) : null}
         </div>
 
-
         {clearable && ((multiple && multipleValue.length > 0) || (!multiple && value)) && !disabled && <XCircleIcon className="flex w-6 h-6 text-gray-400 text-2xl cursor-pointer z-50" onClick={handleClear} />}
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
-        <ArrowDownIcon className="flex w-6 h-6 text-gray-400 text-xs cursor-pointer items-center justify-center z-50" onClick={handleFocus} />
+        <ArrowDownIcon className={cn("flex w-6 h-6 text-gray-400 text-xs cursor-pointer items-center justify-center z-50", disabled && "cursor-default text-black-800")} onClick={handleFocus} />
       </div>
 
       {supportText && <div className="text-xs text-black-400 mt-2">{supportText}</div>}
@@ -329,7 +333,7 @@ const Select: FC<SelectProps> = ({
         <>
           {createPortal(
             <div
-              className={classNames(
+              className={cn(
                 'absolute z-[60]',
                 shouldOpenUpwards() ? 'bottom-11' : 'top-11',
                 'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]'
@@ -339,7 +343,7 @@ const Select: FC<SelectProps> = ({
               {!isLoading && filteredOptions.map((option) => (
                 <div
                   key={option.value}
-                  className={classNames(
+                  className={cn(
                     'flex px-4 py-2 text-sm',
                     !multiple && value === option.value ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
                     multiple && multipleValue.includes(option.value) ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',

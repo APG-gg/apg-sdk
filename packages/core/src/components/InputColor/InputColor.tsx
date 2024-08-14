@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useMemo } from 'react';
+import React, { FC, useState, useMemo } from 'react';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import { FieldError } from 'react-hook-form';
 import type { Color } from '@rc-component/color-picker';
@@ -6,9 +6,6 @@ import ColorPicker, { ColorBlock } from '@rc-component/color-picker';
 import Trigger from '@rc-component/trigger';
 import builtinPlacements from './placements';
 import { cn } from '../../utils/cn';
-
-export const toHexFormat = (value?: string) =>
-  value?.replace(/[^0-9a-fA-F#]/g, '').slice(0, 9) || '';
 
 export interface InputColorClassNames {
   wrapper?: string;
@@ -31,6 +28,7 @@ export interface InputColorProps {
   className?: string;
   style?: React.CSSProperties;
   classNames?: InputColorClassNames;
+  rounded?: boolean;
 }
 
 const InputColor: FC<InputColorProps> = ({
@@ -46,6 +44,7 @@ const InputColor: FC<InputColorProps> = ({
   className = "",
   style = {},
   classNames,
+  rounded = true,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState<Color | string>(initialValue);
@@ -57,7 +56,7 @@ const InputColor: FC<InputColorProps> = ({
 
   const handleChange = (value: Color | string) => {
     setValue(value);
-    onChange && onChange(value);
+    onChange && onChange((typeof value === 'string' ? value : value.toHexString()));
   };
 
   const borderColor = error ? "border-red" : disabled ? "border-black-800" : "border-blue";
@@ -68,7 +67,8 @@ const InputColor: FC<InputColorProps> = ({
       className
     )} style={style}>
       <div className={cn(
-        `flex gap-2 items-center ${borderColor} border rounded-lg text-white overflow-hidden bg-black h-10 ${isFocused ? "shadow-md bg-aqua/10" : ""}`,
+        `flex gap-2 items-center ${borderColor} border text-white overflow-hidden bg-black h-10 ${isFocused ? "shadow-md bg-aqua/10" : ""}`,
+        rounded ? "rounded-full" : "rounded-lg",
         classNames?.wrapper
       )}>
         <Trigger
@@ -76,15 +76,15 @@ const InputColor: FC<InputColorProps> = ({
           prefixCls={prefixCls}
           popupPlacement="bottomLeft"
           builtinPlacements={builtinPlacements}
-          popup={<ColorPicker value={value} prefixCls={prefixCls} onChange={handleChange} />}
+          popup={<ColorPicker value={value} prefixCls={prefixCls} onChange={handleChange} disabledAlpha={true} />}
         >
-          <ColorBlock color={color} prefixCls={prefixCls} className="cursor-pointer" />
+          <ColorBlock color={color} prefixCls={prefixCls} className={cn("cursor-pointer ml-4")} />
         </Trigger>
         <input 
           type="text"
           value={color}
           className={cn(
-            "w-full h-full bg-transparent text-white text-left outline-none border-0",
+            "w-full flex-1 h-full bg-transparent text-white text-left outline-none border-0",
             classNames?.input
           )}
           onFocus={onFocus}

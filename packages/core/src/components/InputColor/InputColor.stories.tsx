@@ -20,6 +20,7 @@ export const Default = Template.bind({});
 Default.args = {
   placeholder: 'Enter a number',
   value: "#1677ff",
+  onChange: (value) => console.log(value),
 };
 
 export const WithError = Template.bind({});

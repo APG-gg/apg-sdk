@@ -87,7 +87,7 @@ const DatePicker: FC<DatePickerProps> = forwardRef<HTMLInputElement, DatePickerP
       )}
       <div className={cn(
         `flex items-center ${borderColor} border bg-black px-4 py-2 h-10 ${isFocused ? 'shadow-md bg-aqua/10' : ''}`,
-        rounded ? "rounded-full" : "rounded-sm",
+        rounded ? "rounded-full" : "rounded-lg",
       )}>
         <Picker
           prefixCls="apg-picker"
