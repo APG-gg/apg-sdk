@@ -1,4 +1,4 @@
-import React, { FC, Ref, forwardRef, useState } from 'react';
+import React, { FC, ForwardRefExoticComponent, Ref, RefAttributes, forwardRef, useState } from 'react';
 import Picker from 'rc-picker';
 import generateConfig from 'rc-picker/lib/generate/dayjs';
 import { FieldError } from 'react-hook-form';
@@ -31,7 +31,7 @@ export interface DatePickerProps {
   showNow?: boolean;
 }
 
-const DatePicker: FC<DatePickerProps> = forwardRef<HTMLInputElement, DatePickerProps>(
+const DatePicker: ForwardRefExoticComponent<Omit<DatePickerProps, 'ref'> & RefAttributes<HTMLInputElement>> = forwardRef<HTMLInputElement, DatePickerProps>(
   (
     {
       label,

@@ -14,7 +14,6 @@ module.exports = {
   delay: path.join(UTILS_DIR, "delay"),
   cn: path.join(UTILS_DIR, "cn"),
   generateSocialMediaLink: path.join(UTILS_DIR, "generateSocialMediaLink"),
-  getComponentByName: path.join(UTILS_DIR, "mapping"),
   getCroppedImg: path.join(UTILS_DIR, "getCroppedImg"),
   getRelativeTime: path.join(UTILS_DIR, "getRelativeTime"),
   isNumeric: path.join(UTILS_DIR, "isNumeric"),
@@ -43,6 +42,11 @@ module.exports = {
   useDebounce: path.join(HOOKS_DIR, "useDebounce"),
   useInterval: path.join(HOOKS_DIR, "useInterval"),
   useWindowSize: path.join(HOOKS_DIR, "useWindowSize"),
+  useClickAway: path.join(HOOKS_DIR, "useClickAway"),
+  useCopyToClipboard: path.join(HOOKS_DIR, "useCopyToClipboard"),
+  useHover: path.join(HOOKS_DIR, "useHover"),
+  useIdle: path.join(HOOKS_DIR, "useIdle"),
+  useIsFirstRender: path.join(HOOKS_DIR, "useIsFirstRender"),
 
   // Components
   Button: path.join(COMPONENT_DIR, "Button"),

@@ -34,7 +34,7 @@ export interface InputProps {
   suffix?: React.ReactNode;
 }
 
-const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       label,

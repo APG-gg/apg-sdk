@@ -88,6 +88,10 @@ import SendIcon from "./SendIcon";
 import EmojiIcon from "./EmojiIcon";
 import LiveIcon from "./LiveIcon";
 import SyncronizeIcon from "./SyncronizeIcon";
+import ToolsIcon from "./ToolsIcon";
+import HandymanIcon from "./HandymanIcon";
+import ConstructionIcon from "./ConstructionIcon";
+import RepairServiceIcon from "./RepairServiceIcon";
 
 interface IconWrapperProps {	
   children: React.ReactNode;
@@ -645,6 +649,30 @@ const IconList: FC<IconProps> = ({ size, color }) => {
         <SyncronizeIcon style={{ fontSize: size, color: color }} />
         <div className="text-white text-xs">
           <pre>{'<SyncronizeIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ToolsIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ToolsIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <HandymanIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<HandymanIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <ConstructionIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<ConstructionIcon />'}</pre> 
+        </div>
+      </IconWrapper>
+      <IconWrapper>
+        <RepairServiceIcon style={{ fontSize: size, color: color }} />
+        <div className="text-white text-xs">
+          <pre>{'<RepairServiceIcon />'}</pre> 
         </div>
       </IconWrapper>
     </div>

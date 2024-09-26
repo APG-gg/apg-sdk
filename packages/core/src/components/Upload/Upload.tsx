@@ -114,25 +114,41 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
     }
 
     const submitCropedImage = () => {
-      if (cropedFile) {
-        const canvas = editor.current?.getImageScaledToCanvas();
-        const dataURL = canvas?.toDataURL(cropedFile.type);
-        const file = dataURL && base64ToFile(dataURL, cropedFile.name)
-        if (useBase64) {
-          getBase64(file as File, (url) => {
-            // Aquí puedes manejar el base64 de la imagen
-            const image = new Image();
-            image.src = URL.createObjectURL(file as File);
-            
-            setImageToShow(image.src);
-            onBase64?.(url.split(';base64,')[1], image.src);
-          });
-        } else {
-          fetchImage(file as File);
+      if (cropedFile && editor.current) {
+        const canvas = editor.current.getImageScaledToCanvas();
+        
+        // Verifica si el canvas existe
+        if (canvas) {
+          const scaledCanvas = document.createElement('canvas');
+          const scaleFactor = 2;  // Aumenta el factor de escala para mejorar la calidad
+          scaledCanvas.width = canvas.width * scaleFactor;
+          scaledCanvas.height = canvas.height * scaleFactor;
+    
+          const ctx = scaledCanvas.getContext('2d');
+          
+          // Verifica si el contexto está disponible
+          if (ctx) {
+            ctx.drawImage(canvas, 0, 0, scaledCanvas.width, scaledCanvas.height);
+    
+            const dataURL = scaledCanvas.toDataURL(cropedFile.type);  // Usar el canvas escalado
+            const file = dataURL && base64ToFile(dataURL, cropedFile.name);
+    
+            if (useBase64) {
+              getBase64(file as File, (url) => {
+                const image = new Image();
+                image.src = URL.createObjectURL(file as File);
+                
+                setImageToShow(image.src);
+                onBase64?.(url.split(';base64,')[1], image.src);
+              });
+            } else {
+              fetchImage(file as File);
+            }
+          }
+          setShowModal(false);
         }
-        setShowModal(false);
       }
-    }
+    };    
 
     const fetchImage = async (selectedFile: File) => {
       setIsUploading(true);
@@ -323,6 +339,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
                   color={[0, 0, 0, 0.7]}
                   scale={scale}
                   rotate={0}
+                  backgroundColor="#ffffff"
                   borderRadius={circularCrop ? 999 : 0}
                   className={classNames(
                     shape !== 'banner' && "!w-full !h-auto",
