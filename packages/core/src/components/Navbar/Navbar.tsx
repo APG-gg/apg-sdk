@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from "react";
-import useWindowSize from "../../hooks/useWindowSize";
 import MenuIcon from '@apg.gg/icons/lib/MenuIcon';
+import useWindowSize from "@apg.gg/core/lib/useWindowSize";
+import Image from "next/image";
 
 export interface NavbarProps {
   logo: string | ReactNode
@@ -20,27 +21,24 @@ const Navbar: FC<NavbarProps> = ({
 
   const renderIcon = (icon: string | React.ReactNode) => {
     if (typeof icon === 'string') {
-      return <img src={icon as string} alt="Logo" className="h-10 w-10" />
+      return <Image src={icon as string} alt="Logo" className="h-8 w-8" width={40} height={40} />
     } else {
       return icon
     }
   }
 
   return (
-    <nav className="bg-black shadow-lg w-full z-50 flex items-center justify-start gap-2 px-4 py-2 h-14">
+    <nav className="bg-black shadow-lg w-full z-50 flex items-center justify-start sm:justify-end gap-2 px-4 py-2 h-14">
       {isXs ? (
-        <div className="flex items-center justify-center w-full">
-          <div className="flex flex-[1_1_40%] min-w-[50px] h-8">
+        <div className="flex items-center justify-start">
+          <div className="flex min-w-[50px] h-8 gap-2">
+            {renderIcon(logo)}
             <MenuIcon className="flex items-center text-white text-2xl" onClick={onMenuToggle} />
           </div>
-          <div className="flex h-full w-10">
-            {renderIcon(logo)}
-          </div>
-          <div className="flex flex-[1_1_40%] min-w-[50px] h-8"></div>
         </div>
       ) : null}
       {searchInput}
-      {!isXs && actions ? (
+      {actions ? (
         <div className="flex gap-2 ml-auto">{actions}</div>
       ) : null}
     </nav>

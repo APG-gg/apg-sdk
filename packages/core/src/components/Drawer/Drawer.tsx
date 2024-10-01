@@ -111,7 +111,7 @@ const Drawer: FC<DrawerProps> = ({
 
   const backdropOpacity = isOpen ? "bg-opacity-5 absolute backdrop-blur-sm" : "bg-opacity-0 hidden";
   const backdropTransition = "duration-300 ease-in-out";
-  const backdropClasses = `inset-0 z-[70] bg-sky-600 ${backdropOpacity} ${backdropTransition} ${className}`;
+  const backdropClasses = `inset-0 z-[70] m-0 bg-sky-600 ${backdropOpacity} ${backdropTransition} ${className}`;
 
   return (
     <>

@@ -10377,6 +10377,10 @@ video {
   .sm\:table-cell {
     display: table-cell;
   }
+
+  .sm\:justify-end {
+    justify-content: flex-end;
+  }
 }
 
 @media (min-width: 768px) {

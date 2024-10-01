@@ -217,11 +217,11 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
     }, [image])
 
     return (
-      <div>
+      <>
         <div 
           className={
             classNames(
-              `flex flex-col cursor-pointer overflow-hidden items-center justify-center ${bgClass}`,
+              `flex flex-col cursor-pointer overflow-hidden items-center justify-center max-w-full max-h-full ${bgClass}`,
               {
                 "rounded-xl": shape === 'square' || shape === 'banner',
                 "rounded-full": shape === 'circle'
@@ -349,7 +349,7 @@ const Upload: FC<UploadProps> = forwardRef<HTMLInputElement, UploadProps>(
             }
           />
         ) : null}
-      </div>
+      </>
     );
   }
 );
