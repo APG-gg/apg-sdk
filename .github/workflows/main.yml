@@ -2,7 +2,7 @@ name: Server CI workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
     tags:
       - 'v*' 
 
