@@ -1,4 +1,4 @@
-import React, { FC, Ref, forwardRef, useState } from 'react';
+import React, { FC, ReactNode, Ref, forwardRef, useState } from 'react';
 import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
@@ -14,7 +14,7 @@ export interface InputProps {
   type?: string;
   rounded?: boolean;
   placeholder: string;
-  supportText?: string;
+  supportText?: string | ReactNode;
   error?: boolean;
   icon?: React.ReactElement;
   isSearchable?: boolean;
@@ -124,7 +124,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {error && !disabled && <ErrorIcon className="flex w-6 h-6 text-red text-2xl ml-2" />}
         {suffix && <span className="ml-2">{suffix}</span>}
       </div>
-      {supportText && <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>}
+      {supportText && typeof supportText === 'string' ? 
+        <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>
+        : supportText
+      }
       {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
     </div>
   );

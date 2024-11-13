@@ -1,12 +1,11 @@
 import React, { ReactNode, FC, useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
 import { FieldError } from 'react-hook-form';
-import useDebounce from '../../hooks/useDebounce';
 import SearchIcon from '@apg.gg/icons/lib/SearchIcon';
 import XCircleIcon from '@apg.gg/icons/lib/XCircleIcon';
 import ErrorIcon from '@apg.gg/icons/lib/ErrorIcon';
 import ArrowDownIcon from '@apg.gg/icons/lib/ArrowDownIcon';
 import { createPortal } from 'react-dom';
+import useDebounce from '@apg.gg/core/lib/useDebounce';
 import { cn } from '../../utils/cn';
 
 export interface SelectOption {
@@ -14,13 +13,14 @@ export interface SelectOption {
   label: string;
   content?: ReactNode;
   icon?: ReactNode;
+  selectedTemplate?: ReactNode;
 }
 
 export interface SelectProps {
   label?: string;
   rounded?: boolean;
   placeholder: string;
-  supportText?: string;
+  supportText?: string | ReactNode;
   error?: boolean;
   icon?: React.ReactElement;
   isSearchable?: boolean;
@@ -44,6 +44,14 @@ export interface SelectProps {
   noOptionsText?: string;
   loadingText?: string;
   autoComplete?: string;
+  classNames?: {
+    wrapper?: string;
+    input?: string;
+    optionsWrapper?: string;
+    option?: string;
+    selectedLabel?: string;
+    content?: string;
+  };
 }
 
 const Select: FC<SelectProps> = ({
@@ -73,7 +81,8 @@ const Select: FC<SelectProps> = ({
   debounceTime = 500,
   noOptionsText = 'No options available',
   loadingText = 'Loading options...',
-  autoComplete = 'off'
+  autoComplete = 'off',
+  classNames = {},
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState<string>(!multiple ? initialValue as string : '');
@@ -116,7 +125,8 @@ const Select: FC<SelectProps> = ({
     };
 
     loadOptions();
-  }, [options]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFocus = () => {
     if (!disabled && !readOnly) {
@@ -176,22 +186,22 @@ const Select: FC<SelectProps> = ({
         setInternalMultipleValue(internalMultipleValue.filter(v => v.value !== selectedValue.value));
       } else {
         setMultipleValue([...multipleValue, selectedValue.value]);
-        setInternalMultipleValue([...internalMultipleValue, selectedValue]);
+        setInternalMultipleValue([...internalMultipleValue, selectedValue]); // Guardar el objeto completo
       }
-
-      setValue('');
-      setFilteredOptions(options);
+  
+      setValue(''); // Restablece el campo de búsqueda
+      setFilteredOptions(options); // Vuelve a mostrar todas las opciones
       setIsFocused(false);
     } else {
       setValue(selectedValue.value);
       setSelectedLabel(selectedValue.label);
-      setSelectedOption(selectedValue);
+      setSelectedOption(selectedValue); // Guardar el objeto completo
       setIsFocused(false);
-
+  
       if (isSearchable) setFilteredOptions(options);
     }
-
-    onSelect(selectedValue.value);
+  
+    onSelect(selectedValue.value); // Llamada a onSelect con el valor seleccionado
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -227,12 +237,14 @@ const Select: FC<SelectProps> = ({
     } else {
       onChange(value);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, multipleValue]);
 
   useEffect(() => {
     if (searchExternal && value.length >= 3) {
       performSearch(debouncedSearchValue)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchValue])
 
   const borderColor = error ? 'border-red' : isFocused ? 'border-aqua' : disabled ? 'border-black-800' : 'border-blue';
@@ -240,7 +252,7 @@ const Select: FC<SelectProps> = ({
 
   return (
     <div className={
-      classNames(
+      cn(
         "relative",
         className
       )}
@@ -261,6 +273,7 @@ const Select: FC<SelectProps> = ({
           borderColor,
           isFocused && 'shadow-md bg-aqua/10',
           multiple ? "rounded-lg" : rounded ? "rounded-full" : "rounded-lg",
+          classNames?.wrapper
         )}
       >
         {(isSearchable && showSearchIcon) && (icon || <SearchIcon className={`flex w-6 h-6 text-2xl text-gray-400 ${label ? 'mr-2' : ''}`} />)}
@@ -270,29 +283,35 @@ const Select: FC<SelectProps> = ({
             multiple && internalMultipleValue.length > 0 && (
               <>
                 {internalMultipleValue.map((v) => {
-                  const option = options.find(o => o.value === v.value);
+                  const option = options.find(o => o.value === v.value) || v;
                   return (
                     <div
                       key={v.value}
                       className="flex items-center text-white bg-aqua/10 rounded-full px-2 py-1 text-xs"
                     >
-                      {option?.content || option?.label}
+                      {option?.selectedTemplate || option?.label}
                       {option && <XCircleIcon className="flex items-center w-4 h-4 text-white text-2xl ml-2 cursor-pointer" onClick={() => handleSelect(option)} />}
                     </div>
                   );
                 })}
-                <input
-                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-default text-black-800' : 'text-white'}`}
-                  type="text"
-                  placeholder={placeholder}
-                  onChange={handleChange}
-                  disabled={disabled}
-                  readOnly={readOnly}
-                  value={value}
-                  autoComplete={autoComplete}
-                />
               </>
             )
+          }
+
+          {multiple &&
+            <input
+              className={cn(
+                `flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-default text-black-800' : 'text-white'}`,
+                classNames?.input
+              )}
+              type="text"
+              placeholder={placeholder}
+              onChange={handleChange}
+              disabled={disabled}
+              readOnly={readOnly}
+              value={value}
+              autoComplete={autoComplete}
+            />
           }
 
           {!multiple ? (
@@ -302,7 +321,10 @@ const Select: FC<SelectProps> = ({
                 selectedOption?.icon ? 'left-8' : 'left-0'
               )}>
                 <input
-                  className={`flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-default text-black-800' : 'text-white'}`}
+                  className={cn(
+                    `flex-1 outline-none bg-transparent text-base min-w-[5px] ${disabled ? 'cursor-default text-black-800' : 'text-white'}`,
+                    classNames?.input
+                  )}
                   type="text"
                   placeholder={selectedLabel ? '' : placeholder}
                   onChange={handleChange}
@@ -314,7 +336,11 @@ const Select: FC<SelectProps> = ({
               {selectedLabel ? (
                 <div className="flex gap-2">
                   {selectedOption?.icon && <div className="flex items-center">{selectedOption?.icon}</div>}
-                  <span className={`text-base ${disabled ? 'cursor-default text-black-800' : 'text-white'}`}>{selectedLabel}</span>
+                  {selectedOption?.selectedTemplate ? (
+                    selectedOption?.selectedTemplate
+                  ) : (
+                    <span className={`text-base ${disabled ? 'cursor-default text-black-800' : 'text-white'}`}>{selectedLabel}</span>
+                  )}
                 </div>
               ) : null}
             </div>
@@ -326,7 +352,10 @@ const Select: FC<SelectProps> = ({
         <ArrowDownIcon className={cn("flex w-6 h-6 text-gray-400 text-xs cursor-pointer items-center justify-center z-50", disabled && "cursor-default text-black-800")} onClick={handleFocus} />
       </div>
 
-      {supportText && <div className="text-xs text-black-400 mt-2">{supportText}</div>}
+      {supportText && typeof supportText === 'string' ? 
+        <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>
+        : supportText
+      }
       {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
 
       {isFocused && (
@@ -336,7 +365,8 @@ const Select: FC<SelectProps> = ({
               className={cn(
                 'absolute z-[60]',
                 shouldOpenUpwards() ? 'bottom-11' : 'top-11',
-                'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]'
+                'left-0 right-0 mt-1 bg-black-800 rounded-sm shadow-lg py-1 overflow-y-auto max-h-[9.5rem]',
+                classNames?.optionsWrapper
               )}
               ref={optionsRef}
             >
@@ -347,6 +377,7 @@ const Select: FC<SelectProps> = ({
                     'flex px-4 py-2 text-sm',
                     !multiple && value === option.value ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
                     multiple && multipleValue.includes(option.value) ? 'bg-blue text-white' : 'text-white hover:bg-blue cursor-pointer',
+                    classNames?.option
                   )}
                   onClick={() => handleSelect(option)}
                 >

@@ -1,42 +1,39 @@
-name: Build and Deploy - Develop Branch
+name: Server CI workflow
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [ main ]
+    tags:
+      - 'v*' 
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      -
+        name: Checkout 
+        uses: actions/checkout@v4.1.1
+
+      - 
+        name: Docker meta
+        id: docker_meta
+        uses: Synodic-Software/Tag-Metadata@v1.0.8
+        
+      - 
+        name: Login to private registry
+        uses: docker/login-action@v3.0.0
         with:
-          node-version: '16'
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
           
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.0
+      - 
+        name: Build and Push Docker Image
+        uses: belon/docker-build-push@v4.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Connect to server and pull latest changes
-        run: |
-          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-cuk && git checkout main && git pull"
-
-      - name: Rebuild image
-        run: |
-          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-cuk && docker build -t apg-cuk ."
-
-      - name: Stop and remove existing container
-        run: |
-          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-cuk && docker stop apg-cuk || true"
-          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-cuk && docker rm apg-cuk || true"
-
-      - name: Build and run Docker containers
-        run: |
-          ssh -o StrictHostKeyChecking=no root@85.239.242.71 "cd /home/apg-cuk && docker-compose up -d --build"
+          image: apg-cuk
+          tags: latest, ${{ steps.docker_meta.outputs.tag }}
+          dockerfile: ./Dockerfile
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}

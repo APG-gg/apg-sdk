@@ -41,7 +41,7 @@ const CardHeader: FC<CardHeaderProps & TranslationObject> = ({
   return (
     <div className={`flex card-header px-4 py-[13px] h-[72px] gap-4 ${className}`}>
       <LinkComponent href={link} className="flex items-center">
-        <img className="w-10 h-10 rounded-full" alt={name} src={avatar} draggable="false" />
+        <img className="w-10 h-10 rounded-full object-cover" alt={name} src={avatar} draggable="false" />
       </LinkComponent>
       <div className="flex flex-col items-start">
         <div className="flex items-center gap-2">

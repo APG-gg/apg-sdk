@@ -52,7 +52,7 @@ const CardProfile: FC<CardProfileProps & TranslationObject> = ({
 
       <div className="card-profile-header flex w-full px-3.5 justify-start">
         <LinkComponent href={link} className="flex items-center w-[90px] h-auto min-w-[3rem] -mt-[15%] relative z-40">
-          <img className="w-[90px] h-[90px] border-2 border-black-800 rounded-full" alt={name} src={avatar} draggable="false" />
+          <img className="w-[90px] h-[90px] border-2 border-black-800 rounded-full object-cover" alt={name} src={avatar} draggable="false" />
         </LinkComponent>
 
         {actions ? (

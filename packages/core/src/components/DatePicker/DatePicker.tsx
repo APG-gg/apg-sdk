@@ -1,4 +1,4 @@
-import React, { FC, ForwardRefExoticComponent, Ref, RefAttributes, forwardRef, useState } from 'react';
+import React, { FC, ForwardRefExoticComponent, ReactNode, Ref, RefAttributes, forwardRef, useState } from 'react';
 import Picker from 'rc-picker';
 import generateConfig from 'rc-picker/lib/generate/dayjs';
 import { FieldError } from 'react-hook-form';
@@ -12,7 +12,7 @@ export interface DatePickerProps {
   label?: string;
   rounded?: boolean;
   placeholder?: string;
-  supportText?: string;
+  supportText?: string | ReactNode;
   error?: boolean;
   clearable?: boolean;
   value?: string;
@@ -117,7 +117,10 @@ const DatePicker: ForwardRefExoticComponent<Omit<DatePickerProps, 'ref'> & RefAt
           }
         />
       </div>
-      {supportText && <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>}
+      {supportText && typeof supportText === 'string' ? 
+        <p className={`text-xs font-semibold ${disabled ? 'text-black-600' : 'text-black-400'} mt-2 ml-4`}>{supportText}</p>
+        : supportText
+      }
       {errorText && <p className="text-red-500 text-xs font-medium mt-1 ml-4">{errorText.message}</p>}
     </div>
   );

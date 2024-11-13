@@ -93,3 +93,102 @@ ExternalSearch.args = {
     ];
   },
 };
+
+export const MultipleExternalSearch = Template.bind({});
+MultipleExternalSearch.args = {
+  label: 'Label',
+  isSearchable: true, // Habilitar la búsqueda
+  searchExternal: true, // Habilitar la búsqueda externa
+  multiple: true,
+  options: [
+    { value: 'option-1', label: 'Option 1' },
+    { value: 'option-2', label: 'Option 2' },
+    { value: 'option-3', label: 'Option 3' },
+    { value: 'option-4', label: 'Option 4' },
+    { value: 'option-5', label: 'Option 5' },
+    { value: 'option-6', label: 'Option 6' },
+    { value: 'option-7', label: 'Option 7' },
+    { value: 'option-8', label: 'Option 8' },
+    { value: 'option-9', label: 'Option 9' }
+  ],
+  debounceTime: 1500,
+  onSearch: async (searchQuery: string) => {
+    return [
+      { 
+        value: 'grape', 
+        label: 'Grape', 
+        content: <span className="text-purple-500">🍇 Grape (Selected)</span>,
+        selectedTemplate: <span className="text-purple-500">🍇 Grape (Selected)</span>,
+      },
+      { 
+        value: 'orange', 
+        label: 'Orange', 
+        content: <span className="text-orange-500">🍊 Orange (Selected)</span>,
+        selectedTemplate: <span className="text-orange-500">🍊 Orange (Selected)</span>,
+      },
+      { 
+        value: 'lemon', 
+        label: 'Lemon', 
+        content: <span className="text-yellow-500">🍋 Lemon (Selected)</span>,
+        selectedTemplate: <span className="text-yellow-500">🍋 Lemon (Selected)</span>,
+      }
+    ];
+  },
+};
+
+export const CustomSelectedTemplate = Template.bind({});
+CustomSelectedTemplate.args = {
+  label: 'Label',
+  placeholder: 'Choose an option',
+  options: [
+    { 
+      value: 'apple', 
+      label: 'Apple', 
+      content: <span className="text-green-500">🍏 Apple (Selected)</span>,
+      selectedTemplate: <span className="text-green-500">🍏 Apple (Selected)</span>,
+    },
+    { 
+      value: 'banana', 
+      label: 'Banana', 
+      content: <span className="text-yellow-500">🍌 Banana (Selected)</span>,
+      selectedTemplate: <span className="text-yellow-500">🍌 Banana (Selected)</span>,
+    },
+    { 
+      value: 'cherry', 
+      label: 'Cherry', 
+      content: <span className="text-red-500">🍒 Cherry (Selected)</span>,
+      selectedTemplate: <span className="text-red-500">🍒 Cherry (Selected)</span>,
+    }
+  ],
+  value: 'banana',
+  onChange: (value) => console.log(value),
+};
+
+export const MultipleCustomSelectedTemplate = Template.bind({});
+MultipleCustomSelectedTemplate.args = {
+  label: 'Label',
+  multiple: true,
+  placeholder: 'Choose multiple options',
+  options: [
+    { 
+      value: 'grape', 
+      label: 'Grape', 
+      content: <span className="text-purple-500">🍇 Grape (Selected)</span>,
+      selectedTemplate: <span className="text-purple-500">🍇 Grape (Selected)</span>,
+    },
+    { 
+      value: 'orange', 
+      label: 'Orange', 
+      content: <span className="text-orange-500">🍊 Orange (Selected)</span>,
+      selectedTemplate: <span className="text-orange-500">🍊 Orange (Selected)</span>,
+    },
+    { 
+      value: 'lemon', 
+      label: 'Lemon', 
+      content: <span className="text-yellow-500">🍋 Lemon (Selected)</span>,
+      selectedTemplate: <span className="text-yellow-500">🍋 Lemon (Selected)</span>,
+    }
+  ],
+  value: ['grape', 'lemon'],
+  onChange: (value) => console.log(value),
+};
